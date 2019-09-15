@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_delivery_document_panorama"
+              inherit_id="stock.report_delivery_document">
+        <xpath expr="//h2/span" position="before">
+            <span>Delivery Note</span>
+        </xpath>
+    </template>
+</odoo>
