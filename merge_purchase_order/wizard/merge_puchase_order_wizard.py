@@ -39,7 +39,6 @@ class MergePurchaseOrder(models.TransientModel):
     def merge_orders(self):
         purchase_orders = self.env['purchase.order'].browse(
             self._context.get('active_ids', []))
-        existing_po_line = False
         if len(self._context.get('active_ids', [])) < 2:
             raise UserError(
                 _('Please select atleast two purchase orders to perform '
@@ -61,6 +60,7 @@ class MergePurchaseOrder(models.TransientModel):
             default = {'order_id': po.id}
             for order in purchase_orders:
                 for line in order.order_line:
+                    existing_po_line = False
                     if po.order_line:
                         for poline in po.order_line:
                             if line.product_id == poline.product_id and\
