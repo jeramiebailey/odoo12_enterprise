@@ -5,22 +5,22 @@ from odoo import api, fields, models
 from odoo.addons import decimal_precision as dp
 
 
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
+class PurchaseOrder(models.Model):
+    _inherit = "purchase.order"
 
     @api.depends('order_line.product_uom_qty',
-                 'order_line.qty_delivered',
+                 'order_line.qty_received',
                  'order_line.qty_invoiced')
     def _compute_total_qty(self):
         for order in self:
-            ordered = delivered = invoiced = 0.0
+            ordered = received = invoiced = 0.0
             for line in order.order_line:
                 ordered += line.product_uom_qty
-                delivered += line.qty_delivered
+                received += line.qty_received
                 invoiced += line.qty_invoiced
             order.update({
                 'total_qty_ordered': ordered,
-                'total_qty_delivered': delivered,
+                'total_qty_received': received,
                 'total_qty_invoiced': invoiced,
             })
 
@@ -32,8 +32,8 @@ class SaleOrder(models.Model):
         compute='_compute_total_qty',
     )
 
-    total_qty_delivered = fields.Float(
-        string='Total Delivered Quantity',
+    total_qty_received = fields.Float(
+        string='Total Received Quantity',
         digits=dp.get_precision('Product Unit of Measure'),
         store=True,
         readonly=True,
