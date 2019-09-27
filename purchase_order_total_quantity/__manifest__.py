@@ -13,6 +13,7 @@
     ],
     'data': [
         'views/purchase_order_view.xml',
+        'views/purchase_report_templates.xml',
     ],
     'installable': True,
 }

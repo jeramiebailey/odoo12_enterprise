@@ -8,7 +8,8 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='move_ids_without_package']" position="after">
+            <xpath expr="//field[@name='move_ids_without_package']"
+                   position="after">
                 <group class="oe_subtotal_footer oe_right">
                     <field name="total_qty_initial"/>
                     <field name="total_qty_done"/>

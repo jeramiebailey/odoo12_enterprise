@@ -13,6 +13,7 @@
     ],
     'data': [
         'views/account_invoice_view.xml',
+        'views/report_invoice.xml',
     ],
     'installable': True,
 }

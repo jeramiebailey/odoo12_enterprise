@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+
+    <template id="report_saleorder_document_total_quantity"
+              inherit_id="sale.report_saleorder_document">
+        <xpath expr="//span[@t-field='doc.amount_total']/parent::td/parent::tr"
+               position="after">
+            <tr class="border-black o_total">
+                <td><strong>Total Ordered Quantity</strong></td>
+                <td class="text-right">
+                    <span t-field="doc.total_qty_ordered"/>
+                </td>
+            </tr>
+            <tr class="border-black o_total" t-if="doc.state in ['sale', 'done']">
+                <td><strong>Total Delivered Quantity</strong></td>
+                <td class="text-right">
+                    <span t-field="doc.total_qty_delivered"/>
+                </td>
+            </tr>
+            <tr class="border-black o_total" t-if="doc.state in ['sale', 'done']">
+                <td><strong>Total Invoiced Quantity</strong></td>
+                <td class="text-right">
+                    <span t-field="doc.total_qty_invoiced"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+</odoo>

@@ -13,6 +13,7 @@
     ],
     'data': [
         'views/stock_picking_view.xml',
+        'views/report_deliveryslip.xml',
     ],
     'installable': True,
 }
