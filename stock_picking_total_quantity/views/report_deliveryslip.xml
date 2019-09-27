@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <template id="report_delivery_document_total_quantity"
+              inherit_id="stock.report_delivery_document">
+        <xpath expr="//t[@t-set='has_serial_number']/parent::table"
+               position="after">
+            <div id="total" class="row justify-content-end">
+                <div class="col-4">
+                    <table class="table table-sm">
+                        <tr class="border-black o_total">
+                            <td><strong>Total Initial Quantity</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.total_qty_initial"/>
+                            </td>
+                        </tr>
+                        <tr class="border-black o_total">
+                            <td><strong>Total Done Quantity</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.total_qty_done"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

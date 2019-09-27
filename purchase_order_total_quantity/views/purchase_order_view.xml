@@ -10,8 +10,10 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='amount_total']" position="after">
                 <field name="total_qty_ordered"/>
-                <field name="total_qty_received" attrs="{'invisible': [('state', 'not in', ['purchase', 'done'])]}"/>
-                <field name="total_qty_invoiced" attrs="{'invisible': [('state', 'not in', ['purchase', 'done'])]}"/>
+                <field name="total_qty_received"
+                       attrs="{'invisible': [('state', 'not in', ['purchase', 'done'])]}"/>
+                <field name="total_qty_invoiced"
+                       attrs="{'invisible': [('state', 'not in', ['purchase', 'done'])]}"/>
             </xpath>
         </field>
     </record>

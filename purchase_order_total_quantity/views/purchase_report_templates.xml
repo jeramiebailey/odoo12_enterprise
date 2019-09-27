@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+
+    <template id="report_purchaseorder_document_total_quantity"
+              inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//span[@t-field='o.amount_total']/parent::td/parent::tr"
+               position="after">
+            <tr class="border-black o_total">
+                <td><strong>Total Ordered Quantity</strong></td>
+                <td class="text-right">
+                    <span t-field="o.total_qty_ordered"/>
+                </td>
+            </tr>
+            <tr class="border-black o_total" t-if="o.state in ['purchase', 'done']">
+                <td><strong>Total Received Quantity</strong></td>
+                <td class="text-right">
+                    <span t-field="o.total_qty_received"/>
+                </td>
+            </tr>
+            <tr class="border-black o_total" t-if="o.state in ['purchase', 'done']">
+                <td><strong>Total Invoiced Quantity</strong></td>
+                <td class="text-right">
+                    <span t-field="o.total_qty_invoiced"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="report_purchasequotation_document_total_quantity"
+              inherit_id="purchase.report_purchasequotation_document">
+        <xpath expr="//p[@t-field='o.notes']"
+               position="before">
+            <div id="total" class="row justify-content-end">
+                <div class="col-4">
+                    <table class="table table-sm">
+                        <tr class="border-black o_total">
+                            <td><strong>Total Ordered Quantity</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.total_qty_ordered"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+
+
+</odoo>

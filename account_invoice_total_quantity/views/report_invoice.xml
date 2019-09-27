@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+
+    <template id="report_invoice_document_total_quantity"
+              inherit_id="account.report_invoice_document">
+        <xpath expr="//span[@t-field='o.amount_total']/parent::td/parent::tr"
+               position="after">
+            <tr class="border-black o_total">
+                <td><strong>Total Quantity</strong></td>
+                <td class="text-right">
+                    <span t-field="o.total_qty"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+</odoo>
