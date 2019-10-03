@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_panorama"
+              inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@t-if='o.partner_id.vat']" position="after">
+            <div t-if="o.partner_id.tobacco_license_number" class="mt16">
+                Tobacco License Number:
+                <span t-field="o.partner_id.tobacco_license_number"/>
+                <span t-field="o.partner_id.tobacco_license_validity_date"/>
+            </div>
+            <div t-if="o.partner_id.tobacco_license_number" class="mt16">
+                Sales Permit Number:
+                <span t-field="o.partner_id.sales_permit_number"/>
+                <span t-field="o.partner_id.sale_permit_validity_date"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

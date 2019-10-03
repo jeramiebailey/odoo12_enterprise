@@ -19,3 +19,7 @@ class ResPartner(models.Model):
             'spn', *a
         ),
     )
+
+    sale_permit_validity_date = fields.Date(
+        string='Sales Permit Validity Date',
+    )

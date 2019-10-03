@@ -19,3 +19,7 @@ class ResPartner(models.Model):
             'tln', *a
         ),
     )
+
+    tobacco_license_validity_date = fields.Date(
+        string='Tobacco License Validity Date',
+    )
