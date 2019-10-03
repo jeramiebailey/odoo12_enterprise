@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+
+    <record id="view_picking_form_limit" model="ir.ui.view">
+        <field name="name">stock.picking.form.limit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_line_ids_without_package']/tree"
+                   position="attributes">
+                <attribute name="limit">300</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
