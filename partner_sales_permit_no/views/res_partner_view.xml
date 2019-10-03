@@ -2,7 +2,7 @@
 <!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
 <odoo>
-    <record id="view_partner_form" model="ir.ui.view">
+    <record id="view_partner_form_sales_permit" model="ir.ui.view">
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="priority" eval="10"/>
@@ -10,6 +10,19 @@
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="sales_permit_number"
                        attrs="{'invisible': [('company_type','!=','company')]}"/>
+                <field name="sale_permit_validity_date"
+                       attrs="{'invisible': [('company_type','!=','company')]}"/>
+            </xpath>
+        </field>
+    </record>
+   <record id="view_partner_tree_sales_permit" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='active']" position="after">
+                <field name="sales_permit_number"/>
+                <field name="sale_permit_validity_date"/>
             </xpath>
         </field>
     </record>

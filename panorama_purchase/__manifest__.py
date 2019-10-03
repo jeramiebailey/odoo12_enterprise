@@ -12,6 +12,7 @@
         'purchase',
     ],
     'data': [
+        'report/purchase_quotation_templates.xml',
         'views/purchase_order_view.xml',
     ],
     'installable': True,
