@@ -8,7 +8,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     sales_permit_number = fields.Char(
-        string='Sales Permit Number',
+        string='Sellers Permit Number',
         compute=lambda s: s._compute_identification(
             'sales_permit_number', 'spn',
         ),
@@ -18,8 +18,4 @@ class ResPartner(models.Model):
         search=lambda s, *a: s._search_identification(
             'spn', *a
         ),
-    )
-
-    sale_permit_validity_date = fields.Date(
-        string='Sales Permit Validity Date',
     )
