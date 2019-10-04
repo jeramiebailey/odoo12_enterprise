@@ -5,7 +5,7 @@
         <xpath expr="//div[@name='company_address']/parent::div" position="after">
             <div class="row" t-if="company.vat" >
                 <div class="col-6" name="vat">
-                    <t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/>
+                    <t t-esc="'License No'"/>: <span t-field="company.vat"/>
                 </div>
             </div>
         </xpath>
@@ -24,7 +24,7 @@
                 License Validity Date:
                 <span t-field="o.partner_id.tobacco_license_validity_date"/>
             </div>
-            <div t-if="o.partner_id.tobacco_license_number">
+            <div t-if="o.partner_id.sales_permit_number">
                 Seller's Permit Number:
                 <span t-field="o.partner_id.sales_permit_number"/>
             </div>
