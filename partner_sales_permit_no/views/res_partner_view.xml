@@ -10,8 +10,6 @@
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="sales_permit_number"
                        attrs="{'invisible': [('company_type','!=','company')]}"/>
-                <field name="sale_permit_validity_date"
-                       attrs="{'invisible': [('company_type','!=','company')]}"/>
             </xpath>
         </field>
     </record>
@@ -22,7 +20,6 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='active']" position="after">
                 <field name="sales_permit_number"/>
-                <field name="sale_permit_validity_date"/>
             </xpath>
         </field>
     </record>
