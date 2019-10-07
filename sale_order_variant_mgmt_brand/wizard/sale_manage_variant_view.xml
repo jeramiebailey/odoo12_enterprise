@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+
+    <record id="sale_manage_variant_form_brand" model="ir.ui.view">
+        <field name="name">sale.manage.variant.brand</field>
+        <field name="model">sale.manage.variant</field>
+        <field name="inherit_id"
+               ref="sale_order_variant_mgmt.sale_manage_variant_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tmpl_id']" position="before">
+                <field name="product_brand_id"/>
+            </xpath>
+            <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                 <attribute name="domain">[('product_brand_id', '=', product_brand_id)]</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
