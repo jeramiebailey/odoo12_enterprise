@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_order_form_product_sales" model="ir.ui.view">
+        <field name="name">view.purchase.product.sales.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='price_subtotal']"
+                   position="after">
+                <button name="action_purchase_product_sales"
+                        string="Sales"
+                        icon="fa-shopping-cart"
+                        help="Sales" type="object"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_sales_view" model="ir.ui.view">
+           <field name="name">product.sales.view</field>
+           <field name="model">sale.order.line</field>
+            <field name="priority" eval="40"/>
+           <field name="arch" type="xml">
+                <tree string="Product Purchases"
+                      create="false" edit="false">
+                    <field name="order_id"/>
+                    <field name="order_partner_id"/>
+                    <field name="state"/>
+                    <field name="product_id"/>
+                    <field name="product_uom_qty"/>
+                    <field name="price_unit"/>
+                    <field name="price_subtotal"/>
+                </tree>
+           </field>
+      </record>
+</odoo>
