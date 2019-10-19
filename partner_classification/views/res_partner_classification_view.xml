@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+
+    <record id="res_partner_classification_action"
+            model="ir.actions.act_window">
+        <field name="name">Partner Classifications</field>
+        <field name="res_model">res.partner.classification</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="res_partner_classification_tree_view" model="ir.ui.view">
+        <field name="name">Partner Classifications</field>
+        <field name="model">res.partner.classification</field>
+        <field name="arch" type="xml">
+            <tree string="Classification" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem action="res_partner_classification_action"
+              id="menu_res_partner_classification"
+              name="Partner Classifications"
+              parent="contacts.res_partner_menu_config"/>
+
+</odoo>

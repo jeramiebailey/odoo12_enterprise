@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="sale_order_report_search_partner_city"
+            model="ir.ui.view">
+        <field name="name">sale.order.report.partner.city</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//filter[@name='Customer']" position="after">
+                    <filter string="Customer City"
+                            name="customer_city"
+                            context="{'group_by':'partner_city'}"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>

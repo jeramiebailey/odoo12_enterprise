@@ -11,13 +11,15 @@ class SaleOrderLine(models.Model):
     def action_sale_product_purchases(self):
         id = self.env.ref('sale_order_line_product_purchases.'
                            'product_purchases_view')
-        lines = self.env['purchase.order.line'].search(
-            [('product_id', '=', self.product_id.id)],
+        lines = self.env['purchase.order.line'].search([
+            ('product_id', '=', self.product_id.id),
+            ('state', 'not in', ['cancel', 'done']),
+        ],
             order='order_id DESC',
             limit=10,
         )
         return {
-            'name': _('Purchases'),
+            'name': _('Ongoing Purchases'),
             'view_type': 'form',
             'view_mode': 'tree',
             'res_model': 'purchase.order.line',

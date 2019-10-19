@@ -11,8 +11,10 @@ class PurchaseOrderLine(models.Model):
     def action_purchase_product_sales(self):
         id = self.env.ref('purchase_order_line_product_sales.'
                            'product_sales_view')
-        lines = self.env['sale.order.line'].search(
-            [('product_id', '=', self.product_id.id)],
+        lines = self.env['sale.order.line'].search([
+                ('product_id', '=', self.product_id.id),
+                ('state', 'not in', ['cancel', 'done']),
+            ],
             order='order_id DESC',
             limit=10,
         )
