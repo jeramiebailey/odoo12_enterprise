@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="sale_order_report_partner_classification_group"
+            model="ir.ui.view">
+        <field name="name">sale.order.report.partner.classification</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//filter[@name='Customer']" position="after">
+                    <filter string="Customer Classification"
+                            name="customer_classification"
+                            context="{'group_by':'partner_classification_id'}"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>

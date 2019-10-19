@@ -68,6 +68,7 @@ class PurchaseManageVariant(models.TransientModel):
             purchase_order = record
         OrderLine = self.env['purchase.order.line']
         lines2unlink = OrderLine
+        max_sequence = max(purchase_order.order_line.mapped('sequence')) or 10
         for line in self.variant_line_ids:
             product = self._get_product_variant(line.value_x, line.value_y)
             order_line = purchase_order.order_line.filtered(
@@ -89,6 +90,8 @@ class PurchaseManageVariant(models.TransientModel):
                 })
                 order_line = OrderLine.new(vals)
                 order_line.onchange_product_id()
+                max_sequence += 1
+                order_line.sequence = max_sequence
                 order_line_vals = order_line._convert_to_write(
                     order_line._cache)
                 purchase_order.order_line.browse().create(order_line_vals)
