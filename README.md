@@ -1,1 +1,1 @@
-# panorama
+# panorama.
