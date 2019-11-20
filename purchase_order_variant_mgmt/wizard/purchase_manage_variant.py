@@ -86,13 +86,15 @@ class PurchaseManageVariant(models.TransientModel):
                 vals.update({
                     'product_id': product.id,
                     'product_uom': product.uom_id,
-                    'product_qty': line.product_qty,
                     'order_id': purchase_order.id,
                 })
                 order_line = OrderLine.new(vals)
                 order_line.onchange_product_id()
                 max_sequence += 1
-                order_line.sequence = max_sequence
+                order_line.update({
+                    'sequence': max_sequence,
+                    'product_qty': line.product_qty,
+                })
                 order_line_vals = order_line._convert_to_write(
                     order_line._cache)
                 purchase_order.order_line.browse().create(order_line_vals)
