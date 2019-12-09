@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+
+    <record id="sale_report_view_pivot" model="ir.ui.view">
+        <field name="name">sale.report.pivot</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale_enterprise.sale_report_view_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_id']" position="replace"/>
+            <xpath expr="//field[@name='price_total']" position="replace"/>
+            <xpath expr="//pivot" position="attributes">
+                <attribute name="display_quantity">false</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

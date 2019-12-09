@@ -9,10 +9,11 @@
     'website': 'http://www.eskayazilim.com.tr',
     'license': 'AGPL-3',
     'depends': [
-        'sale',
+        'sale_enterprise',
     ],
     'data': [
         'views/sale_order_view.xml',
+        'report/sale_report_view.xml',
     ],
     'installable': True,
     'auto_install': False,
