@@ -9,7 +9,7 @@
         <field name="inherit_id" ref="sale_enterprise.sale_report_view_pivot"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_id']" position="replace"/>
-            <xpath expr="//field[@name='price_total']" position="replace"/>
+            <xpath expr="//field[@name='price_subtotal']" position="replace"/>
             <xpath expr="//pivot" position="attributes">
                 <attribute name="display_quantity">false</attribute>
             </xpath>
