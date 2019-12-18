@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="account_invoice_report_partner_category"
+            model="ir.ui.view">
+        <field name="name">account.invoice.rep.partner.category</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id"
+               ref="account.view_account_invoice_report_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_category_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='partner_id']" position="after">
+                <filter string="Partner Tag"
+                        name="partner_category_id"
+                        context="{'group_by':'partner_category_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
