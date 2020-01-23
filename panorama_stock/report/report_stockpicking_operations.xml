@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_picking_panorama"
+              inherit_id="stock.report_picking">
+        <xpath expr="//t[@t-as='ml']" position="attributes">
+            <attribute name="t-foreach">move.move_line_ids.sorted(key=lambda ml: ml.product_id.display_name)</attribute>
+        </xpath>
+    </template>
+</odoo>

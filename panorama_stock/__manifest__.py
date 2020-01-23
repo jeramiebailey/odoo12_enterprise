@@ -12,7 +12,9 @@
         'stock',
     ],
     'data': [
+        'views/stock_picking_view.xml',
         'report/report_deliveryslip.xml',
+        'report/report_stockpicking_operations.xml',
     ],
     'installable': True,
     'auto_install': False,
