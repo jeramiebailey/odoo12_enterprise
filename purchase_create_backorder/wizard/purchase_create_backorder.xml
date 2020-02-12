@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Copyright 2020 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+    <record id="view_purchase_create_backorder" model="ir.ui.view">
+        <field name="name">Create Backorder</field>
+        <field name="model">purchase.create.backorder</field>
+        <field name="arch" type="xml">
+            <form string="Create Backorder">
+                <group>
+                    <field name="partner_id"/>
+                </group>
+                <footer>
+                    <button name="create_backorder"
+                            string="Create and View Backorder"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            class="btn-default"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_purchase_create_backorder" model="ir.actions.act_window">
+        <field name="name">Create Backorder</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.create.backorder</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+    </record>
+</odoo>

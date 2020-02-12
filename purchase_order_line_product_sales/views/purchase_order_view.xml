@@ -8,7 +8,7 @@
             <xpath expr="//tree/field[@name='price_subtotal']"
                    position="after">
                 <button name="action_purchase_product_sales"
-                        string="Ongoing Sales"
+                        string="Origin Sales"
                         icon="fa-sign-out"
                         help="Ongoing Sales" type="object"/>
             </xpath>
@@ -19,7 +19,7 @@
            <field name="model">sale.order.line</field>
             <field name="priority" eval="40"/>
            <field name="arch" type="xml">
-                <tree string="Ongoing Sales"
+                <tree string="Origin Sales"
                       create="false" edit="false">
                     <field name="order_id"/>
                     <field name="order_partner_id"/>
