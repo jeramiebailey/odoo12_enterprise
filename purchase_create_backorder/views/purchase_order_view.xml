@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="view_order_form_create_backorder" model="ir.ui.view">
+        <field name="name">purchase.order.form.create.backorder</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']"
+                   position="after">
+                <button name="%(purchase_create_backorder.action_view_purchase_create_backorder)d"
+                        string="Create Backorder"
+                        type="action"
+                        class="btn-primary"
+                        attrs="{'invisible': [('state', 'not in', ['purchase', 'done'])]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

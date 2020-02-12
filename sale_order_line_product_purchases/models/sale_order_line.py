@@ -13,6 +13,7 @@ class SaleOrderLine(models.Model):
                            'product_purchases_view')
         lines = self.env['purchase.order.line'].search([
             ('product_id', '=', self.product_id.id),
+            ('order_id.origin', 'like', self.order_id.name),
             ('state', 'not in', ['cancel', 'done']),
         ],
             order='order_id DESC',
