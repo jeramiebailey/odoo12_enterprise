@@ -27,11 +27,15 @@ class PurchaseCreateBackorder(models.TransientModel):
                 })
                 purchase_ids.append(new_order.id)
                 for line in order.order_line:
-                    vals = line._convert_to_write(line.read()[0])
-                    vals['order_id'] = new_order.id
-                    vals['product_qty'] = \
-                        line.product_uom_qty - line.qty_received
-                    purchase_line_obj.create(vals)
+                    if line.product_uom_qty != line.qty_received:
+                        vals = line._convert_to_write(line.read()[0])
+                        for e in ['id', 'invoice_lines', 'move_ids',
+                                  'move_dest_ids', 'orderpoint_id']:
+                            vals.pop(e)
+                        vals['order_id'] = new_order.id
+                        vals['product_qty'] = \
+                            line.product_uom_qty - line.qty_received
+                        purchase_line_obj.create(vals)
         action = self.env.ref('purchase.purchase_rfq').read()[0]
         if len(purchase_ids) > 1:
             action['domain'] = [('id', 'in', purchase_ids)]
