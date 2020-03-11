@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="view_sale_order_from_remaining_qty" model="ir.ui.view">
+        <field name="name">Create Sale Order from Remaining Quantities</field>
+        <field name="model">sale.order.from.remaining.qty</field>
+        <field name="arch" type="xml">
+            <form string="Create Sale Order from Remaining Quantities">
+                <footer>
+                    <button name="create_order"
+                            string="Create and View Order"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            class="btn-default"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_sale_from_remaining_qty" model="ir.actions.act_window">
+        <field name="name">Create Order from Remaining Quantities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.from.remaining.qty</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

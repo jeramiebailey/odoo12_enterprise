@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="view_order_form_from_remaining_qty" model="ir.ui.view">
+        <field name="name">sale.order.form.from.remaining.qty</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_unlock']"
+                   position="after">
+                <button name="%(sale_order_from_remaining_qty.action_view_sale_from_remaining_qty)d"
+                        string="Create Order"
+                        type="action"
+                        attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
