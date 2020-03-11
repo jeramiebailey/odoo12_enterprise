@@ -24,16 +24,9 @@
           			</div>
           			</td>
 	              <td id="td-price" name="price">
-		                  <del t-attf-class="text-danger #{'' if (compute_currency(variant.lst_price) - variant.price) &gt; 0.1 else 'hidden'}" style="text-decoration: line-through; white-space: nowrap;"
-		                    t-field="variant.lst_price" t-field-options='{
-		                        "widget": "monetary",
-		                        "from_currency": "variant.company_id.currency_id",
-		                        "display_currency": "website.currency_id"
-		                    }'/>
-		                <span t-field="variant.price" style="white-space: nowrap;" t-field-options='{
-		                     "widget": "monetary",
-		                     "display_currency": "website.currency_id"
-		                 }'/>
+					    <del t-attf-class="text-danger mr8 {{'' if combination_info['has_discounted_price'] else 'd-none'}}" style="white-space: nowrap;"
+		                    t-esc="variant.lst_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+		                <span t-esc="variant.price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
 	              </td>
               <td>
               	    <div class="css_quantity input-group oe_website_spinner" contenteditable="false">
