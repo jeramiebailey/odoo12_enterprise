@@ -17,21 +17,21 @@ class SaleOrderFromRemainingQty(models.TransientModel):
         for order in orders:
             if order.state in ['sale', 'done']:
                 new_order = order.copy()
+                new_order.order_line.unlink()
                 new_order.write({
-                    'order_line': [(6, 0, [])],
                     'origin': order.name,
                 })
                 sale_ids.append(new_order.id)
                 for line in order.order_line:
                     if line.product_uom_qty != line.qty_delivered:
                         vals = line._convert_to_write(line.read()[0])
-                        for e in ['id', 'invoice_lines',
+                        for e in ['id', 'invoice_lines', 'product_qty',
                                   'qty_delivered', 'qty_delivered_manual',
                                   'qty_to_invoice', 'move_ids']:
                             vals.pop(e)
                         vals['order_id'] = new_order.id
-                        vals['product_qty'] = \
-                            line.product_qty - line.qty_delivered
+                        vals['product_uom_qty'] = \
+                            line.product_uom_qty - line.qty_delivered
                         sale_line_obj.create(vals)
         action = self.env.ref('sale.action_orders').read()[0]
         if len(sale_ids) > 1:

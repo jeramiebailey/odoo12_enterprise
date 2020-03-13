@@ -23,8 +23,8 @@ class PurchaseOrderFromRemainingQty(models.TransientModel):
         for order in orders:
             if order.state in ['purchase', 'done']:
                 new_order = order.copy()
+                new_order.order_line.unlink()
                 new_order.write({
-                    'order_line': [(6, 0, [])],
                     'partner_id': self.partner_id.id,
                     'origin': order.name,
                 })
