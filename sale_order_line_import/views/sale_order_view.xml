@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record model="ir.actions.client" id="action_sale_order_line_import">
+		<field name="name">Import Sale Order Lines</field>
+		<field name="tag">import</field>
+		<field name="params">{'model':'sale.order.line',
+            'parent_field':'order_line'}</field>
+		<field name="target">new</field>
+	</record>
+
+	 <record id="view_order_form_import" model="ir.ui.view">
+        <field name="name">sale.order.form.import</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+			<xpath expr="//field[@name='order_line']" position="before">
+				<button name="%(action_sale_order_line_import)d"
+                        type="action"
+                        string="Import Order Lines"
+                        attrs="{'invisible': [('state', 'not in',
+                        ['draft', 'sent'])]}">
+                </button>
+			</xpath>
+        </field>
+    </record>
+</odoo>
