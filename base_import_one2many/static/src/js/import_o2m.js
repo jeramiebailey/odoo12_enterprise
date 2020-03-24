@@ -1,3 +1,4 @@
+
 odoo.define('base_import_one2many.import_action',function (require) {
 "use strict";
 
