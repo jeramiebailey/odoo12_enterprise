@@ -18,7 +18,9 @@
 			<xpath expr="//field[@name='order_line']" position="before">
 				<button name="%(action_sale_order_line_import)d"
                         type="action"
-                        string="Import Order Lines">
+                        string="Import Order Lines"
+                        attrs="{'invisible': [('state', 'not in',
+                        ['draft', 'sent'])]}">
                 </button>
 			</xpath>
         </field>
