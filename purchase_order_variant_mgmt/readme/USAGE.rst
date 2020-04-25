@@ -1,4 +1,4 @@
-#. Go to Purchase > Purchase > Request for Quotation
+#. Go to Purchases > Purchases > Request for Quotation
 #. Create a new quotation or edit an existing one.
 #. Press "Add variants" button located in the upper right corner of the
    "Order Lines" tab.

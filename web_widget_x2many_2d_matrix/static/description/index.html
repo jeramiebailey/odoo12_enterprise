@@ -486,7 +486,7 @@ the field in the default function:</p>
                 <span class="s1">'project_id'</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
                 <span class="s1">'user_id'</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
                 <span class="s1">'planned_hours'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-                <span class="s1">'message_needaction'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+                <span class="s1">'message_needaction'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
                 <span class="s1">'date_deadline'</span><span class="p">:</span> <span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span>
             <span class="p">})</span>
             <span class="c1"># if the project doesn't have a task for the user,</span>
@@ -526,6 +526,7 @@ to click on m2o to open related records.</li>
 will enter into the 1st cell until <a class="reference external" href="https://github.com/odoo/odoo/pull/26490">https://github.com/odoo/odoo/pull/26490</a>
 is merged.</li>
 <li>Support extra invisible fields inside each cell.</li>
+<li>Support kanban mode. Current behaviour forces list mode.</li>
 </ul>
 </div>
 <div class="section" id="changelog">

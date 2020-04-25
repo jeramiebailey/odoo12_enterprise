@@ -7,6 +7,7 @@ from odoo import api, models, fields
 
 class SaleManageVariant(models.TransientModel):
     _name = 'sale.manage.variant'
+    _description = 'Add or modify variants on sale order lines'
 
     product_tmpl_id = fields.Many2one(
         comodel_name='product.template', string="Template", required=True)
@@ -35,7 +36,7 @@ class SaleManageVariant(models.TransientModel):
         else:
             sale_order = record
         attr_lines = template.attribute_line_ids.filtered(
-            lambda x: x.attribute_id.create_variant
+            lambda x: x.attribute_id.create_variant != 'no_variant'
         )
         num_attrs = len(attr_lines)
         if not template or not num_attrs or num_attrs > 2:
@@ -68,8 +69,6 @@ class SaleManageVariant(models.TransientModel):
             sale_order = record
         OrderLine = self.env['sale.order.line']
         lines2unlink = OrderLine
-        max_sequence = sale_order.order_line.mapped('sequence') and \
-                       max(sale_order.order_line.mapped('sequence')) or 10
         for line in self.variant_line_ids:
             product = self._get_product_variant(line.value_x, line.value_y)
             order_line = sale_order.order_line.filtered(
@@ -91,8 +90,6 @@ class SaleManageVariant(models.TransientModel):
                 })
                 order_line = OrderLine.new(vals)
                 order_line.product_id_change()
-                max_sequence += 1
-                order_line.sequence = max_sequence
                 order_line_vals = order_line._convert_to_write(
                     order_line._cache)
                 sale_order.order_line.browse().create(order_line_vals)
@@ -101,6 +98,7 @@ class SaleManageVariant(models.TransientModel):
 
 class SaleManageVariantLine(models.TransientModel):
     _name = 'sale.manage.variant.line'
+    _description = 'Define variants quantities on sale order lines'
 
     value_x = fields.Many2one(comodel_name='product.attribute.value')
     value_y = fields.Many2one(comodel_name='product.attribute.value')
