@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2016-2018 Tecnativa - Pedro M. Baeza
+<!-- Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -9,29 +9,27 @@
         <field name="groups_id" eval="[(4, ref('product.group_product_variant'))]"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']" position="before">
-                <button name="%(action_purchase_manage_variant)d"
-                        type="action"
-                        string="Add or Modify Variants"
-                        class="oe_edit_only oe_right"
-                        states="draft,sent"
-                />
-            </xpath>
-            <xpath expr="//field[@name='order_line']//form" position="inside">
-                <field name="product_attribute_value_ids" invisible="1"/>
+                    <button name="%(action_purchase_manage_variant)d"
+                            type="action"
+                            string="Add or Modify Variants"
+                            class="oe_edit_only"
+                            states="draft,sent"
+                    />
             </xpath>
             <xpath expr="//field[@name='order_line']//tree" position="inside">
                 <field name="product_tmpl_id_purchase_order_variant_mgmt" invisible="1"/>
+                <field name="state_purchase_order_variant_mgmt" invisible="1"/>
                 <field name="product_attribute_value_ids" invisible="1"/>
+
                 <button name="%(action_purchase_manage_variant)d"
                         type="action"
                         string="Modify Variants"
                         icon="fa-th"
                         class="oe_edit_only"
                         context="{'default_product_tmpl_id': product_tmpl_id_purchase_order_variant_mgmt}"
-                        attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'sent')), ('product_attribute_value_ids', '=', [])]}"
+                        attrs="{'invisible': ['|', ('state_purchase_order_variant_mgmt', 'not in', ('draft', 'sent')), ('product_attribute_value_ids', '=', [])]}"
                 />
             </xpath>
-
             <xpath expr="//field[@name='order_line']" position="attributes">
                 <attribute name="options">{'reload_on_button': true}</attribute>
             </xpath>

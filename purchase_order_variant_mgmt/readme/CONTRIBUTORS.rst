@@ -3,6 +3,6 @@
   * Pedro M. Baeza
   * Jairo Llopis
 
-* `Eska <https://www.eskayazilim.com.tr>`_:
+* `Comunitea <https://www.comunitea.com>`_:
 
-  * Levent Karakaş
+  * Javier Colmenero <javier@comunitea.com>

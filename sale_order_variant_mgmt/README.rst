@@ -17,7 +17,7 @@ Handle easily multiple variants on Sales Orders
     :target: https://github.com/OCA/product-variant/tree/12.0/sale_order_variant_mgmt
     :alt: OCA/product-variant
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/product-variant-11-0/product-variant-11-0-sale_order_variant_mgmt
+    :target: https://translation.odoo-community.org/projects/product-variant-12-0/product-variant-12-0-sale_order_variant_mgmt
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/137/12.0
@@ -48,7 +48,7 @@ Configuration
 Usage
 =====
 
-#. Go to Sales > Sales > Quotations
+#. Go to Sales > Orders > Quotations
 #. Create a new quotation or edit an existing one.
 #. Press "Add variants" button located in the upper right corner of the
    "Order Lines" tab.
