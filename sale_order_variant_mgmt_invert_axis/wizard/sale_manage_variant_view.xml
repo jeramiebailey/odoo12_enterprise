@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+
+    <record id="sale_manage_variant_form_invert_axis" model="ir.ui.view">
+        <field name="name">sale.manage.variant.invert.axis</field>
+        <field name="model">sale.manage.variant</field>
+        <field name="inherit_id"
+               ref="sale_order_variant_mgmt.sale_manage_variant_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='variant_line_ids']" position="attributes">
+                <attribute name="field_x_axis">value_y</attribute>
+                <attribute name="field_y_axis">value_x</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
