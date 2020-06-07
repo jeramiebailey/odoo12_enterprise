@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_productbarcode_inh" inherit_id="product.report_productbarcode">
+            <xpath expr="//div[@class='page']" position="replace">
+                <t t-foreach="docs" t-as="product">
+                    <div class="page">
+                        <div align="center">
+                            <table class="table table-condensed"
+                                   style="border-bottom: 0px solid white !important;width:11in;">
+
+                                <tr>
+                                    <th style="text-align: center;">
+                                        <strong style="font-size: 100px;" t-field="product.default_code"/>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: center;">
+                                        <strong style="font-size: 100px;">Price:</strong>
+                                        <strong style="font-size: 100px;" t-field="product.list_price"
+                                                t-options="{'widget': 'monetary', 'display_currency': product.company_id.currency_id}"/>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-16" style="padding:200;">
+                            <table style="border-bottom: 0px solid white !important;width:4in;">
+
+                                <t align="left" t-if="product.barcode">
+                                    <tr>
+                                        <td style="text-align: right; vertical-align: top;" align="left">
+                                            <img alt="Barcode" t-if="len(product.barcode) == 13"
+                                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product.barcode, 800, 200)"
+                                                 style="width:170px;height:340px;"/>
+                                            <img alt="Barcode" t-elif="len(product.barcode) == 8"
+                                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', product.barcode, 800, 200)"
+                                                 style="width:170px;height:340px;"/>
+                                            <img alt="Barcode" t-else=""
+                                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 800, 200)"
+                                                 style="width:170px;height:340px;"/>
+                                            <span t-field="product.barcode"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                            <p style="page-break-after: always;"/>
+                        </div>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+        <template id="report_producttemplatebarcode_inh" inherit_id="product.report_producttemplatebarcode">
+            <xpath expr="//div[@class='page']" position="replace">
+                <t t-foreach="docs" t-as="template">
+                    <div class="page">
+                        <t t-foreach="template.product_variant_ids" t-as="product">
+                            <div align="center">
+                                <table class="table table-condensed"
+                                       style="border-bottom: 0px solid white !important;width:11in;">
+
+                                    <tr>
+                                        <th style="text-align: center;">
+                                            <strong style="font-size: 100px;" t-field="product.default_code"/>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th style="text-align: center;">
+                                            <strong style="font-size: 100px;">Price:</strong>
+                                            <strong style="font-size: 100px;" t-field="product.list_price"
+                                                    t-options="{'widget': 'monetary', 'display_currency': product.company_id.currency_id}"/>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="col-16" style="padding:200;">
+                                <table style="border-bottom: 0px solid white !important;width:4in;">
+
+                                    <t align="left" t-if="product.barcode">
+                                        <tr>
+                                            <td style="text-align: right; vertical-align: top;" align="left">
+                                                <img alt="Barcode" t-if="len(product.barcode) == 13"
+                                                     t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product.barcode, 800, 200)"
+                                                     style="width:300%;height:70%;"/>
+                                                <img alt="Barcode" t-elif="len(product.barcode) == 8"
+                                                     t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', product.barcode, 800, 200)"
+                                                     style="width:300%;height:70%;"/>
+                                                <img alt="Barcode" t-else=""
+                                                     t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 800, 200)"
+                                                     style="width:300%;height:70%;"/>
+                                                <span t-field="product.barcode"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </table>
+                                <p style="page-break-after: always;"/>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>
