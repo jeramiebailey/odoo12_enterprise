@@ -64,7 +64,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        X/Y
+                                        Item
                                     </th>
                                     <t t-foreach="product_header_attr.get('table_header')" t-as="attr_id">
                                         <th class="text-center">
