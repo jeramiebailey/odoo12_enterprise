@@ -284,7 +284,10 @@ odoo.define('web_widget_x2many_2d_matrix.X2Many2dMatrixRenderer', function (requ
                 'data-form-id': record.id,
                 'data-id': record.data.id,
             });
-
+            for(var key in record['data']) {
+                    if (key!=='value_x' || key!=='value_y')
+                    record['data'][key]=false
+                }
             // We register modifiers on the <td> element so that it gets
             // the correct modifiers classes (for styling)
             var modifiers = this._registerModifiers(

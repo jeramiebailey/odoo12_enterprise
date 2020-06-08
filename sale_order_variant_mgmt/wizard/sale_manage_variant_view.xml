@@ -24,7 +24,7 @@
                     <tree>
                         <field name="value_x"/>
                         <field name="value_y"/>
-                        <field name="product_uom_qty"/>
+                        <field name="product_uom_qty" />
                     </tree>
                 </field>
                 <footer>
