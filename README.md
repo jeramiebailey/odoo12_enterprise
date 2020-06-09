@@ -1,2 +1,2 @@
-# panorama.
+# panorama-custom.
 
