@@ -1,0 +1,305 @@
+/*============================= Header Style 3 =============================*/
+/*------ Header User Icon ------*/
+.te_login_right
+{
+	text-align:right;
+	>div
+	{
+		display: inline-block;
+		vertical-align: middle;
+		
+		a,.btn-link
+		{
+			@include style(3,3);
+		}
+		.btn
+		{
+			text-transform:capitalize;
+			padding: 0.375rem;
+		}
+	}
+	.te_header_language
+	{
+		a
+		{
+			&:hover
+			{
+				color:nth($f_color,3);
+			}
+		}
+	}
+	.te_user_account
+	{
+		.te_user_account_name
+		{
+			display: none;
+		}
+		.te_user_account_icon, .te_user_account_icon > i
+		{
+			display: inline-block !important
+		}
+	}
+	> .px-1
+	{
+		border-right:1px solid nth($f_color,11);
+		
+		&:last-child
+		{
+			border-right:0;
+		}
+		&.te_pricelist
+		{
+			.dropdown-menu
+			{
+				left:auto !important;
+				right:0;
+				transform: translate3d(0, 32px, 0px) !important;
+			}
+		}
+	}
+	
+		.te_currency_name
+		{
+			display: none
+		}
+		.te_currency_symbol
+		{
+			display: inline-block;
+		}
+	.te_bar_icon
+	{
+		a
+		{
+			font-size: nth($f_sizes,2);
+		}
+	}
+}
+
+/*------ Company Logo ------*/
+.te_header_before_logo
+{
+	@include container;
+	text-align: center;
+	
+	img
+	{
+		max-height:70px;
+	}
+}
+
+/*---------- Static Menu ----------*/
+.te_header_navbar
+{
+	background-color:nth($f_color,19) ;
+	padding: 0;
+	min-height: 47px;
+
+	& .navbar-brand
+	{
+		display:none;
+		@include media-breakpoint-down(sm)
+		{
+			display: inline-block;
+		}
+	}
+	& #top_menu
+	{
+		margin:0px auto;
+		
+		>li > a.nav-link 
+		{
+			@include style(3,5,inherit,null,uppercase);
+			padding: 0.8rem 0.8rem;
+			border-top: 2px solid nth($f_color,27);
+			//border-bottom: 2px solid nth($f_color,27);
+		}
+		>li > a.nav-link.active
+		{
+			background-color: nth($f_color,5);
+			color: nth($f_color,19); /*This color is not used in variables*/ 
+			border-top: 2px solid nth($f_color,19); /*This color is not used in variables*/ 
+			//border-bottom: 2px solid nth($f_color,19); /*This color is not used in variables*/ 
+		}
+		.te_wish_icon_head, .te_cart_icon_head
+		{
+			a >span
+			{
+				padding-left: 3px;
+			}
+		}  
+	}
+	@include media-breakpoint-down(sm) 
+	{
+	    background-color: #F9F9F9 !important; /* Not used mixin to add important*/
+	    padding: 0.3rem 0rem;
+	    .navbar-toggler
+	    {
+			border-color: rgba(0, 0, 0, 0.4) !important; 
+		}
+		#top_menu_collapse, #top_menu_collapse_clone
+		{
+			background: nth($f_color,5);
+			& #top_menu > li 
+			{
+				> a.nav-link
+				{
+					color : nth($f_color,3);
+					padding: 0.5rem !important;
+					border: 0;
+				}
+				> a.nav-link.active
+				{
+					color : nth($f_color,19);
+				}
+			}
+		}
+	}
+}
+/*----- Header Offer Text -----*/
+.te_header_3_offer
+{
+	width: 100%;
+	text-align: center;
+	
+	.te_s_header_offer_text 
+	{
+		@include box-shadow(0 5px 4px -3px rgba(131, 131, 131, 0.1))
+		padding-bottom: 8px;
+		> ul > li
+		{
+			color: nth($f_color,3);
+		}
+	}
+}
+/*----- Header Search Box -----*/
+.te_header_search
+{
+	.te_srch_icon_header
+	{
+		display:none;
+	}
+	@include media-breakpoint-down(sm) 
+	{	
+		& .te_srch_icon_header
+		{
+			display:block;
+			a
+			{
+				color:nth($f_color,3);
+				outline: none;
+			}
+			i
+			{
+		   		vertical-align: top;
+			}
+		}
+		 .te_search_popover {
+		    opacity: 0;
+			visibility: hidden;
+			@include transform(translate(0,10px))
+			outline:0;
+			@include position(absolute,65px,0px,auto,0);
+			width: 100%;
+			padding: 5px 10px;
+	
+				 &.visible {
+					@include transform(translate(0,-20px))
+					@include transition(all,0.5s,cubic-bezier(0.75, -0.02, 0.2, 0.97))
+					opacity:1;
+					z-index: 999;
+				  }
+			}
+		.te_search_popover:before {
+		    z-index: -1;
+		    content: '';
+		    @include position(absolute,-8px,calc(50% - 10px),auto,auto);
+		    @include transition(null,0.3s,null)
+	    	@include transition(transform,null,null)
+		}
+		.te_srch_close
+		{
+			display: none;
+		}
+	}	
+}
+.te_header_3_search
+{
+	.te_header_search
+	{
+		button
+		{
+			@include position(absolute,1px,1px);
+			z-index:9;
+			background: nth($f_color,27);
+		}
+	}
+}
+/*-------- Common Offer Text, Search Icon, Company Logo ----------*/   
+.te_header_style_3_main
+{
+	@media (max-width: 1000px) 
+	{
+		& .te_header_style_3_inner{
+			.col-lg-4{
+				width: 33.33%;
+			}
+			.te_login_right{
+				padding:0;
+			}
+		}
+		& .te_header_before_logo img{
+			max-height: 60px;
+		}
+	}
+	@include media-breakpoint-down(sm)
+	{
+		.te_offer_3
+		{
+			box-shadow: none;
+			padding: 0 !important;
+		}
+		& .te_header_3_offer{
+			display:none;
+		}
+		& .te_header_before_logo img{
+			max-height: 50px;
+		}
+		& .te_header_style_3_inner{
+			padding: 0 !important;
+			width: 100%;
+			margin: 0;
+			text-align: right;
+			display: inline-block;
+			& .col-lg-4
+			{
+				padding:0;
+				width: auto;
+				float: right;
+			}
+			& .col-lg-4:nth-child(2)
+			{
+				display:none;
+			}
+			> .te_header_3_search
+			{
+				position: initial;
+				padding: 10px;
+			}
+			& .te_login_right
+			{
+				& a.btn-link{
+					padding: 8px 3px;
+					font-size:nth($f_sizes,3) !important;
+					& .caret{
+						margin-left: 0px !important;
+					}	
+				}
+				div.px-1
+				{
+					padding: 0 4px !important;
+					border: 0;
+				}
+			}
+		}
+	}		
+}

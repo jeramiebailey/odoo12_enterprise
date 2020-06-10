@@ -1,0 +1,309 @@
+/*========================== Footer Style 2 ==============================*/
+/*---- Company Logo ----- */
+.te_ftr_container
+{
+	.container
+	{
+		width:90%;	
+	}	
+}
+.te_company_info_section {
+	width:100%;
+	.te_company_detail
+	{
+		display: inline-block;
+		width: 33%;
+		padding: 20px 0;
+		vertical-align: top;
+		>span {
+		    display: inline-block;
+			width: 15%;
+			max-width: 40px;
+			vertical-align: middle;
+		}
+		.te_ftr_add_ept
+		{
+		    display: inline-block;
+		    width: 80%;
+			padding: 0 3%;
+			line-height: 170%;
+			vertical-align: text-top;
+			color: inherit;
+			@include spacing(null,2px);
+			span
+			{
+				padding-right: 5px;
+			}
+		}
+		span >.te_ftr_info_icon
+		{	
+			@include style(2,5);	
+			background-color: nth($f_color,19);
+			@include border-radius(20px)
+			padding-top: 10px;
+			width: 35px;
+			height: 35px;
+			text-align: center;
+		}
+		@include media-breakpoint-down(md) {
+			width: 100%;
+			padding: 10px 0;
+		}
+	}
+
+}
+.te_footer_language_title_style_2 {
+		display: inline-block;
+	    width: 100%;
+	    border-bottom: 1px solid nth($f_color,11);
+		ul {
+			padding-left: 0px;
+		    list-style: none;
+		    display: inline-block;
+		    width: 100%;
+	    }
+}
+/*--- Multiple Language Selected and Social Icon ---*/
+.te_f2_lang_social
+{
+	& .te_t_footer_lang
+	{
+		display: inline-block;
+		margin-top: 10px;
+		.list-inline-item
+		{
+			a{
+				color: inherit;
+				&:hover{
+					color:nth($f_color,19);
+				}
+			}
+		}
+		@include media-breakpoint-down(sm)
+		{
+			.js_language_selector
+			{
+				margin-bottom: 14px !important;
+			}
+		}	
+		@include media-breakpoint-down(xs)
+		{
+			margin-right:0;
+			width:100%;
+			//margin-bottom: 19px;
+			text-align: center;
+			margin-top: 0px;
+		}
+		.js_language_selector
+		{
+			margin-bottom: 18px !important;
+			@include media-breakpoint-down(xs)
+            {
+                margin-bottom: 15px !important;
+            }
+		}
+	}
+	& .te_footer_social_icon
+	{
+		display: inline-block;
+		@include media-breakpoint-down(xs)
+		{
+			width:100%;
+			/* margin-bottom: 12px; */
+			margin-bottom: 0px;
+			text-align: center;
+		}
+	}
+	@include media-breakpoint-down(md)
+	{
+		text-align:left;
+		//margin-bottom: 10px;
+		//line-height: 0;
+	}
+	@include media-breakpoint-down(sm)
+	{
+		margin-bottom: 0px;
+	}
+}
+.te_footer_language_title
+{
+	width: 100%;
+	padding: 25px 0;
+	border-bottom: 1px solid nth($f_color,11);
+	.te_footer_language
+	{ 
+		display: inline-block;
+		width: 35%;
+		color: nth($f_color,22);
+		h5
+		{
+			@include style(4,10);
+		}
+		span
+		{
+			@include spacing(null,2px);
+		}
+	}
+}
+/*------------ Static Menu ------------*/
+.te_footer_inline_menu
+{
+   margin: 10px 0px;
+	.te_footer_inline_menu_t section
+	{
+		display:inline-block;
+		&:last-child
+		{
+			li{
+				border-right: 1px solid nth($f_color,27);
+			}
+		}
+	}
+	ul
+	{
+	        padding: 0;
+	        margin: 0;
+		li 
+		{
+       		 	display: inline-block;
+        	 	border-right: 1px solid nth($f_color,11);
+        	 	@include media-breakpoint-down(xs) {
+        	 	    display: inline-block;
+				    margin: 5px 0;
+				    border-right: none;
+				    width: 100%;
+				}
+			 a
+			{
+				font-size:nth($f_sizes,3);
+				color: inherit;
+				text-transform: capitalize;
+				padding: 15px 10px;	
+				&:hover
+				{
+					 color: nth($f_color,19);
+	 				 @include transition(null,0.3s)
+				}
+			}		
+		}
+	}
+}
+/*--------- Social Icon ---------*/
+.te_footer_menu_social_icon
+{
+	text-align: center;
+	width: 100%;
+	margin:16px 0;
+
+	@include media-breakpoint-down(md)
+	{
+		margin:0;
+		padding-top: 20px;
+	}
+	.te_footer_logo_img
+	{
+		display:inline-block;
+		width:100%;
+		img {
+			max-height: 60px;
+			@include media-breakpoint-down(md)
+			{
+				float: left;
+		    	padding: 1% 0;
+			}
+		}
+	}
+}
+.te_footer_social_icon
+{
+	font-size:nth($f_sizes,8);
+	a
+	{
+		font-size:nth($f_sizes,7);
+			
+		.fa-facebook
+		{
+			color: #3B5998; /*This color is not used in variables*/
+		}
+		.fa-twitter
+		{
+			color: #36B9FF; /*This color is not used in variables*/
+		}
+		.fa-twitter
+		{
+			color: #36B9FF; /*This color is not used in variables*/
+		}
+		.fa-linkedin
+		{
+			color: #0077B5; /*This color is not used in variables*/
+		}
+		.fa-youtube-play
+		{
+			color: #FF0000; /*This color is not used in variables*/
+		}
+		.fa-google-plus-square
+		{
+			color: #DC4A38; /*This color is not used in variables*/
+		}
+		.fa-github
+		{
+			color: #24292E; /*This color is not used in variables*/
+		}	
+	}
+}
+/*-------- Copyright Text and Payment Image --------*/
+.te_footer_copyright_text
+{
+	margin-bottom:16px;
+}
+.te_copyright_add_language
+{
+    width: 49%;
+    text-align: left;
+	display: inline-block;
+	@include media-breakpoint-down(sm) {
+		margin-top: 0;
+		margin-bottom: 16px;
+		font-size:nth($f_sizes,3);
+	}
+
+}
+.te_footer_payment_img
+	{
+	    width: 49%;
+    	text-align: right;
+		display: inline-block;
+	}
+.te_copyright_add_language,.te_footer_payment_img{
+	@include media-breakpoint-down(sm) {
+		width:100%;
+		text-align:left;
+	}
+	@include media-breakpoint-down(xs) {
+		text-align:center;
+	}
+}
+.te_f_menu_and_copyright{
+	display:none;
+}
+.te_footer_inline_menu,.te_footer_social_icon,.te_footer_logo_img img
+{
+	@include media-breakpoint-down(md) {
+		text-align:left;
+	}
+	@include media-breakpoint-down(sm) {
+		margin: 0 0 10px 0px;
+		text-align: center;
+	}
+}
+.te_copyright_add_language 
+{ 
+	.js_language_selector > li > a
+	{
+		color: nth($f_color,22);
+	}
+}
+.te_footer_copyright_text.container
+{
+	width:95%;
+}

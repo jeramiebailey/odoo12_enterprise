@@ -1,0 +1,55 @@
+/*========================== Category Carousel Snippet =======================*/
+#myCarousel_category
+{
+	display: inline-block;
+	width:100%;
+	text-align: center;
+
+	.c_pc_image
+	{
+		display: inline-block;
+		width: auto;
+		padding: 0 15px;
+		
+		.ctn_name
+		{
+			text-align: center;
+
+			.categ_name
+			{
+				@include style(2,3,inherit);
+				padding-bottom:4px;
+				@include transform(perspective(1px) translateZ(0))
+
+				@include position(relative) 
+				overflow: hidden;
+				
+				&:before
+				{
+					content: "";
+					@include position(absolute,auto,100%,0,0);
+					z-index: -1;
+					background: nth($f_color,19);
+					height: 2px;
+					@include transition(right,null,null)
+					@include transition(null,0.3s,null)
+					@include transition(null,null,ease-out)
+				}
+			}
+		}
+		&:hover .ctn_name .categ_name
+		{
+			color:nth($f_color,19);
+			
+			&:before
+			{
+				right:0;
+			}
+		}	
+		.img {
+			max-height: 90px;
+			display: block;
+			margin: 0px auto;
+		}		
+	}
+}

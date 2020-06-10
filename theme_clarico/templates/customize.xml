@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- ================== Font style assets============ -->
+	<!-- Title fonts -->
+	<template id="option_font_title_07_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_title_07_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_title_08_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_title_08_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_title_09_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_title_09_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_title_10_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_title_10_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_title_11_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_title_11_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_title_12_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_title_12_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_title_13_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_title_13_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_title_14_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_title_14_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_title_15_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_title_15_variables.scss" />
+		</xpath>
+	</template>
+	<!-- Body fonts -->
+	<template id="option_font_body_07_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_body_07_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_body_08_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_body_08_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_body_09_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_body_09_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_body_10_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_body_10_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_body_11_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_body_11_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_body_12_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_body_12_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_body_13_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_body_13_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_body_14_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_body_14_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_body_15_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_body_15_variables.scss" />
+		</xpath>
+	</template>
+	<!-- Button fonts -->
+	<template id="option_font_button_07_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_button_07_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_button_08_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_button_08_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_button_09_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_button_09_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_button_10_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_button_10_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_button_11_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_button_11_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_button_12_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_button_12_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_button_13_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_button_13_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_button_14_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_button_14_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_button_15_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_button_15_variables.scss" />
+		</xpath>
+	</template>
+	<!-- Navbar fonts -->
+	<template id="option_font_navbar_07_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_navbar_07_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_navbar_08_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_navbar_08_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_navbar_09_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_navbar_09_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_navbar_10_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_navbar_10_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_navbar_11_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_navbar_11_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_navbar_12_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_navbar_12_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_navbar_13_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_navbar_13_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_navbar_14_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_navbar_14_variables.scss" />
+		</xpath>
+	</template>
+	<template id="option_font_navbar_15_variables" inherit_id="website._assets_primary_variables"
+		active="False">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/fonts/option_font_navbar_15_variables.scss" />
+		</xpath>
+	</template>
+	<!-- ================== Header style assets============ -->
+	<template id="option_header_01_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/header/style1.scss" />
+		</xpath>
+	</template>
+	<template id="option_header_02_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/header/style2.scss" />
+		</xpath>
+	</template>
+	<template id="option_header_03_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/header/style3.scss" />
+		</xpath>
+	</template>
+	<template id="option_header_04_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/header/style4.scss" />
+		</xpath>
+	</template>
+	<template id="option_header_05_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/header/style5.scss" />
+		</xpath>
+	</template>
+	<template id="option_header_06_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/header/style6.scss" />
+		</xpath>
+	</template>
+	<template id="option_header_07_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/header/style7.scss" />
+		</xpath>
+	</template>
+	<!-- ================== Footer style assets============ -->
+	<template id="option_footer_01_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/footer/style1.scss" />
+		</xpath>
+	</template>
+	<template id="option_footer_02_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/footer/style2.scss" />
+		</xpath>
+	</template>
+	<template id="option_footer_03_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/footer/style3.scss" />
+		</xpath>
+	</template>
+	<!-- ================== Button style assets============ -->
+	<!--Button Style 1-->
+	<template id="option_s_button_01_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style1.scss" />
+		</xpath>
+	</template>
+	<!--Button Style 2-->
+	<template id="option_s_button_02_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style2.scss" />
+		</xpath>
+	</template>
+	<!--Button Style 3-->
+	<template id="option_s_button_03_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style3.scss" />
+		</xpath>
+	</template>
+	<!--Button Style 4-->
+	<template id="option_s_button_04_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style4.scss" />
+		</xpath>
+	</template>
+	<!--Button Style 5-->
+	<template id="option_s_button_05_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style5.scss" />
+		</xpath>
+	</template>
+	<!--Button Style 6-->
+	<template id="option_s_button_06_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style6.scss" />
+		</xpath>
+	</template>
+	<!--Button Style 7-->
+	<template id="option_s_button_07_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style7.scss" />
+		</xpath>
+	</template>
+	<!--Button Style 8-->
+	<template id="option_s_button_08_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style8.scss" />
+		</xpath>
+	</template>
+	<!--Button Style 9-->
+	<template id="option_s_button_09_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style9.scss" />
+		</xpath>
+	</template>
+	<!--Button Style 10-->
+	<template id="option_s_button_10_assets" inherit_id="website.assets_frontend"
+		active="False" priority="17">
+		<xpath expr="//link[last()]" position="after">
+			<link rel="stylesheet" type="text/scss"
+				href="/theme_clarico/static/src/scss/button/style10.scss" />
+		</xpath>
+	</template>
+</odoo>

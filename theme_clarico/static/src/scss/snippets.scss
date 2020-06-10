@@ -1,0 +1,1732 @@
+/*******************************************
+			--------------------------
+			THEME SNIPPETS
+			
+			01. Space
+			02. 4 Blocks
+			03. 3 Blocks
+			04. Text Two images
+			05. Text - Image - Button
+			06. Text - Image - 2
+			07. Slider Style 1
+			08. Slider Style 2
+			09. Slider Style 4
+			10. Slider Style 5
+			11. Slider Style 6
+			12. Slider Style 7
+			13. Slider Style 8
+			14. Header Offer Text
+			15. Social share
+			16. (Expertise Snippet) Progress Bar
+			17. Employee And Customers Snippet
+			18. Team 1
+			19. Team 2
+			20. Team 3
+			21. Customer 1
+			22. Customer 2
+			23. 3 Columns (Style-1, Style-2)
+			24. 3 Columns (Style 3)
+			25. 3 Columns (Style 4)
+			26. 3 Columns (Style 5)
+			27. 3 Columns (Style 7)
+			28. 3 Columns (Icon Style 1)
+			29. 3 Columns (Icon Style 2)
+			30. Offer Snippet
+			31. Offer (style 1)
+			32. Offer (style 2)
+			33. Offer (style 3)
+			34. Offer (style 4)
+			35. Offer (style 5)
+			36. Offer Timer
+			37. Payment icons
+		----------------------------------------------------------
+			ODOO SNIPPETS
+
+			01. Title Snippet
+			02. Picture
+			03. Features (Three Columns)
+			04. Accordion
+			05. Tabs Snippet
+			06. Features Grid
+			07. Pricing (Beginner/Professional/Expert) 4(Columns)
+			08. Effect [Parallax]
+			09. Effect [Quotes]
+			10. Banner
+			 
+*********************************************/
+
+/*==================== THEME SNIPPETS START ============================*/
+/*================= 01. Space ==========================*/
+.te_space_style
+{
+	display:inline-block;
+	width:100%;
+}
+/*=================== 02. 4 Blocks =====================*/
+.te_block_heading 
+{
+	@include style(7,6,inherit,null,uppercase)	
+	@include media-breakpoint-down(sm)
+	{
+		font-size:nth($f_sizes,3);
+	}
+}
+.te_block_numbers 
+{
+	@include style(15,20,inherit)
+	@include media-breakpoint-down(sm)
+	{
+		font-size:nth($f_sizes,16);
+	}	
+}
+.te_block_hover 
+{
+	.te_block_indide_div 
+	{
+    	@include transition(all,0.5s,ease)
+		&:hover
+		{
+		   @include transform(translateY(-30%))
+		}
+	}
+	@include media-breakpoint-down(md)
+	{	
+		border: 1px solid $border-color;
+	}	
+}
+/*==================== 03. 3 Blocks ==================*/
+.te_max_width_3_blocks 
+{
+	@include width(90%,1170px)
+	@include media-breakpoint-down(sm)
+	{
+		.col-md-4
+		{
+			margin-bottom:0px;	
+		}
+	}
+	.te_three_blocks_icon 
+	{
+		@include position(absolute,5px,auto,auto,50%)
+	}
+	.te_icon_styling
+	{
+		@include style(12,19)		
+	}
+	.te_span_icon_block 
+	{
+		width: 80px;
+		height: 80px;
+		@include box-shadow(0 0 0 5px nth($f_color,18))
+	    line-height: 80px;
+	    @include transform(translateX(-50%))
+	}
+}
+/*====================== 04. Text Two images =========================*/
+.te_content_image_style_heading {
+	text-transform: uppercase;
+}
+/*=================== 05. Text - Image - Button ==========================*/
+.te_title_t{
+	text-transform: uppercase;
+	@include spacing(3px,null);
+}
+.te_bold_text{
+	font-weight: 700;
+}
+.te_h_bottom_s
+{
+	padding-bottom:20px;
+	@include media-breakpoint-down(md)
+	{
+		padding-bottom: 6px;
+	}	
+}
+.te_button_inline{
+	display: inline-block;
+}
+.te_image_size
+{
+	img
+	{
+		max-height: 500px;
+	}
+}
+/*==================== 06. Text - Image - 2 ==========================*/
+.te_title_text_2{
+	line-height: 2.6;
+	text-transform: uppercase;
+	font-weight: 600;
+		
+}
+.te_sub_title_text_2{	
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.te_conteant_text_2{
+	font-size:nth($f_sizes,2);
+}
+.te_left_arrow_2{
+	margin: 0;
+	padding: inherit;
+	text-indent: -1em;
+	li{
+		list-style: none;
+		@include style(1,20,inherit,1.7,null);
+		@include position(relative,null,null,null,null);
+		padding: 5px 0 5px 0;
+		cursor: pointer;
+		&:before{
+			content: "\f101";
+			font: normal normal normal 14px/1 FontAwesome;
+			@include style(7,6);
+			vertical-align: text-top;
+		}
+	}
+}
+.te_img_size1 
+{
+	padding-top: 16px;
+	img
+	{
+		max-height:700px;
+	}
+}	
+/*============================ All Sliders Style =============================*/
+/*==================== 07. Slider Style 1 ========================*/
+	.s_carousel.s_carousel_default .te_arrow_small .carousel-control-prev-icon::before,.s_carousel.s_carousel_default .te_arrow_small .carousel-control-next-icon::before{
+		text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+	}
+@include media-breakpoint-down(sm)
+{
+	.s_carousel.s_carousel_default .te_arrow_small .carousel-control-prev-icon::before
+	{
+		@include style(4,5);
+		margin-left: 0.5rem;
+	}
+	.s_carousel.s_carousel_default .te_arrow_small .carousel-control-next-icon::before
+	{
+		@include style(4,5);
+		margin-right: 0.5rem;
+	}
+}
+/*======================== 08. Slider Style 2 ================================*/
+@include media-breakpoint-down(sm)
+{
+.te_t_slider_all_social_icon .te_t_slider_social_icon
+	{
+		padding: 8px;
+		line-height: 0.5rem;
+		width:auto;
+		height: auto;	
+	}
+}
+/*======================= 09. Slider Style 4 ===========================*/
+.carousel-item.oe_img_bg
+{
+	background-position: center;
+}
+.te_t_carousel_text
+{
+	text-transform: uppercase;	
+	padding-left: 0;
+	font-weight: bold;
+}
+.te_t_carousel_subtext
+{
+	font-size:nth($f_sizes,3); 
+}
+@include media-breakpoint-down(md)
+{
+	.te_t_text_img_left_right
+	{
+		.carousel-content
+		{
+			text-align:center;
+		}
+	}	
+}
+/*===================== 10. Slider Style 5 ============================*/
+.te_t_shop_title_text
+{
+	.te_t_slider_5_txt
+	{
+		& h2
+		{
+			text-transform: uppercase;
+		}
+		@include media-breakpoint-down(md)
+		{
+			margin-top:20px;				
+			.te_t_good_product_text
+			{
+				color: nth($f_color,12);	
+			}
+		}
+	}
+}
+@include media-breakpoint-down(xs)
+	{
+		.te_arrow_top
+		{
+			padding-bottom:52px;
+		}	
+	}
+/*========================== 11. Slider Style 6 ========================*/
+.te_t_s_cover_content
+{
+	margin: 0px auto;
+	background-color: nth($f_color,8);
+}
+@include media-breakpoint-down(xs)
+{	
+	.te_t_res_button
+	{
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+}
+/*================= 12. Slider Style 7 ========================*/
+.te_t_slider_7_title {
+  color: nth($f_color,5);
+  text-transform: uppercase;	 
+}	
+@include media-breakpoint-down(sm)
+{
+	.s_carousel .te_ts_style_7_inner .carousel-item.oe_img_bg {
+    	background-position: 60%;
+	}
+	.te_t_slider_sm_content
+	{
+		width:90%;
+		margin:0px auto;
+	}
+}
+.carousel_heading {
+  color: nth($f_color,5);
+  font-family: inherit;
+  line-height: normal;
+  text-transform: uppercase;	 
+  @include spacing(0px,0px);
+}
+.carousel_content {
+  @include style(8,5,inherit); 
+}
+/*================== 13. Slider Style 8 ========================*/
+.te_t_slider_prod_img
+{	
+	max-height:300px;
+}	
+/*========================= Inner Snippets ===========================*/
+/*================= 14. Header Offer Text =======================*/
+.te_s_header_offer_text
+{
+	& ul
+	{
+		list-style-type: none;
+		padding: 0;
+		width: auto;
+		@include container;
+		
+		> li
+		{
+			display: inline-block;
+			padding:0 0.5em;
+			@include style(3,4,inherit);
+		}
+	}
+}
+/*================ 15. Social share =====================*/
+.te_header_w_share
+{
+	> a
+	{
+		padding: 0rem 0.675rem;
+	}
+}
+/*================================= Dynamic Snippets ===============================================*/
+/*================== 16. (Expertise Snippet) Progress Bar =======================*/
+#te_progress
+{
+	.progress
+	{
+		@include display(flex)
+		height: 1.625rem;
+		overflow: hidden;
+		margin: 10px 5px 9px 0px;
+		@include border-radius(6px)
+	}
+	.te_reang
+	{
+		@include style(18,5,inherit);
+		font-style: normal;
+	}
+}
+.progress-bar {
+  width: 0;
+  animation: progress 1.5s ease-in-out forwards;
+  
+  .title {
+    opacity: 0;
+    animation: show 0.35s forwards ease-in-out 0.5s;
+  }
+} 
+@keyframes progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+} 
+@keyframes show  {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/*=========================== 17. Employee And Customers Snippet =============================*/
+/*================ Employee And Customers Common Style =====================*/
+	@include media-breakpoint-down(sm)
+	{
+		.te_team_arrow
+		{
+			width:6% !important;
+		}
+	}
+	.te_team_img
+	{
+		@include position(relative) 
+		display: inline-block;
+		margin: 0px auto;
+
+		@include media-breakpoint-down(lg)
+		{
+			display: inline-block;
+			margin: 0px auto;
+		}
+		@include media-breakpoint-down(xs)
+		{
+			display: inline-block;
+			margin: 26px auto;
+		}
+	}
+	.te_social_icon_inline
+	{
+		display: inline-block;
+	}
+	.te_employee_name 
+	{
+  		font-weight: 600;   
+	}
+	.te_employee_job_title 
+	{
+  		@include style(3,15)     
+  		@include width(100%,90%)
+	}	
+	.carousel-control-prev, .carousel-control-next
+	{
+		cursor: pointer;
+	}
+/*================= 18. Team 1 ======================*/
+.te_social_1_icon
+{
+	a
+	{
+		@include style(18,2);
+		@include border-radius(50%)
+		margin: 10px 4px;
+		padding: 5px 5px 1px 5px;
+		@include border(1px,17,solid)
+		width: 30px;
+		height: 30px;
+		@include transition(all,.6s,ease)
+
+		&:hover
+		{
+
+			background-color:nth($f_color,19);
+			border-color:nth($f_color,19);
+		
+			i
+			{
+				color:nth($f_color,5);
+			}
+		}
+	}
+}
+.te_designation_border
+{
+	width: 10%;
+	@include border(1px,24,solid)
+	padding: 0;
+	margin-top: 10px;
+	margin-bottom: 6px;
+}
+/*================ 19. Team 2 =====================*/
+.te_team_2_design 
+{
+	@include position(absolute,null,25px,-56px,25px)
+	Padding: 4px 2px 4px 2px;
+	@include border-radius(10px)
+	background-color: nth($f_color,5);
+	@include border(1px,8,solid)
+	z-index: 6;
+	.te_social_2_icon
+	{
+		a
+		{
+			@include style(18,2);
+			@include border-radius(50%)
+			margin: 10px 4px;
+			padding: 6px 5px 1px 5px;
+			width: 30px;
+			height: 30px;
+			background-color:nth($f_color,8);
+			cursor: pointer;
+			@include transition(all,.6s,ease)
+			
+			&:hover{
+				background-color:nth($f_color,19);
+				border-color:nth($f_color,19);
+				text-decoration: none;
+				i
+				{
+					color:nth($f_color,5)
+				}
+			}
+		}
+	}
+}
+/*================= 20. Team 3 ==================*/
+.te_team_3_row
+{
+	padding-bottom: 50px;
+}
+.te_team_3_design
+{
+	@include position(absolute,null,25px,20px,25px)
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 2px;
+	padding-right: 2px;
+	@include border-radius(10px)
+	background-color: nth($f_color,5);
+	opacity: 0;
+	@include transition(all,0.4s,ease)
+	
+	&:hover{
+		opacity: 1;
+		bottom: -30px;
+		@include box-shadow(rgba(58, 78, 95, 0.2) 0 10px 16px)
+	}
+	.te_social_icon_3
+	{
+		a
+		{
+			@include style(18,2);
+			@include border-radius(50%)
+			margin: 10px 4px;
+			padding: 6px 5px 1px 5px;
+			width: 30px;
+			height: 30px;
+			cursor: pointer;	
+		}
+		a.te_team_3_facebook{
+			background-color: #3b5998; /*This color is not used in variables*/ 
+			color:nth($f_color,5);
+			
+			&:hover{
+			    opacity: 0.8;	
+			}
+		}
+		a.te_team_3_twitter{
+			background-color: #00aced; /*This color is not used in variables*/
+			color:nth($f_color,5);
+			
+			&:hover{
+			    opacity: 0.8;	
+			}
+		}
+		a.te_team_3_google-plus{
+			background-color: #dc4a38; /*This color is not used in variables*/
+			color:nth($f_color,5);
+
+			&:hover{
+			    opacity: 0.8;	
+			}
+		}
+		a.te_team_3_linkedin{
+			background-color: #007bb6; /*This color is not used in variables*/
+			color:nth($f_color,5);
+			
+			&:hover{
+			    opacity: 0.8;	
+			}
+		}
+	}
+	@include media-breakpoint-down(lg)
+	{
+		opacity: 1;
+		bottom: -45px;
+		@include border(1px,8,solid)
+		z-index: 6;	
+	}
+}
+/*==================== 21. Customer 1 ===================*/
+.te_emp_img /* This Class use as (Customer 1, Customer 2, 3 Columans Style 7)*/ 
+{
+	@include border-radius(50%)
+}
+.te_emp_name
+{
+	text-transform: uppercase;
+	padding-left:10px;
+}
+.te_emp_content
+{
+	font-size:nth($f_sizes,2);
+	@include media-breakpoint-down(xs)
+	{
+		@include style(18,9,null,null,null);
+	}
+}
+/*======================= 22. Customer 2 =======================*/
+@include media-breakpoint-down(sm)
+{
+	.te_carousel_arrow_set
+	{
+		.te_arrow_set{
+			width:90% !important;
+		}
+	}
+}
+.te_carousel-control_left
+{
+	@include position(absolute,45%,null,null,2%)	
+	.te_left_arrow	
+	{
+		@include style(4,3);	
+	}
+}
+.te_carousel-control_right
+{
+	@include position(absolute,45%,2%,null,null)
+	.te_right_arrow
+	{
+		@include style(4,3);
+	}
+}
+@include media-breakpoint-down(xs)
+{
+	.te_emp_img_name
+	{
+		text-align:center;		
+	}
+}
+.te_employee_main
+{
+	.te_cust_img
+	{
+		max-height: 120px;
+		width: auto;
+		max-width: 100%;
+		@include media-breakpoint-down(md)
+		{
+			margin-bottom: 20px;
+		}
+	}
+	.te_c_employee_name
+	{
+		color: nth($f_color,19);
+		padding: 0;
+		margin: 0;
+	}
+	.te_icon_content
+	{
+		display: inline-flex;		
+			
+		.te_quotes_icon
+		{
+			@include style(15,8);
+			padding-right:16px;
+			padding-top:8px;
+
+			@include media-breakpoint-down(xs)
+			{
+				@include style(19,8);
+			}
+		}
+		p
+		{
+			color: nth($f_color, 13);
+			margin-top: 10px;	
+		}
+	}		
+}
+/*=============================== 3 Cloumans ===================================*/ 
+/*================ 23. 3 Columns (Style-1, Style-2)  =======================*/
+/* This class is use as ( 3 Columns all style and Mega Menus Style 6 ) snippet */
+/*
+(This Class is use style-1, style-2)
+*/
+
+.te_three_columns_heading {
+	font-size:nth($f_sizes,8); 
+  font-family:inherit;
+  text-transform:uppercase;
+  font-weight: bold;
+  @include media-breakpoint-down(md)
+  {
+  	font-size: nth($f_sizes,1);
+  }
+}
+.te_3_column_center_heading
+{
+	text-align: center;
+}
+.te_3_column_left_heading
+{
+	text-align: left;	
+}
+/*
+(This Class is use style-1, style-2)
+*/
+.te_three_columns_para { 
+  font-size:nth($f_sizes,2);
+  font-family:inherit;
+}
+/*
+/*(This Class is use 3 Columns all Style use )*/
+.te_feature_image  
+{
+  @include container;
+  @include width(auto,100%);
+}
+/*=================== 3 Columns Comman (Icon Style) ================*/
+.te_sub_text
+{
+	font-size:nth($f_sizes,3);	
+}
+.t_title
+{
+	@include style(5,13,inherit,null,uppercase);
+}
+/*================= 24. 3 Columns (Style 3) ==================*/
+.te_slide_border{
+	@include border(1px,8,solid)
+	@include box-shadow(0px 0px 3px 0px rgba(0,0,0,0.2))
+}
+/*==================== 25. 3 Columns (Style 4) =====================*/
+.te_t3_col_bg_div
+{
+	&:hover .te_title_text
+	{
+		bottom:10px;
+	}	
+}
+.te_bgimage 
+{
+	background-size: cover;
+	opacity: 0.9;
+	height: 100vh !important;
+	max-height: 500px;
+	background-position: center;
+	.te_title_text
+	{
+		@include position(absolute,null,4px,0px,4px)
+		padding:30px;
+		background-color: rgba(234, 234, 234, 0.7);
+		@include transition(bottom,0.5s,ease)
+
+	}
+}
+/*=============== 26. 3 Columns (Style 5) =======================*/
+.te_col_ind
+{
+	&:hover .te_image_overflow img
+	{
+		@include transform(scale(1.1))
+	}
+	@include media-breakpoint-down(sm)
+	{
+		margin-bottom:16px;	
+	}
+	.te_image_overflow
+	{
+		overflow:hidden;
+		@include position(relative) 
+		img
+		{
+			@include transition(all,.4s,ease-out)
+		}	
+	}
+	.te_center_position
+	{
+		@include position(relative,null,null,null,null);
+		padding-top: 0px;
+		min-height: 65px;
+	}
+	.te_button_position
+	{
+		@include position(absolute,null,null,-0,5%);
+		background-color:nth($f_color,19);
+		padding: 5%;
+		width:90%;
+		
+		h6{
+				
+		.te_fix_content_h3	
+		{
+				font-weight: bold;
+				color: nth($f_color,5);
+			}
+		}
+		span
+		{
+			@include style(3,5);
+			display: block;
+			padding: 0.5rem 0;
+			
+		}
+		@include media-breakpoint-down(sm)
+		{
+			width: 70%;
+			left: 15%;
+		}
+		@include media-breakpoint-down(xs)
+		{
+			width: 90%;
+			left: 5%;
+		}
+	}
+}
+/*================  3 Columns (Style 6) =======================*/
+.te_img_height_3col6 img
+{
+	max-height: 130px;	
+}
+/*================ 27. 3 Columns (Style 7) ======================*/
+.te_three_col_text{
+	font-size:nth($f_sizes,7); 
+  	line-height:1.6; 
+	@include media-breakpoint-down(sm)
+  	{
+  		font-size: nth($f_sizes,1);
+  	}
+	@include media-breakpoint-down(xs)
+  	{
+  		font-size: nth($f_sizes,2);
+  	}	
+}
+.te_img_emp{
+	padding: 0px;
+}
+.te_employee_img
+{
+	display: inline-block;
+	vertical-align: middle;
+}
+.te_space_emp{
+	padding-left: 10px;
+	.te_name_name
+	{
+		color:nth($f_color,3);
+		font-family: inherit;
+		text-transform: uppercase;
+	}
+	.te_name_designation
+	{
+		@include style(1,9);
+		
+	}
+}
+@include media-breakpoint-down(md)
+{
+	.te_3_col_b_space
+	{
+		padding-bottom: 8px		
+	}
+	.te_3_col_t_space
+	{	
+		padding-top:8px;
+	}
+}	
+/*================= 28. 3 Columns (Icon Style 1) ========================*/
+.te_title_tex
+{
+	display: inline-block;
+	padding-left: 0px;
+	@include media-breakpoint-down(md)
+	{
+		padding-top:10px;
+		padding-left: 0px;	
+	}
+}
+/*=============== 29. 3 Columns (Icon Style 2) =================*/
+.te_icon_border
+{
+	padding: 17px 0px 9px 8px;
+	@include border(1px,3,solid)
+	::before
+	{
+	 	font-size:nth($f_sizes,12);
+	}
+	.te_icon
+	{
+		background-color: nth($f_color,8);
+		padding: 4px 18px 3px 15px;
+		margin: -3px;
+		margin-bottom: 10px;
+	}
+}	
+/*======================== 30. Offer Snippet ======================================*/
+/*----------------------- Offer Snippet comman style ---------------------------*/
+.te_offerleft_h {
+    min-height: 500px;
+    max-height: 500px;
+    
+    img
+    {
+    	 max-height: 490px;
+    }
+    @include media-breakpoint-down(md)
+	{
+		padding-top:10px;
+		max-height:282px;
+	}
+}
+@include media-breakpoint-down(md)
+{
+	.te_top_space
+	{
+		margin-top:32px;
+	}
+}
+/*================== 31. Offer (style 1) ======================*/
+.te_max_width_4_column {
+	@include width(90%,1200px)
+}
+.te_img_hover_light {
+	&:hover {
+    	opacity: 0.7;
+    	@include transition(all,1.5s,ease)
+	}
+}
+@include media-breakpoint-down(md)
+{
+	.te_offer_middle_img
+	{
+		margin-bottom:16px;
+	}
+}
+/*================ 32. Offer (style 2) =====================*/
+@include media-breakpoint-down(md)
+{
+    .te_space_section
+	{
+		margin-top:32px;
+	}
+}
+.te_offer_2_left_txt
+{
+	& h2
+	{
+		text-transform: uppercase;
+		font-weight:bold;
+	}
+	& h5
+	{
+		text-transform: capitalize;
+		margin:0;
+		
+		span
+		{
+			@include style(15,19);
+			font-weight:bold;
+		}
+	}
+	.aos-init
+	{
+		overflow:hidden;
+	}
+	@include media-breakpoint-down(lg)
+	{	
+		h5 
+		{
+			span
+			{
+				@include style(19,19);
+			}
+		}
+		.te_top_bottom
+		{
+			margin: 8px 0px !important;	
+		}
+		.te_btn_left_center
+		{
+			text-align:left;		
+		}
+	}
+	@include media-breakpoint-down(xs)
+	{
+		h2
+		{
+			text-align:center;
+		}
+		h5 
+		{
+			text-align:center;			
+		}
+		.text-capitalize
+		{
+			text-align:center;
+		}
+		.te_btn_left_center
+		{
+			text-align:center;		
+		}	
+		p{
+			text-align:center;	
+		}
+	}
+}
+/*================== 33. Offer (style 3) =====================*/
+@include media-breakpoint-down(sm)
+{
+	.te_set_res
+	{
+		.te_offerleft_h
+		{
+			min-height: auto;
+			max-height: 100%;
+		}
+		.te_offer_3_text_left
+		{
+			margin-top: 16px;
+			text-align: center;
+			margin-bottom: 16px;
+
+			.te_btn_r_space
+			{
+				margin-top: 16px;
+			}
+		}	
+	}	
+}
+.te_offer_3_text_left
+{
+	& p
+	{
+		font-size:nth($f_sizes,3);
+		
+		span
+		{
+			@include style(7,19);
+		}
+	}
+	.te_btn_r_space
+	{
+		margin-top: 32px;
+	}
+}
+.te_offerright_h
+{
+	min-height: 234px;
+	//max-height: 234px;
+	
+	 img
+    {
+    	 max-height: 150px;
+    }
+}
+.te_offerright_txt
+{
+	margin-top: 16px;
+
+	& h4
+	{
+		margin:0;
+	}
+	& p
+	{
+		@include style(18,1);
+	}
+}
+@include media-breakpoint-down(xs)
+{
+	.te_top_box_space
+	{
+		margin-top:32px;
+	}
+}
+/*===================== 34. Offer (style 4) =============================*/
+.te_promo_txt
+{
+	margin-top: 16px;
+	
+	.te_label_text
+	{
+		@include style(18,5,inherit,normal,null);
+		background-color: nth($f_color,3);
+		padding: 4px;
+		font-weight: bold;
+		float: left;	
+		cursor: pointer;	
+	}
+}
+.offer_3_main .card {
+    border: 0;
+    display: inline-block;
+    width: 100%;
+}
+@include media-breakpoint-down(xs)
+{
+	.te_top_space_chair
+	{
+		margin-top:32px;
+	}
+}
+.te_offer_bg_section_4{
+	background-color:nth($f_color,3);
+}
+.te_shop_text
+{
+	@include border(1px,5,solid)
+	padding: 78px 4px;
+	h2{
+		color: nth($f_color,5);
+		text-transform: capitalize; 	
+		text-align:center;
+		cursor: pointer;	
+	}
+	p{
+		@include style(18,5);
+		text-align:center;
+		text-decoration: underline;
+		cursor: pointer;	
+	}
+}
+.te_sale_desi .te_sale_text
+{
+	@include border(1px,3,solid)
+	padding: 70px 4px;
+	
+	.te_special_text
+	{
+	     	@include style(18,6,inherit,normal,uppercase);
+	     	cursor: pointer;
+	     	
+	    padding: 4px;
+	    background-color: #FFF9D9; /*This color is not used in variables*/
+	    @include spacing(1px,null)
+		display: inline-block;			
+	}
+	.te_sale_text_1{
+		color: nth($f_color,3);
+		text-transform: capitalize;	
+		cursor: pointer;
+	}
+	.te_off_text{
+		@include style(9,6,null,null,uppercase);
+		cursor: pointer;
+		@include spacing(1px,null)		
+	}
+}
+@include media-breakpoint-down(lg)
+{
+	.te_sale_desi .te_sale_text .te_special_text
+	{
+		@include style(9,6);
+	}
+}	
+/*====================== 35. Offer (style 5) ======================*/
+.offer_5_bg
+{
+	background-color:nth($f_color,18);
+}
+@include media-breakpoint-down(sm)
+{
+	.te_offer_img_center
+	{
+		text-align: center;		
+	}
+}	
+.te_left_to_right
+{
+	display: block;
+	
+	.te_text_middle
+	{
+		float: right;
+		max-height:300px;
+	}
+	.te_left_side
+	{
+		float: left;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		@include media-breakpoint-down(sm)
+		{
+			text-align: center;
+		}
+	}
+}
+.te_offer_5_text_left
+{
+	h2
+	{
+		text-transform: uppercase;
+		@include spacing(0.6rem,null);
+	}
+	h3
+	{
+		text-transform: uppercase;
+		span
+		{
+			color:nth($f_color,19);
+		}
+	}
+}
+/*================= 36. Offer Timer ===============================*/
+.te_offer_title
+{
+	text-transform: capitalize;
+	font-weight: bold;	
+	text-align: left;
+}
+.te_days_hr_min_sec_digit
+{
+	@include style(4,3);
+	@include spacing(1px,null);
+	@include media-breakpoint-down(sm)
+	{
+	    @include style(3,3);
+	}
+}
+.te_days_hr_min_sec
+{
+	@include style(9,3,null,null,none);
+}
+.rounded_digit {
+    background: nth($f_color,8);
+    @include border(1px,11,solid)
+    @include border-radius(5px)
+    font-weight: bold;
+}
+/*================= 37. Payment icons ===============================*/
+.te_payment_list
+{
+	li
+	{
+		list-style-type: none;
+		display: inline-block;
+		width: auto;
+		margin-right: 4px;
+		
+		img
+		{
+			margin: 0;
+			max-height: 45px;
+		}
+	}
+}
+/*======================= ODOO SNIPPETS ==================================*/
+/*===================== 01. Title Snippet =================================*/
+.te_s_title_default
+{
+	text-transform: capitalize;
+	font-weight: bold;
+}
+/*=========================== 02. Picture =====================================*/
+
+@include media-breakpoint-down(sm)
+{
+	.s_title > h2 > font > span
+	{
+		font-size: nth($f_sizes,19) !important;
+	}
+}
+/*==================== 03. Features (Three Columns) ========================*/
+.te_features_link {
+  @include style(7,13,inherit,null,uppercase)    
+}
+.te_features_discreption {
+  color: nth($f_color,14);    
+}
+/*=================== 04. Accordion =================================*/
+.te_section_accordion{
+	.card
+	{
+		border: nth($f_color,27);
+		border-bottom: nth($f_color,27) !important;
+	}
+	.accordion .card .card-header
+	{
+		background-color: nth($f_color,27);	
+		padding: 16px 0px;
+		@include style(7,3,null,null,capitalize);
+		
+		&:before
+		{
+			content: "\2012";
+		}
+	}
+	.accordion .card .card-header.collapsed::before{
+		content: "\002B";	
+	}
+}
+/*====================== 05. Tabs Snippet ================================*/
+.te_tabs_design
+{
+	.card
+	{
+		border: nth($f_color,27);		
+		.card-header{
+			padding: 0px 9px 10px 10px;
+			background-color: nth($f_color,27);
+		}
+		.nav-tabs .nav-item .nav-link
+		{
+			@include style(2,3,inherit,null,uppercase);			
+			border-left: 1px solid $border-color;
+			border-right: 1px solid $border-color;
+			border-top: 1px solid $border-color;
+						
+			cursor: pointer;
+			&:hover{
+				border-bottom: nth($f_color,27);				
+			}
+		}
+		.nav-tabs .nav-link.active
+		{
+			border-bottom: 1px solid nth($f_color,5);
+			border-left: 1px solid $border-color;
+			border-right: 1px solid $border-color;
+			background: nth($f_color,18);	
+		}
+		.card-body{
+			border-left: 1px solid $border-color;
+			border-bottom: 1px solid $border-color;
+			border-right: 1px solid $border-color;
+			
+			.tab-pane
+			{ 
+				h3{
+					border-bottom: 1px solid $border-color;
+					padding-bottom: 16px;
+				}
+				p{
+					padding-top: 16px;
+				}
+			}
+		}
+	}
+}
+/*============================= 06. Features Grid ===============================*/
+.te_features_design
+{
+	h4{
+		text-transform: capitalize;
+		margin-bottom: 2px;
+		font-weight: bold;
+	}
+	h5{
+		border-bottom: 1px solid $border-color;
+		padding-bottom: 4px;
+		margin-bottom: 0;
+	}
+	.te_space_text
+	{
+		padding-bottom:20px;
+	}
+	
+	.te_s_features_grid_content{
+		margin-top: 4px;
+		overflow: hidden;
+		vertical-align: middle;
+		@media (max-width:438px)
+		{
+			margin-top: 12px;
+		}
+		h5{
+			text-transform: capitalize;
+			font-weight:bold;
+			border: nth($f_color,27);
+		}
+		p{
+			font-size:nth($f_sizes,2); 
+			line-height:normal;
+		}
+	}
+	@include media-breakpoint-down(md)
+	{
+		.te_features_s
+		{
+			padding-top:20px;
+		}
+	}	
+	.fa.rounded.fa-2x,.fa.rounded-circle.fa-2x
+	{
+		width: 3rem;
+		height: 3rem;
+		line-height: 3rem;
+		font-size: nth($f_sizes,4);
+	}
+	div[data-name="Box"]
+	{
+		padding-bottom: 8px !important;
+	}
+}
+/*================= 07. Pricing (Beginner/Professional/Expert) 4(Columns) ========================*/
+.pricing_snippet_heading {
+   @include style(12,19,inherit,unset)  
+   @include spacing(0px,0px);
+}
+.te_pricing_title {
+   color: nth($f_color,5);
+   text-transform: uppercase;	 
+   @include spacing(0px,0px);
+}
+.te_heading_price {
+   @include style(11,3,null,null) 
+}
+.te_price_currency { 
+   @include style(10,3,null) 
+   @include position(relative,unset,0,30px,10px)
+}
+.li_text {
+   @include style(1,15,inherit)   
+   @include border(0 0 1px 0,17,dotted)
+}
+.te_cost_validity {
+   @include style(7,16,inherit)
+}
+.te_common_border_bottom {
+   @include border(0 0 2px 0,18,solid)
+}
+.pro_border_bottom {
+   @include border(0 0 2px 0,19,solid)
+}
+.te_four_column_title {
+   text-transform: uppercase;
+   @include spacing(0px,null);
+}
+.te_pricing_box
+{
+	@include border-radius(5px)
+	@include box-shadow(0 10px 30px rgba(0,0,0,.03))
+	@include transition(all,.3s)
+	&:hover
+	{
+		@include border(1px,19,solid)
+	}
+}
+/*============================ 08. Effect [Parallax] ==============================*/
+.te_slide_title
+{
+	.te_slide_title_text
+	{
+		@include style(20,5,null,null,capitalize);
+		@include media-breakpoint-down(xs)
+		{
+			@include style(15,5,null,null,capitalize);
+		}
+	}
+	.te_slide_sub_title_text
+	{
+		@include style(4,5,null,null,capitalize);
+	}
+	hr{
+		border-top: 1px solid nth($f_color,5);
+		width: 5%;
+	}
+}
+/*========================== 09. Effect [Quotes] ========================================*/
+.te_quotes_design
+{
+	p{
+		padding-bottom:20px;
+	}	
+}
+/*============================ 10. Banner ========================================*/
+.te_banner_heading 
+{
+  color:nth($f_color,6);
+  font-family: inherit;
+  font
+  {
+	  	$f_size: 1.125rem;
+	    font-size:$f_size;
+		@include media-breakpoint-down(sm)
+		{
+			@if $f_size == 1.125rem {
+	            @include style(4,10);
+	            line-height: 180%;
+			}
+		}
+	}	
+}
+.te_banner_subheading {
+  font-size:nth($f_sizes,2);
+}
+/*==================== ODOO SNIPPETS END ==========================*/
+
+/*============================== CAROUSEL ANIMATION (FULL WIDTH CONTENT-IMAGE) =========================*/
+
+@keyframes animatezoom{from{transform: scale(0); opacity: 0;}to{transform: scale(1); opacity: 1;}}
+
+/*====================== 3 COLUMNS ===========================*/
+@media (max-width:767.98px)
+{
+	.s_carousel.s_carousel_rounded .carousel-control-prev-icon::before, .s_carousel.s_carousel_rounded .carousel-control-next-icon::before, .s_quotes_carousel.s_carousel_rounded .carousel-control-prev-icon::before, .s_quotes_carousel.s_carousel_rounded .carousel-control-next-icon::before 
+	{
+		width: 2rem;
+		height: 2rem;
+		line-height: 2rem;
+		font-size:nth($f_sizes,2)
+	}
+	.s_carousel.s_carousel_rounded .carousel-control-prev, .s_quotes_carousel.s_carousel_rounded .carousel-control-prev
+	{
+		margin-left: 0.5rem;
+	}
+	.s_carousel.s_carousel_rounded .carousel-control-next, .s_quotes_carousel.s_carousel_rounded .carousel-control-next {
+    margin-right: 0.5rem;
+	}
+}
+/*============================= Customer Carousel 1 =====================================*/
+/*--------------- STATIC CAROUSELS --------------*/
+.common_carousel_emp:not(.carousel-fade){
+	.carousel-control-prev, .carousel-control-next {
+		width :2%;
+	}
+	@media (min-width: 576px) and (max-width: 991.98px) {
+	  .carousel-inner {
+	    .active {
+	      display: block;
+	      + .carousel-item {
+	        display: block;
+	        + .carousel-item {
+	          display: block;
+	        }
+	      }
+	    }
+	    .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) {
+	      transition: none;
+	      + .carousel-item {
+	        transition: none;
+	        + .carousel-item {
+	          transition: none;
+	        }
+	      }
+	    }
+	    .carousel-item-next {
+	      @include position(relative);
+	      @include transform(translate3d(0, 0, 0)) 
+	    }
+	    .active.carousel-item + .carousel-item + .carousel-item {
+	      @include position(absolute,0,-50%);
+	      z-index: -1;
+	      display: block;
+	      visibility: visible;
+	    }
+	  }
+	  /* left or forward direction */
+	  .active.carousel-item-left + .carousel-item-next.carousel-item-left {
+	    @include position(relative);
+	    @include transform(translate3d(-100%, 0, 0))
+	    visibility: visible;
+	  }
+	  .carousel-item-next.carousel-item-left + .carousel-item {
+	    @include position(relative);
+	    @include transition(transform,0.6s,ease)
+	    @include transform(translate3d(-100%, 0, 0))
+	    visibility: visible;
+	  }
+	  /* for thest right hidden item must be also position for animations */
+	  .carousel-inner .carousel-item-prev.carousel-item-right {
+	    @include position(absolute,0,unset,unset,0);
+	    z-index: -1;
+	    display: block;
+	    visibility: visible;
+	  }
+	  .active.carousel-item-right + .carousel-item-prev.carousel-item-right {
+	    @include position(relative);
+	    @include transform(translate3d(100%, 0, 0))
+	    visibility: visible;
+	    display: block;
+	  }
+	  .carousel-item-prev.carousel-item-right + .carousel-item,
+	  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item {
+	      @include position(relative);
+	      @include transition(transform,0.6s,ease)
+	      @include transform(translate3d(100%, 0, 0))
+	      visibility: visible;
+	      display: block;
+	    }
+	  }	
+	@media (min-width: 992px) {
+	
+	  .carousel-inner {
+	    .active {
+	      display: block;
+	      + .carousel-item {
+	        display: block;
+	        + .carousel-item {
+	          display: block;
+	          + .carousel-item {
+	            display: block;
+	          }
+	        }
+	      }
+	    }
+	    .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) {
+	      transition: none;
+	      + .carousel-item {
+	        transition: none;
+	        + .carousel-item {
+	          transition: none;
+	          + .carousel-item {
+	            transition: none;
+	          }
+	        }
+	      }
+	    }
+	    .carousel-item-next {
+	      @include position(relative);
+	      @include transform(translate3d(0, 0, 0))
+	    }
+	
+	    .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+	      @include position(absolute,0,-25%)
+	      z-index: -1;
+	      display: block;
+	      visibility: visible;
+	    }
+	  }
+
+	  .active.carousel-item-left + .carousel-item-next.carousel-item-left {
+	    @include position(relative);
+	    @include transition(transform,0.6s,ease)
+	    @include transform(translate3d(-100%, 0, 0))
+	    visibility: visible;
+	  }
+	  .carousel-item-next.carousel-item-left + .carousel-item,
+	  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+	  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+	  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+	   {
+          @include position(relative);
+          @include transition(transform,0.6s,ease)
+          @include transform(translate3d(-100%, 0, 0))
+          visibility: visible;
+	  }
+	 
+	  .carousel-inner .carousel-item-prev.carousel-item-right {
+	    @include position(absolute,0,unset,unset,0)
+	    z-index: -1;
+	    display: block;
+	    visibility: visible;
+	  }
+	  
+	  .active.carousel-item-right + .carousel-item-prev.carousel-item-right {
+	    @include position(relative);
+	    @include transition(transform,0.6s,ease)
+	    @include transform(translate3d(100%, 0, 0))
+	    visibility: visible;
+	    display: block;
+	  }
+	  .carousel-item-prev.carousel-item-right + .carousel-item,
+	  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+	  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+	  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item
+	  {
+          @include position(relative);
+          @include transition(transform,0.6s,ease)
+          @include transform(translate3d(100%, 0, 0))
+          visibility: visible;
+          display: block;
+	  }
+	  .carousel-item.active ~ .carousel-item-prev.carousel-item-right {
+	    text-align: left !important;
+	  }
+	}
+}
+.common_carousel_emp.carousel.carousel-fade {
+	.carousel-control-prev, .carousel-control-next {
+		width :2%;
+	}
+	.carousel-item.active,
+	.carousel-item.active + .carousel-item,
+	.carousel-item.active + .carousel-item + .carousel-item,
+	.carousel-item.active + .carousel-item + .carousel-item + .carousel-item,
+	{
+		@include transform(translateX(0))
+		@include transform(translate3d(0, 0, 0))
+	}
+	@media (min-width: 576px) and (max-width: 991.98px) {
+		.carousel-inner {
+			.carousel-item.active {
+			  display: block;
+			  + .carousel-item {
+				display: block;
+				opacity: 1;
+			  }
+			}
+		}
+		.carousel-item-prev.carousel-item-right + .carousel-item,
+		.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item {
+			opacity: 0;
+			transition-duration: 100ms; 
+			transition-property: opacity;
+		}
+		.active.carousel-item-left,
+		.active.carousel-item-left + .carousel-item-next.carousel-item-left{
+			opacity: 0;
+			transition-duration: 100ms; 
+			transition-property: opacity;
+		}
+	}
+	@media (min-width: 992px) {
+		.carousel-inner {
+			.carousel-item.active {
+			  display: block;
+			  + .carousel-item {
+				display: block;
+				opacity: 1;
+				+ .carousel-item {
+				  display: block;
+				  opacity: 1; 
+				  + .carousel-item {
+					display: block;
+					opacity: 1;
+					}
+				}
+			  }
+			}
+		}
+		.carousel-item-prev.carousel-item-right + .carousel-item,
+		.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+		.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+		.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item
+		{
+			opacity: 0;
+			transition-duration: 100ms; 
+			transition-property: opacity;
+		}
+		.active.carousel-item-left,
+		.active.carousel-item-left + .carousel-item-next.carousel-item-left,
+		.active.carousel-item-left + .carousel-item-next.carousel-item-left + .carousel-item, 
+		.active.carousel-item-left + .carousel-item-next.carousel-item-left + .carousel-item  + .carousel-item {
+			opacity: 0;
+			transition-duration: 100ms; 
+			transition-property: opacity;
+		}
+	  }		
+}
+/*==================== common change ====================*/
+#wrapwrap #wrap{
+	background-color: unset;
+}

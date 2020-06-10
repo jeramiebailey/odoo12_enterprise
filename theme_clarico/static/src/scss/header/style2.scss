@@ -1,0 +1,423 @@
+/*================================= Header Style 2 ============================*/
+.navbar-toggler{
+	background: nth($f_color,27) !important;
+	&:focus{
+		outline: none;
+	}
+	@include media-breakpoint-down(sm)
+	{
+		margin: 5px 0;
+	}
+}
+/*--------- Static Menu ------------*/
+#top_menu > li > ul.dropdown-menu
+{
+	border-top: 1px solid #ced4da; /*This color is not used in variables*/
+}
+.te_header_navbar
+{
+	box-shadow: 0px 0px 4px $border-color;
+	background: nth($f_color,27);
+	padding: 0;
+	min-height: 40px;
+	@include media-breakpoint-down(sm)
+	{
+		border-top: 0;
+		padding-bottom: 8px;
+		box-shadow: none;
+	}
+	& .navbar-brand
+	{
+		display:none;
+		@include media-breakpoint-down(sm)
+		{	
+			display: inline-block;
+		}
+	}
+	#top_menu_collapse_clone
+	{
+		padding: 0;
+	}
+	#top_menu_collapse
+	{
+		& #top_menu
+		{
+			width: 100%;
+			
+			> li
+			{
+				border-left: 1px solid $border-color;
+				padding: 2px 10px;
+				
+				>a.nav-link
+				{
+					text-transform: uppercase;
+					color:nth($f_color,6);
+					font-size:nth($f_sizes,3);
+				}
+				>a.nav-link.active
+				{
+					color:nth($f_color,19);
+				}
+				&:hover >a.nav-link
+				{
+					color:nth($f_color,19);
+				}
+				@include media-breakpoint-down(sm)
+				{
+					border-left:0;
+				}
+			}
+		}
+		@include media-breakpoint-down(sm)
+		{
+			background-color:nth($f_color,5);
+		}
+	}
+}
+.te_header_language > .btn
+{
+	text-transform: capitalize;
+}
+/*------ User Administrator Text --------*/
+.te_user_account
+{
+	> a.dropdown-toggle
+	{
+		text-transform:capitalize;
+	}
+	@include media-breakpoint-down(lg) {
+		.te_user_account_name
+		{
+			display: none;
+		}
+		.te_user_account_icon, .te_user_account_icon > i
+		{
+			display: inline-block !important;
+		}
+	}
+	@include media-breakpoint-down(sm)
+	{
+		.te_user_account_icon
+		{
+			i
+			{
+				display:inline-block !important;
+			}
+		}
+	}
+}
+.te_login_right
+{
+	.btn-link,a.dropdown-toggle,.te_signin > a
+	{
+		color:nth($f_color,5);
+	}
+	> div.text-right > div
+	{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	div.te_pricelist:first-child
+	{
+		.dropdown-menu
+		{
+			left:auto !important;
+			right:0;
+			@include media-breakpoint-down(sm)
+			{
+				transform: translate3d(0px,21px,0px) !important;
+			}
+		}
+	}	
+}
+/*------ Header Offer Text ---------*/
+.te_offer_left
+{
+	.te_s_header_offer_text
+	{
+		float:left;
+		
+		ul > li
+		{
+			color:nth($f_color,5);
+			@include media-breakpoint-down(md)
+			{
+				font-size:nth($f_sizes,3) !important;
+			}
+		}
+	}
+	.te_header_w_share >a
+	{
+		color:nth($f_color,5);
+		
+		&:hover
+		{
+			opacity:0.8;
+			color:nth($f_color,5);
+		}
+	}
+}
+.te_ftr_before_bg
+{
+	background-color:nth($f_color,19);
+	color:nth($f_color,5);
+}
+/*------ Company Logo ---------*/
+.te_header_before_logo
+{
+	img
+	{
+		max-height:70px;
+	}
+}
+
+
+.o_header_affix .te_header_navbar
+{
+	#top_menu_collapse_clone
+	{		
+		& #top_menu	> li
+			{			
+				>a.nav-link
+				{
+					text-transform:uppercase;
+					padding: 0.8rem 0.8rem;
+					@include style(3,3)
+				}
+				>a.nav-link.active
+				{
+					color:nth($f_color,19);
+				}
+				&:hover >a.nav-link
+				{
+					color:nth($f_color,19);
+				}
+			}
+	}
+}
+/*------- Header Offer Text, Company Logo, Cart Icon, Search Box, Wishlist Icon --------*/
+.te_header_style_2_main{
+	& .te_login_right{
+		padding: 0;
+		& a.btn-link{
+			padding: 13px 5px;
+			text-transform: capitalize;
+			font-size: nth($f_sizes,3);
+		}
+	}
+	@include media-breakpoint-down(md)
+	{
+		& .te_header_style_2_inner{
+			.col-lg-6:nth-child(1){
+				width:30%;
+			}
+			.col-lg-6:nth-child(2){
+				width:70%;
+			}
+		}
+		& .te_ftr_before_bg{
+			& .te_offer_left{
+				display: none;
+			}
+			& .te_login_right{
+				
+				& a.btn-link{
+					padding: 13px 0px;
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+	@include media-breakpoint-down(sm)
+	{
+		width: 100%;
+		display: inline-block;
+		padding: 10px 15px 0;
+		
+		.te_header_before_logo img{
+			max-height: 50px;
+		}
+		& .te_ftr_before_bg{
+			width: auto;
+			float: right;
+			background: nth($f_color,27);
+			
+			& .container
+			{
+				width: 100%;
+			}
+			& .te_offer_left{
+				display:none;
+			}
+			& .te_login_right{ 
+				width: 100%;
+				position: initial;
+				padding: 12px 0px;
+				
+				& .btn-link, a.dropdown-toggle, .te_signin > a{
+					@include style(3,3,inherit,null,capitalize);
+				}
+				& a.btn-link{
+					padding:0 8px;
+				}
+				> div.text-right{
+					& .px-2{
+						padding: 0 !important;
+						//margin-top: 5px;
+					}
+				}
+			}
+		}
+		.te_cart_icon_head, .te_wish_icon_head
+		{
+			a{
+				font-size: nth($f_sizes,2);
+				padding:0 8px;
+				sup
+				{
+					padding: 3px 5px;		
+					top:-15px;
+					right: 7px;
+				}
+			}	
+		}
+		& .te_header_style_2_inner{
+			width: auto;
+			float: right;
+			& .row.py-3{
+				padding: 0 !important;
+			}
+			.col-lg-6:nth-child(1){
+				display:none;
+			}
+			.col-lg-6:nth-child(2){
+				width:100%;
+				padding: 12px 0px;
+				position: initial;
+			}
+		}
+	}
+}
+.te_header_style_2_inner
+{
+	.te_header_style_2_right
+	{
+		text-align: right;
+	}
+}
+/*-------- Search Box -----------*/  
+.te_srch_icon_header{
+	display:none;
+}
+.te_search_popover
+{
+	 & input.form-control
+			  {
+			  	border-radius: 30px !important;
+			  	border-color: nth($f_color,27);
+				@include box-shadow(0 1px 5px 0 rgba(32, 33, 36, 0.2))
+			  }
+			  & button.oe_search_button
+			  {
+			  	@include position(absolute,auto,0px,auto,auto);
+			  	color:nth($f_color,3);
+			  	background-color:nth($f_color,27);
+			  	z-index: 9;
+			  }
+}
+.te_header_search
+{
+	display:inline-block;
+	width:70%;
+	margin-right: 10px;
+	@include media-breakpoint-down(lg)
+	{
+		width:65%;
+	}
+	@include media-breakpoint-down(sm)
+	{	
+		width: auto;
+		margin-right: 5px;
+		& .te_srch_icon_header
+		{
+			display:block;
+			a
+			{
+				color:nth($f_color,3);
+				outline: none;
+			}
+			i
+			{
+				vertical-align:baseline;
+			}
+		}
+		 .te_search_popover {
+		    opacity: 0;
+			visibility: hidden;
+			@include transform(translate(0,10px))
+			outline:0;
+			@include position(absolute,65px,0px,auto,0);
+			width: 100%;
+			padding: 4px 10px;
+			
+			
+				 &.visible {
+					@include transform(translate(0,-20px))
+					@include transition(all,0.5s,cubic-bezier(0.75, -0.02, 0.2, 0.97))
+					opacity:1;
+					z-index: 999;
+				  }
+			}
+		.te_search_popover:before {
+		    z-index: -1;
+		    content: '';
+		    @include position(absolute,-8px,calc(50% - 10px),auto,auto);
+		    @include transition(null,0.3s,null)
+	    	@include transition(transform,null,null)
+		}
+		.te_srch_close
+		{
+			display: none;
+		}
+	}
+}
+/*------- Header Cart and Wishlist Icon --------*/
+.te_cart_icon_head, .te_wish_icon_head
+{
+	display:inline-block;
+	a{
+		padding: 0 12px;
+		@include position(relative);
+		display: inline-block !important;
+		@include style(7,3)
+		sup
+		{
+			@include border-radius(12px);
+			width: auto;
+			padding: 4px 6px;
+			vertical-align: top;
+			font-size: nth($f_sizes,9);
+			@include position(absolute, -17px, 12px);
+			display: inline-block !important;
+		}
+		i
+		{
+			display: inline-block !important;
+		}
+	}
+	
+}
+.te_bar_icon
+{
+	display:inline-block;
+	a{
+		padding: 0 12px;
+		@include style(7,3);
+		@include media-breakpoint-down(sm)
+		{
+			padding: 0 8px;
+			font-size: nth($f_sizes,2);
+		}
+	}
+}

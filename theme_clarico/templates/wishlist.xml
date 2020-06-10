@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--=====================  Wishlist Page ======================================-->
+	<template id="product_wishlist_ept" inherit_id="website_sale_wishlist.product_wishlist">
+		<xpath expr="//div[@id='wrap']/div[hasclass('oe_website_sale')]"
+			position="before">
+			<div class="oe_structure">
+				<section class="te_shop_before_h_section oe_custom_bg oe_img_bg" style="background-image:url('/theme_clarico/static/src/img/shop/1920_110.jpg')">
+					<h2>Wishlist</h2>
+				</section>
+			</div>
+		</xpath>
+		<xpath expr="//section[hasclass('wishlist-section')]" position="attributes">
+			<attribute name="class">wishlist-section mt16</attribute>
+		</xpath>
+		<xpath expr="//h3" position="replace">
+		</xpath>
+		<xpath expr="//div[hasclass('checkbox')]" position="replace">
+		 <div class="checkbox">
+                            <label class='text-muted'><input type="checkbox" id='b2b_wish' value="1" class="mr8"/>
+                            <span>Add product to my cart but keep it in my wishlist</span></label>
+                        </div>
+		</xpath>
+		<xpath expr="//table[@id='o_comparelist_table']" position="replace">
+			<table
+				class="table table-bordered table-striped table-hover text-center table-comparator t_wish_table" id="o_comparelist_table">
+				<body>
+					<t t-foreach="wishes" t-as="wish">
+						<tr t-att-data-wish-id='wish.id' t-att-data-product-id='wish.product_id.id' class="te_fav_product_main align-top">
+							<td class='te_w_img align-top'>
+								<a t-att-href="'/shop/product/%s' % slug(wish.product_id.product_tmpl_id)">
+									<img
+										t-attf-src="/web/image/product.product/#{wish.product_id.id}/image/100x100"
+										class="img img-fluid pull-left" style="margin:auto;" alt="Product image" />
+								</a>
+							</td>
+							<td class="te_w_detail align-top text-left">
+							<div class='te_wish_name mb8'>
+								<section>
+									<h6>
+										<a t-att-href="'/shop/product/%s' % slug(wish.product_id.product_tmpl_id)">
+											<t t-esc="wish.product_id.display_name" />
+										</a>
+									</h6>
+								</section>
+							</div>
+							<div class="te_wish_price mb8">
+								<t t-esc="wish.product_id.website_price"
+									t-options="{'widget': 'monetary', 'display_currency': website.pricelist_id.currency_id}" />
+							</div>
+							<div class='te_wish_btn'>
+								<input name="product_id" t-att-value="wish.product_id.id"
+									type="hidden" />
+								<button type="button" role="button"
+									class="btn btn-link o_wish_add mb4">
+									<i class="fa fa-shopping-cart mr4"></i>Add
+									<span class='d-none d-md-inline'>to Cart</span>
+								</button>
+								 <button type="button" class="btn btn-link o_wish_rm_ept no-decoration text-danger">							
+										<i class='fa fa-trash-o mr4'></i>
+										Remove
+								</button> 
+							</div>
+							</td>
+						</tr>
+					</t>
+				</body>
+			</table>
+		</xpath>
+		<xpath expr="//table[hasclass('t_wish_table')]//section" position="attributes">
+            <attribute name="t-attf-class">te_shop_content #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}</attribute>
+        </xpath>
+		<xpath expr="//div[hasclass('container')]" position="after">
+	    <t t-call="theme_clarico.recently_viewed_ept">
+					<t t-set="recent_data" t-value="website.get_recently_viewed_items()"/>
+				</t>
+	    </xpath>
+	</template>
+</odoo>

@@ -1,0 +1,824 @@
+/***************************************************
+				01. View all
+				02. Filters
+				03. Product slider Common styles
+				04. Slider Style 1
+				05. Slider Style 2
+				06. Slider Style 3
+				07. Slider Style 4
+***************************************************/
+/*================== 01. View all ======================*/
+.te_slider_view_all
+{
+	display: inline-block;
+	text-align: right;
+	width: 100%;
+	padding:0;
+
+	> a
+	{
+		padding: 2px 8px;
+		display: inline-block;
+		@include style(3,5);
+	}
+}
+/*================ 02. Filters =================*/
+.te_slider_filter_main
+{
+	.te_filter_value
+	{
+		display: inline-block;
+		padding: 4px 8px;
+		margin-right: 8px;
+		padding-bottom: 0;
+
+		h4
+		{
+			text-transform: uppercase;
+			font-weight: bold;
+			margin: 0;
+			cursor:pointer;
+			padding-bottom: 4px;
+
+			&.active
+			{
+				color:nth($f_color,3);
+				border-bottom:2px solid nth($f_color,19)
+			}
+		}
+	}
+	.te_filter_value:last-child()
+	{
+		margin-right: 0;
+	}
+}
+/*=================== 03. Product slider Common styles ======================*/
+
+.te_pc_style_1_main
+{
+	display:inline-block;
+	width:100%;
+	.te_slider_filter_main
+	{
+		text-align: center;
+		@include position(relative)
+		border-bottom: 0;
+		padding-top: 20px;
+
+		.te_filter_value
+		{
+			margin-right: 0;
+			padding: 0;
+
+			h4
+			{
+				@include style(7,23,inherit,null,null)
+				border-right: 1px solid nth($f_color,17);
+				padding: 0px 30px;
+				border-bottom: 0;
+
+				&.active
+				{
+					background-color: nth($f_color,27);
+					color:nth($f_color,19);
+				}
+			}
+			@include media-breakpoint-down(xs)
+			{
+				padding-bottom: 0;
+				margin-top: 8px;
+				h4
+				{
+					font-size:nth($f_sizes,1);
+					margin-bottom: 8px;
+					padding: 0px 19px;
+				}
+			}
+		}
+		:last-child
+		{
+			h4
+			{
+				border:0;
+			}
+		}
+		@include media-breakpoint-down(md)
+		{
+			padding-bottom:16px;
+		}
+	}
+	.te_slider_view_all > a
+	{
+		background: nth($f_color,27);
+		color: nth($f_color,2);
+		@include border(1px,11,solid)
+		@include transition(all,.4s,ease-out)
+
+		&:hover
+		{
+			background: nth($f_color,19);
+			color: nth($f_color,5);
+			border-color: nth($f_color,5);
+		}
+	}
+}
+.te_prod_cart_wish
+{
+	padding-top:1rem;
+	.btn
+	{
+		padding: 0.5rem 1rem;
+		@include media-breakpoint-down(lg)
+		{
+			font-size:nth($f_sizes,27);
+		}
+	}
+}
+@include media-breakpoint-down(md)
+{
+	.te_slider_img
+	{
+		text-align: center;
+	}
+}
+.zoom-animation{
+   @keyframes zoominoutsinglefeatured {
+
+  from {transform: scale(0);}
+	to { transform: scale(1); }
+}
+}
+.zoom-animation{
+	animation: zoominoutsinglefeatured 1s;
+}
+.te_s1_pname {
+	a{
+		overflow: hidden;
+		display: -webkit-box !important;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+
+	&.te_2_line a
+    {
+        height:45px;
+        -webkit-line-clamp: 2;
+    }
+    &.te_3_line a
+    {
+        height:65px;
+        -webkit-line-clamp: 3;
+    }
+}
+/*==================== 04. Slider Style 1 ==================================*/
+.c_style_1
+{
+	@media (min-width: 576px) and (max-width: 991.98px) {
+		.carousel-inner {
+		  .active {
+			display: block;
+			+ .carousel-item {
+			  display: block;
+			  + .carousel-item {
+				display: block;
+			  }
+			}
+		  }
+		  .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) {
+			transition: none;
+			+ .carousel-item {
+			  transition: none;
+			  + .carousel-item {
+				transition: none;
+			  }
+			}
+		  }
+		  .carousel-item-next {
+			@include position(relative);
+			transform: translate3d(0, 0, 0);
+			//@include transform(translate3d(0, 0, 0))
+		  }
+		  .active.carousel-item + .carousel-item + .carousel-item {
+			@include position(absolute,0,-50%);
+			z-index: -1;
+			display: block;
+			visibility: visible;
+		  }
+		}
+		/* left or forward direction */
+		.active.carousel-item-left + .carousel-item-next.carousel-item-left {
+		  @include position(relative);
+		  transform: translate3d(-100%, 0, 0);
+		  //@include transform(translate3d(-100%, 0, 0))
+		  visibility: visible;
+		}
+		.carousel-item-next.carousel-item-left + .carousel-item {
+		  @include position(relative);
+		  transition: transform 0.6s ease;
+		  transform: translate3d(-100%, 0, 0);
+		  //@include transform(translate3d(-100%, 0, 0))
+		  visibility: visible;
+		}
+		/* for thest right hidden item must be also position for animations */
+		.carousel-inner .carousel-item-prev.carousel-item-right {
+		  @include position(absolute,0,unset,unset,0);
+		  z-index: -1;
+		  display: block;
+		  visibility: visible;
+		}
+		.active.carousel-item-right + .carousel-item-prev.carousel-item-right {
+		  @include position(relative);
+		  transform: translate3d(100%, 0, 0);
+		  //@include transform(translate3d(100%, 0, 0))
+		  visibility: visible;
+		  display: block;
+		  visibility: visible;
+		}
+		.carousel-item-prev.carousel-item-right + .carousel-item,
+		.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item {
+			@include position(relative);
+			transition: transform 0.6s ease;
+			transform: translate3d(100%, 0, 0);
+			visibility: visible;
+			display: block;
+			visibility: visible;
+		  }
+		}
+
+	@media (min-width: 992px) {
+	.carousel-inner {
+		  .active {
+			display: block;
+			+ .carousel-item {
+			  display: block;
+			  + .carousel-item {
+				display: block;
+				+ .carousel-item {
+				  display: block;
+				}
+			  }
+			}
+		  }
+		  .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) {
+			transition: none;
+			+ .carousel-item {
+			  transition: none;
+			  + .carousel-item {
+				transition: none;
+				+ .carousel-item {
+				  transition: none;
+				}
+			  }
+			}
+		  }
+		  .carousel-item-next {
+			@include position(relative);
+			transform: translate3d(0, 0, 0);
+			//@include transform(translate3d(0, 0, 0))
+		  }
+		  .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+			@include position(absolute,0,-25%)
+			z-index: -1;
+			display: block;
+			visibility: visible;
+		  }
+		}
+		.active.carousel-item-left + .carousel-item-next.carousel-item-left {
+		  @include position(relative);
+		  transition: transform 0.6s ease;
+		  transform: translate3d(-100%, 0, 0);
+		  //@include transform(translate3d(-100%, 0, 0))
+		  visibility: visible;
+		}
+		.carousel-item-next.carousel-item-left + .carousel-item,
+		.carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+		.carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+		.carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+		 {
+			@include position(relative);
+			transition: transform 0.6s ease;
+			transform: translate3d(-100%, 0, 0);
+			//@include transform(translate3d(-100%, 0, 0))
+			visibility: visible;
+		}
+		.carousel-inner .carousel-item-prev.carousel-item-right {
+		  @include position(absolute,0,unset,unset,0)
+		  z-index: -1;
+		  display: block;
+		  visibility: visible;
+		}
+		.active.carousel-item-right + .carousel-item-prev.carousel-item-right {
+		  @include position(relative);
+		  transition: transform 0.6s ease;
+		  transform: translate3d(100%, 0, 0);
+		  //@include transform(translate3d(100%, 0, 0))
+		  visibility: visible;
+		  display: block;
+		  visibility: visible;
+		}
+		.carousel-item-prev.carousel-item-right + .carousel-item,
+		.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+		.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+		.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item
+		{
+			@include position(relative);
+			transition: transform 0.6s ease;
+			transform: translate3d(100%, 0, 0);
+			//@include transform(translate3d(100%, 0, 0))
+			visibility: visible;
+			display: block;
+			visibility: visible;
+		}
+		.carousel-item.active ~ .carousel-item-prev.carousel-item-right {
+		  text-align: left !important;
+		}
+	  }
+	@include media-breakpoint-down(xs)
+	{
+		& .te_prod_info_sub{
+			padding:0.3rem 0.3rem 1rem 0.3rem !important;
+			& .te_prod_cart_wish{
+				& .btn{
+					padding: 0.3rem 0.5rem !important;
+				}
+			}
+		}
+		& section.position-relative{
+			& h6{
+				margin-bottom: 0 !important;
+			}
+			& .product_name{
+				font-size:nth($f_sizes,2) !important;
+			}
+			& .product_price{
+				font-size:nth($f_sizes,3) !important;
+			}
+		}
+	}
+}
+.s_s1_ind
+{
+	@include border(1px,17,solid)
+	.label_div{
+		@include position(absolute,10px,unset,unset,25px)
+	}
+		&:hover .label_div{
+			max-width: 100%;
+				@include transition(all,600ms,ease)
+			div{
+				opacity: 1;
+				    @include transition(all,500ms,ease)
+		    }
+	}
+	.te_prod_info
+	{
+		margin-top: -55px;
+		overflow: hidden;
+
+		.te_prod_info_sub
+		{
+			background-color:nth($f_color,18);
+			text-align: center;
+			@include transform(translateY(55px))
+			@include transition(all,.3s)
+
+			.product_name
+			{
+				@include style(1,3)
+				max-width: 95%;
+				@include media-breakpoint-down(xs)
+				{
+					max-width:200px;
+				}
+			}
+			.product_price
+			{
+				@include style(2,6)
+			}
+			@include media-breakpoint-down(md) {
+				& h6{
+					margin-bottom: 0 !important;
+					& .product_name{
+						font-size:nth($f_sizes,2) !important;
+					}
+				}
+				& .product_price{
+					font-size:nth($f_sizes,3) !important;
+				}
+			}
+		}
+	}
+	@media(min-width:1200px) {
+		&:hover .te_prod_info .te_prod_info_sub{
+			@include transform(translateY(0))
+			@include position(relative)
+			z-index: 9;
+		}
+	}
+	@include media-breakpoint-down(lg) {
+		& .te_prod_info{
+			overflow: visible;
+			margin-top: 0;
+
+			& .te_prod_info_sub{
+				@include transform(translateY(0))
+				@include position(relative)
+				z-index: 9;
+			}
+		}
+	}
+}
+.p_single_slider.carousel_two_slide,.te_p_filter_slider{
+	overflow:hidden;
+
+	.carousel-control
+	{
+		font-size:nth($f_sizes,4);
+		z-index: 99;
+
+		&.right
+		{
+			@include position(absolute,45%,0);
+		}
+		&.left
+		{
+			@include position(absolute,45%,auto,auto,0);
+		}
+	}
+	.carousel-control-prev{
+		left: 0;
+		width: auto;
+		font-size:nth($f_sizes,2);
+		cursor: pointer;
+		z-index: 100;
+	}
+	.carousel-control-next{
+		right: -2px;
+		width: auto;
+		font-size:nth($f_sizes,2);
+		cursor: pointer;
+		z-index: 100;
+	}
+}
+@include media-breakpoint-down(xs) {
+	.te_p_filter_slider .carousel-control-next {
+		right:0;
+	}
+}
+
+/*====================== 05. Slider Style 2 ===========================*/
+.te_slider_style_2{
+	.te_slider_style_2_left_pannel{
+		width:24%;
+		float:left;
+		min-height: 289px;
+
+		.filter_div_class{
+			.filter_id_class{
+				margin: 0 !important;
+				width: 100%;
+				display: inline-block !important;
+				padding: 7px 0 7px 0;
+				.te_filter_value{
+					font-size: nth($f_sizes,19) !important; /* Not used mixin to add important*/
+					color: nth($f_color,3) !important;
+					text-transform: capitalize !important;
+				}
+			}
+		}
+		& h3.heading{
+			text-align:center;
+			@include style(19,3,inherit,null,capitalize);
+			padding-top: 40%;
+		}
+		& a.view_all{
+			text-align:center;
+			display: inline-block;
+			width: 100%;
+		}
+	}
+	.te_slider_style_2_right_pannel{
+		width:100%;
+		float:left;
+
+		.te_product_ind{
+			width:23%;
+			border: 2px solid $border-color;
+			@include transition(all,.3s)
+			float:left;
+			background-color: nth($f_color,5);
+			//border: $input-border-width solid $border-color;
+			margin:1%;
+			text-align:center;
+			@include position(relative)
+			&:hover
+			{
+				@include border(2px,19,solid)
+
+			}
+			&:hover .te_slider_img img
+			{
+				@include transform(scale(1.1))
+			}
+			&:hover .product_price  .btn.btn-primary
+			{
+				display:inline-block;
+			}
+			&:hover .oe_product_image
+			{
+				opacity: 0.2;
+				@include transition(all,1s,ease,0s)
+			}
+			.te_slider_img span
+			{
+				overflow: hidden;
+				@include position(relative)
+				display:inline-block;
+
+				img
+				{
+					max-width: 100%;
+					@include transition(all,.4s,ease-out)
+				}
+			}
+			.ribbon-wrapper {
+        		right:unset;
+        		display:block;
+        		width:100%;
+    		}
+    		.product_price
+			{
+				@include position(static)
+
+				.btn.btn-primary {
+					@include position(absolute,30%,null,null,30%)
+					z-index: 9;
+					display:none;
+				}
+			}
+    		@include media-breakpoint-down(md) {
+				width:48%;
+			}
+			.te_prod_info
+			{
+				text-align:center;
+				padding:1rem;
+				.product_name
+				{
+					@include style(1,3);
+					max-width: 95%;
+				}
+				.product_price
+				{
+					@include style(2,19);
+				}
+				.te_prod_cart_wish
+				{
+					padding-top:1rem;
+
+					.btn
+					{
+						padding: 0.5rem 1rem ;
+						background: nth($f_color,27);
+						color: nth($f_color,2);
+						@include border(1px,2,solid)
+						@include transition(all,.4s,ease-out)
+
+						&:hover
+						{
+							background: nth($f_color,19);
+							color: nth($f_color,5);
+							@include border(1px,19,solid)
+						}
+					}
+				}
+				.te_shop_del {
+					display:block;
+				}
+			}
+			@media(max-width:540px){
+				margin: 2% 2% 2% 0;
+				.te_prod_info {
+					padding:1rem 0;
+					.product_name{
+						@include style(3,3);
+					}
+					.te_prod_cart_wish {
+						.btn {
+							padding: 0.2rem 0.4rem;
+						}
+					}
+				}
+			}
+			&:hover .label_div{
+				max-width: 100%;
+					@include transition(all,600ms,ease)
+				div{
+					opacity: 1;
+					    @include transition(all,500ms,ease)
+			    }
+			}
+		}
+	}
+}
+.pf_style_2_single_slider
+{
+	.filter_div_class_single
+	{
+		@include position(relative)
+		border-bottom: 0 !important;
+
+		.load_more_style_2
+		{
+			@include position(absolute,auto,0,8px,auto);
+			@include border(1px,11,solid)
+			font-size: nth($f_sizes,18);
+			padding: 0.1rem 0.5rem;
+  			@include transition(all,.4s,ease-out)
+
+			&:hover
+			{
+				background:nth($f_color,19);
+				color:nth($f_color,5);
+				border-color:nth($f_color,19);
+			}
+			@media(max-width:540px)
+			{
+				@include position(relative)
+				display: inline-block;
+				vertical-align: text-top;
+			}
+		}
+	}
+}
+/*===================== 06. Slider Style 3 ============================*/
+.ps_style_3_main
+{
+	.te_slider_details
+	{
+		a.te_ps_product_name
+		{
+			@include style(1,6,inherit,null,capitalize)
+			max-width: 100%;
+			overflow: hidden;
+			display: -webkit-box !important;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+
+			&.te_2_line
+		    {
+		        height:45px;
+		        -webkit-line-clamp: 2;
+		    }
+		    &.te_3_line
+		    {
+		        height:65px;
+		        -webkit-line-clamp: 3;
+		    }
+		}
+		.product_price
+		{
+			font-weight:bold;
+		}
+		.btn-secondary
+		{
+			background-color:nth($f_color,27);
+			@include style(1,1);
+			@include border(1px,11,solid)
+  			@include transition(all,.4s,ease-out)
+  			padding: 0.475rem 0.8rem;
+
+			&.into_wishlist .fa ,&.disabled .fa
+			{
+				color:nth($f_color,19)
+			}
+			&:hover
+			{
+				@include border(1px,19,solid)
+			}
+		}
+		@media(max-width:540px) {
+			a {
+			 	@include style(3,25,inherit,null,capitalize);
+			}
+			.product_price {
+			 	@include style(2,2,inherit,null,null);
+			}
+		}
+	}
+}
+
+/*================ 07. Slider Style 4 ===========================*/
+.ps_style_4_main
+{
+	display: inline-block;
+	width: 100%;
+
+}
+.te_s4_product_details
+{
+	p
+	{
+		font-size:nth($f_sizes,3);
+	}
+}
+.te_slider_style_4{
+			.te_s4_desc_div{
+				max-height: 5em;
+    			overflow: hidden;
+			}
+
+			.te_style_4_item{
+				width:49%;
+				display:inline-block;
+				padding-bottom: 25px;
+				@include position(relative)
+
+				.ribbon-wrapper {
+			        right:unset;
+			        display:block;
+			        width:100%;
+			    }
+
+				.te_slider_img{
+					width:45%;
+					display:inline-block;
+					margin: 0 15px 0 0;
+					vertical-align: top;
+					@include border(1px,17,solid)
+
+					img{
+						width:auto;
+						max-width:100%;
+					}
+				}
+				.te_slider_details{
+					width:43%;
+					display:inline-block;
+					vertical-align: top;
+					padding: 1rem 0;
+
+
+					.product_name{
+						@include style(2,3,inherit,null,capitalize);
+						max-width: 90%;
+						font-weight: bold;
+					}
+					.product_price{
+						padding-top:7px;
+						@include style(1,3,inherit,null,null);
+
+						b
+						{
+							font-weight: normal;
+						}
+					}
+
+					@media(max-width:540px) {
+						.product_name {
+							@include style(3,3,inherit,null,capitalize);
+						}
+						.product_price {
+							@include style(2,2,inherit,null,null);
+						}
+					 	.te_prod_cart_wish {
+					 		.btn {
+					 			padding:0.3rem 0.5rem;
+					 			i {
+					 				display:none;
+					 			}
+					 		}
+					 	}
+					 }
+				}
+				@include media-breakpoint-down(md)
+				{
+					width:48%;
+					margin: 0 1% 0 0;
+					.te_slider_img {
+						width:100%;
+						margin:0;
+						img {
+							display: block;
+							   margin: 0px auto;
+						}
+					}
+					.te_slider_details {
+						width:100%;
+			}
+		}
+		&:hover .label_div{
+			max-width: 100%;
+				@include transition(all,600ms,ease)
+			div{
+				opacity: 1;
+				    @include transition(all,500ms,ease)
+		    }
+		}
+	}
+}
+
+
+
+
+
