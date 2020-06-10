@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--===============Product Category================== -->
+    <template id="category_carousel" name="Product Category">
+        <div class="oe_snippet_body input-group category_carousel_js"
+			data-isemipro='true'></div>
+    </template>
+    <!--===============Theme Category Carousel================== -->
+    <template id="category_carousel_body" inherit_id="emipro_theme_base.theme_category_carousel">
+        <xpath expr="//div[hasclass('oe_theme_category_carousel_container')]" position="inside">
+            <t t-if="object">
+                <div id="myCarousel_category">
+                    <div class="container">
+                        <t t-foreach="object" t-as="category">
+                            <div class="c_pc_image mb16">
+                                <span itemprop="image" />
+                                <div class="c_sub_pc_image">
+                                    <a t-att-href="'/shop/category/%s' %slug(category)">
+                                        <span itemprop="image"
+										t-attf-content="{{request.httprequest.url_root}}web/image/product.category/{{category.id}}/image/"
+										t-field="category.image" t-options="{'widget': 'image', 'resize':'90x90'}"
+										t-att-alt="category.name" />
+                                    </a>
+                                </div>
+                                <div class="ctn_name">
+                                    <a t-field="category.name" class="categ_name"
+									t-att-href="'/shop/category/%s' %slug(category)"></a>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <!--===============Category Carousel Options================== -->
+    <template id="category_carousel_options" name="Category Carousel Options"
+		inherit_id="website.snippet_options">
+        <xpath expr="//div" position="after">
+            <div data-js='category_limit' data-selector=".category_carousel_js"
+				data-drop-near="[data-oe-field='body_html']:not(:has(.o_layout)) > *, .oe_structure > *"
+				data-drop-in="[data-oe-field='body_html']:not(:has(.o_layout)), .oe_structure">
+                <li data-select_snippet_list="" data-no-preview="true">
+                    <a href="#">Snippet</a>
+                    <a tabindex="-1" href="#" class="dropdown-item" data-no-preview="true">Change
+						Category Limit
+					</a>
+                </li>
+            </div>
+        </xpath>
+    </template>
+</odoo>

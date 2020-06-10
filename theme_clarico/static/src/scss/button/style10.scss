@@ -1,0 +1,44 @@
+/*========================== Button Style 10 ========================*/
+.te_theme_button {
+    @include border(2px,19,solid)
+    @include style(2,19)
+    @include border-radius(50px)
+    display: inline-block;
+    @include transition(all,300ms,null)
+    background-color:nth($f_color,27);
+    @include border(1px,19,solid)
+    @include position(relative)
+    padding-right:35px;
+    padding-left:35px;
+    &:after{
+        content: "\f061";
+        font: normal normal normal 14px/1 FontAwesome;
+        opacity: 0;
+        line-height:2.9;
+        @include position(absolute,0,30px,null,null) 
+        color: nth($f_color,5);
+    }
+    &:hover {
+        background-color:none;
+        &:after{
+            right:10px;
+            opacity: 1;
+            @include transition(all,0.3s,null)
+        }
+    }
+}
+@include media-breakpoint-down(xs)
+{
+	.te_theme_button
+	{
+		padding: 0.5rem 1.8rem;
+		margin-bottom: 8px;
+		font-size:nth($f_sizes,3);
+		
+		&:after
+		{
+			font-size: 0.6rem; /*This font size is not used in variables*/ 
+			top: 3px;
+		}
+	}
+}

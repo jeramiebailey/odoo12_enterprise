@@ -1,0 +1,40 @@
+/*============================ Button Style 3 =======================*/
+.te_theme_button:before
+{
+	content: '';
+	@include position(absolute,0,null,null,0);
+	width: 150%;
+	height: 100%;
+	background: nth($f_color,3);
+	z-index: -1;
+	@include transform(rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0))
+	-webkit-transform-origin: 0% 100%;
+	transform-origin: 0% 100%;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s, background-color 0.3s;
+	transition: transform 0.3s, opacity 0.3s, background-color 0.3s; /* Transition mixin is not compatible with this property structure.*/
+}
+.te_theme_button
+{
+	overflow: hidden;
+	@include position(relative,null,null,null,null);
+	z-index: 1;
+	@include border(1px,27,solid) 
+	-webkit-transition: border-color 0.3s, color 0.3s;
+	transition: border-color 0.3s, color 0.3s; /*Transition mixin is not compatible with this property structure.*/
+	@include transition(null,null,cubic-bezier(0.2, 1, 0.3, 1),null)
+	box-sizing: border-box
+}
+.te_theme_button:hover:before{
+
+	opacity: 1;
+	@include transform(rotate3d(0, 0, 1, 0deg))
+	@include transition(null,null,cubic-bezier(0.2, 1, 0.3, 1),null)
+}
+@include media-breakpoint-down(xs)
+{
+	.te_theme_button
+	{
+		padding: 0.475rem 0.7rem;
+		font-size:nth($f_sizes,3);
+	}
+}

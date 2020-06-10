@@ -1,0 +1,36 @@
+/*============================ Button Style 7 ===============================*/
+.te_theme_button {
+	@include border(2px,19,solid)
+	@include style(2,19)
+    display: inline-block;
+    @include position(relative)
+    @include transition(all,0.3s,null)
+    overflow: hidden;
+    background-color:nth($f_color,27);
+    z-index: 1;
+    &:after {
+	    content: '';
+		@include position(absolute,0,unset,unset,0)
+		z-index: -1;
+		width: 0%;
+	    height: 100%;
+	    background:nth($f_color,19);
+	    @include transition(all,0.3s,null)
+    }
+    &:hover {
+		@include border(2px,19,solid)
+	    background-color:unset;
+	    color:nth($f_color,5);
+	    &:after {
+		    width: 100%;
+    	}
+    }
+}
+@include media-breakpoint-down(xs)
+{
+	.te_theme_button
+	{
+		padding: 0.475rem 0.7rem;
+		font-size:nth($f_sizes,3);
+	}
+}

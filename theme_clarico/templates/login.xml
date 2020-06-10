@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--================== Sign up - Reset Password in login page ========================-->
+	<template id="theme_auth_signup_login_ept" inherit_id="auth_signup.login">
+		<xpath expr="//div[hasclass('justify-content-between')]" position="attributes">
+			<attribute name="class">justify-content-between mt-2 d-flex te_login_links</attribute>
+		</xpath>
+	</template>
+	<!--====================== Sign up fields =====================-->
+	<template id="theme_auth_signup_fields_ept" inherit_id="auth_signup.fields"> 
+		<xpath expr="//div[hasclass('form-group')][1]/input" position="attributes">
+			<attribute name="class">form-control</attribute>
+		</xpath>
+		<xpath expr="//div[hasclass('form-group')][2]/input" position="attributes">
+			<attribute name="class">form-control</attribute>
+		</xpath>
+		<xpath expr="//div[hasclass('form-group')][3]/input" position="attributes">
+			<attribute name="class">form-control</attribute>
+		</xpath>
+		<xpath expr="//div[hasclass('form-group')][4]/input" position="attributes">
+			<attribute name="class">form-control</attribute>
+		</xpath>
+	</template>
+	<!--===================== Sign up page ==========================-->
+	<template id="theme_auth_signup_ept" inherit_id="auth_signup.signup">
+		<xpath expr="//div[hasclass('oe_login_buttons')]/a" position="attributes">
+			<attribute name="class">btn btn-link btn-sm te_signup_login_link mt4</attribute>
+		</xpath>
+	</template>
+	<!--================= Reset password page =====================-->
+	<template id="t_auth_reset_password_ept" inherit_id="auth_signup.reset_password">
+		<xpath expr="//div[hasclass('oe_login_buttons')]/button" position="attributes">
+			<attribute name="class">btn btn-primary</attribute>
+		</xpath>
+		<xpath expr="//div[hasclass('align-items-center')]" position="attributes">
+			<attribute name="class">d-flex justify-content-between align-items-center te_reset_pw_login_btns</attribute>
+		</xpath>
+	</template>
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- ============= Comparison =========== -->
+	<template id="product_attributes_body_ept" inherit_id="website_sale_comparison.product_attributes_body">
+		<xpath expr="//section[@id='product_full_spec']" position="attributes">
+			<attribute name="class">te_product_tab tab2C container</attribute>
+		</xpath>
+		<xpath expr="//div[@id='product_specifications']" position="attributes">
+			<attribute name="class">col-md-8 te_product_spec mt16</attribute>
+		</xpath>
+		<xpath expr="//table[hasclass('table-sm')]" position="attributes">
+			<attribute name="class">table table-striped table table-hover
+			</attribute>
+		</xpath>
+	</template>
+	<record id="website_sale_comparison.product_attributes_body" model="ir.ui.view">
+		<field name="priority">17</field>
+	</record>
+	<record id="website_sale.product_comment" model="ir.ui.view">
+		<field name="priority">16</field>
+	</record>
+	<!-- ================= Compare Page ==================== -->
+	<template id="remove_button" inherit_id="website_sale_comparison.product_compare">
+		<xpath expr="//table[@id='o_comparelist_table']" position="attributes">
+			<attribute name="class">table table-bordered table-hover text-center mt16 table-comparator te_compare_table</attribute>
+		</xpath>
+		<xpath expr="//section[hasclass('container')]" position="attributes">
+			<attribute name="class"></attribute>
+		</xpath>
+		<xpath expr="//h3" position="attributes">
+			<attribute name="class">Compare_Products_heading text-uppercase pb-2 mb-4 mt-4</attribute>
+		</xpath>
+		<xpath expr="//td[@t-foreach='products']" position="attributes">
+			<attribute name="class">position-relative</attribute>
+		</xpath>
+		<xpath expr="//td[@t-foreach='products']/a[1]" position="attributes">
+			<attribute name="class">o_comparelist_remove te_close</attribute>
+		</xpath>
+		<xpath expr="//td[@t-foreach='products']/a[1]/strong" position="attributes">
+			<attribute name="class"></attribute>
+		</xpath>
+		<xpath expr="//td[@t-foreach='products']/a[2]/img" position="attributes">
+			<attribute name="t-attf-src">/web/image/product.product/#{product.id}/image/300x300</attribute>
+		</xpath>
+
+		<xpath expr="//div[hasclass('product_summary')]" position="attributes">
+			<!--<attribute name="class">product_summary text-left</attribute>-->
+			<attribute name="class">product_summary text-center</attribute>
+		</xpath>
+		<xpath expr="//div[hasclass('product_summary')]/a[hasclass('o_product_comparison_table')]" position="replace">
+            <div id="read_more">
+				<!--<a class="o_product_comparison_table product_name_compare d-inline-block" t-attf-href="/shop/product/#{ slug(product.product_tmpl_id) }">
+	               	<span class="more"  t-field='product.display_name'></span>
+	            </a>-->
+                <a class="o_product_comparison_table product_name_compare"
+                   t-attf-href="/shop/product/#{ slug(product.product_tmpl_id) }">
+                    <div class="more" t-field='product.display_name'></div>
+                    <div class="full_name_compare" t-field='product.display_name'></div>
+                </a>
+            </div>
+        </xpath>
+	</template>
+</odoo>

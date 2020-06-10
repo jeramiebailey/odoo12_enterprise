@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--============ Contactus Info ===============-->
+	<template id="contact_us_ept" inherit_id="website.contactus" name="Contact Us">
+		<xpath expr="//section[hasclass('s_text_block')]" position="attributes">
+			<attribute name="class">s_text_block te_contactus_text_block</attribute>
+		</xpath>
+		<xpath expr="//div[hasclass('s_title')]" position="attributes">
+			<attribute name="class">col-lg-12 s_title pt16 pb0</attribute>
+		</xpath>
+		<xpath expr="//div[@id='wrap']/div[hasclass('container')]" position="attributes">
+			<attribute name="class">container mt-2 mb32</attribute>
+		</xpath>
+		<xpath expr="//div[hasclass('col-lg-4')]" position="attributes">
+			<attribute name="class">col-lg-4 te_company_details</attribute>
+		</xpath>
+	</template>
+</odoo>

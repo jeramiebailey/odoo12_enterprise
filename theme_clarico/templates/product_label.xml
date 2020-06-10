@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	 <!--===================== Shop Products label =========================-->
+	<template id="clarico_shop_products_item" inherit_id="website_sale.products_item"
+		priority="23">
+		<xpath expr="//div[hasclass('ribbon-wrapper')]" position="replace">
+			<div class="ribbon-wrapper" t-if="product.label_ept_id">
+				<div class="label_div">
+					<i class="fa fa-tag mr4"></i>
+					<div t-field="product.label_ept_id" class="pull-right d-block"></div>
+				</div>
+			</div>
+		</xpath>
+	</template>
+</odoo>

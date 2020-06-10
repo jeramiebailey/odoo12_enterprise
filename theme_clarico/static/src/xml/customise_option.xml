@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <templates id="template" xml:space="preserve">
+	 <t t-extend="website.theme_customize_modal_option">
+	 	<t t-jquery=".o_theme_customize_color_previews div:first-child" t-operation="replace">
+	 		   <div>
+                    <h6>Theme colors</h6>
+                    <t t-foreach="{'primary': _t('Primary'), 'secondary': _t('Secondary'), 'success': _t('Success'), 'danger': _t('Danger'), 'warning': _t('Warning'),'info': _t('Info')}" t-as="color">
+                        <t t-call="website.theme_customize_color_palette_button">
+                            <t t-set="color_type" t-value="'theme'"/>
+                        </t>
+                    </t>
+                </div>
+			</t>
+			<t t-jquery=".o_theme_customize_color_previews div:last-child" t-operation="replace">
+			</t>
+		</t>
+</templates>

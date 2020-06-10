@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ====================== Recently Viewed in Product ================= -->
+    <template id="recently_viewed_product_ept" inherit_id="website_sale.product" name="Recently Viewed Prodeuct">
+        <xpath expr="//div[hasclass('js_sale')]" position="after">
+            <t t-call="theme_clarico.recently_viewed_ept">
+                <t t-set="recent_data" t-value="website.get_recently_viewed_items(product.id)" /></t>
+        </xpath>
+    </template>
+    <!--================= Recently Viewed Items =========================-->
+    <template id="recently_viewed_ept" name="Recently Viewed items">
+        <t t-if="recent_data">
+            <t t-set="recent_products" t-value="recent_data.get('recent_products')" />
+            <t t-set="compute_currency" t-value="recent_data.get('compute_currency')" />
+            <t t-if="recent_products">
+                <section id="carousel_recently_view" data-type="multi"
+				t-att-class="'container carousel slide common_carousel_emp carousel_recently_view' if len(recent_products) &gt; 4 else 'container carousel_recently_view'"
+				data-ride="carousel" data-interval="0">
+                    <h3 class="te_product_recent_h2">Recently Viewed Products</h3>
+                    <div class="carousel-inner row mx-auto mt16" role="listbox">
+                        <t t-foreach="recent_products" t-as="recent_product">
+                            <t t-set="rproduct"
+							t-value="request.env['product.template'].sudo().search([('id','=',int(recent_product))])" />
+                            <div t-att-data-active="true if product and product.id == rproduct.id else false"
+							t-att-class="'carousel-item col-6 col-sm-6 col-md-6 col-lg-3 img_hover' if len(recent_products) &gt; 4 else 'col-6 col-sm-6 col-md-6 col-lg-3 img_hover'">
+                                <div class="border">
+                                    <a t-att-href="'/shop/product/%s' %slug(rproduct)">
+                                        <div class="new_span">
+                                            <img class="img-responsive img-fluid mx-auto d-block"
+										t-attf-src="/website/image/product.product/{{rproduct.product_variant_id.id}}/image/350x350"
+										t-att-alt="rproduct.name" />
+                                        </div>
+                                    </a>
+                                    <div t-attf-class="px-2 text-left te_recent_detail_section #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}">
+                                        <a class="d-block product_name mb8" t-field="rproduct.name"
+										t-att-href="'/shop/product/%s' %slug(rproduct)" />
+                                        <t
+										t-if="rproduct.product_variant_id and rproduct.website_price_difference and website.get_current_pricelist().discount_policy=='without_discount'">
+                                            <del class="te_shop_del mr8" style="white-space: nowrap;">
+                                                <span t-esc="compute_currency(rproduct.website_public_price)"
+												t-options="{'widget': 'monetary', 'display_currency': website.get_current_pricelist().currency_id, 'from_currency': website.currency_id}"></span>
+                                            </del>
+                                        </t>
+                                        <b>
+                                            <span t-esc="rproduct.website_price"
+										t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+                                        </b>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <t t-if="len(recent_products) &gt; 4">
+                        <a class="carousel-control-prev" role="button" data-slide="prev"
+						data-target="#carousel_recently_view">
+                            <i class="fa fa-chevron-left fa-lg text-muted" />
+                        </a>
+                        <a class="carousel-control-next" role="button" data-slide="next"
+						data-target="#carousel_recently_view">
+                            <i class="fa fa-chevron-right fa-lg text-muted" />
+                        </a>
+                    </t>
+                </section>
+            </t>
+        </t>
+    </template>
+</odoo>

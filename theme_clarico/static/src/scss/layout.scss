@@ -1,0 +1,242 @@
+/******************************
+INDEX:
+    01 - Header common styles
+    02 - 404 page
+    03 - Login Style
+    04 - Contact Us Form
+    05 - Contact Us Company Details 
+    06 - Click to scroll top
+    07 - social button icons for product page
+    08 - loading icon
+******************************/
+/*============================ 01 - Header common styles ================================*/
+/* hide search from website search module when installed */
+.website_search_form_main
+{
+	display:none;
+}
+.te_user_account
+{
+	> .dropdown-menu a.dropdown-item
+	{
+		padding: 0.55rem 1.5rem;
+		border-bottom: 1px dashed #c0c0c0;
+		font-size:nth($f_sizes,3);
+		text-transform: capitalize;
+		
+		> span.fa
+		{
+			@include style(3,19);
+			margin-right:1rem;
+		}
+	}
+	> .dropdown-menu a.dropdown-item:last-child
+	{
+		border:none;
+	}
+}
+
+/*============================ 02 - 404 page ==============================*/
+.page404
+{
+	h1
+	{
+		font-size:6.25rem; /*This font-size is not used in variables*/ 
+		font-family:inherit;
+		color: nth($f_color,3);
+		text-align:center;
+		margin-bottom:0px;
+	}	
+	p
+	{
+		text-transform: uppercase;
+		color: nth($f_color,3);
+		text-align: center;		
+	}
+	ul 
+	{		
+		text-align:center;
+		padding:0;		
+			
+		li
+		{
+			list-style-type:none;
+			display: inline-block;
+		}
+	}
+}
+
+/*=========================== 03 - Login Style ==================================*/
+.oe_login_form, .oe_signup_form, .oe_reset_password_form
+{
+	max-width: 400px;
+	padding: 32px;
+	@include box-shadow(0px 0px 10px 0 rgba(50, 50, 93, 0.1))
+	
+	.form-group > .form-control 
+	{
+		border:0;
+		border-bottom: $input-border-width solid $input-border-color;
+		
+		&:focus
+		{
+			box-shadow: none;
+			border-color: nth($f_color,3);
+		}
+	}
+	& label
+	{
+		font-weight: normal;
+		@include style(3,3,inherit,null,uppercase);
+		@include spacing(1px,0);
+	}
+	& .o_auth_oauth_providers >a
+	{
+		margin-bottom:8px;
+	}
+}
+.form-control:disabled, .form-control[readonly] {
+  background-color: nth($f_color,18);
+}
+.form-control::placeholder {
+  color: #b1b1b1; /*This color is not used in variables*/ 
+}
+.te_login_links >a,.te_reset_pw_login_btns > a
+{
+  	@include style(18,4,inherit);
+}
+.te_signup_login_link
+{
+	@include style(18,4,inherit);
+	text-transform: none;
+}
+
+.te_user_account_icon, .te_currency_symbol{
+	display:none;
+}
+
+/*=========================== 04 - Contact Us Form ========================================*/
+.te_contactus_text_block
+{	
+	h1
+	{
+		margin-bottom:0px;
+	}	
+	.container
+	{
+		width: 100%;
+	}
+}
+
+.s_website_form{
+		.col-form-label
+		{
+			@include style(3,1,$o-theme-fonts,null,uppercase);
+			font-weight: normal;
+		}
+		.form-control
+		{
+			&:focus
+			{
+				box-shadow: none !important; 
+			}
+		}		
+}
+.te_form_required_text
+{
+	font-size:nth($f_sizes,3);
+	}
+
+/*============================= 05 - Contact Us Company Details ====================================*/
+.te_company_details{
+	span{
+		@include style(2,22,null,1.8,capitalize);
+		margin-top: 0px !important;
+	}
+	a{
+		@include style(7,22,null,1.5,capitalize);
+	}
+	.fa
+	{
+		color:nth($f_color,19);
+	}
+}
+div[name="mail_button"] 
+{
+	margin-bottom: 32px;
+	display: inline-block;
+	a
+	{
+		float:left;
+	}
+}
+/*=========================== 06 - Click to scroll top ===================================*/
+.scrollup-div{
+	@include position(fixed,auto,15px,15px,auto);
+    background: nth($f_color,3);
+    width: 35px;
+    height: 35px;
+    display:none;
+    cursor: pointer;
+    @include transition(null,.3s,null)
+    z-index:9999;
+    
+    &:hover{
+    	 background: nth($f_color,19);
+    }
+    .scrollup-i{
+	    padding: 6px 0px 0 10px;
+	    
+	    @include style(19,5);
+	    font-weight: 900;
+	    width: 35px;
+    	height: 35px;
+    	@include transition(null,.3s,null)
+    	padding: 0.25rem;
+    }
+}
+
+/*================================= 07 - social button icons for product page ====================================*/
+
+.product_share 
+{
+	margin-top: 10px;
+	h6
+	{
+		display: inline-block;
+		font-weight: 600;
+		margin-right: 5px;
+		margin-bottom: 0;
+	}
+}
+.oe_share
+{
+	display: inline-block;
+	.oe_share_icon {
+		@include style(1,19)
+	    display: inline-block;
+	    
+	    text-align: center;
+	    
+	    margin-right: 5px;
+	}
+}
+/*========================================== 08 - loading icon ================================================*/
+/* Load icon style in Layout */
+.cus_theme_loader_layout svg path,
+.cus_theme_loader_layout svg rect{
+  fill: nth($f_color,19);
+}
+.cus_theme_loader_layout{
+	@include position(fixed,0,0,0,0)
+	width: 100%;
+	background:rgba(255, 255, 255, 0.7);
+	z-index: 9999;
+}
+.cus_theme_loader_div_layout{
+	margin-top:20%;
+	display:inline-block;
+	width:100%;
+	text-align:center;
+}
+
