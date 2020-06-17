@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ClientListScreenWidget">
+        <t t-jquery="input[placeholder='Search Customers']" t-operation="replace">
+            <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &lt; 0
+                     &amp;&amp; widget.pos.config.pos_workflow.indexOf('supplier') &lt; 0">
+                <input placeholder='Search Customers' />
+            </t>
+            <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &gt;= 0
+                     || widget.pos.config.pos_workflow.indexOf('supplier') &gt;= 0">
+                <input placeholder='Search Vendors' />
+            </t>
+        </t>
+	    <t t-jquery=".next" t-operation="inner">
+            <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &lt; 0
+                     &amp;&amp; widget.pos.config.pos_workflow.indexOf('supplier') &lt; 0">
+                Select Customer
+                <i class='fa fa-angle-double-right'></i>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &gt;= 0
+                     || widget.pos.config.pos_workflow.indexOf('supplier') &gt;= 0">
+                Select Vendor
+                <i class='fa fa-angle-double-right'></i>
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery="t[t-if='!widget.pos.get_client()']" t-operation="inner">
+            <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &lt; 0
+                     &amp;&amp; widget.pos.config.pos_workflow.indexOf('supplier') &lt; 0">
+                Customer
+            </t>
+            <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &gt;= 0
+                     || widget.pos.config.pos_workflow.indexOf('supplier') &gt;= 0">
+                Vendor
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="ActionpadWidget">
+        <t t-jquery="button[t-attf-class='button set-customer #{ ( widget.pos.get_client() and widget.pos.get_client().name.length > 10) ? &quot;decentered&quot; : &quot;&quot; }']" t-operation="replace">
+            <t t-if="widget.pos.config.pos_workflow.indexOf('return') &lt; 0
+                     &amp;&amp; widget.pos.config.pos_workflow.indexOf('refund') &lt; 0">
+                <button t-attf-class='button set-customer #{ ( widget.pos.get_client() and widget.pos.get_client().name.length > 10) ? "decentered" : "" }' >
+                    <i class='fa fa-user' /> 
+                    <t t-if="widget.pos.get_client()">
+                        <t t-esc="widget.pos.get_client().name" />
+                    </t>
+                    <t t-if="!widget.pos.get_client()">
+                        <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &lt; 0
+                                 &amp;&amp; widget.pos.config.pos_workflow.indexOf('supplier') &lt; 0">
+                            Customer
+                        </t>
+                        <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &gt;= 0
+                                 || widget.pos.config.pos_workflow.indexOf('supplier') &gt;= 0">
+                            Vendor
+                        </t>
+                    </t>
+                </button>
+            </t>
+        </t>
+        <t t-jquery="t[t-if='!widget.pos.get_client()']" t-operation="inner">
+            <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &lt; 0
+                     &amp;&amp; widget.pos.config.pos_workflow.indexOf('supplier') &lt; 0">
+                Customer
+            </t>
+            <t t-if="widget.pos.config.pos_workflow.indexOf('purchase') &gt;= 0
+                     || widget.pos.config.pos_workflow.indexOf('supplier') &gt;= 0">
+                Vendor
+            </t>
+        </t>
+        <t t-jquery=".pay" t-operation="replace">
+            <t class="pos-order-workflow-pay" t-if="widget.pos.config.pos_workflow === 'pos.order'">
+                <button class="button pay">
+                    <div class="pay-circle">
+                        <i class="fa fa-chevron-right"/> 
+                    </div>
+                    Payment
+                </button>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow !== 'pos.order'">
+                <button class="button pos-workflow-popup">
+                    <div class="pos-workflow-circle">
+                        <i class="fa fa-chevron-right"/> 
+                    </div>
+                </button>
+            </t>
+        </t>
+    </t>
+
+    <t t-name="POSImportListButton">
+        <div class="control-button js-import-list">
+        </div>
+    </t>
+
+    <t t-name="POSWorkflowPopup">
+        <div class="modal-dialog">
+            <div class="popup pos-workflow-popup">
+                <div class="body pos-workflow-body">
+                </div>
+                <div class="footer">
+                    <div class="button cancel">
+                        Close
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-extend="PosTicket">
+        <t t-jquery="t[t-esc='order.name']" t-operation="replace">
+            <t class="pos-order-workflow-order-name" t-if="widget.pos.config.pos_workflow === 'pos.order'">
+                <t t-esc="order.name"/>
+            </t>
+        </t>
+        <t t-jquery=".receipt-change" t-operation="replace">
+            <t class="pos-order-workflow-receipt-change" t-if="widget.pos.config.pos_workflow === 'pos.order'">
+                <table class='receipt-change'>
+                    <tr><td>Change:</td><td class="pos-right-align">
+                        <t t-esc="widget.format_currency(order.get_change())"/>
+                        </td></tr>
+                </table>
+            </t>
+        </t>
+    </t>
+
+</templates>

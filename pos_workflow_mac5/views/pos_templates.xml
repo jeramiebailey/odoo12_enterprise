@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <template id="pos_workflow_assets" inherit_id="pos_workflow_base_mac5.pos_workflow_assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/pos_workflow_mac5/static/src/js/pos_workflow.js"/>
+        </xpath>
+    </template>
+
+</odoo>
