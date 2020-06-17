@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_pos_config_workflow_form" model="ir.ui.view">
+        <field name="name">view.pos.config.workflow.form</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <div class="row mt16 o_settings_container" position="inside">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <label string="POS Workflow" for="pos_workflow"/>
+                        <div class="text-muted">
+                            Define the workflow for POS. Odoo default is Create POS Order. (NOTE: You need to install <a href="https://apps.odoo.com/apps/modules/12.0/pos_workflow_mac5/">POS Workflows</a> module)
+                        </div>
+                        <div class="content-group mt16">
+                            <div class="row mt16">
+                                <label string="Workflow" for="pos_workflow" class="col-md-4 o_light_label"/>
+                                <field name="pos_workflow"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <label string="POS Import" for="pos_import"/>
+                        <div class="text-muted">
+                            Define which transaction can be imported in POS. (NOTE: You need to install <a href="https://apps.odoo.com/apps/modules/12.0/pos_sale_import_mac5/">POS Import Sales Order</a> module)
+                        </div>
+                        <div class="content-group mt16">
+                            <div class="row mt16">
+                                <label string="Transaction" for="pos_import" class="col-md-4 o_light_label"/>
+                                <field name="pos_import" invisible="1"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <xpath expr="//field[@name='tax_regime']/../.." position="after">
+                <div id="use_pos_product_tax" class="col-12 col-lg-6 o_setting_box" invisible="1">
+                    <div class="o_setting_left_pane">
+                        <field name="use_pos_product_tax"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="use_pos_product_tax"/>
+                        <div class="text-muted">
+                            Use POS Customer Taxes and POS Vendor Taxes in products for POS transactions instead of the regular taxes
+                        </div>
+                    </div>
+                </div>
+                <div id="display_pos_price_total" class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('use_pos_product_tax', '=', False)]}">
+                    <div class="o_setting_left_pane">
+                        <field name="display_pos_price_total"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="display_pos_price_total"/>
+                        <div class="text-muted">
+                            This is used for POS product taxes with enabled <i>Include in Price</i> field. If the sale price is 60.00 and tax is 10% inclusive, then the display price will be 66.00 instead of 60.00.
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

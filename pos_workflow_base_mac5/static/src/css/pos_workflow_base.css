@@ -1,0 +1,123 @@
+.pos .actionpad .button.pos-workflow-popup {
+    height: 162px;
+}
+
+.pos .actionpad .pos-workflow-circle {
+    background: rgb(86, 86, 86);
+    border-radius: 30px;
+    color: white;
+    display: block;
+    font-size: 32px;
+    line-height: 54px;
+    margin: auto;
+    margin-bottom: 10px;
+    padding-top: 6px;
+    width: 60px;
+}
+
+.pos .actionpad .pos-workflow-circle .fa {
+    left: 3px;
+    position: relative;
+    top: -1px;
+}
+
+.pos .body.pos-workflow-body {
+    margin: 20px;
+    text-align: left;
+}
+
+.pos .body.pos-workflow-body #workflow-partner-ref,#workflow-date,#picking-date,#order-date {
+    width: 100%;
+}
+
+.pos .body.pos-workflow-body #workflow-note,#picking-address {
+    width: 440px;
+}
+
+
+
+/* LIST SCREEN */
+.pos .list-screen .window,
+.pos .list-screen .full-content .subwindow{
+    display: block;
+}
+
+.pos .list-screen .full-content .subwindow-container{
+    display: block;
+    height: 100%;
+}
+
+.pos .list-screen .full-content .subwindow.collapsed,
+.pos .list-screen .full-content .subwindow-container.collapsed{
+    height: auto;
+}
+
+.pos .list-screen .list{
+    font-size: 16px;
+    width: 100%;
+    line-height: 40px;
+}
+
+.pos .list-screen .list th,
+.pos .list-screen .list td {
+    padding: 0px 8px;
+}
+
+.pos .list-screen .list tr{
+    transition: all 150ms linear;
+    background: rgb(230,230,230);
+}
+
+.pos .list-screen .list thead > tr,
+.pos .list-screen .list tr:nth-child(even) {
+    background: rgb(247,247,247);
+}
+
+.pos .list-screen .list tr.highlight{
+    transition: all 150ms linear;
+    background: rgb(110,200,155) !important;
+    color: white;
+}
+
+.pos .list-screen .list tr.lowlight{
+    transition: all 150ms linear;
+    background: rgb(216, 238, 227);
+}
+
+.pos .list-screen .list tr.lowlight:nth-child(even){
+    transition: all 150ms linear;
+    background: rgb(227, 246, 237);
+}
+
+.pos .list-screen .searchbox{
+    right: auto;
+    margin-left: -90px;
+    margin-top:8px;
+    left: 50%;
+}
+
+.pos .list-screen .searchbox input{
+    width: 120px;
+}
+
+.pos .rightpane-disable {
+    opacity: 0.30;
+    pointer-events: none;
+}
+
+.pos  .button.set-customer-disable {
+    color: rgb(172, 172, 172);
+    pointer-events: none;
+}
+
+.pos .mode-button.mode-button-disable {
+    color: rgb(172, 172, 172);
+    pointer-events: none;
+}
+
+.pos .input-button.input-button-disable {
+    color: rgb(172, 172, 172);
+    pointer-events: none;
+}
+
+

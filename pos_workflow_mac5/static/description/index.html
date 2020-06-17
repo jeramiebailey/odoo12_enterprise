@@ -1,0 +1,381 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">POS Workflows</h2>
+        <h3 class="oe_slogan">Way to change the workflow for point of sale</h3>
+        <div class="oe_span12" style="font-size:15pt;">
+            <h4><p>Features:</p></h4>
+            <ul>
+                <li>Create Sales Quotation</li>
+                <li>Create Sales Order</li>
+                <li>Create Sales Order, Waiting Delivery & Posted Invoice</li>
+                <li>Create Sales Order, Done Delivery & Posted Invoice</li>
+                <li>Create Purchase Quotation</li>
+                <li>Create Purchase Order</li>
+                <li>Create Purchase Order, Waiting Reception & Posted Invoice</li>
+                <li>Create Purchase Order, Done Reception & Posted Invoice</li>
+                <li>Create Customer Invoice (directly)</li>
+                <li>Create Validated Customer Invoice</li>
+                <li>Create Vendor Bill</li>
+                <li>Create Validated Vendor Bill</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Configuration</h2>
+        <h3 class="oe_slogan">Easy setup of workflow for each point of sales</h3>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                POS workflow configuration is as easy as ABC. Configuration can be found in Point of Sale > Configuration > Point of Sale.
+            </p>
+            <p class="oe_mt32">
+                POS workflow configurations are Create POS Order, Create Sales Quotation, Create Sales Order, Create Purchase Quotation, Create Purchase Order, Create Customer Invoice and Create Vendor Bill. <strong>Create POS Order</strong> is the default workflow for Odoo POS.
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_workflow_config.png" width="100%%">
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Create Sale Quotation Workflow</h2>
+        <div class="oe_span8">
+            <img src="pos_sale_quotation1.png" width="100%%">
+        </div>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                <strong>Create Sales Quotation</strong> workflow has the same POS data with Create POS Order workflow. It uses product sale price and customer data. Products and customer are mandatory before creating a sales quotation.
+            </p>
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                When Create Sales Quotation button is clicked, it will show new popup window to enter Customer Reference and Sales Notes (or remarks, or terms and conditions).
+            </p>
+            <p class="oe_mt32">
+                On this window, you can choose between Create & Print or Create Only. <strong>Create Only</strong> will create new sales quotation and a new window will open for the created sales quotation (just allow the popup on browser). If you go back to POS interface, new order will be shown. <strong>Create & Print</strong> is the same with Create Only for creation of sales quotation but the order in POS will redirect to print receipt
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_sale_quotation2.png" width="100%%">
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span12 text-justify">
+            <p>
+                Screenshots below are the created Sales Quotation. All data including customer, products, quantities, prices, discounts, taxes, customer reference and sales notes are available in the created Sales Quatation. Status will be set to draft upon creation.
+            </p>
+        </div>
+        <div class="oe_span6">
+            <img src="pos_sale_quotation3.png" width="100%%">
+        </div>
+        <div class="oe_span6">
+            <img src="pos_sale_quotation4.png" width="100%%">
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                This is the sample receipt printout. All data from Sales Quotation are also in receipt.
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_sale_quotation5.png" width="100%%">
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Create Sale Order Workflow</h2>
+        <div class="oe_span8">
+            <img src="pos_sale_order1.png" width="100%%">
+        </div>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                <strong>Create Sales Order</strong> workflow is exactly the same with Create Sales Quotation workflow.
+            </p>
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                The only difference is the created Sales Order will be in Sales Order status or the sales quotation has been confirmed already.
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_sale_order2.png" width="100%%">
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Create Purchase Quotation Workflow</h2>
+        <div class="oe_span8">
+            <img src="pos_purchase_quotation1.png" width="100%%">
+        </div>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                <strong>Create Purchase Quotation</strong> workflow has a different POS data. It uses product <strong>cost price and vendor</strong> data. Products and vendor are mandatory before creating a purchase quotation.
+            </p>
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                When Vendor button is clicked, you can select a vendor from the vendor list (and not customer list).
+            </p>
+            <p class="oe_mt32">
+                You can also create new vendors here, search for specific vendor and change or deselect the selected vendor.
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_purchase_quotation2.png" width="100%%">
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span8">
+            <img src="pos_purchase_quotation3.png" width="100%%">
+        </div>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                When Create Purchase Quotation button is clicked, it will show new popup window to enter Vendor Reference and Purchase Notes (or remarks, or terms and conditions).
+            </p>
+            <p class="oe_mt32">
+                Create & Print and Create Only buttons have the same logic as the buttons of Create Sales Quotation window.
+            </p>
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                This is a sample of Purchase Quotation. All data including vendor, products, quantities, prices, discounts (only if purchase_discount module of OCA is installed), taxes, vendor reference and purchase notes are available in the created Purchase Quatation. Status will be set to draft/RFQ upon creation.
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_purchase_quotation4.png" width="100%%">
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span8">
+            <img src="pos_purchase_quotation5.png" width="100%%">
+        </div>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                This is the sample receipt printout. All data from Purchase Quotation are also in receipt.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Create Purchase Order Workflow</h2>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                <strong>Create Purchase Order</strong> workflow is exactly the same with Create Purchase Quotation workflow.
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_purchase_order1.png" width="100%%">
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span8">
+            <img src="pos_purchase_order2.png" width="100%%">
+        </div>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                The only difference is the created Purchase Order will be in Purchase Order status or the purchase quotation has been confirmed already.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Create Customer Invoice Workflow</h2>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                <strong>Create Customer Invoice</strong> workflow has the same POS data with Create POS Order workflow. It uses product sale price and customer data. Products and customer are mandatory before creating a customer invoice.
+            </p>
+            <p class="oe_mt32">
+                When Create Customer Invoice button is clicked, it will show new popup window to enter Invoice Date, Partner Reference and Terms & Conditions. Invoice Date has defaulted to today.
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_invoice_customer1.png" width="100%%">
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span8">
+            <img src="pos_invoice_customer2.png" width="100%%">
+        </div>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                This is a sample of the created Customer Invoice. All data including customer, products, quantities, prices, discounts, taxes, invoice date, partner reference and terms & conditions are available in the created Customer Invoice. Status will be set to draft upon creation.
+            </p>
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                This is the sample receipt printout. All data from Customer Invoice are also in receipt.
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_invoice_customer3.png" width="100%%">
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Create Vendor Bill Workflow</h2>
+        <div class="oe_span8">
+            <img src="pos_invoice_supplier1.png" width="100%%">
+        </div>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                <strong>Create Vendor Bill</strong> workflow has the same POS data with Create Purchase Quotation/Order workflow. It uses product cost price and vendor data. Products and vendor are mandatory before creating a vendor bill.
+            </p>
+            <p class="oe_mt32">
+                When Create Vendor Bill button is clicked, it will show new popup window to enter Invoice Date, Partner Reference and Terms & Conditions. Invoice Date has defaulted to today.
+            </p>
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                This is a sample of the created Vendor Bill. All data including vendor, products, quantities, prices, discounts, taxes, invoice date, partner reference and terms & conditions are available in the created Vendor Bill. Status will be set to draft upon creation.
+            </p>
+        </div>
+        <div class="oe_span8">
+            <img src="pos_invoice_supplier2.png" width="100%%">
+        </div>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span8">
+            <img src="pos_invoice_supplier3.png" width="100%%">
+        </div>
+        <div class="oe_span4 text-justify">
+            <p class="oe_mt32">
+                This is the sample receipt printout. All data from Vendor Bill are also in receipt.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Versions</h2>
+        <div>
+            <h4><p>Version 1.9.2:</p></h4>
+            <ul>
+                <li>[FIXED] Compatibility with POS Restaurant</li>
+            </ul>
+            <h4><p>Version 1.9.1:</p></h4>
+            <ul>
+                <li>[FIXED] Purchased UoM for Purchase and Vendor Bill workflows</li>
+            </ul>
+            <h4><p>Version 1.9:</p></h4>
+            <ul>
+                <li>[FEATURE] Compatibility with POS Create/Update Sales Quotation</li>
+            </ul>
+            <h4><p>Version 1.8.2:</p></h4>
+            <ul>
+                <li>[FIXED] Multiple creation of workflow processes</li>
+            </ul>
+            <h4><p>Version 1.8.1:</p></h4>
+            <ul>
+                <li>[FIXED] Use POS configuration invoice journal to create an invoice</li>
+            </ul>
+            <h4><p>Version 1.8:</p></h4>
+            <ul>
+                <li>[FEATURE] New workflow Create Purchase Order, Waiting Reception & Posted Invoice</li>
+                <li>[FEATURE] New workflow Create Sales Order, Waiting Delivery & Posted Invoice</li>
+            </ul>
+            <h4><p>Version 1.7:</p></h4>
+            <ul>
+                <li>[FEATURE] Compatibility with POS Product Taxes</li>
+            </ul>
+            <h4><p>Version 1.6:</p></h4>
+            <ul>
+                <li>[FEATURE] Compatibility with POS Sales Import</li>
+            </ul>
+            <h4><p>Version 1.5:</p></h4>
+            <ul>
+                <li>[FEATURE] Compatibility with POS Return Workflows</li>
+            </ul>
+            <h4><p>Version 1.4:</p></h4>
+            <ul>
+                <li>[FEATURE] Compatibility with POS Accounting Payments</li>
+            </ul>
+            <h4><p>Version 1.3:</p></h4>
+            <ul>
+                <li>[FEATURE] New workflow Create Purchase Order, Done Reception & Posted Invoice</li>
+            </ul>
+            <h4><p>Version 1.2:</p></h4>
+            <ul>
+                <li>[FEATURE] New workflow Create Sales Order, Done Delivery & Posted Invoice</li>
+                <li>[FEATURE] New workflow Create Validated Customer Invoice</li>
+                <li>[FEATURE] New workflow Create Validated Vendor Bill</li>
+            </ul>
+            <h4><p>Version 1.1:</p></h4>
+            <ul>
+                <li>[FEATURE] New workflow Create Customer Invoice</li>
+                <li>[FEATURE] New workflow Create Vendor Bill</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Compatibility</h2>
+        <div>
+            <h4><p>This module is compatible and perfect with these modules:</p></h4>
+            <ul>
+                <li style="list-style:none !important;">
+                    <span style="color:green;"> &#9745;</span>&nbsp;&nbsp;
+                    <a href="https://apps.odoo.com/apps/modules/12.0/pos_account_payment_mac5/">Point of Sale / Accounting Payments</a>
+                </li>
+                <li style="list-style:none !important;">
+                    <span style="color:green;"> &#9745;</span>&nbsp;&nbsp;
+                    <a href="https://apps.odoo.com/apps/modules/12.0/pos_sale_order_mac5/">Point of Sale / Create/Update Sales Quotation</a>
+                </li>
+                <li style="list-style:none !important;">
+                    <span style="color:green;"> &#9745;</span>&nbsp;&nbsp;
+                    <a href="https://apps.odoo.com/apps/modules/12.0/pos_sale_import_mac5/">Point of Sale / Import Sales Order</a>
+                </li>
+                <li style="list-style:none !important;">
+                    <span style="color:green;"> &#9745;</span>&nbsp;&nbsp;
+                    <a href="https://apps.odoo.com/apps/modules/12.0/pos_product_tax_mac5/">Point of Sale / Product Taxes</a>
+                </li>
+                <li style="list-style:none !important;">
+                    <span style="color:green;"> &#9745;</span>&nbsp;&nbsp;
+                    <a href="https://apps.odoo.com/apps/modules/12.0/pos_workflow_return_mac5/">Point of Sale / Return Workflows</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">Support</h2>
+        <h3 class="oe_slogan oe_mb32">Email: <a href="mailto:macvillamar@live.com">macvillamar@live.com</a></h3>
+        <div class="oe_span12 text-center" style="font-size: 2px;">
+            Keywords: Odoo POS Sales Quotation, Odoo POS Sales Order, Odoo POS Sale Quotation, Odoo POS Sale Order, Odoo POS Create Sales Quotation, Odoo POS Create Sales Order, Odoo Create POS Sale Quotation, Odoo POS Create Sale Order, Odoo POS Purchase Quotation, Odoo POS Purchase Order, Odoo POS Create Purchase Quotation, Odoo POS Create Purchase Order, Odoo POS Invoice, Odoo POS Customer Invoice, Odoo POS Create Customer Invoice, Odoo POS Vendor Bill, Odoo POS Create Vendor Bill, Odoo POS Supplier Invoice, Odoo POS Create Supplier Invoice
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_separator">
+</section>

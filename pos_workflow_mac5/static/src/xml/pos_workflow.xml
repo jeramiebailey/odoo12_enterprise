@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ActionpadWidget">
+	    <t t-jquery=".pos-workflow-circle" t-operation="after">
+            <t t-if="widget.pos.config.pos_workflow === 'sale.quotation'">
+                Create Sale Quotation
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'sale.order'">
+                Create Sale Order
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'sale.order.done'
+                     || widget.pos.config.pos_workflow === 'sale.order.picking.wait'">
+                Create Sale Order Delivery &amp; Invoice
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.quotation'">
+                Create Purchase Quotation
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.order'">
+                Create Purchase Order
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.order.done'
+                     || widget.pos.config.pos_workflow === 'purchase.order.picking.wait'">
+                Create Purchase Order Reception &amp; Invoice
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer'">
+                Create Customer Invoice
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.supplier'">
+                Create Vendor Bill
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer.open'">
+                Create Validated Customer Invoice
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.supplier.open'">
+                Create Validated Vendor Bill
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="POSWorkflowPopup">
+	    <t t-jquery=".pos-workflow-body" t-operation="before">
+            <t t-if="widget.pos.config.pos_workflow === 'sale.order'">
+                <p class="title">Create Sales Order</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'sale.quotation'">
+                <p class="title">Create Sales Quotation</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'sale.order.picking.wait'">
+                <p class="title">Create Sale Order, Waiting Delivery &amp; Posted Invoice</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'sale.order.done'">
+                <p class="title">Create Sale Order, Done Delivery &amp; Posted Invoice</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.order'">
+                <p class="title">Create Purchase Order</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.order.picking.wait'">
+                <p class="title">Create Purchase Order, Waiting Reception &amp; Posted Invoice</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.order.done'">
+                <p class="title">Create Purchase Order, Done Reception &amp; Posted Invoice</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.quotation'">
+                <p class="title">Create Purchase Quotation</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer'">
+                <p class="title">Create Customer Invoice</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.supplier'">
+                <p class="title">Create Vendor Bill</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer.open'">
+                <p class="title">Create Validated Customer Invoice</p>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.supplier.open'">
+                <p class="title">Create Validated Vendor Bill</p>
+            </t>
+        </t>
+	    <t t-jquery=".pos-workflow-body" t-operation="append">
+            <t t-if="widget.pos.config.pos_workflow === 'sale.order'
+                     || widget.pos.config.pos_workflow === 'sale.quotation'
+                     || widget.pos.config.pos_workflow === 'sale.order.picking.wait'
+                     || widget.pos.config.pos_workflow === 'sale.order.done'">
+                <span>Customer Reference:</span>
+                <br/><input id="workflow-partner-ref" type="text"></input>
+                <br/><span class="sale-workflow-note-title">Sale Notes:</span>
+                <br/><textarea id="workflow-note" class="sale-workflow-note" rows="4"></textarea>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.order'
+                     || widget.pos.config.pos_workflow === 'purchase.quotation'
+                     || widget.pos.config.pos_workflow === 'purchase.order.picking.wait'
+                     || widget.pos.config.pos_workflow === 'purchase.order.done'">
+                <span>Vendor Reference:</span>
+                <br/><input id="workflow-partner-ref" type="text"></input>
+                <br/><span class="purchase-workflow-note-title">Purchase Notes:</span>
+                <br/><textarea id="workflow-note" class="purchase-workflow-note" rows="4"></textarea>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier'
+                     || widget.pos.config.pos_workflow === 'account.invoice.customer.open'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier.open'">
+                <span>Invoice Date:</span>
+                <br/><input id="workflow-date" type="date"></input>
+                <br/><span>Partner Reference:</span>
+                <br/><input id="workflow-partner-ref" type="text"></input>
+                <br/><span>Terms &amp; Conditions:</span>
+                <br/><textarea id="workflow-note" rows="3"></textarea>
+            </t>
+        </t>
+	    <t t-jquery=".cancel" t-operation="before">
+            <t t-if="widget.pos.config.pos_workflow === 'sale.order'
+                     || widget.pos.config.pos_workflow === 'sale.quotation'
+                     || widget.pos.config.pos_workflow === 'sale.order.picking.wait'
+                     || widget.pos.config.pos_workflow === 'sale.order.done'">
+                <div class="button create-sale-order-button">
+                    Create Only
+                </div>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.order'
+                     || widget.pos.config.pos_workflow === 'purchase.quotation'
+                     || widget.pos.config.pos_workflow === 'purchase.order.picking.wait'
+                     || widget.pos.config.pos_workflow === 'purchase.order.done'">
+                <div class="button create-purchase-order-button">
+                    Create Only
+                </div>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier'
+                     || widget.pos.config.pos_workflow === 'account.invoice.customer.open'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier.open'">
+                <div class="button create-invoice-button">
+                    Create Only
+                </div>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'sale.order'
+                     || widget.pos.config.pos_workflow === 'sale.quotation'
+                     || widget.pos.config.pos_workflow === 'sale.order.picking.wait'
+                     || widget.pos.config.pos_workflow === 'sale.order.done'">
+                <div class="button print-create-sale-order-button">
+                    Create &amp; Print
+                </div>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.order'
+                     || widget.pos.config.pos_workflow === 'purchase.quotation'
+                     || widget.pos.config.pos_workflow === 'purchase.order.picking.wait'
+                     || widget.pos.config.pos_workflow === 'purchase.order.done'">
+                <div class="button print-create-purchase-order-button">
+                    Create &amp; Print
+                </div>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier'
+                     || widget.pos.config.pos_workflow === 'account.invoice.customer.open'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier.open'">
+                <div class="button print-create-invoice-button">
+                    Create &amp; Print
+                </div>
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="PosTicket">
+        <t t-jquery=".pos-order-workflow-order-name" t-operation="before">
+            <t t-if="widget.pos.config.pos_workflow !== 'pos.order'
+                     &amp;&amp; widget.pos.config.pos_workflow !== 'account.invoice.customer'
+                     &amp;&amp; widget.pos.config.pos_workflow !== 'account.invoice.customer.open'
+                     &amp;&amp; widget.pos.config.pos_workflow !== 'account.invoice.supplier'
+                     &amp;&amp; widget.pos.config.pos_workflow !== 'account.invoice.supplier.open'">
+                <t t-esc="order.partner_ref"/>
+            </t>
+        </t>
+        <t t-jquery=".pos-order-workflow-order-name" t-operation="after">
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier'
+                     || widget.pos.config.pos_workflow === 'account.invoice.customer.open'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier.open'">
+                <t t-esc="order.name"/>
+                <br/>Invoice Date: <t t-esc="order.date_order"/>
+                <t t-if="order.partner_ref">
+                    <br/>Invoice Reference: <t t-esc="order.partner_ref"/>
+                </t>
+            </t>
+        </t>
+        <t t-jquery=".pos-center-align" t-operation="after">
+            <t t-if="widget.pos.config.pos_workflow === 'sale.order'
+                     || widget.pos.config.pos_workflow === 'sale.quotation'
+                     || widget.pos.config.pos_workflow === 'sale.order.picking.wait'
+                     || widget.pos.config.pos_workflow === 'sale.order.done'">
+                <br/><div class="pos-center-align" style="font-size: 14pt;"><t t-esc="order.sale_order_name"/></div>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'purchase.order'
+                     || widget.pos.config.pos_workflow === 'purchase.quotation'
+                     || widget.pos.config.pos_workflow === 'purchase.order.picking.wait'
+                     || widget.pos.config.pos_workflow === 'purchase.order.done'">
+                <br/><div class="pos-center-align" style="font-size: 14pt;"><t t-esc="order.purchase_order_name"/></div>
+            </t>
+            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier'
+                     || widget.pos.config.pos_workflow === 'account.invoice.customer.open'
+                     || widget.pos.config.pos_workflow === 'account.invoice.supplier.open'">
+                <br/><div class="pos-center-align" style="font-size: 14pt;">Tax Invoice</div>
+            </t>
+        </t>
+        <t t-jquery=".pos-order-workflow-receipt-change" t-operation="before">
+            <t t-if="widget.pos.config.pos_workflow !== 'pos.order'">
+                <t t-esc="order.notes"/>
+            </t>
+        </t>
+    </t>
+
+</templates>

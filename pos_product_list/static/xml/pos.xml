@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductListWidget">
+        <t t-jquery="div.product-list-container" t-operation="extend">
+            <div class='product-list-container'>
+            <div class="product-list-scroller touch-scrollable">
+                <table class="product-list">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>UoM</th>
+                        <th>Sale Price</th>
+                        <th class="text-center">Available Qty</th>
+                    </tr>
+                </thead>
+                <tbody class='product-list-contents'>
+                </tbody>
+                </table>
+            </div>
+            <span class="placeholder-ScrollbarWidget" />
+        </div>
+        </t>
+    </t>
+    <t t-extend="Product">
+        <t t-jquery="article.product" t-operation="replace">
+            <tr class='product-list' t-att-data-product-id="product.id">
+                <td>
+                    <img t-att-src='image_url' height='45px'/> 
+                </td>
+                <td>
+                    <t t-esc="product.default_code"/>
+                </td>
+                <td>
+                    <t t-esc="product.display_name"/>
+                </td>
+                <td>
+                    <span t-if="!product.to_weight">
+                       <t t-esc="widget.pos.units_by_id[product.uom_id[0]].name"/>
+                    </span>
+                </td>
+                <td class="text-right">
+                    <span class="price-tag text-right">
+                        <t t-esc="widget.format_currency(product.list_price,'Product Price')"/>
+                    </span>
+                </td>
+                <td class="text-center">
+                    <t t-esc="product.qty_available"/>
+                </td>
+            </tr>
+        </t>
+    </t>
+</templates>
