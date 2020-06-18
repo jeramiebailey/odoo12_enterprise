@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend='ProductScreenWidget'>
+        <t t-jquery='.control-buttons' t-operation='before'>
+            <div class="cart_total_count">
+                <div class='items_count_value'>
+                    Total Items: <em><t t-esc='widget.pos.get_order().get_items_count()'/></em>
+                </div>
+                <div class='products_count_value'>
+                    Total Qty: <em><t t-esc='widget.pos.get_order().get_qty_count()'/></em>
+                </div>
+            </div>
+        </t>
+    </t>
+    <t t-extend="XmlReceipt">
+        <t t-jquery="[t-if='receipt.footer_xml']" t-operation="before">
+            <line>
+                <left><pre>        Total Items:</pre></left>
+                <right><t t-esc="order.get_items_count()" /></right>
+            </line>
+            <br/>
+            <line>
+                <left><pre>        Total Qty:</pre></left>
+                <right><t t-esc="order.get_qty_count()" /></right>
+            </line>
+            <br/>
+        </t>
+    </t>
+    
+    <t t-extend="PosTicket">
+        <t t-jquery="[t-if='receipt.footer']" t-operation="before">
+            <br />
+            <table class='item-table-bordered'>
+                <tr>
+                    <td class="line-height-2">Total Items:<em><t t-esc="order.get_items_count()"/></em></td>
+                    <td style='text-align:right'>Total Qty:<em><t t-esc="order.get_qty_count()"/></em></td>
+                </tr>
+            </table>
+        </t>
+    </t>
+</templates>

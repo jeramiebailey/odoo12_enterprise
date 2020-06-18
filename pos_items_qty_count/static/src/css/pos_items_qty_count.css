@@ -1,0 +1,25 @@
+.cart_total_count {
+    font-weight: bold;
+    color: #5B7641;
+    font-size: 16px;
+    padding: 10px;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    border-bottom: solid 3px rgb(110, 200, 155);
+}
+.items_count_value {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.products_count_value {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.item-table-bordered {
+    border-top: 1px dotted !important;
+    border-bottom: 1px dotted !important;
+}
+.line-height-2 {
+    line-height: 2;
+}
