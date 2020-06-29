@@ -33,7 +33,7 @@ Scan barcode in Odoo
   "live_test_url"        :  "http://odoodemo.webkul.com/?module=barcode_sale",
   "depends"              :  [
                              'barcodes',
-                             'sale_management',
+                             'sale_management','stock_barcode'
                             ],
   "data"                 :  ['views/sale_views.xml'],
   "images"               :  ['static/description/Banner.png'],

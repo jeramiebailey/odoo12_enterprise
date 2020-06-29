@@ -48,20 +48,22 @@ workflow_base.POSWorkflowPopup.include({
 
                 rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
                     .then(function (sale_order) {
-                        if (sale_order) {
-                            var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
-                            var new_window = window.open(url, '_blank');
-                            if (order) {
-                                order.sale_order_name = sale_order.name;
-                            }
-                            self.gui.show_screen('receipt');
-                        }
-                    }, function( type, err ){
-                        self.gui.show_popup('error', {
-                            'title': _t('Error: Could not save changes'),
-                            'body': _t('Your internet connection is probably down.'+err),
-                        });
-                    })
+//                        if (sale_order) {
+//                            var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
+//                            var new_window = window.open(url, '_blank');
+//                            if (order) {
+//                                order.sale_order_name = sale_order.name;
+//                            }
+//                            self.gui.show_screen('receipt');
+//                        }
+                    },
+//                    function( type, err ){
+//                        self.gui.show_popup('error', {
+//                            'title': _t('Error: Could not save changes'),
+//                            'body': _t('Your internet connection is probably down.'+err),
+//                        });
+//                    }
+                    )
             })
 
             $('.create-sale-order-button').click(function (event) {

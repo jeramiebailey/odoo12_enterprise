@@ -8,7 +8,7 @@
                 <thead>
                     <tr>
                         <th>Image</th>
-                        <th>Code</th>
+<!--                        <th>Code</th>-->
                         <th>Name</th>
                         <th>UoM</th>
                         <th>Sale Price</th>
@@ -29,9 +29,9 @@
                 <td>
                     <img t-att-src='image_url' height='45px'/> 
                 </td>
-                <td>
-                    <t t-esc="product.default_code"/>
-                </td>
+<!--                <td>-->
+<!--                    <t t-esc="product.default_code"/>-->
+<!--                </td>-->
                 <td>
                     <t t-esc="product.display_name"/>
                 </td>
