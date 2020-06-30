@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api, _
 
 
 class pos_config(models.Model):
@@ -13,3 +13,9 @@ class pos_config(models.Model):
     display_pos_price_total = fields.Boolean('Include Tax in Price Display',
                                              help=('Include Tax in Price Display is only applicable'
                                                    ' for Taxes with enabled Included in Price'))
+    keep_pos_with_workflow = fields.Boolean('POS With Workflow')
+
+    @api.onchange('keep_pos_with_workflow','pos_workflow')
+    def onchange_pos_workflow(self):
+        if self.pos_workflow=='pos.order' and self.keep_pos_with_workflow:
+            self.keep_pos_with_workflow = False

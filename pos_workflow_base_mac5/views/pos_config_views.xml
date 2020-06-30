@@ -37,6 +37,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="keep_pos_with_workflow"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="keep_pos_with_workflow"/>
+                        <div class="text-muted">
+                            Use Workflow with POS.
+                        </div>
+                    </div>
+                </div>
             </div>
             <xpath expr="//field[@name='tax_regime']/../.." position="after">
                 <div id="use_pos_product_tax" class="col-12 col-lg-6 o_setting_box" invisible="1">

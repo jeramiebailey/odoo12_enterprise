@@ -72,7 +72,7 @@
             </t>
         </t>
         <t t-jquery=".pay" t-operation="replace">
-            <t class="pos-order-workflow-pay" t-if="widget.pos.config.pos_workflow === 'pos.order'">
+            <t class="pos-order-workflow-pay" t-if="widget.pos.config.pos_workflow === 'pos.order' or widget.pos.config.keep_pos_with_workflow">
                 <button class="button pay">
                     <div class="pay-circle">
                         <i class="fa fa-chevron-right"/> 
