@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="web_control_fonts cyrillic assets backend"
+              inherit_id="web.assets_backend">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/web_control_fonts/static/src/css/fonts.css"/>
+        </xpath>
+    </template>
+</odoo>

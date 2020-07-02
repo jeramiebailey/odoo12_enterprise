@@ -48,21 +48,15 @@ workflow_base.POSWorkflowPopup.include({
 
                 rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
                     .then(function (sale_order) {
-//                        if (sale_order) {
-//                            var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
-//                            var new_window = window.open(url, '_blank');
-//                            if (order) {
-//                                order.sale_order_name = sale_order.name;
-//                            }
-//                            self.gui.show_screen('receipt');
-//                        }
+                       if (sale_order) {
+                           var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
+                           window.open(url, '_blank');
+                           if (order) {
+                               order.sale_order_name = sale_order.name;
+                           }
+                           self.gui.show_screen('receipt');
+                       }
                     },
-//                    function( type, err ){
-//                        self.gui.show_popup('error', {
-//                            'title': _t('Error: Could not save changes'),
-//                            'body': _t('Your internet connection is probably down.'+err),
-//                        });
-//                    }
                     )
             })
 
@@ -78,13 +72,13 @@ workflow_base.POSWorkflowPopup.include({
 
                 rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
                     .then(function () {
-//                        if (sale_order) {
-//                            var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
-//                            var new_window = window.open(url, '_blank');
-//                            if (order) {
-//                                order.finalize();
-//                            }
-//                        }
+                       if (sale_order) {
+                           var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
+                           window.open(url, '_blank');
+                           if (order) {
+                               order.finalize();
+                           }
+                       }
                     },
 //                    function( type, err ){
 //                        self.gui.show_popup('error', {
@@ -116,7 +110,7 @@ workflow_base.POSWorkflowPopup.include({
                             var new_window = window.open(url, '_blank');
                             if (order) {
                                 order.purchase_order_name = purchase_order.name;
-                            } 
+                            }
                             self.gui.show_screen('receipt');
                         }
                     }, function( type, err ){
