@@ -16,6 +16,7 @@
     ],
     'data': [
         'wizards/account_move_make_netting_view.xml',
+        'views/account_move_view.xml',
     ],
     'installable': True,
 }
