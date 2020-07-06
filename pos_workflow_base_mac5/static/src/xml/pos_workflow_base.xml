@@ -75,7 +75,7 @@
             <t class="pos-order-workflow-pay" t-if="widget.pos.config.pos_workflow === 'pos.order'">
                 <button class="button pay">
                     <div class="pay-circle">
-                        <i class="fa fa-chevron-right"/> 
+                        <i class="fa fa-chevron-right"/>
                     </div>
                     Payment
                 </button>
@@ -83,7 +83,7 @@
             <t t-if="widget.pos.config.pos_workflow !== 'pos.order'">
                 <button class="button pos-workflow-popup">
                     <div class="pos-workflow-circle">
-                        <i class="fa fa-chevron-right"/> 
+                        <i class="fa fa-chevron-right"/>
                     </div>
                 </button>
             </t>
