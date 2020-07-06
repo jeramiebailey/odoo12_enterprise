@@ -11,7 +11,7 @@
             </t>
             <t t-if="widget.pos.config.pos_workflow === 'sale.order.done'
                      || widget.pos.config.pos_workflow === 'sale.order.picking.wait'">
-                Create Sale Order Delivery &amp; Invoice
+                Create Credit Order
             </t>
             <t t-if="widget.pos.config.pos_workflow === 'purchase.quotation'">
                 Create Purchase Quotation

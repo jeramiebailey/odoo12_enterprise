@@ -32,7 +32,7 @@ class PurchaseOrder(models.Model):
                     'price_unit': product.lst_price
                 })
                 self.order_line += newId
-                newId.product_id_change()
+                newId.onchange_product_id()
         else:
             raise UserError(
                 _('Scanned barcode %s is not related to any product.') %
