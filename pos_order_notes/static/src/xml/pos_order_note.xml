@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->  
+<templates id="template" xml:space="preserve">
+
+	<t t-name="WkAlertPopup">
+        <div class="modal-dialog">
+            <div class="popup popup-textinput" style="height:209px !important">
+                <p class="title" id="message_title" style="width:92%">
+                    <t t-esc=" widget.options.title || 'Message' " />
+                </p>
+                <p class="body" id="message_body">
+                    <t t-esc="  widget.options.body || '' " />
+                </p>
+                <div class="footer">
+                    <div class="button cancel">
+                        OK
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+	
+	<t t-extend="PaymentScreenWidget" >
+		<t t-jquery=" .payment-screen .screen-content .right-content .paymentlines-container" t-operation="after">
+			<t t-if="widget.pos.config.on_order">	
+				<center>
+					<textarea id="order_note"  style="width:610px; height:50px;resize: none;" placeholder="POS Order note"></textarea>
+				</center>
+			</t>
+		</t>
+	</t>
+
+	<t t-extend="PosTicket" >
+		<t t-jquery=".pos-sale-ticket" t-operation="append">
+			<t t-if="widget.pos.config.on_order and widget.pos.config.receipt_order_note">
+				<br/>
+					<t t-if="order.get_order_note()!=''">
+						<table>
+							<tr>
+								<td>Note:</td>
+								<td class="pos-right-align">
+									<t t-esc="order.get_order_note()"/>
+								</td>
+										
+							</tr>
+						</table>
+					</t>
+			</t>
+		</t>
+		<t t-jquery=".receipt-orderlines tr td:nth-child(1)" t-operation="append">
+			<t t-if="widget.pos.config.on_product_line">
+				<div class="pos-disc-font">
+					<t t-esc="orderline.get_order_line_comment()" />
+				</div>
+			</t>
+		</t>
+	</t>
+	
+	<t t-extend="ActionpadWidget">
+		<t t-jquery='div.actionpad' t-operation='before'>
+			<t t-if="widget.pos.config.on_product_line">
+				<div id='add_note' class='control-button' style="height:40px;width:48%;margin-top:2%;">
+					<i class='fa fa-tag' />Add/Modify Note
+				</div>
+
+			</t>
+		</t>
+	</t>	
+
+	<t t-extend="Orderline">
+		<t t-jquery='ul.info-list' t-operation='append'>
+			<t t-if="widget.pos.config.on_product_line">
+				<div id='extra_comments' style='font-weight:bold;'>
+					<t t-esc="line.get_order_line_comment()"/>
+				</div>
+			</t>
+		</t>
+	</t>
+
+	<t t-extend="XmlReceipt">
+		<t t-jquery=".orderlines" t-operation="replace">
+			<div class='orderlines' line-ratio='0.6'>
+                <t t-foreach='receipt.orderlines' t-as='line'>
+                    <t t-set='simple' t-value='line.discount === 0 and line.unit_name === "Unit(s)" and line.quantity === 1' />
+                    <t t-if='simple'>
+                        <line>
+                            <left><t t-esc='line.product_name_wrapped[0]' /></left>
+                            <right><value t-att-value-decimals='pos.currency.decimals'><t t-esc='line.price_display' /></value></right>
+                        </line>
+                        <t t-if="line.order_line_note != ''">
+                            <line font='b'>
+                                <left><t t-esc="line.order_line_note"/></left>
+                            </line>
+                        </t>
+                        <t t-call="XmlReceiptWrappedProductNameLines"/>
+                    </t>
+                    <t t-if='!simple'>
+                        <line><left><t t-esc='line.product_name_wrapped[0]' /></left></line>
+                        <t t-call="XmlReceiptWrappedProductNameLines"/>
+                        <t t-if="line.order_line_note != ''">
+                            <line font='b'>
+                                <left><t t-esc="line.order_line_note"/></left>
+                            </line>
+                        </t>
+                        <t t-if='line.discount !== 0'>
+                            <line indent='1'><left>Discount: <t t-esc='line.discount' />%</left></line>
+                        </t>
+                        <line indent='1'>
+                            <left>
+                                <value t-att-value-decimals='pos.dp["Product Unit of Measure"]' value-autoint='on'>
+                                    <t t-esc='line.quantity' />
+                                </value>
+                                <t t-if='line.unit_name !== "Unit(s)"'>
+                                    <t t-esc='line.unit_name' /> 
+                                </t>
+                                x 
+                                <value t-att-value-decimals='pos.dp["Product Price"]'>
+                                    <t t-esc='line.price' />
+                                </value>
+                            </left>
+                            <right>
+                                <value t-att-value-decimals='pos.currency.decimals'><t t-esc='line.price_display' /></value>
+                            </right>
+                        </line>
+                    </t>
+                </t>
+            </div>
+		</t>
+		<t t-jquery=".before-footer" t-operation="before">
+			<t t-if="widget.pos.config.on_order and widget.pos.config.receipt_order_note and widget.pos.get_order().get_order_note() != ''">
+				<line>
+					<left>Note: <t t-esc="widget.pos.get_order().get_order_note()"/></left>
+				</line>
+			</t>
+		</t>
+	</t>
+</templates>

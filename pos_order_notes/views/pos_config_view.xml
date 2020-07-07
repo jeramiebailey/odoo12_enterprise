@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+
+<odoo>
+ 	<record id="view_pos_config_form_inherit" model="ir.ui.view">
+		<field name="name">POS configuration</field>
+		<field name="model">pos.config</field>
+		<field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+		<field name="arch" type="xml">
+			 <xpath expr="//div[@class='row mt16 o_settings_container'][3]" position="after">
+			 	<h2>Order Note Option</h2>
+				<div class="row mt16 o_settings_container">
+					<div class="col-xs-12 col-md-6 o_setting_box">
+						<div class="o_setting_left_pane">
+							<field name="on_product_line"/>
+						</div>
+						<div class="o_setting_right_pane">
+							
+							<label for="on_product_line" string="Add note to individual orderlines"/>
+							<div class="text-muted">
+								Check here to add notes to individual orderlines
+							</div>
+						
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 o_setting_box">
+						<div class="o_setting_left_pane">
+							<field name="on_order"/>
+						</div>
+						<div class="o_setting_right_pane">
+							<label for="on_order" string="Add note to the complete order"/>
+							<div class="text-muted">
+								Check here to add note to the complete order
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 o_setting_box" title="Only users with Manager access rights for PoS app can modify the product prices on orders.">
+						<div class="o_setting_left_pane">
+							<field name="receipt_order_note"/>
+						</div>
+						<div class="o_setting_right_pane">
+							<label for="receipt_order_note" string="Print notes on the receipt"/>
+							<div class="text-muted">
+								Check here to print notes on the Xml Receipt(POSBOX) or POS Ticket
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-lg-6 o_setting_box">
+						<div class="o_setting_left_pane">
+							<field name="set_note_keyword_limit"/>
+						</div>
+						<div class="o_setting_right_pane">
+							<label for="set_note_keyword_limit" string="Note keywords limit"/>
+							<div class="text-muted">
+								Set a limit for the note keywords
+							</div>
+							<div class="content-group mt16" attrs="{'invisible': [('set_note_keyword_limit', '=', False)]}">
+								<field name="note_keyword_limit"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</xpath>
+		</field>
+	</record>
+
+	<record id="view_pos_pos_form_inherit" model="ir.ui.view">
+		<field name="name">POS view</field>
+		<field name="model">pos.order</field>
+		<field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='price_subtotal_incl']" position="after">	
+				<field name='order_line_note'/>
+			</xpath>
+		</field>
+	</record>
+	
+</odoo>
