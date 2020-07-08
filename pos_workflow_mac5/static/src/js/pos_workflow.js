@@ -45,7 +45,7 @@ workflow_base.POSWorkflowPopup.include({
                 order_values.note = document.getElementById('workflow-note').value;
                 order.partner_ref = order_values.client_order_ref;
                 order.notes = order_values.note;
-
+                order_values.uid_save=order.uid
                 rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
                     .then(function (sale_order) {
                        if (sale_order) {
@@ -63,13 +63,10 @@ workflow_base.POSWorkflowPopup.include({
             $('.create-sale-order-button').click(function (event) {
                 event.preventDefault();
                 $('.create-sale-order-button').unbind('click');
-
                 order_values.client_order_ref = document.getElementById('workflow-partner-ref').value;
                 order_values.note = document.getElementById('workflow-note').value;
                 order.partner_ref = order_values.client_order_ref;
                 order.notes = order_values.note;
-
-
                 rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
                     .then(function () {
                        if (sale_order) {
@@ -80,18 +77,7 @@ workflow_base.POSWorkflowPopup.include({
                            }
                        }
                     },
-//                    function( type, err ){
-//                        self.gui.show_popup('error', {
-//                            'title': _t('Error: Could not save changes'),
-//                            'body': _t('Your internet connection is probably down.'+err),
-//                        });
-//                    }
                     )
-
-
-
-
-
             })
 
             $('.print-create-purchase-order-button').click(function (event) {
