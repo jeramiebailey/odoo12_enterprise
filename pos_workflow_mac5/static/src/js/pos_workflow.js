@@ -65,10 +65,10 @@ workflow_base.POSWorkflowPopup.include({
                 event.preventDefault();
                 var newWindow = window.open("", "_blank");
                 $('.create-sale-order-button').unbind('click');
-                order_values.client_order_ref = document.getElementById('workflow-partner-ref').value;
-                order_values.note = document.getElementById('workflow-note').value;
-                order.partner_ref = order_values.client_order_ref;
-                order.notes = order_values.note;
+                // order_values.client_order_ref = document.getElementById('workflow-partner-ref').value;
+                // order_values.note = document.getElementById('workflow-note').value;
+                order.partner_ref = order_values.client_order_ref || ' ';
+                order.notes = order_values.note || ' ';
                 rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
                     .then(function () {
                        if (sale_order) {
@@ -86,10 +86,10 @@ workflow_base.POSWorkflowPopup.include({
                 event.preventDefault();
                 $('.print-create-purchase-order-button').unbind('click');
 
-                order_values.partner_ref = document.getElementById('workflow-partner-ref').value;
-                order_values.notes = document.getElementById('workflow-note').value;
-                order.partner_ref = order_values.partner_ref;
-                order.notes = order_values.notes;
+                // order_values.partner_ref = document.getElementById('workflow-partner-ref').value;
+                // order_values.notes = document.getElementById('workflow-note').value;
+                order.partner_ref = order_values.partner_ref || ' ';
+                order.notes = order_values.notes || ' ';
 
                 rpc.query({model: 'purchase.order', method: 'create_pos_purchase_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
                     .then(function (purchase_order) {
