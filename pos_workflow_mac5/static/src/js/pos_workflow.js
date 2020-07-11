@@ -46,15 +46,16 @@ workflow_base.POSWorkflowPopup.include({
                 order.partner_ref = order_values.client_order_ref;
                 order.notes = order_values.note;
                 order_values.uid_save=order.uid
+                var newWindow = window.open("", "_blank");
                 rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
                     .then(function (sale_order) {
                        if (sale_order) {
                            var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
-                           window.open(url, '_blank');
                            if (order) {
                                order.sale_order_name = sale_order.name;
                            }
                            self.gui.show_screen('receipt');
+                           return newWindow.location = url;
                        }
                     },
                     )
@@ -62,6 +63,7 @@ workflow_base.POSWorkflowPopup.include({
 
             $('.create-sale-order-button').click(function (event) {
                 event.preventDefault();
+                var newWindow = window.open("", "_blank");
                 $('.create-sale-order-button').unbind('click');
                 order_values.client_order_ref = document.getElementById('workflow-partner-ref').value;
                 order_values.note = document.getElementById('workflow-note').value;
@@ -71,9 +73,9 @@ workflow_base.POSWorkflowPopup.include({
                     .then(function () {
                        if (sale_order) {
                            var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
-                           window.open(url, '_blank');
                            if (order) {
                                order.finalize();
+                                return newWindow.location = url;
                            }
                        }
                     },
