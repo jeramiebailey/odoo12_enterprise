@@ -32,7 +32,6 @@ workflow_base.POSWorkflowPopup.include({
         if (document.getElementById("workflow-date")) {
             document.getElementById("workflow-date").valueAsDate = new Date()
         }
-
         if (order) {
             var order_workflow = this.pos.config.pos_workflow;
             var order_values = order.export_as_JSON();
@@ -40,9 +39,6 @@ workflow_base.POSWorkflowPopup.include({
             $('.print-create-sale-order-button').click(function (event) {
                 event.preventDefault();
                 $('.print-create-sale-order-button').unbind('click');
-
-                // order_values.client_order_ref = document.getElementById('workflow-partner-ref').value;
-                // order_values.note = document.getElementById('workflow-note').value;
                 order.partner_ref = order_values.client_order_ref || ' ';
                 order.notes = order_values.note || ' ';
                 order_values.uid_save=order.uid
