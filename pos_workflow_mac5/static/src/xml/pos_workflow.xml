@@ -78,15 +78,15 @@
             </t>
         </t>
 	    <t t-jquery=".pos-workflow-body" t-operation="append">
-            <t t-if="widget.pos.config.pos_workflow === 'sale.order'
-                     || widget.pos.config.pos_workflow === 'sale.quotation'
-                     || widget.pos.config.pos_workflow === 'sale.order.picking.wait'
-                     || widget.pos.config.pos_workflow === 'sale.order.done'">
-                <span>Customer Reference:</span>
-                <br/><input id="workflow-partner-ref" type="text"></input>
-                <br/><span class="sale-workflow-note-title">Sale Notes:</span>
-                <br/><textarea id="workflow-note" class="sale-workflow-note" rows="4"></textarea>
-            </t>
+<!--            <t t-if="widget.pos.config.pos_workflow === 'sale.order'-->
+<!--                     || widget.pos.config.pos_workflow === 'sale.quotation'-->
+<!--                     || widget.pos.config.pos_workflow === 'sale.order.picking.wait'-->
+<!--                     || widget.pos.config.pos_workflow === 'sale.order.done'">-->
+<!--                <span>Customer Reference:</span>-->
+<!--                <br/><input id="workflow-partner-ref" type="text"></input>-->
+<!--                <br/><span class="sale-workflow-note-title">Sale Notes:</span>-->
+<!--                <br/><textarea id="workflow-note" class="sale-workflow-note" rows="4"></textarea>-->
+<!--            </t>-->
             <t t-if="widget.pos.config.pos_workflow === 'purchase.order'
                      || widget.pos.config.pos_workflow === 'purchase.quotation'
                      || widget.pos.config.pos_workflow === 'purchase.order.picking.wait'

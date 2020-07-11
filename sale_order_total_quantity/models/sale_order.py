@@ -16,8 +16,10 @@ class SaleOrder(models.Model):
             ordered = delivered = invoiced = 0.0
             for line in order.order_line:
                 ordered += line.product_uom_qty
-                delivered += line.qty_delivered
+                # delivered += line.qty_delivered
                 invoiced += line.qty_invoiced
+            for picking in order.picking_ids:
+                delivered += picking.total_qty_done
             order.update({
                 'total_qty_ordered': ordered,
                 'total_qty_delivered': delivered,
