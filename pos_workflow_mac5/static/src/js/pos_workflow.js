@@ -32,7 +32,6 @@ workflow_base.POSWorkflowPopup.include({
         if (document.getElementById("workflow-date")) {
             document.getElementById("workflow-date").valueAsDate = new Date()
         }
-
         if (order) {
             var order_workflow = this.pos.config.pos_workflow;
             var order_values = order.export_as_JSON();
@@ -40,58 +39,41 @@ workflow_base.POSWorkflowPopup.include({
             $('.print-create-sale-order-button').click(function (event) {
                 event.preventDefault();
                 $('.print-create-sale-order-button').unbind('click');
-
-                order_values.client_order_ref = document.getElementById('workflow-partner-ref').value;
-                order_values.note = document.getElementById('workflow-note').value;
-                order.partner_ref = order_values.client_order_ref;
-                order.notes = order_values.note;
-
-                rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
+                order.partner_ref = order_values.client_order_ref || ' ';
+                order.notes = order_values.note || ' ';
+                order_values.uid_save=order.uid
+                var newWindow = window.open("", "_blank");
+                rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 5000, shadow: true})
                     .then(function (sale_order) {
                        if (sale_order) {
                            var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
-                           window.open(url, '_blank');
                            if (order) {
                                order.sale_order_name = sale_order.name;
                            }
                            self.gui.show_screen('receipt');
+                           newWindow.location = url;
                        }
                     },
                     )
             })
-
             $('.create-sale-order-button').click(function (event) {
                 event.preventDefault();
+                var newWindow = window.open("", "_blank");
                 $('.create-sale-order-button').unbind('click');
-
-                order_values.client_order_ref = document.getElementById('workflow-partner-ref').value;
-                order_values.note = document.getElementById('workflow-note').value;
-                order.partner_ref = order_values.client_order_ref;
-                order.notes = order_values.note;
-
-
-                rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
+                order.partner_ref = order_values.client_order_ref || ' ';
+                order.notes = order_values.note || ' ';
+                rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 5000, shadow: true})
                     .then(function () {
                        if (sale_order) {
                            var url = window.location.origin + "/web#id=" + sale_order.id + "&view_type=form&model=sale.order";
-                           window.open(url, '_blank');
                            if (order) {
                                order.finalize();
+
                            }
+                           newWindow.location = url;
                        }
                     },
-//                    function( type, err ){
-//                        self.gui.show_popup('error', {
-//                            'title': _t('Error: Could not save changes'),
-//                            'body': _t('Your internet connection is probably down.'+err),
-//                        });
-//                    }
                     )
-
-
-
-
-
             })
 
             $('.print-create-purchase-order-button').click(function (event) {
@@ -100,8 +82,8 @@ workflow_base.POSWorkflowPopup.include({
 
                 order_values.partner_ref = document.getElementById('workflow-partner-ref').value;
                 order_values.notes = document.getElementById('workflow-note').value;
-                order.partner_ref = order_values.partner_ref;
-                order.notes = order_values.notes;
+                order.partner_ref = order_values.partner_ref ;
+                order.notes = order_values.notes ;
 
                 rpc.query({model: 'purchase.order', method: 'create_pos_purchase_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
                     .then(function (purchase_order) {

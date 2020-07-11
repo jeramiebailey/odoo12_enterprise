@@ -3,7 +3,7 @@ from odoo import api, fields, models
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
-
+    order_uid_save=fields.Char()
     @api.model
     def create(self, values):
         onchanges = {
@@ -39,9 +39,10 @@ class SaleOrder(models.Model):
     @api.model
     def create_pos_sale_order(self, pos_order_values, pos_order_workflow):
         order_values = {
-            'client_order_ref': pos_order_values['client_order_ref'],
-            'note': pos_order_values['note'],
+            'client_order_ref': pos_order_values.get('client_order_ref',''),
+            'note': pos_order_values.get('note',''),
             'order_line': [],
+            'order_uid_save':pos_order_values['uid_save'],
             'origin': pos_order_values['name'],
             'partner_id': pos_order_values['partner_id'],
             'user_id': pos_order_values['user_id'],
@@ -64,37 +65,40 @@ class SaleOrder(models.Model):
        # session_data = session.read(['branch_id'])
         #if session_data and session_data[0].get('branch_id'):
             #order_values['branch_id'] = session_data[0].get('branch_id')[0]
+        if not self.search([('order_uid_save','=',pos_order_values['uid_save'])]):
+            order = self.create(order_values)
+            if 'sale.quotation' not in pos_order_workflow:
+                order.action_confirm()
 
-        order = self.create(order_values)
-        if 'sale.quotation' not in pos_order_workflow:
-            order.action_confirm()
+            picking_update_values = {}
+            if pos_order_values.get('picking_date'):
+                picking_update_values['min_date'] = (pos_order_values['picking_date']
+                                                     + fields.Date.context_today(self)[10:])
+            if pos_order_values.get('picking_address'):
+                picking_update_values['partner_address_text'] = pos_order_values['picking_address']
+            if pos_order_values.get('note'):
+                picking_update_values['note'] = pos_order_values['note']
+            if picking_update_values:
+                order.picking_ids.write(picking_update_values)
 
-        picking_update_values = {}
-        if pos_order_values.get('picking_date'):
-            picking_update_values['min_date'] = (pos_order_values['picking_date']
-                                                 + fields.Date.context_today(self)[10:])
-        if pos_order_values.get('picking_address'):
-            picking_update_values['partner_address_text'] = pos_order_values['picking_address']
-        if pos_order_values.get('note'):
-            picking_update_values['note'] = pos_order_values['note']
-        if picking_update_values:
-            order.picking_ids.write(picking_update_values)
+            if pos_order_workflow == 'sale.order.done':
+                for move in order.sudo().picking_ids.mapped('move_lines'):
+                    move.quantity_done = move.product_uom_qty
+                order.sudo().picking_ids.action_done()
 
-        if pos_order_workflow == 'sale.order.done':
-            for move in order.sudo().picking_ids.mapped('move_lines'):
-                move.quantity_done = move.product_uom_qty
-            order.sudo().picking_ids.action_done()
+            invoice = False
+            if pos_order_workflow in ['sale.order.done', 'sale.order.picking.wait']:
+                order.with_context(session=session).action_invoice_create()
+                if order.invoice_ids:
+                    order.sudo().invoice_ids.action_invoice_open()
+                    if not order.invoice_ids.mapped('date_due'):
+                        order.invoice_ids.update({'date_due': order.invoice_ids.mapped('date_invoice')[0]})
 
-        invoice = False
-        if pos_order_workflow in ['sale.order.done', 'sale.order.picking.wait']:
-            order.with_context(session=session).action_invoice_create()
-            if order.invoice_ids:
-                order.sudo().invoice_ids.action_invoice_open()
-                if not order.invoice_ids.mapped('date_due'):
-                    order.invoice_ids.update({'date_due': order.invoice_ids.mapped('date_invoice')[0]})
-
-                order.partner_id.write({'name': order.partner_id.name})
-                if order.partner_id.parent_id:
-                    order.partner_id.parent_id.write({'name': order.partner_id.parent_id.name})
-                invoice = order.invoice_ids.read()[0]
+                    order.partner_id.write({'name': order.partner_id.name})
+                    if order.partner_id.parent_id:
+                        order.partner_id.parent_id.write({'name': order.partner_id.parent_id.name})
+                    invoice = order.invoice_ids.read()[0]
+        else:
+            order=self.search([('order_uid_save','=',pos_order_values['uid_save'])],limit=1)
+            invoice=order.invoice_ids.read()[0]
         return {'id': order.id, 'name': order.name, 'invoice': invoice}
