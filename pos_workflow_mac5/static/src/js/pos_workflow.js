@@ -56,13 +56,10 @@ workflow_base.POSWorkflowPopup.include({
                     },
                     )
             })
-
             $('.create-sale-order-button').click(function (event) {
                 event.preventDefault();
                 var newWindow = window.open("", "_blank");
                 $('.create-sale-order-button').unbind('click');
-                // order_values.client_order_ref = document.getElementById('workflow-partner-ref').value;
-                // order_values.note = document.getElementById('workflow-note').value;
                 order.partner_ref = order_values.client_order_ref || ' ';
                 order.notes = order_values.note || ' ';
                 rpc.query({model: 'sale.order', method: 'create_pos_sale_order', args: [order_values, order_workflow]}, {timeout: 3000, shadow: true})
