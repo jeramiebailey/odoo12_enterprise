@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_shopify_process_import_export_ept" model="ir.ui.view">
+            <field name="name">Process Import/Export</field>
+            <field name="model">shopify.process.import.export</field>
+            <field name="priority">11</field>
+            <field name="arch" type="xml">
+                <form string="Import/Export">
+                    <sheet>
+                        <group>
+                            <field name='instance_ids' domain="[('state','=','confirmed')]"
+                                   widget="many2many_tags"
+                                   options="{'no_create':True,'no_create_edit': True}"/>
+                        </group>
+                        <notebook>
+                            <page string="Shopify => ERP">
+                                <group>
+                                    <group string="Sales Orders">
+                                        <field name="is_import_orders"/>
+                                        <field name="orders_from_date" style="width:50%"
+                                               attrs="{'invisible':[('is_import_orders','=',False)]}"/>
+                                        <field name="orders_to_date" style="width:50%"
+                                               attrs="{'invisible':[('is_import_orders','=',False)]}"/>
+                                    </group>
+                                    <group string="Products">
+                                        <field name="sync_product_from_shopify"/>
+                                        <field name="is_skip_sync_existing_shopify_product"
+                                               attrs="{'invisible':[('sync_product_from_shopify','=',False)]}"/>
+                                    </group>
+                                    <group string="Collection">
+                                        <field name="is_import_collection"/>
+                                    </group>
+                                    <group string="Customers">
+                                        <field name="is_import_customer"/>
+                                    </group>
+                                    <group string="Stock">
+                                        <field name="is_import_stock"/>
+                                    </group>
+                                    <group string="Location">
+                                        <field name="is_import_location"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="ERP => Shopify">
+                                <group>
+                                    <group string="Product Operations">
+                                        <field name="is_export_products"/>
+                                        <field name="is_publish_products"/>
+                                        <field name="is_update_products"/>
+                                        <field name="is_update_stock"/>
+										<field name="export_stock_from"
+											   attrs="{'invisible':[('is_update_stock','=',False)],'required':[('is_update_stock','=',True)]}"/>
+                                        <field name="is_update_price"/>
+                                        <field name="is_update_images"/>
+                                    </group>
+                                    <group string="Collection">
+                                        <field name="is_export_collection"/>
+                                        <field name="is_update_collection"/>
+                                        <field name="is_publish_collection"/>
+                                    </group>
+                                    <group string="Shipment Status">
+                                        <field name="is_update_order_status"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                        <footer>
+                            <button string="Execute" class="oe_highlight" type="object"
+                                    name="execute"/>
+                            <button string="Cancel" class="oe_highlight" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_shopify_import_orders_in_shopify_ept"
+                model="ir.actions.act_window">
+            <field name="name">Shopify Operations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shopify.process.import.export</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="action_wizard_shopify_instance_import_export_operations"
+                model="ir.actions.act_window">
+            <field name="name">Shopify Operations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shopify.process.import.export</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="context">{'default_instance_id':active_id}</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_shopify_process_import_export_from_more_ept" model="ir.ui.view">
+            <field name="name">Process Import/Export</field>
+            <field name="model">shopify.process.import.export</field>
+            <field name="arch" type="xml">
+                <form string="Import/Export" style="height: 200px">
+                    <group invisible="context.get('process','') not in ['prepare_product_for_export']">
+                        <field name="instance_ids" widget="many2many_tags"/>
+                        <p colspan="2"
+                           style="color: #8a6d3b;background-color: #fcf8e3;border-color: #faebcc;padding: 15px;margin-bottom: 20px;border: 1px solid transparent;border-radius: 4px;"
+                           role="alert">
+                            <b>Cautions:</b>
+                            <br/>
+                            1) Products with more than 3 attributes will not be prepare for export
+                            in Shopify.<br/>2) Products without Internal Reference (SKU) will not be
+                            prepare for export in Shopify.
+                        </p>
+                    </group>
+                    <group invisible="context.get('process','') not in ['sync_selective_products']">
+                        <field name="sync_images_with_product"/>
+                        <field name="sync_price_with_product"/>
+                    </group>
+                    <group string="Publish Collection"
+                           invisible="context.get('process','') not in ['create_collection']">
+                        <field name="publish_collection"/>
+                    </group>
+                    <group string="Update Info With Export"
+                           invisible="context.get('process','') not in ['export_products']">
+                        <group>
+                            <field name="update_price_in_product"/>
+                            <field name="update_stock_in_product"/>
+                        </group>
+                        <group>
+                            <field name="publish"/>
+                            <field name="is_set_image"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="import_customer"
+                                invisible="context.get('process','') != 'import_orders_in_odoo'"
+                                string="Import Customers" type="object" class="oe_highlight"/>
+                        <button name="import_export_processes"
+                                invisible="context.get('process','') != 'import_orders_in_odoo'"
+                                string="Import Orders" type="object" class="oe_highlight"/>
+                        <button name="update_order_status"
+                                invisible="context.get('process','') != 'update_order_status'"
+                                string="Update Order Status" type="object" class="oe_highlight"/>
+                        <button name="update_stock_in_shopify"
+                                invisible="context.get('process','') != 'update_stock'"
+                                string="Update Stock" type="object" class="oe_highlight"/>
+                        <button name="update_payment"
+                                invisible="context.get('process','') != 'update_payment'"
+                                string="Update Payment" type="object" class="oe_highlight"/>
+                        <button name="update_price"
+                                invisible="context.get('process','') != 'update_price'"
+                                string="Update Price" type="object" class="oe_highlight"/>
+                        <button name="update_product_images"
+                                invisible="context.get('process','') != 'update_images'"
+                                string="Update Images" type="object" class="oe_highlight"/>
+                        <button name="export_products"
+                                invisible="context.get('process','') != 'export_products'"
+                                string="Export Products" type="object" class="oe_highlight"/>
+                        <button name="update_products"
+                                invisible="context.get('process','') != 'update_products'"
+                                string="Update Products" type="object" class="oe_highlight"/>
+                        <button name="prepare_product_for_export"
+                                invisible="context.get('process','') != 'prepare_product_for_export'"
+                                string="Prepare Product For Export in Shopify" type="object"
+                                class="oe_highlight"/>
+                        <button name="publish_multiple_products"
+                                invisible="context.get('process','') != 'publish_multiple_products'"
+                                string="Publish Multiple Products" type="object"
+                                class="oe_highlight"/>
+                        <button name="publish_multiple_collection"
+                                invisible="context.get('process','') != 'publish_multiple_collection'"
+                                string="Publish Multiple Collection" type="object"
+                                class="oe_highlight"/>
+                        <button name="sync_products"
+                                invisible="context.get('process','') != 'sync_products'"
+                                string="Sync Products" type="object" class="oe_highlight"/>
+                        <button name="export_collection"
+                                invisible="context.get('process','') != 'create_collection'"
+                                string="Export" type="object" class="oe_highlight"/>
+                        <button name="update_collection"
+                                invisible="context.get('process','') != 'update_collection'"
+                                string="Update" type="object" class="oe_highlight"/>
+                        <button name="import_collection"
+                                invisible="context.get('process','') != 'import_collection'"
+                                string="Import" type="object" class="oe_highlight"/>
+                        <button name="sync_selective_products"
+                                invisible="context.get('process','') != 'sync_selective_products'"
+                                string="Sync Products" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_highlight" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_shopify_prepare_product_for_export" model="ir.actions.act_window">
+            <field name="name">Prepare Product For Export in Shopify</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shopify.process.import.export</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'process':'prepare_product_for_export'}</field>
+        </record>
+
+        <record id="action_wizard_shopify_publish_multiple_products" model="ir.actions.act_window">
+            <field name="name">Publish Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shopify.process.import.export</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'process':'publish_multiple_products'}</field>
+        </record>
+
+
+        <act_window name="Export Products" res_model="shopify.process.import.export"
+                    src_model="shopify.product.template.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_export_products"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'export_products'}"/>
+
+        <act_window name="Update Products" res_model="shopify.process.import.export"
+                    src_model="shopify.product.template.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_update_products"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'update_products'}"/>
+
+        <act_window name="Update Stock" res_model="shopify.process.import.export"
+                    src_model="shopify.product.template.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_update_stock"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'update_stock'}"/>
+
+        <act_window name="Update Price" res_model="shopify.process.import.export"
+                    src_model="shopify.product.template.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_update_price"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'update_price'}"/>
+
+        <act_window name="Update Images" res_model="shopify.process.import.export"
+                    src_model="shopify.product.template.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_update_images"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'update_images'}"/>
+
+        <act_window name="Export Collection" res_model="shopify.process.import.export"
+                    src_model="shopify.collection.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_export_collection"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'create_collection'}"/>
+
+        <act_window name="Update Collection" res_model="shopify.process.import.export"
+                    src_model="shopify.collection.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_update_collection"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'update_collection'}"/>
+
+        <act_window name="Publish Multiple Products" res_model="shopify.process.import.export"
+                    src_model="shopify.product.template.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_publish_multiple_products"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'publish_multiple_products'}"/>
+
+        <act_window name="Sync Products" res_model="shopify.process.import.export"
+                    src_model="shopify.product.template.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_publish_sync_selective_products"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'sync_selective_products'}"/>
+
+        <act_window name="Publish Multiple Collection" res_model="shopify.process.import.export"
+                    src_model="shopify.collection.ept" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_publish_multiple_collection"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'publish_multiple_collection'}"/>
+
+        <act_window name="Prepare Product For Export in Shopify"
+                    res_model="shopify.process.import.export"
+                    src_model="product.template" view_mode="form" view_type="form"
+                    target="new" multi="True" key2="client_action_multi"
+                    id="action_wizard_shopify_prepare_product_for_export"
+                    view_id="view_shopify_process_import_export_from_more_ept"
+                    context="{'process':'prepare_product_for_export'}"/>
+
+        <menuitem id="menu_shopify_processes_ept"
+                  parent="shopify_ept.shopify_instance_menu_item" name="Processes" sequence="15"/>
+
+        <menuitem id="menu_shopify_import_export_process_ept"
+                  parent="menu_shopify_processes_ept"
+                  action="action_wizard_shopify_import_orders_in_shopify_ept" sequence="20"/>
+    </data>
+</odoo>

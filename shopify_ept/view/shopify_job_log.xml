@@ -1,0 +1,162 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="import_shopify_job_transaction_tree_view_ept" model="ir.ui.view">
+            <field name="name">Shopify Transaction log</field>
+            <field name="model">shopify.transaction.log</field>
+            <field name="arch" type="xml">
+                <tree string="Import Shopify" create="false" default_order="write_date desc">
+                    <field name="type"/>
+                    <field name="create_date"/>
+                    <field name="write_date"/>
+                    <field name="message"/>
+                    <field name="mismatch_details" invisible="1"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="import_shopify_job_transaction_form_view_ept" model="ir.ui.view">
+            <field name="name">Shopify Transaction Job</field>
+            <field name="model">shopify.transaction.log</field>
+            <field name="arch" type="xml">
+                <form string="Shopify Import Job" version='7.0'>
+                    <group>
+                        <group>
+                            <field name="create_date"/>
+                            <field name="mismatch_details"/>
+                        </group>
+                    </group>
+                    <group string="Message">
+                        <field name="message" nolabel="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="shopify_transaction_search_view_ept" model="ir.ui.view">
+            <field name="name">Shopify Transaction Search View</field>
+            <field name="model">shopify.transaction.log</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Shopify Instance">
+                    <group expand="0" string="Group By...">
+                        <filter string="Instnace" name="" icon="terp-personal"
+                                context="{'group_by':'shopify_instance_id'}"/>
+                        <filter string="Type" name="" icon="terp-personal"
+                                context="{'group_by':'type'}"/>
+                        <filter string="Message" name="" icon="terp-personal"
+                                context="{'group_by':'message'}"/>
+                        <filter string="Date" name="" icon="terp-personal"
+                                context="{'group_by':'create_date'}"/>
+
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_mismatch_log_ept" model="ir.actions.act_window">
+            <field name="name">Shopify Mismatch Details</field>
+            <field name="res_model">shopify.transaction.log</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('mismatch_details','=',True)]</field>
+            <field name="view_id" ref="import_shopify_job_transaction_tree_view_ept"/>
+            <field name="help" type="html">
+                <div class="oe_empty_shopify_mismatch_log">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p>
+                        <b>No Shopify Mismatch Details available right now.</b>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <record id="action_mismatch_instance_log_ept" model="ir.actions.act_window">
+            <field name="name">Shopify Mismatch Details</field>
+            <field name="res_model">shopify.transaction.log</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">
+                [('mismatch_details','=',True),('shopify_instance_id','=',active_id)]
+            </field>
+            <field name="view_id" ref="import_shopify_job_transaction_tree_view_ept"/>
+            <field name="help" type="html">
+                <div class="oe_empty_shopify_mismatch_log">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p>
+                        <b>No Shopify Mismatch Details available right now.</b>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <record id="action_mismatch_sales_log_ept" model="ir.actions.act_window">
+            <field name="name">Shopify Mismatch Details</field>
+            <field name="res_model">shopify.transaction.log</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('mismatch_details','=',True),('type','=','sales')]</field>
+            <field name="view_id" ref="import_shopify_job_transaction_tree_view_ept"/>
+            <field name="help" type="html">
+                <div class="oe_empty_shopify_mismatch_log">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p>
+                        <b>No Shopify Mismatch Details available right now.</b>
+                    </p>
+                </div>
+            </field>
+        </record>
+        <record id="action_mismatch_log_product_ept" model="ir.actions.act_window">
+            <field name="name">Shopify Mismatch Details</field>
+            <field name="res_model">shopify.transaction.log</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('mismatch_details','=',True),('type','=','product')]</field>
+            <field name="view_id" ref="import_shopify_job_transaction_tree_view_ept"/>
+            <field name="help" type="html">
+                <div class="oe_empty_shopify_mismatch_log">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p>
+                        <b>No Shopify Mismatch Details available right now.</b>
+                    </p>
+                </div>
+            </field>
+        </record>
+        <record id="action_mismatch_log_collection_ept" model="ir.actions.act_window">
+            <field name="name">Shopify Mismatch Details</field>
+            <field name="res_model">shopify.transaction.log</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('mismatch_details','=',True),('type','=','collection')]</field>
+            <field name="view_id" ref="import_shopify_job_transaction_tree_view_ept"/>
+            <field name="help" type="html">
+                <div class="oe_empty_shopify_mismatch_log">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p>
+                        <b>No Shopify Mismatch Details available right now.</b>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <menuitem id="shopify_log_ept" name="Log Details"
+                  parent="shopify_ept.shopify_instance_menu_item" sequence="20"/>
+
+
+        <menuitem id="shopify_mismatch_ept" name="Mismatch Details"
+                  parent="shopify_ept.shopify_log_ept"
+                  action="action_mismatch_log_ept" sequence="26"/>
+
+    </data>
+</odoo>

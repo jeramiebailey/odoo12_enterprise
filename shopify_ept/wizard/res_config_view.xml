@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_config_shopify_instance" model="ir.ui.view">
+            <field name="name">Configure Instance</field>
+            <field name="model">res.config.shopify.instance</field>
+            <field name="arch" type="xml">
+                <form string="Configure Instance" class="oe_form_configuration">
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name='host' required="1"/>
+                            <field name='shopify_country_id' required="1"/>
+                        </group>
+                        <group>
+                            <field name='api_key' required="1"/>
+                            <field name='password' required="1" password="True"/>
+                            <field name='shared_secret' required="1"/>
+                            <field name='is_image_url' invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <p colspan="2" class="alert alert-warning" role="alert">
+                            <div style="color:#ff0000;">
+                                <b>Important Note:</b>
+                            </div>
+                            - After creating the instance, please make sure you complete all
+                            the other
+                            necessary configurations such as Tax, Warehouse, Pricelist etc. from
+                            the Shopify
+                            setting screen.
+                            <br/>
+                            - Shopify => Configuration => Settings
+                        </p>
+                    </group>
+                    <footer>
+                        <button string="Create" type="object" name="test_shopify_connection"
+                                class="oe_highlight"/>
+                        or
+                        <button class="oe_highlight" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="res_config_action_shopify_instance" model="ir.actions.act_window">
+            <field name="name">Instances</field>
+            <field name="res_model">res.config.shopify.instance</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_res_config_shopify_instance"/>
+        </record>
+
+        <record id="view_shopify_config_settings" model="ir.ui.view">
+            <field name="name">Shopify Settings</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Shopify" data-key="shopify_ept">
+                        <h2 style="font-size:20px;background-color:rgb(245,255,250);">Shopify
+                            Instances
+                        </h2>
+
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_instance_id" string="Select Instance"/>
+                                    <field name="shopify_instance_id"
+                                           attrs="{'required':[('shopify_instance_id','!=',False)]}"
+                                           options="{'create': false, 'create_edit': false,'no_create_edit' : True}"/>
+                                    <button name="%(res_config_action_shopify_instance)d"
+                                            icon="fa-arrow-right" type="action"
+                                            string="Create More Instance" class="oe_link"/>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 style="font-size:20px;background-color:rgb(245,255,250);"
+                            attrs="{'invisible': [('shopify_instance_id', '=', False)]}">Shopify
+                            Instance Configuration
+                        </h2>
+                        <h2 attrs="{'invisible': [('shopify_instance_id', '=', False)]}">Options
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_warehouse_id"/>
+                                    <div class="text-muted">
+                                        Select Warehouse for your company
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_warehouse_id" class="o_light_label"
+                                                   widget="selection"
+                                                   attrs="{'required':[('shopify_instance_id','!=',False)]}"/>
+                                            <field name="shopify_country_id" invisible="1"
+                                                   class="oe_inline"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_company_id"/>
+                                    <div class="text-muted">
+                                        Select company
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_company_id" class="o_light_label"
+                                                   widget="selection"
+                                                   attrs="{'required':[('shopify_instance_id','!=',False)]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_lang_id"/>
+                                    <div class="text-muted">
+                                        Select Language for your Instance
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_lang_id" class="o_light_label"
+                                                   widget="selection"
+                                                   attrs="{'required':[('shopify_instance_id','!=',False)]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box" invisible="1">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_fiscal_position_id"/>
+                                    <div class="text-muted">
+                                        Select Fiscal Postion
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_fiscal_position_id"
+                                                   class="o_light_label" widget="selection"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 attrs="{'invisible': [('shopify_instance_id', '=', False)]}">Products
+                            Bulk Export Operation
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_set_price"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="is_set_price"/>
+                                    <div class="text-muted">
+                                        Set Price with Product
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_set_stock"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="is_set_stock"/>
+                                    <div class="text-muted">
+                                        Set Stock with Product
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_publish"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="is_publish"/>
+                                    <div class="text-muted">
+                                        Publish Product Immediately
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_set_image"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="is_set_image"/>
+                                    <div class="text-muted">
+                                        Set Images with Product
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 style="background-color:#e9ecef;"
+                            attrs="{'invisible': [('shopify_instance_id', '=', False)]}">Products
+                            Bulk Import/Sync Operation
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="sync_images_with_product"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sync_images_with_product"/>
+                                    <div class="text-muted">
+                                        Import/Sync Products with Images
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="update_category_in_odoo_product"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="update_category_in_odoo_product"/>
+                                    <div class="text-muted">
+                                        If checked, it updates product category in odoo product
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="import_price"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="import_price"/>
+                                    <div class="text-muted" id="sale_coupon">
+                                        Import/Sync Product Price
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 attrs="{'invisible': [('shopify_instance_id', '=', False)]}">Product
+                            Information
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_discount_product_id"/>
+                                    <div class="text-muted">
+                                        Select Discount Product
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_discount_product_id"
+                                                   class="o_light_label"
+                                                   attrs="{'required':[('shopify_instance_id','!=',False)]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="add_discount_tax" class="o_light_label"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="add_discount_tax"/>
+                                    <div class="text-muted">
+                                        Calculate Tax for Discount
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 style="background-color:#e9ecef;"
+                            attrs="{'invisible': [('shopify_instance_id', '=', False)]}">Payment
+                            Information
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_pricelist_id"/>
+                                    <div class="text-muted">
+                                        Select Pricelist
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_pricelist_id" class="o_light_label"
+                                                   widget="selection"
+                                                   attrs="{'required':[('shopify_instance_id','!=',False)]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_payment_term_id"/>
+                                    <div class="text-muted">
+                                        Select Payment Term
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_payment_term_id"
+                                                   class="o_light_label"
+                                                   attrs="{'required':[('shopify_instance_id','!=',False)]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_property_account_payable_id"/>
+                                    <div class="text-muted">
+                                        Set the payable account for current partner
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_property_account_payable_id"
+                                                   class="o_light_label"
+                                                   options="{'no_create':True,'no_open':True}"
+                                                   domain="[('internal_type','=','payable'),('deprecated','=',False)]"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_property_account_receivable_id"/>
+                                    <div class="text-muted">
+                                        Set the receivable account for current partner
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_property_account_receivable_id"
+                                                   class="o_light_label"
+                                                   options="{'no_create':True,'no_open':True}"
+                                                   domain="[('internal_type','=','receivable'),('deprecated','=',False)]"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <h2 style="background-color:#e9ecef;"
+                            attrs="{'invisible': [('shopify_instance_id', '=', False)]}">Notify By
+                            Email
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="notify_by_email_while_refund"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="notify_by_email_while_refund"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="notify_customer"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="notify_customer"/>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="notify_by_email_while_cancel_picking"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="notify_by_email_while_cancel_picking"/>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            Tax Configuration
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_apply_tax_in_order"
+                                           string="Shopify Apply Tax"/>
+                                    <div class="text-muted">
+                                        1) Odoo Default Tax Behaviour - The Taxes will be set based
+                                        on Odoo's default functional behaviour i.e. based on Odoo's
+                                        Tax and Fiscal Position configurations.
+                                        <br/>
+                                        2) Create New Tax If Not Found - System will search the tax
+                                        data received from Shopify in Odoo, will create a new
+                                        one if it fails in finding it.
+
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_apply_tax_in_order"
+                                                   class="o_light_label"
+                                                   attrs="{'required':[('shopify_instance_id','!=',False)]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 o_setting_box"
+                                 attrs="{'invisible': [('shopify_apply_tax_in_order', '=', 'odoo_tax')]}">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_credit_tax_account_id"/>
+                                    <div class="text-muted">
+                                        Set the credit tax account base on this account we will set
+                                        this account in the newly created tax when import orders
+                                        from Shopify to Odoo.
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_credit_tax_account_id"
+                                                   class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box"
+                                 attrs="{'invisible': [('shopify_apply_tax_in_order', '=', 'odoo_tax')]}">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_invoice_tax_account_id"/>
+                                    <div class="text-muted">
+                                        Set the invoice tax account base on this account we will set
+                                        this account in the newly created tax when import orders
+                                        from Shopify to Odoo.
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_invoice_tax_account_id"
+                                                   class="o_light_label"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 style="background-color:#e9ecef;"
+                            attrs="{'invisible': [('shopify_instance_id', '=', False)]}">Order
+                            Information
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="shopify_order_auto_import"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_order_auto_import"/>
+                                    <div class="text-muted">
+                                        If checked, It will create a cron job to automatically
+                                        import order in Odoo at certain intervals.
+                                        <div attrs="{'invisible': [('shopify_order_auto_import', '=', False)]}">
+                                            <b>
+                                                <field name="shopify_order_import_interval_number"
+                                                       attrs="{'required': [('shopify_order_auto_import', '=', True)]}"
+                                                       class="oe_inline"/>
+                                            </b>
+                                            <field name="shopify_order_import_interval_type"
+                                                   attrs="{'required': [('shopify_order_auto_import', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_order_import_next_execution"
+                                                   attrs="{'required': [('shopify_order_auto_import', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_order_import_user_id"
+                                                   attrs="{'required': [('shopify_order_auto_import', '=', True)]}"
+                                                   class="oe_inline"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="import_shopify_order_status_ids"/>
+                                    <div class="text-muted">
+                                        Base on selected order status, import orders from Shopify
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="import_shopify_order_status_ids"
+                                                   widget="many2many_tags"
+                                                   options="{'no_create':True,'no_create_edit': True}"
+                                                   class="oe_inline"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="last_date_order_import"/>
+                                    <div class="text-muted">
+                                        Select last import order date
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="last_date_order_import"
+                                                   class="o_light_label"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="auto_closed_order"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="auto_closed_order"/>
+                                    <div class="text-muted" id="sale_coupon">
+                                        If checked, It will close order in Shopify while update
+                                        order status
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="shopify_order_auto_update"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_order_auto_update"/>
+                                    <div class="text-muted">
+                                        If checked, It will create a cron job to automatically
+                                        update order status in shopify at certain intervals.
+                                        <div attrs="{'invisible': [('shopify_order_auto_update', '=', False)]}">
+                                            <field name="shopify_order_update_interval_number"
+                                                   attrs="{'required': [('shopify_order_auto_update', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_order_update_interval_type"
+                                                   attrs="{'required': [('shopify_order_auto_update', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_order_update_next_execution"
+                                                   attrs="{'required': [('shopify_order_auto_update', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_order_update_user_id"
+                                                   attrs="{'required': [('shopify_order_auto_update', '=', True)]}"
+                                                   class="oe_inline"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="auto_import_product"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="auto_import_product"/>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="shopify_multiple_tracking_number"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_multiple_tracking_number"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box" invisible="1">
+                                <div class="o_setting_left_pane">
+                                    <field name="restock_in_shopify"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="restock_in_shopify"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_order_prefix"/>
+                                    <div class="text-muted">
+                                        Enter Order Prefix
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_order_prefix"
+                                                   class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_section_id"/>
+                                    <div class="text-muted">
+                                        Select Sales Team
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_section_id" class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_global_channel_id"/>
+                                    <div class="text-muted">
+                                        Global Channel
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_global_channel_id"
+                                                   class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_use_default_sequence"/>
+                                </div>
+
+                                <div class="o_setting_right_pane">
+                                    <label for="is_use_default_sequence"/>
+                                    <div class="text-muted">
+                                        If checked,Then use default sequence of odoo for sale order
+                                        create.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 style="background-color:#e9ecef;"
+                            attrs="{'invisible': [('shopify_instance_id', '=', False)]}">Stock
+                            Information
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="shopify_stock_auto_export"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_stock_auto_export"/>
+                                    <div class="text-muted">
+                                        If checked, It will create a cron job to automatically
+                                        Export Stock in shopify at certain intervals.
+                                        <div attrs="{'invisible': [('shopify_stock_auto_export', '=', False)]}">
+                                            <field name="shopify_inventory_export_interval_number"
+                                                   attrs="{'required': [('shopify_stock_auto_export', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_inventory_export_interval_type"
+                                                   attrs="{'required': [('shopify_stock_auto_export', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_inventory_export_next_execution"
+                                                   attrs="{'required': [('shopify_stock_auto_export', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_inventory_export_user_id"
+                                                   attrs="{'required': [('shopify_stock_auto_export', '=', True)]}"
+                                                   class="oe_inline"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_stock_field"/>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_stock_field" class="o_light_label"
+                                                   domain="[('model_id.model','=','product.product'),('name','in',['qty_available','virtual_available'])]"
+                                                   attrs="{'required':[('shopify_instance_id','!=',False)]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_last_date_update_stock"/>
+                                    <div class="text-muted">
+                                        The Connecter will export stock of those products which
+                                        stock moment has done after this date. If
+                                        this date not found while exporting stock at that moment it
+                                        will take the last 30 days moment products.
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_last_date_update_stock"
+                                                   class="o_light_label"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-xs-12 col-md-6 o_setting_box">
+                               <div class="o_setting_left_pane">
+                                   <field name="import_stock"/>
+                               </div>
+                               <div class="o_setting_right_pane">
+                                   <label for="import_stock"/>
+                               </div>
+                           </div> -->
+                        </div>
+
+                        <h2 style="background-color:#e9ecef;" attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            Schedule information
+                        </h2>
+
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_activity_type_id"/>
+                                    <div class="text-muted">
+                                        Select Schedule Activity Type
+                                        <div>
+                                            <field name="shopify_activity_type_id" class="oe_inline"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_date_deadline"/>
+                                    <div class="text-muted">
+                                        Enter Lead Days For Deadline Date Of Schedule Activity
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="shopify_date_deadline" class="o_light_label"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 style="background-color:#e9ecef;" attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            Payout Transaction Information
+                        </h2>
+                        <div class="row mt16 o_settings_container"
+                             attrs="{'invisible': [('shopify_instance_id', '=', False)]}">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <div>
+                                        <label for="shopify_settlement_report_journal_id"/>
+                                        <field name="shopify_settlement_report_journal_id"
+                                               class="oe_inline"
+                                               domain="[('type','in',['cash','bank'])]"
+                                               options="{'no_create':True,'no_open':True}"/>
+                                        <div class="text-muted">
+                                            Creates Bank Statement using this journal
+                                            while process Settlement
+                                            Report
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="shopify_auto_import_payout_report"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_auto_import_payout_report"/>
+                                    <div class="text-muted">
+                                        If checked, It will create a cron job to automatically import shopify Payout records
+                                        at certain intervals.
+                                        <div attrs="{'invisible': [('shopify_auto_import_payout_report', '=', False)]}">
+                                            <field name="shopify_payout_import_interval_number"
+                                                   attrs="{'required': [('shopify_auto_import_payout_report', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_payout_import_interval_type"
+                                                   attrs="{'required': [('shopify_auto_import_payout_report', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_payout_import_next_execution"
+                                                   attrs="{'required': [('shopify_auto_import_payout_report', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_payout_import_user_id"
+                                                   attrs="{'required': [('shopify_auto_import_payout_report', '=', True)]}"
+                                                   class="oe_inline"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="shopify_auto_generate_bank_statement"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_auto_generate_bank_statement"/>
+                                    <div class="text-muted">
+                                        If checked, It will create a cron job to automatically Generate Bank Statement of
+                                        Payout records
+                                        at certain intervals.
+                                        <div attrs="{'invisible': [('shopify_auto_generate_bank_statement', '=', False)]}">
+                                            <field name="shopify_auto_generate_bank_statement_interval_number"
+                                                   attrs="{'required': [('shopify_auto_import_payout_report', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_auto_generate_bank_statement_interval_type"
+                                                   attrs="{'required': [('shopify_auto_generate_bank_statement', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_auto_generate_bank_statement_next_execution"
+                                                   attrs="{'required': [('shopify_auto_generate_bank_statement', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_auto_generate_bank_statement_user_id"
+                                                   attrs="{'required': [('shopify_auto_generate_bank_statement', '=', True)]}"
+                                                   class="oe_inline"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="shopify_auto_process_bank_statement"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="shopify_auto_process_bank_statement"/>
+                                    <div class="text-muted">
+                                        If checked, It will create a cron job to automatically Generate Bank Statement of
+                                        Payout records
+                                        at certain intervals.
+                                        <div attrs="{'invisible': [('shopify_auto_process_bank_statement', '=', False)]}">
+                                            <field name="shopify_auto_process_bank_statement_interval_number"
+                                                   attrs="{'required': [('shopify_auto_process_bank_statement', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_auto_process_bank_statement_interval_type"
+                                                   attrs="{'required': [('shopify_auto_process_bank_statement', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_auto_process_bank_statement_next_execution"
+                                                   attrs="{'required': [('shopify_auto_process_bank_statement', '=', True)]}"
+                                                   class="oe_inline"/>
+                                            <field name="shopify_auto_process_bank_statement_user_id"
+                                                   attrs="{'required': [('shopify_auto_process_bank_statement', '=', True)]}"
+                                                   class="oe_inline"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_shopify_instance_config" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="context">{'default_shopify_instance_id': active_id}</field>
+            <field name="target">inline</field>
+        </record>
+
+        <record id="action_shopify_config" model="ir.actions.act_window">
+            <field name="name">Shopify</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_shopify_config_settings"/>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'shopify_ept'}</field>
+        </record>
+
+        <menuitem id="shopify_instance_menu_item" name="Shopify" sequence="20"
+                  groups="shopify_ept.group_shopify_ept"/>
+
+        <menuitem id="menu_configuration_ept" name="Configuration"
+                  parent="shopify_instance_menu_item" sequence="50"
+                  groups="shopify_ept.group_shopify_ept"/>
+
+        <menuitem id="menu_shopify_config" name="Settings"
+                  parent="shopify_ept.menu_configuration_ept"
+                  sequence="1" action="action_shopify_config" groups="base.group_system"/>
+    </data>
+</odoo>

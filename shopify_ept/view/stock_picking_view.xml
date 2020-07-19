@@ -1,0 +1,219 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>	
+        <record id="view_picking_form_ept" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form"/>
+            <field eval="12" name="priority"/>
+            <field name="arch" type="xml">
+                <button name="action_cancel" position="after">
+				   <button name="cancel_in_shopify" string="Cancel In Shopify" type="object" attrs="{'invisible':['|','|','|',('state','!=','cancel'),('canceled_in_shopify','=',True),('picking_type_code','!=','outgoing'),('shopify_instance_id','=',False)]}" class="oe_highlight"/>					
+                </button>            
+                 <field name="priority" position="after">
+ 	 				<field name="canceled_in_shopify" readonly="1"/>
+ 	 				<field name="shopify_instance_id" invisible="1"/>
+                 </field>
+			</field>
+		</record>
+
+        <record id="vpicktree_ept" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" decoration-danger="state not in ('cancel', 'done') and scheduled_date &lt; current_date" string="Picking list" create="false">	
+            		<field name="picking_type_code" invisible="1"/>
+                    <field name="name"/>
+                    <field name="location_dest_id"/>
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                    <field name="origin"/>
+                    <field name="group_id" invisible="1"/>
+                    <field name="backorder_id"/>
+                    <field name="state"/>
+                    <field name="priority" invisible="1"/>
+                    <field name="picking_type_id" invisible="1"/>
+                     <field name="scheduled_date" invisible="1"/>
+                     <field name="updated_in_shopify" attrs="{'invisible':[('picking_type_code','!=','outgoing')]}" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_picking_view_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_shopify_delivery_order','=','True')]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="view_id" ref="vpicktree_ept"/>
+	        <field name="help" type="html">
+              <div class="oe_empty_shopify_delivery_order">
+                  <br/><br/><br/>
+                  <p>
+                    There is no any Delivery Order created for any of Shopify Sale Orders. 
+                    If your Shopify Instance's Invoice Policy is set to "Before Delivery", then after Invoice being totally paid, Delivery order for Shopify will be created automatically and it will be visible over here.
+                    From here, you can't manually create delivery order for Shopify. It must be created via Sale Order.
+                  </p>
+                 
+              </div>
+			</field>            
+        </record>
+        
+        <record id="action_shopify_picking_instance_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('shopify_instance_id','=',active_id)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="view_id" ref="vpicktree_ept"/>
+        </record>
+        
+        <record id="action_picking_view_confirm_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_shopify_delivery_order','=','True'),('state','=','confirmed'),('shopify_instance_id','=',active_id)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="view_id" ref="vpicktree_ept"/>
+        </record>
+        <record id="action_picking_view_partially_available_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_shopify_delivery_order','=','True'),('state','=','partially_available'),('shopify_instance_id','=',active_id)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="view_id" ref="vpicktree_ept"/>
+        </record>
+        <record id="action_picking_view_assigned_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_shopify_delivery_order','=','True'),('state','=','assigned'),('shopify_instance_id','=',active_id)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="view_id" ref="vpicktree_ept"/>
+        </record>
+        <record id="action_picking_view_done_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_shopify_delivery_order','=','True'),('state','=','done'),('shopify_instance_id','=',active_id)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="view_id" ref="vpicktree_ept"/>
+        </record>
+
+        <record id="action_picking_view_cancel_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_shopify_delivery_order','=','True'),('state','=','cancel')]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="view_id" ref="vpicktree_ept"/>
+        </record>
+        <record id="view_delivery_carrier_form_ept" model="ir.ui.view">
+            <field name="name">delivery.carrier.form.add.code</field>
+            <field name="model">delivery.carrier</field>
+            <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+				<field name="fixed_price" position="after">
+					<field name="shopify_code"/>
+				</field>
+			</field>
+		</record>
+
+        <record id="action_picking_tree_late_ept" model="ir.actions.act_window">
+            <field name="name">Late Transfers</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('shopify_instance_id','!=',False)]</field>
+            <field name="context">{
+                    'search_default_picking_type_id': [active_id],
+                    'default_picking_type_id': active_id,
+                    'contact_display': 'partner_address',
+                    'search_default_late': 1,
+                    'search_default_confirmed': 1,
+            }
+            </field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+        <record id="action_picking_tree_backorder_ept" model="ir.actions.act_window">
+            <field name="name">Backorders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('shopify_instance_id','!=',False)]</field>
+            <field name="context">{
+                    'search_default_picking_type_id': [active_id],
+                    'default_picking_type_id': active_id,
+                    'contact_display': 'partner_address',
+                    'search_default_backorder': 1,
+                    'search_default_confirmed': 1,
+            }
+            </field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+        <record id="action_picking_view_to_be_canceled" model="ir.actions.act_window">
+            <field name="name">To be Cancel In Shopify</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_shopify_delivery_order','=','True'),('state','=','cancel'),('canceled_in_shopify','=',False)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="view_id" ref="vpicktree_ept"/>
+        </record>
+        <record id="action_picking_view_canceled_in_shipify" model="ir.actions.act_window">
+            <field name="name">Canceled In Shopify</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_shopify_delivery_order','=','True'),('state','=','cancel'),('canceled_in_shopify','=',True)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="view_id" ref="vpicktree_ept"/>
+        </record>
+
+      <menuitem id="shopify_instance_menu_item_transfer_details" name="Transfer Details"
+      parent="shopify_ept.shopify_instance_menu_item" sequence="15"/>
+
+     <menuitem id="menu_item_shopify_delivery_order_ept" name="Delivery Order"
+      parent="shopify_instance_menu_item_transfer_details" action="action_picking_view_ept" sequence="5"/>
+
+     <menuitem id="menu_item_shopify_to_be_canceled"
+      parent="shopify_instance_menu_item_transfer_details" action="action_picking_view_to_be_canceled" sequence="5"/>
+     <menuitem id="menu_item_shopify_canceled_ept" 
+      parent="shopify_instance_menu_item_transfer_details" action="action_picking_view_canceled_in_shipify" sequence="5"/>
+
+		<record id="formview_stock_inventory_ept" model="ir.ui.view">
+			<field name="name">Stock Inventory View</field>
+			<field name="model">stock.inventory</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_inventory_form"></field>
+			<field name="arch" type="xml">
+				<xpath expr="//group/group/field[@name='exhausted']" position="after">
+					<field name="is_shopify_product_adjustment" readonly="1" attrs="{'invisible':[('is_shopify_product_adjustment','=',False)]}"/>
+				</xpath>
+			</field>
+		</record>
+		
+  </data>
+</odoo>
