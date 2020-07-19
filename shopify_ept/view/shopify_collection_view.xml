@@ -1,0 +1,182 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>	
+	<record id="shopify_collection_tree_view_ept" model="ir.ui.view">
+	    <field name="name">Shopify Collection Tree View</field>
+	    <field name="model">shopify.collection.ept</field>
+		<field name="arch" type="xml">
+            <tree string="Shopify Product Tree View">            
+            	<field name="name"/>
+	            <field name="shopify_instance_id" domain="[('state','=','confirmed')]"></field>
+				<field name="exported_in_shopify"/>
+			</tree>
+		</field>
+	</record>
+	<record model="ir.ui.view" id="shopify_collect_search_view_ept">
+		<field name="name">shopify.collection.ept</field>
+		<field name="model">shopify.collection.ept</field>
+		<field name="type">search</field>
+		<field name="arch" type="xml">
+			<search string="Shopify Products">
+                <field name="name" string="Product" filter_domain="[('name','ilike',self)]"/>
+                <filter string="Published" name="" icon="terp-accessories-archiver" domain="[('published','=','True')]"/>
+			</search>
+		</field>
+	</record>
+
+	<record id="shopify_collect_form_view_ept" model="ir.ui.view">
+		<field name="name">Shopify Collect Form View</field>
+		<field name="model">shopify.collection.ept</field>
+		<field name="arch" type="xml">
+			<form string="Shopify Collect Form View">
+				<sheet>
+                  <div class="oe_left" style="width: 500px;">
+                      <field name="image_id" widget="image" class="oe_avatar oe_left"/>
+	                   <div class="oe_title" style="width: 390px;">
+	                       <label class="oe_edit_only" for="name" string="Title"/>
+	                       <h1><field name="name" class="oe_inline"/></h1>
+	                   </div>
+				  </div>
+                   <field name="published" invisible="1"/>
+                   <button name="shopify_published" class="pull-right"  type="object" string="Shopify Publish" attrs="{'invisible': ['|',('exported_in_shopify','=',False),('published','=',True)]}"/>
+                   <button name="shopify_unpublished" class="pull-right"  type="object" string="Shopify Unpublish" attrs="{'invisible': ['|',('exported_in_shopify','=',False),('published','=',False)]}"/>
+				<notebook>
+					<page string="Shopify Info">
+						<group>
+							<group>
+								<field name="shopify_instance_id" domain="[('state','=','confirmed')]" options="{'no_create':True,'no_create_edit': True}" attrs="{'readonly': [('exported_in_shopify','=',True)]}"/>
+								<field name="shopify_collection_id"  readonly="1"/>
+								<field name="disjunctive" attrs="{'invisible': [('is_smart_collection','=',False)]}"/>
+							</group>	
+							<group>
+								<!-- <field name="template_suffix"/> -->
+								<field name="sort_order"/>
+								<field name="exported_in_shopify" readonly="1"/>
+							</group>
+							<group>
+								<field name="is_smart_collection" invisible="1"/>
+								<field name="updated_at" readonly="1"/>
+								<field name="published_at" readonly="1"/>
+							</group>
+						</group>
+						<group string="Description">
+							<field name="body_html" nolabel="1"/>
+						</group>
+					</page>
+					<page string="Products" attrs="{'invisible': [('is_smart_collection','=',True)]}">
+						<group>
+							<field name="shopify_template_ids" nolabel="1" widget="many2many_tags" options="{'no_create': True}" domain="[('shopify_instance_id','=',shopify_instance_id),('exported_in_shopify','=',True)]"/>
+						</group>
+					</page>
+					<page string="Rules" attrs="{'invisible': [('is_smart_collection','=',False)]}">
+						<group>
+							<field name="rule_ids" nolabel="1" >
+								<tree editable="top">
+									<field name="column_name" onchange="get_relation_vals()" required="1"/>
+									<field name="relation" required="1"/>
+									<field name="condition" required="1"/>
+								</tree>						
+							</field>
+	
+						</group>
+					</page>
+					
+				</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="action_shopify_all_collection_ept" model="ir.actions.act_window">
+        <field name="name">Shopify Collection</field>
+		<field name="res_model">shopify.collection.ept</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="shopify_collection_tree_view_ept"/>
+        <field name="help" type="html">
+             <div class="oe_empty_shopify_custom_collection">
+                 <br/><br/><br/>
+                 <p>
+                   <b>There are no any Shopify Custom Collection Created yet</b>
+                 </p>                 
+             </div>
+		</field>        
+   	</record>
+		
+				
+	<record id="action_shopify_collection_ept" model="ir.actions.act_window">
+        <field name="name">Shopify Collection</field>
+		<field name="res_model">shopify.collection.ept</field>
+		<field name="domain">[('is_smart_collection','=',False)]</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="shopify_collection_tree_view_ept"/>
+        <field name="help" type="html">
+             <div class="oe_empty_shopify_custom_collection">
+                 <br/><br/><br/>
+                 <p>
+                   <b>There are no any Shopify Custom Collection Created yet</b>
+                 </p>                 
+             </div>
+		</field>        
+   	</record>
+				
+	<record id="action_shopify_smart_collection_ept" model="ir.actions.act_window">
+        <field name="name">Shopify Smart Collection</field>
+		<field name="res_model">shopify.collection.ept</field>
+		<field name="domain">[('is_smart_collection','=',True)]</field>
+       	<field name="context">{'process':'smart_collection'}</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="shopify_collection_tree_view_ept"/>
+        <field name="help" type="html">
+             <div class="oe_empty_shopify_smart_collection">
+                 <br/><br/><br/>
+                 <p>
+                   <b>There are no any Shopify Smart Collection Created yet</b>
+                 </p>                 
+             </div>
+		</field>        
+   	</record>
+   	
+	<record id="action_shopify_instance_custom_collection" model="ir.actions.act_window">
+        <field name="name">Custom Collection</field>
+		<field name="res_model">shopify.collection.ept</field>
+		<field name="domain">[('is_smart_collection','=',False),('shopify_instance_id','=',active_id)]</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="shopify_collection_tree_view_ept"/>
+        <field name="help" type="html">
+             <div class="oe_empty_shopify_custom_collection">
+                 <br/><br/><br/>
+                 <p>
+                   <b>There are no any Shopify Custom Collection Created yet</b>
+                 </p>                 
+             </div>
+		</field>        
+   	</record>
+	<record id="action_shopify_instance_smart_collection" model="ir.actions.act_window">
+        <field name="name">Smart Collection</field>
+		<field name="res_model">shopify.collection.ept</field>
+		<field name="domain">[('is_smart_collection','=',True),('shopify_instance_id','=',active_id)]</field>
+		<field name="context">{'process':'smart_collection'}</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="shopify_collection_tree_view_ept"/>
+        <field name="help" type="html">
+             <div class="oe_empty_shopify_smart_collection">
+                 <br/><br/><br/>
+                 <p>
+                   <b>There are no any Shopify Smart Collection Created yet</b>
+                 </p>                 
+             </div>
+		</field>        
+   	</record>   	   	
+
+     <menuitem id="menu_item_parent_shopify_collections_ept" name="Collection"
+      parent="shopify_ept.shopify_instance_menu_item" sequence="10"/>
+
+    <menuitem id="menu_item_shopify_custom_collection_ept" name="Custom Collection"
+     parent="shopify_ept.menu_item_parent_shopify_collections_ept" sequence="3"
+	 action="action_shopify_collection_ept"/>
+
+    <menuitem id="menu_item_shopify_smart_collection_ept" name="Smart Collection"
+     parent="shopify_ept.menu_item_parent_shopify_collections_ept" sequence="3"
+	 action="action_shopify_smart_collection_ept"/>
+
+   </data>
+</odoo>

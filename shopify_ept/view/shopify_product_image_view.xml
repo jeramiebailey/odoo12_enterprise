@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<odoo>
+  	<record id="shopify_product_image_form_view_ept" model="ir.ui.view">
+		<field name="name">Shopify Product Image View</field>
+		<field name="model">shopify.product.image.ept</field>
+		<field name="arch" type="xml">
+			<form string="Shopify Product Form View">
+  				<sheet>								              														
+					<field name="url_image_id" widget="image" attrs="{'invisible':[('is_image_url','=',False)]}" class="oe_avatar oe_left" nolabel="1"/>
+					<field name="image_id" widget="image" attrs="{'invisible':[('is_image_url','=',True)],'required':[('is_image_url','=',False)]}" class="oe_avatar oe_left" nolabel="1"/>
+					<div class="oe_title oe_left" style="width: 500px;">
+						<div class="oe_edit_only">
+                            <field name="is_image_url" class="oe_inline" invisible="1"/>                            
+                        </div>
+						<h1>
+                            <field name="position" required="1" default_focus="1" placeholder="Sequence" />
+                        </h1>
+	                </div>
+  					<group>
+						<field name="url" attrs="{'invisible':[('is_image_url','=',False)]}"/>
+  					</group>
+  					<group>
+	  					<group>
+	  						<field name="shopify_instance_id" required="1"/>
+	  						<field name="shopify_image_id" readonly="1"/>
+	  					</group>
+	  					<group>
+	  						<field name="height"></field>
+	  						<field name="width"></field>
+	  					</group>
+	  				</group>
+	  				<group>
+	  					<field name="shopify_variant_ids" widget='many2many_tags' domain="[('shopify_template_id','=',shopify_product_tmpl_id)]" options="{'no_create_edit':True}"></field>
+	  				</group>
+	  				<field name="shopify_product_tmpl_id" invisible="1"/>
+	  			</sheet>
+  			</form>
+  		</field>
+  	</record>
+</odoo>

@@ -1,0 +1,128 @@
+@charset "UTF-8";
+.openerp .oe_view_nocontent .oe_empty_shopify_products {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_variants {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_sale_quotation {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_sale_order {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_instance {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_custom_collection {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_smart_collection {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_delivery_order {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_mismatch_log {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_invoice {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;	
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+.openerp .oe_view_nocontent .oe_empty_shopify_customers {
+  background: transparent url(/shopify_ept/static/src/img/shopify_logo.jpg) no-repeat 0 0;	
+  margin-top: -15px;
+  padding: 100px 0 0 137px;
+  min-height: 327px;
+  margin-left: -15px;
+}
+
+
+.openerp .oe_kanban_view .oe_kanban_shopify_operations_type {
+    width: 345px;
+    cursor: default;
+    min-height: 245px !important;
+}
+.openerp .oe_kanban_image_emipro {
+  display: block;
+  vertical-align: middle;
+  width: 120px;
+  height: 120px;
+  margin : 0px auto;
+
+}
+
+.openerp .oe_ept_center {
+	padding-top:15px;
+	display : block;
+	width : 100%;
+	margin : 0px auto;
+}
+.o_kanban_primary_bottom_woo{
+    width: 50% !important;
+}
+.o_kanban_primary_left_shoify {
+    width: 30%;
+    padding-left: 3px;
+    margin-left: 4px;
+}
+
+.o_kanban_view.o_kanban_dashboard.o_shopify_kanban .o_kanban_record{
+    min-height: auto;
+    width: 450px;
+}
+.cols{
+max-width: 33.33333333%;
+margin-top: 4px;
+margin-left:-61px;
+}
+
+.colfirst
+{
+margin-top: -4px;
+margin-bottom: -8px;
+ margin-left: -9px;
+}
+}
+
+

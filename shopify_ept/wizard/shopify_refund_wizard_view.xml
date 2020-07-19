@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_shopify_refund_wizard" model="ir.ui.view">
+			<field name="name">Refund In Shopify</field>
+			<field name="model">shopify.refund.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Shopify Shopify Order">
+					<group>
+						<group>
+							<field name="restock" invisible="1"/>
+							<field name="restock_type" />							
+						</group>
+						<group>
+							<field name="notify_by_email" />
+						</group>
+					</group>
+					<footer>
+						<button name="refund_in_shopify" string="Refund In Shopify"
+							type="object" class="oe_highlight" />
+						<button string="Close" class="oe_highlight" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+	</data>
+</odoo>

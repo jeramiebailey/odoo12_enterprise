@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="shopify_payout_report_wizard_view_ept" model="ir.ui.view">
+            <field name="name">Shopify Payout Report Wizard</field>
+            <field name="model">wizard.shopify.payout.report.ept</field>
+            <field name="arch" type="xml">
+                <form string="Payout Report List">
+                    <group>
+                        <group>
+                            <field name='instance_id' domain="[('state','=','confirmed')]"
+                                   options="{'no_create':True,'no_create_edit': True}"
+                                   required="1"/>
+                        </group>
+                        <group colspan="2">
+                            <label for="start_date" string="Date"/>
+                            <div>
+                                <field name="start_date" class="oe_inline" required="1"/>
+                                to
+                                <field name="end_date" class="oe_inline" required="1"/>
+                            </div>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="get_payout_report" string="Import Payout Reports" type="object"
+                                class="oe_highlight"/>
+                        <button string="Cancel" class="oe_highlight" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_shopify_payout_reports_ept" model="ir.actions.act_window">
+            <field name="name">Shopify Payout Report</field>
+            <field name="res_model">wizard.shopify.payout.report.ept</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_shopify_payout_report_wizard_ept" name="Shopify Payout Report"
+                  parent="shopify_ept.menu_shopify_processes_ept"
+                  action="action_wizard_shopify_payout_reports_ept" sequence="21"/>
+
+    </data>
+</odoo>

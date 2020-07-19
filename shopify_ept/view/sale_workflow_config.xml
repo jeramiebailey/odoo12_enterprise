@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- VIEW FOR THE OBJECT : sale_workflow_process -->
+        <record id="sale_workflow_process_view_form" model="ir.ui.view">
+            <field name="name">sale_automic_workflow.sale_workflow_process.view_form</field>
+            <field name="model">sale.auto.workflow.configuration</field>
+            <field eval="16" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="sale_workflow_process">
+					<group>
+	                    <group>
+	                    	<field name="auto_workflow_id" required="1"/>
+							<field name="payment_gateway_id" required="1" domain="[('shopify_instance_id','=',shopify_instance_id)]"/>
+							<field name="payment_term_id" required="1"/>
+	                    </group>
+	                    <group>
+							<field name="financial_status" required="1"/>
+							<field name="shopify_instance_id" required="1" options="{'no_create':True,'no_create_edit': True}" domain="[('state','=','confirmed')]"/>						
+	                    </group>
+					</group>
+                </form>
+            </field>
+        </record>
+		<record id="sale_workflow_search_view_ept" model="ir.ui.view">
+	            <field name="name">Sale Workflow Search View</field>
+	            <field name="model">sale.auto.workflow.configuration</field>
+				<field name="type">search</field>
+	            <field name="arch" type="xml">
+	                <search string="Sale Workflow">
+						<field name="financial_status"/>
+						<field name="payment_gateway_id"/>
+						<field name="shopify_instance_id" options="{'no_create':True,'no_create_edit': True}" domain="[('state','=','confirmed')]"/>
+					</search>
+				</field>
+		</record>
+
+        <record id="sale_workflow_process_view_tree" model="ir.ui.view">
+            <field name="name">sale_automic_workflow.sale_workflow_process.view_tree</field>
+            <field name="model">sale.auto.workflow.configuration</field>
+            <field eval="16" name="priority"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+               <tree string="sale_workflow_process" editable="top">
+					<field name="shopify_instance_id" options="{'no_create':True,'no_create_edit': True}" domain="[('state','=','confirmed')]"/>
+					<field name="payment_gateway_id" domain="[('shopify_instance_id','=',shopify_instance_id)]"/>	
+					<field name="payment_term_id"/>					
+	                <field name="auto_workflow_id" />
+					<field name="financial_status" />
+			</tree>
+            </field>
+        </record>
+     
+
+     <record id="act_sale_workflow_process_form" model="ir.actions.act_window">
+         <field name="name">Auto Workflow</field>
+         <field name="res_model">sale.workflow.process.ept</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+     </record>     
+
+     <menuitem id="shopify_instance_menu_item_sale_autoworkflow" name="Sale Auto Workflow"
+      parent="shopify_ept.menu_configuration_ept"
+      action="act_sale_workflow_process_form" sequence="3" groups="shopify_ept.group_shopify_manager_ept"/>
+      
+      <record id="act_sale_workflow_config_instance_form" model="ir.actions.act_window">
+         <field name="name">Financial Status</field>
+         <field name="res_model">sale.auto.workflow.configuration</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+         <field name="domain">[('shopify_instance_id','=',active_id)]</field>
+     </record>
+
+     <record id="act_sale_workflow_config_form" model="ir.actions.act_window">
+         <field name="name">Financial Status</field>
+         <field name="res_model">sale.auto.workflow.configuration</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+     </record>
+
+     <menuitem id="shopify_instance_menu_item_sale_autoworkflow_config" 
+      parent="shopify_ept.menu_configuration_ept"
+      action="act_sale_workflow_config_form" sequence="4" groups="shopify_ept.group_shopify_manager_ept"/>
+
+    </data>
+</odoo>

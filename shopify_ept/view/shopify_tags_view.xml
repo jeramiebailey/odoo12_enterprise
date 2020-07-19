@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="product_shopify_tags_form_view_ept" model="ir.ui.view">
+        <field name="name">Shopify Tags</field>
+        <field name="model">shopify.tags</field>
+        <field name="arch" type="xml">
+            <form string="Shopify Tags">
+                <sheet>
+					<group>
+	                    <group>
+	                        <field name="name"/>
+	                    </group>					
+						<group>
+	                        <field name="sequence"/>
+						</group>
+					</group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="product_shopify_tags_tree_view_ept" model="ir.ui.view">
+        <field name="name">Shopify Tags</field>
+        <field name="model">shopify.tags</field>
+        <field name="arch" type="xml">
+            <tree string="Product Product Categories" editable="top">
+                <field name="name"/>
+                <field name="sequence"/>
+            </tree>
+        </field>
+    </record>
+    <record id="shopify_product_tags_action_ept" model="ir.actions.act_window">
+        <field name="name">Product Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shopify.tags</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+	
+    <menuitem action="shopify_product_tags_action_ept" id="menu_product_shopify_tags" parent="shopify_ept.menu_item_parent_shopify_products_ept" sequence="10" />
+</data>
+</odoo>

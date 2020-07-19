@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">        
+    	<record model="import.shopify.order.status" id="shipped">
+	        <field name="name">Shipped</field>
+	        <field name="status">shipped</field>	        
+	    </record>
+	    <record model="import.shopify.order.status" id="partial">
+	        <field name="name">Partial</field>
+	        <field name="status">partial</field>	        
+	    </record>
+	    <record model="import.shopify.order.status" id="unshipped">
+	        <field name="name">Unshipped</field>
+	        <field name="status">unshipped</field>	        
+	    </record>
+	    <record model="import.shopify.order.status" id="any">
+	        <field name="name">Any</field>
+	        <field name="status">any</field>	        
+	    </record>
+	</data>
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>    
+        <record id="view_shopify_reorder_variants_wizard" model="ir.ui.view">
+            <field name="name">Shopify Reorder Variants</field>
+            <field name="model">shopify.variant.reorder.ept</field>
+            <field name="arch" type="xml">
+                <form string="Shopify Reorder Variants">
+    				<group string="Reordering Variants">
+						<field name="shopify_attribute_line_ids" nolabel="1">
+							<tree  editable="top" create="false" delete="false">
+								<field name="attribute_id" readonly="1"/>
+								<field name="value_id"  readonly="1"/>
+								<field name="sequence"  required="1" />
+							</tree>
+						</field>    				
+    				</group>
+                    <footer>                    
+                        <button name="reorder_variants" string="Reorder Variants" type="object" class="oe_highlight"/>
+                        <button string="Close" class="oe_highlight" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+	</data>
+</odoo>
