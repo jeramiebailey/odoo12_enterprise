@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_invoice_report_product_db_id"
+            model="ir.ui.view">
+        <field name="name">account.invoice.product_db_id</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="product_db_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='partner_id']" position="after">
+                <filter string="Product"
+                        name="product_id"
+                        context="{'group_by':'product_id'}"/>
+                <filter string="Item ID"
+                        name="product_db_id"
+                        context="{'group_by':'product_db_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
