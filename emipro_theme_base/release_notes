@@ -1,0 +1,146 @@
+Version 12.0.0.24 - 12 March 20
+===================================
+Note : Upgrade emipro_theme_base module and Update theme.
+
+1. Fixed - Wishlist updating issue for login user (changes in controller).
+
+Version 12.0.0.23 - 4 March 20
+===================================
+
+Improvement
+
+ - Improved translation from backend in product line field.
+
+Version 12.0.0.22 - 5 February 20
+===================================
+
+1. Added - Added some fields for footer related thing.
+
+Version 12.0.0.21 - 23 January 20
+===================================
+
+1. Added - Number of rows to show in product name selection.
+
+Version 12.0.0.20 - 08 October 19
+===================================
+
+1. Fixed - Brand filtration issue (changes in controller)
+
+
+Version 12.0.0.19 - 20 september 19
+===================================
+
+1. Added - Fields for Social icons in product page
+
+
+Version 12.0.0.18 - 8 july 19
+===================================
+
+1. Added - Field for view all in product slider
+
+Version 12.0.0.17 - 4 july 19
+===================================
+
+1. Fixed - Offer timer issue (changes in controller)
+
+Version 12.0.0.16 - 27 june 19
+===================================
+
+1. Added - backend option for activating price filter
+2. Changes - in ir.vi.view model
+
+Version 12.0.0.15 - 22 june 19
+===================================
+
+1. Modification - Product offer timer
+
+Version 12.0.0.14 - 14 june 19
+===================================
+
+1. Fixed -  View's inheritance issue when edited from frontend
+
+
+Version 12.0.0.13 - 16 may 19
+===================================
+
+1. Optimised -  Code
+
+Version 12.0.0.12 - 14 may 19
+===================================
+
+1. Added - Quick view
+
+Version 12.0.0.11 - 3 may 19
+===================================
+
+1. Added - Quick filter functionality in shop
+2. Added - Ajax loading on attribute change
+3. Removed - Quick view
+
+Version 12.0.0.10 - 20 april 19
+===================================
+
+1. Added - Pricefilter functionality in shop
+2. Removed - Unnecessary Brand field and model
+
+Version 12.0.0.9 - 8 April 19
+===================================
+
+1. Added - Product offer field in pricelist model
+
+
+Version 12.0.0.8 - 28 March 19
+===================================
+
+1. Fixed - brand issues related to backend view
+
+Version 12.0.0.7 - 25 March 19
+===================================
+
+1. Added - Vertical menu Functionality
+2. Added - Changes for reloding page when wishlist is empty
+
+
+Version 12.0.0.6 - 	23 February 19
+===================================
+
+1. Fixed - Attribute filter issue in shop, [modified] brand code in controller
+
+
+Version 12.0.0.5 - 	18 February 19
+===================================
+
+1. Added - Popular rule and Newest in sort by 
+
+
+Version 12.0.0.4 - 	11 February 19
+===================================
+
+1. Added - Brand attribute filter in shop
+
+
+Version 12.0.0.3 - 	30 January 19
+===================================
+
+1. Modified - structure of product slider
+
+
+Version 12.0.0.2 - 	17 January 19
+===================================
+
+1. Added -  Recently viewed Items.
+
+
+Version 12.0.0.1 - 	27 December 18
+===================================
+
+1. Initial release
+
+	- Dynamic Product Slider
+	- nth level Dynamic Mega Menu
+	- Breadcrumb
+	- Quick View
+	- Sale label in shop
+	- Category Carousel
+	- Expertise
+	- Custom Mega Menu

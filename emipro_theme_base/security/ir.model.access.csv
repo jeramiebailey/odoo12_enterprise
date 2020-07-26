@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_slider_public,slider.public,model_slider,,1,1,1,1
+access_website_expertise_public,website.expertise.public,model_website_expertise,,1,1,1,1
+access_product_label_public,product.label.public,model_product_label,,1,1,1,1
+access_filter_public,slider.filter.public,model_slider_filter,,1,1,1,1
+access_slider_styles_public,slider.styles.public,model_slider_styles,,1,1,1,1
+access_product_brand_ept_public,product.brand.ept.public,model_product_brand_ept,,1,1,1,1
+access_product_rule_public,product.rule.public,model_product_rule,,1,1,1,1
