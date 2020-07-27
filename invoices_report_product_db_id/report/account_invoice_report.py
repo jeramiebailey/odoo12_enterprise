@@ -19,12 +19,12 @@ class AccountInvoiceReport(models.Model):
     def _sub_select(self):
         res = super()._sub_select()
         res += """
-             ,pt.id as product_db_id
+             ,pr.id as product_db_id
              """
         return res
 
     def _group_by(self):
         res = super()._group_by()
-        res += ",pt.id"
+        res += ",pr.id"
         return res
 
