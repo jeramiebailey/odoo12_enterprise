@@ -11,7 +11,6 @@ class AccountInvoiceInhr(models.Model):
     def defualt_comment(self):
         for item in self:
             item.comment = self.env.user.company_id.sale_note
-        return True
 
 
 AccountInvoiceInhr()
