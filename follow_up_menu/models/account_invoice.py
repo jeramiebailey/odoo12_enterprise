@@ -12,6 +12,5 @@ class AccountInvoice(models.Model):
     def action_invoice_paid(self):
         res = super(AccountInvoice, self).action_invoice_paid()
         for invoice in self:
-            print("Falssssssssssssssssssss",invoice.assign_to_ids)
             invoice.assign_to_ids = False
         return res
