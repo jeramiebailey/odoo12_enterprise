@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_invoice_tree1_dup" model="ir.actions.act_window">
+        <field name="name">Open Invoices</field>
+        <field name="res_model">account.invoice</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field eval="False" name="view_id"/>
+        <field name="domain">[('type','=','out_invoice'),('state','in',['open','in_payment'])]</field>
+        <field name="context">{'type':'out_invoice', 'journal_type':
+            'sale','follow_up_boolean':1,"search_default_follow_up_boolean":1}
+        </field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a customer invoice
+            </p>
+            <p>
+                Create invoices, register payments and keep track of the discussions with your customers.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_invoice_tree1_view1_dup" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="account.invoice_tree_with_onboarding"/>
+        <field name="act_window_id" ref="action_invoice_tree1_dup"/>
+    </record>
+
+    <record id="action_invoice_tree1_view2_dup" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account.invoice_form"/>
+        <field name="act_window_id" ref="action_invoice_tree1_dup"/>
+    </record>
+    <menuitem id="menu_action_invoice_tree1_dup_follow_up" name="Follow Up"
+              groups="group_follow_up_user,group_follow_up_manager"/>
+
+    <menuitem action="action_invoice_tree1_dup" id="menu_action_invoice_tree1_dup"
+              parent="menu_action_invoice_tree1_dup_follow_up" sequence="1"/>
+
+    <record id="invoice_form_assign_to" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="groups_id" eval="[(4, ref('group_follow_up_user')),(4, ref('group_follow_up_manager'))]"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="follow_up_boolean" invisible="1"/>
+                <field name="assign_to_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+    <record id="invoice_form_follow_user_access_right" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="groups_id" eval="[(4, ref('group_follow_up_user'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="create">0</attribute>
+                <attribute name="duplicate">0</attribute>
+                <attribute name="delete">0</attribute>
+                <attribute name="edit">0</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="invoice_tree_follow_user_access_right" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="groups_id" eval="[(4, ref('group_follow_up_user'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">0</attribute>
+                <attribute name="duplicate">0</attribute>
+                <attribute name="delete">0</attribute>
+                <attribute name="edit">0</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="invoice_form_follow_user_access_right_manager" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="groups_id" eval="[(4, ref('group_follow_up_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="create">1</attribute>
+                <attribute name="duplicate">1</attribute>
+                <attribute name="delete">1</attribute>
+                <attribute name="edit">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="invoice_tree_follow_user_access_right_manager" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="groups_id" eval="[(4, ref('group_follow_up_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">1</attribute>
+                <attribute name="duplicate">1</attribute>
+                <attribute name="delete">1</attribute>
+                <attribute name="edit">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
