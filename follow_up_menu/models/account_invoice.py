@@ -8,9 +8,9 @@ class AccountInvoice(models.Model):
     follow_up_boolean=fields.Boolean()
     assign_to_ids = fields.Many2many('res.users',string="Assign To")
 
-    @api.multi
-    def action_invoice_paid(self):
-        res = super(AccountInvoice, self).action_invoice_paid()
-        for invoice in self:
-            invoice.assign_to_ids = False
-        return res
+    # @api.multi
+    # def action_invoice_paid(self):
+    #     res = super(AccountInvoice, self).action_invoice_paid()
+    #     for invoice in self:
+    #         invoice.assign_to_ids = False
+    #     return res

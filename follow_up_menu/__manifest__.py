@@ -14,6 +14,7 @@
     ],
     "data": [
         'security/security.xml',
+        'security/ir.model.access.csv',
         'security/record_rule.xml',
         'views/account_invoice_views.xml',
         'views/assign_to_wizard.xml',

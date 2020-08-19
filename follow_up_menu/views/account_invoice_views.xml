@@ -67,7 +67,7 @@
         </field>
     </record>
     <record id="invoice_tree_follow_user_access_right" model="ir.ui.view">
-        <field name="name">account.invoice.form</field>
+        <field name="name">account.invoice.tree</field>
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_tree"/>
         <field name="groups_id" eval="[(4, ref('group_follow_up_user'))]"/>

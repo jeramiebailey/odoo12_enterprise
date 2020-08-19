@@ -7,11 +7,11 @@
 	        <field name="domain_force">[('assign_to_ids','in', [user.id])]</field>
 	         <field name="groups" eval="[(4, ref('follow_up_menu.group_follow_up_user'))]"/>
 	    </record>
-		<record id="customer_invoice_restrict_assign_to_manager" model="ir.rule">
-	        <field name="name">Manager View Assigned To</field>
-	        <field name="model_id" ref="account.model_account_invoice"/>
-	        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
-	         <field name="groups" eval="[(4, ref('follow_up_menu.group_follow_up_manager'))]"/>
-	    </record>
+		<!--<record id="customer_invoice_restrict_assign_to_manager" model="ir.rule">-->
+	        <!--<field name="name">Manager View Assigned To</field>-->
+	        <!--<field name="model_id" ref="account.model_account_invoice"/>-->
+	        <!--<field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>-->
+	         <!--<field name="groups" eval="[(4, ref('follow_up_menu.group_follow_up_manager'))]"/>-->
+	    <!--</record>-->
 	</data>
 </odoo>

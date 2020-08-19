@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_assign,account_user_assign,model_user_assign,follow_up_menu.group_follow_up_user,0,0,0,0
+access_user_assign,account_user_assign,model_user_assign,follow_up_menu.group_follow_up_manager,1,1,1,1

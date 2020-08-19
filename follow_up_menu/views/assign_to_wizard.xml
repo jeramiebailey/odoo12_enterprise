@@ -7,7 +7,7 @@
                 res_model="user.assign"
                 view_type="form" view_mode="form"
                 key2="client_action_multi" target="new"
-                groups="group_follow_up_user,group_follow_up_manager"/>
+                groups="group_follow_up_manager"/>
 
     <!-- wizard view -->
     <record id="wizard_view_assign_to" model="ir.ui.view">
