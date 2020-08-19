@@ -8,6 +8,19 @@ import odoo.addons.decimal_precision as dp
 from odoo.exceptions import UserError
 
 
+class saleorderline(models.Model):
+    _inherit = 'sale.order.line'
+    po_id = fields.Many2one('purchase.order', string='purchase order')
+
+    po_state= state = fields.Selection([
+        ('draft', 'RFQ'),
+        ('sent', 'RFQ Sent'),
+        ('to approve', 'To Approve'),
+        ('purchase', 'Purchase Order'),
+        ('done', 'Locked'),
+        ('cancel', 'Cancelled')
+    ], string='PO Status', related='po_id.state')
+
 class saleorder(models.Model):
     _inherit = 'sale.order'
 
@@ -96,5 +109,18 @@ class saleorder(models.Model):
             }
             # print('val',val)
             p=self.env['purchase.order'].create(val)
-
             print('p',p)
+
+            for each_p in p.order_line:
+                for each_s in self.order_line:
+                    if each_p.product_id==each_s.product_id:
+                        each_s.po_id=p
+
+    def action_cancel(self):
+        res = super(saleorder, self).action_cancel()
+        for each in self:
+            for each_s in each.order_line:
+                if  each_s.po_id:
+                    each_s.po_id.button_cancel()
+        return res
+

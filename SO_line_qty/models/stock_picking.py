@@ -19,6 +19,7 @@ class SaleOrderLine(models.Model):
 
     product_qty_onhand = fields.Float(related="product_id.qty_available", string='Onhand Quantity')
 
+
     # @api.multi
     # @api.depends('product_id')
     # def _compute_qty_available(self):
