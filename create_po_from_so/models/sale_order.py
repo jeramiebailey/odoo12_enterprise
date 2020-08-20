@@ -12,7 +12,7 @@ class saleorderline(models.Model):
     _inherit = 'sale.order.line'
     po_id = fields.Many2one('purchase.order', string='purchase order')
 
-    po_state= state = fields.Selection([
+    po_state = fields.Selection([
         ('draft', 'RFQ'),
         ('sent', 'RFQ Sent'),
         ('to approve', 'To Approve'),

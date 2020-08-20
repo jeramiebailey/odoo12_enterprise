@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <odoo>
-<data>
+    <data>
 
-<!-- FORM VIEW  -->
+        <!-- FORM VIEW  -->
 
         <record id="sale_order_view" model="ir.ui.view">
             <field name="name">sale.order.form</field>
@@ -10,18 +10,17 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <header>
-                        <button name='action_create_purchase_order' string="Create Purchase Order" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
+                    <button name='action_create_purchase_order' string="Create Purchase Order" type="object"
+                            class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
                 </header>
 
                 <xpath expr="//page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
                     <!-- below fields are used in the widget qty_at_date_widget -->
                     <field name="po_id" readonly="1"/>
                     <field name="po_state" readony="1"/>
-
                 </xpath>
-
             </field>
         </record>
-</data>
+    </data>
 </odoo>
 
