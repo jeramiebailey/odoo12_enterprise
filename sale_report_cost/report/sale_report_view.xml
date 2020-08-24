@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_report_view_pivot_cost" model="ir.ui.view">
+        <field name="name">sale.pivot.cost</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id"
+               ref="sale_enterprise.sale_report_view_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_total']" position="before">
+                <field name="price_cost" type="measure"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
