@@ -3,33 +3,24 @@
     <data>
         <template id="report_productbarcode_inh" inherit_id="product.report_productbarcode">
             <xpath expr="//div[@class='page']" position="replace">
-                <t t-foreach="docs" t-as="product">
-                    <div class="page">
-                        <div align="center">
-                            <table class="table table-condensed"
-                                   style="border-bottom: 0px solid white !important;width:11in;">
+                <div class="page">
+                    <t t-foreach="docs" t-as="product">
+                        <div style="width: 32%; display: inline-table; height: 10rem;">
+                            <table class="table table-bordered mb-0" style="border: 2px solid black;">
 
-                                <tr t-if="product.default_code">
-                                    <th style="text-align: center;">
-                                        <strong style="font-size: 80px;" t-field="product.default_code"/>
-                                    </th>
-                                </tr>
                                 <tr>
-                                    <th style="text-align: center;">
-                                        <strong style="font-size: 80px;">Price:</strong>
-                                        <strong style="font-size: 80px;" t-field="product.list_price"
+                                    <th class="table-active text-left" style="height: 4rem;">
+                                        <strong t-if="product.default_code" style="font-size: 30px;"
+                                                t-field="product.default_code"/>
+                                        <br/>
+                                        <strong style="font-size: 30px;">Price:</strong>
+                                        <strong style="font-size: 30px;" t-field="product.list_price"
                                                 t-options="{'widget': 'monetary', 'display_currency': product.company_id.currency_id}"/>
                                     </th>
                                 </tr>
-                            </table>
-                        </div>
-
-                        <div align="center">
-                            <table style="border-bottom: 0px solid white !important;width:4in;">
-
-                                <t align="center" t-if="product.barcode">
-                                    <tr>
-                                        <td style="text-align: center; vertical-align: top;" align="center">
+                                <tr>
+                                    <td class="text-center align-middle" style="height: 6rem;">
+                                        <t t-if="product.barcode">
                                             <img alt="Barcode" t-if="len(product.barcode) == 13"
                                                  t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product.barcode, 800, 200)"
                                                  style="width:9cm;height:4.5cm;"/>
@@ -40,46 +31,41 @@
                                                  t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 800, 200)"
                                                  style="width:9cm;height:4.5cm;"/>
                                             <span t-field="product.barcode"/>
-                                        </td>
-                                    </tr>
-                                </t>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="text-muted">No barcode available</span>
+                                        </t>
+                                    </td>
+                                </tr>
+
                             </table>
-                            <p style="page-break-after: always;"/>
                         </div>
-                    </div>
-                </t>
+                        <!--<p style="page-break-after: always;"/>-->
+                    </t>
+                </div>
             </xpath>
         </template>
         <template id="report_producttemplatebarcode_inh" inherit_id="product.report_producttemplatebarcode">
             <xpath expr="//div[@class='page']" position="replace">
-                <t t-foreach="docs" t-as="template">
-                    <div class="page">
+                <div class="page">
+                    <t t-foreach="docs" t-as="template">
                         <t t-foreach="template.product_variant_ids" t-as="product">
-                            <div align="center">
-                                <table class="table table-condensed"
-                                       style="border-bottom: 0px solid white !important;width:11in;">
+                            <div style="width: 32%; display: inline-table; height: 10rem;">
+                                <table class="table table-bordered mb-0" style="border: 2px solid black;">
 
-                                    <tr t-if="product.default_code">
-                                        <th style="text-align: center;">
-                                            <strong style="font-size: 80px;" t-field="product.default_code"/>
-                                        </th>
-                                    </tr>
                                     <tr>
-                                        <th style="text-align: center;">
-                                            <strong style="font-size: 80px;">Price:</strong>
-                                            <strong style="font-size: 80px;" t-field="product.list_price"
+                                        <th class="table-active text-left" style="height: 4rem;">
+                                            <strong t-if="product.default_code" style="font-size: 30px;"
+                                                    t-field="product.default_code"/>
+                                            <br/>
+                                            <strong style="font-size: 30px;">Price:</strong>
+                                            <strong style="font-size: 30px;" t-field="product.list_price"
                                                     t-options="{'widget': 'monetary', 'display_currency': product.company_id.currency_id}"/>
                                         </th>
                                     </tr>
-                                </table>
-                            </div>
-
-                            <div align="center">
-                                <table style="border-bottom: 0px solid white !important;width:4in;">
-
-                                    <t align="center" t-if="product.barcode">
-                                        <tr>
-                                            <td style="text-align: center; vertical-align: top;" align="center">
+                                    <tr>
+                                        <td class="text-center align-middle" style="height: 6rem;">
+                                            <t t-if="product.barcode">
                                                 <img alt="Barcode" t-if="len(product.barcode) == 13"
                                                      t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product.barcode, 800, 200)"
                                                      style="width:9cm;height:4.5cm;"/>
@@ -90,15 +76,19 @@
                                                      t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 800, 200)"
                                                      style="width:9cm;height:4.5cm;"/>
                                                 <span t-field="product.barcode"/>
-                                            </td>
-                                        </tr>
-                                    </t>
+                                            </t>
+                                            <t t-else="">
+                                                <span class="text-muted">No barcode available</span>
+                                            </t>
+                                        </td>
+                                    </tr>
+
                                 </table>
-                                <p style="page-break-after: always;"/>
                             </div>
+                            <!--<p style="page-break-after: always;"/>-->
                         </t>
-                    </div>
-                </t>
+                    </t>
+                </div>
             </xpath>
         </template>
 
@@ -106,16 +96,21 @@
             <xpath expr="//div/table/tr[3]" position="replace">
                 <tr>
                     <td style="text-align: center; vertical-align: middle;" class="col-5">
-                        <img alt="Barcode" t-if="len(product.barcode) == 13"
-                             t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product.barcode, 600, 150)"
-                             style="width:9.1cm;height:3.2cm;"/>
-                        <img alt="Barcode" t-elif="len(product.barcode) == 8"
-                             t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', product.barcode, 600, 150)"
-                             style="width:9.1cm;height:3.2cm;"/>
-                        <img alt="Barcode" t-else=""
-                             t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 600, 150)"
-                             style="width:9.1cm;height:3.2cm;"/>
-                        <span t-field="product.barcode"/>
+                        <t t-if="product.barcode">
+                            <img alt="Barcode" t-if="len(product.barcode) == 13"
+                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product.barcode, 600, 150)"
+                                 style="width:9.1cm;height:3.2cm;"/>
+                            <img alt="Barcode" t-elif="len(product.barcode) == 8"
+                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', product.barcode, 600, 150)"
+                                 style="width:9.1cm;height:3.2cm;"/>
+                            <img alt="Barcode" t-else=""
+                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 600, 150)"
+                                 style="width:9.1cm;height:3.2cm;"/>
+                            <span t-field="product.barcode"/>
+                        </t>
+                        <t t-else="">
+                            <span class="text-muted">No barcode available</span>
+                        </t>
                     </td>
                 </tr>
             </xpath>
