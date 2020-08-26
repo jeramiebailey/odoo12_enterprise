@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_margin_form_i" model="ir.ui.view">
+        <field name="name">product.margin.form.inherit.i</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product_margin.view_product_margin_form"/>
+        <field name="arch" type="xml">
+            <field name="expected_margin_rate" position="after">
+                <field name="partner_id"/>
+                <field name="invoice_number"/>
+                <field name="city"/>
+
+            </field>
+        </field>
+    </record>
+    <record id="view_product_margin_tree_i" model="ir.ui.view">
+        <field name="name">product.margin.tree.in</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product_margin.view_product_margin_tree"/>
+        <field name="arch" type="xml">
+            <field name="default_code" position="after">
+                <field name="partner_id"/>
+                <field name="invoice_number"/>
+                <field name="city"/>
+
+            </field>
+        </field>
+    </record>
+
+
+     <record id="product_search_form_view_in" model="ir.ui.view">
+            <field name="name">product.search.i.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <field name="pricelist_id" position="before">
+                         <group  expand='0' string='Group by...'>
+                        <filter string='Customer' name="partner_id" domain="[]" context="{'group_by' : 'partner_id'}"/>
+                        <filter string='City' name="city" domain="[]" context="{'group_by' : 'city'}"/>
+                                                     <filter string='Invoice' name="invoice_number" domain="[]" context="{'group_by' : 'invoice_number'}"/>
+
+                    </group>
+
+                </field>
+            </field>
+        </record>
+
+
+
+    <!--<menuitem action="product_margin_act_window" id="menu_action_product_margin" name="Product Margins" sequence="20"-->
+              <!--parent="account.account_reports_management_menu"/>-->
+
+</odoo>
