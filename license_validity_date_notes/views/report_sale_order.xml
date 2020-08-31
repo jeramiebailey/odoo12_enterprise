@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_inherit_license_validity_date_notes"
+              inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="after">
+            <t t-if="doc.license_validity_date_notes and doc.check_license_validity_date_notes == True">
+                <h6>
+                    <!--<strong class="ml16">License Validity Date Notes:</strong>-->
+                    <span t-field="doc.license_validity_date_notes" style="background-color:#FF4500;"/>
+                </h6>
+            </t>
+            <t t-if="doc.license_validity_date_notes and doc.check_license_validity_date_notes == False">
+                <h6>
+                    <!--<strong class="ml16">License Validity Date Notes:</strong>-->
+                    <span t-field="doc.license_validity_date_notes" style="background-color:lightblue;"/>
+                </h6>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_view_order_form_license_validity_date_notes" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="check_license_validity_date_notes" invisible="1"/>
+                <field name="license_validity_date_notes" force_save="1" attrs="{'invisible': [('check_license_validity_date_notes','=', False)]}" style="background-color:#FF4500;"/>
+                <field name="license_validity_date_notes" force_save="1" attrs="{'invisible': [('check_license_validity_date_notes','=', True)]}" style="background-color:lightblue;"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
