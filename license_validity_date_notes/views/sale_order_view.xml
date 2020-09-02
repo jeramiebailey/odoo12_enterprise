@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <field name="payment_term_id" position="after">
                     <field name="check_license_validity_date_notes" invisible="1"/>
-                <field name="license_validity_date_notes" force_save="1" attrs="{'invisible': [('check_license_validity_date_notes','=', False)]}" style="background-color:#FF4500;"/>
+                <field name="license_validity_date_notes" force_save="1" attrs="{'invisible': [('check_license_validity_date_notes','=', False)]}"/>
                 <field name="license_validity_date_notes" force_save="1" attrs="{'invisible': [('check_license_validity_date_notes','=', True)]}" style="background-color:lightblue;"/>
                 </field>
             </field>

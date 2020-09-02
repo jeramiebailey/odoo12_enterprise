@@ -6,7 +6,7 @@
             <t t-if="doc.license_validity_date_notes and doc.check_license_validity_date_notes == True">
                 <h6>
                     <!--<strong class="ml16">License Validity Date Notes:</strong>-->
-                    <span t-field="doc.license_validity_date_notes" style="background-color:#FF4500;"/>
+                    <span t-field="doc.license_validity_date_notes"/>
                 </h6>
             </t>
             <t t-if="doc.license_validity_date_notes and doc.check_license_validity_date_notes == False">
