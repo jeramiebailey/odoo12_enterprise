@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+<record id="paper_format_barcode_custom_landscape" model="report.paperformat">
+			<field name="name">low margin</field>
+			<field name="default" eval="True"/>
+			<field name="format">A4</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">21</field>
+			<field name="margin_bottom">19</field>
+			<field name="margin_left">0</field>
+			<field name="margin_right">0</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">0</field>
+			<field name="dpi">0</field>
+		</record>
+
+		<report
+				string="Product Label"
+				id="action_bi_print_barcode"
+				model="bi.product.label.wizard"
+				report_type="qweb-pdf"
+				menu="False"
+				name="panorama_dynamic_product_label.report_print_barcode"
+				file="panorama_dynamic_product_label.report_print_barcode"
+				paperformat="panorama_dynamic_product_label.paper_format_barcode_custom_landscape"
+		/>
+		<report
+				string="Template Label"
+				id="action_bi_print_barcode_template"
+				model="bi.template.label.wizard"
+				report_type="qweb-pdf"
+				menu="False"
+				name="panorama_dynamic_product_label.report_print_barcode_template"
+				file="panorama_dynamic_product_label.report_print_barcode_template"
+				paperformat="panorama_dynamic_product_label.paper_format_barcode_custom_landscape"
+		/>
+
+	</data>
+</odoo>

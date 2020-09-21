@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_panorama_dynamic_product_label_setting_line,access.dynamic.product.label.setting.line,model_dynamic_product_label_setting_line,group_bi_access_barcode_label,1,1,1,1
+access_panorama_dynamic_product_label_setting,access.dynamic.product.label.setting,model_dynamic_product_label_setting,group_bi_access_barcode_label,1,1,1,1
+access_dynamic_template_label_setting,access.dynamic.template.label.setting,model_dynamic_template_label_setting_line,group_bi_access_barcode_label,1,1,1,1
+access_report_paperformat,access.report.paperformat,base.model_report_paperformat,group_bi_access_barcode_label,1,1,1,1
