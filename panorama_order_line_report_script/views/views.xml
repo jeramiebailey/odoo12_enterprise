@@ -1,0 +1,27 @@
+<odoo>
+  <data>
+    <record id="action_server_sale_order_line_report" model="ir.actions.server">
+      <field name="name">Create Order Line Rec.</field>
+      <field name="type">ir.actions.server</field>
+      <field name="model_id" ref="sale.model_sale_order_line"/>
+      <field name="binding_model_id" ref="sale.model_sale_order_line"/>
+      <field name="state">code</field>
+      <field name="code">
+        if records:
+        records.create_report_line()
+      </field>
+    </record>
+
+    <record id="action_server_purchase_order_line_report" model="ir.actions.server">
+      <field name="name">Create Order Line Rec.</field>
+      <field name="type">ir.actions.server</field>
+      <field name="model_id" ref="purchase.model_purchase_order_line"/>
+      <field name="binding_model_id" ref="purchase.model_purchase_order_line"/>
+      <field name="state">code</field>
+      <field name="code">
+        if records:
+        records.create_report_line()
+      </field>
+    </record>
+  </data>
+</odoo>

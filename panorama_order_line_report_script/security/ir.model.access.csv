@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_panorama_order_line_report_script_panorama_order_line_report_script,panorama_order_line_report_script.panorama_order_line_report_script,model_panorama_order_line_report_script_panorama_order_line_report_script,,1,0,0,0

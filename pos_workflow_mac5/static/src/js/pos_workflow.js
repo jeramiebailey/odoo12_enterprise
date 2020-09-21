@@ -5,6 +5,7 @@ var core = require('web.core');
 var models = require('point_of_sale.models');
 var rpc = require('web.rpc');
 var workflow_base = require('pos_workflow_base.pos_workflow_base');
+var ServicesMixin = require('web.ServicesMixin')
 
 var _t = core._t;
 
@@ -50,8 +51,23 @@ workflow_base.POSWorkflowPopup.include({
                            if (order) {
                                order.sale_order_name = sale_order.name;
                            }
+                           console.log('jjjjj');
+                           if (sale_order.invoice){
+                               console.log(sale_order.invoice.id);     // morad
+                               url = window.location.origin + "/web#id=" + sale_order.invoice.id + "&view_type=form&model=account.invoice";
+                           }
                            self.gui.show_screen('receipt');
                            newWindow.location = url;
+//                           console.log(sale_order.invoice.id);
+//                           var invoice_id = sale_order.invoice.id;
+//                           rpc.query({model: 'sale.order', method: 'print_invoice', args: [invoice_id,invoice_id]})
+//                           .then(function(result){
+//
+//                           })
+
+
+
+
                        }
                     },
                     )
