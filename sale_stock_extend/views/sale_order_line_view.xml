@@ -11,7 +11,7 @@
                 <field name="missing_qty"
                        attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"/>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
                 <field name="product_brand_id" readonly="1"/>
                 <field name="customer_city" readonly="1"/>
                 <field name="customer_state_id" readonly="1"/>
