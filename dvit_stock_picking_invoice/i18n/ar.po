@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dvit_stock_picking_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-27 11:52+0000\n"
+"PO-Revision-Date: 2017-10-27 14:08+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: ar_EG\n"
+"X-Generator: Poedit 2.0.3\n"
+
+#. module: dvit_stock_picking_invoice
+#: model:ir.model.fields,field_description:dvit_stock_picking_invoice.field_stock_picking_invoice_id
+msgid "Account Invoice"
+msgstr "فاتورة حساب"
+
+#. module: dvit_stock_picking_invoice
+#: model:ir.ui.view,arch_db:dvit_stock_picking_invoice.stock_picking_form_new
+msgid "Create invoice"
+msgstr "إنشاء الفاتورة"
+
+#. module: dvit_stock_picking_invoice
+#: model:ir.model,name:dvit_stock_picking_invoice.model_account_invoice
+msgid "Invoice"
+msgstr "فاتورة"
+
+#. module: dvit_stock_picking_invoice
+#: model:ir.model.fields,field_description:dvit_stock_picking_invoice.field_stock_picking_invoice_state
+msgid "Invoice Control"
+msgstr "التحكم في الفاتورة"
+
+#. module: dvit_stock_picking_invoice
+#: selection:stock.picking,invoice_state:0
+msgid "Invoiced"
+msgstr "مفوتر"
+
+#. module: dvit_stock_picking_invoice
+#: selection:stock.picking,invoice_state:0
+msgid "Not Applicable"
+msgstr "غير ممكن"
+
+#. module: dvit_stock_picking_invoice
+#: model:ir.model.fields,field_description:dvit_stock_picking_invoice.field_account_invoice_picking_id
+msgid "Picking invoice"
+msgstr "فاتورة الحركة"
+
+#. module: dvit_stock_picking_invoice
+#: selection:stock.picking,invoice_state:0
+msgid "To Be Invoiced"
+msgstr "للفوترة"
+
+#. module: dvit_stock_picking_invoice
+#: model:ir.model,name:dvit_stock_picking_invoice.model_stock_picking
+msgid "Transfer"
+msgstr "نقل"
+
+#. module: dvit_stock_picking_invoice
+#: code:addons/dvit_stock_picking_invoice/models.py:149
+#, python-format
+msgid "You cannot delete an invoice after it has been validated (and received a number). You can set it back to \"Draft\" state and modify its content, then re-confirm it."
+msgstr "You cannot delete an invoice after it has been validated (and received a number). You can set it back to \"Draft\" state and modify its content, then re-confirm it."
+
+#. module: dvit_stock_picking_invoice
+#: code:addons/dvit_stock_picking_invoice/models.py:147
+#, python-format
+msgid "You cannot delete an invoice which is not draft or cancelled. You should refund it instead."
+msgstr "You cannot delete an invoice which is not draft or cancelled. You should refund it instead."
