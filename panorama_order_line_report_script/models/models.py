@@ -18,7 +18,9 @@ class SaleOrderLine(models.Model):
                 'ref_order': rec.order_id.name,
                 'qty_delivered': rec.qty_delivered,
                 'missing_qty': rec.missing_qty,
-                'qty_invoiced': rec.qty_invoiced
+                'qty_invoiced': rec.qty_invoiced,
+                'price_subtotal': rec.price_subtotal,
+                'date_order': rec.order_id.confirmation_date
             })
 
 
@@ -37,5 +39,7 @@ class PurchaseOrderLine(models.Model):
                 'ref_order': rec.order_id.name,
                 'received_qty': rec.qty_received,
                 'billed_qty': rec.qty_invoiced,
+                'price_subtotal': rec.price_subtotal,
+                'date_order': rec.order_id.date_order
 
             })

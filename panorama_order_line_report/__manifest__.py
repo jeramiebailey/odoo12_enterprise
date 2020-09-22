@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Panorama Order Line Report",
-    'depends': ['base', 'sale'],
+    'depends': ['base', 'sale', 'purchase'],
 
     # always loaded
     'data': [

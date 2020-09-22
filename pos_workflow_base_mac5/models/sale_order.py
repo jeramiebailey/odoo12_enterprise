@@ -102,3 +102,10 @@ class SaleOrder(models.Model):
             order=self.search([('order_uid_save','=',pos_order_values['uid_save'])],limit=1)
             invoice=order.invoice_ids.read()[0]
         return {'id': order.id, 'name': order.name, 'invoice': invoice}
+
+    def print_invoice(self, invoice_id):
+        print(invoice_id, self)
+        invoice = self.env['account.invoice'].browse(invoice_id)
+        print(invoice)
+        action = invoice.env.ref('account.account_invoices').report_action(self)
+        return action

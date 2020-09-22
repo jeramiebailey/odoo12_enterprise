@@ -57,12 +57,12 @@ workflow_base.POSWorkflowPopup.include({
                                url = window.location.origin + "/web#id=" + sale_order.invoice.id + "&view_type=form&model=account.invoice";
                            }
                            self.gui.show_screen('receipt');
-                           newWindow.location = url;
+                           newWindow.location = url;   //morad
 //                           console.log(sale_order.invoice.id);
 //                           var invoice_id = sale_order.invoice.id;
 //                           rpc.query({model: 'sale.order', method: 'print_invoice', args: [invoice_id,invoice_id]})
 //                           .then(function(result){
-//
+//                                return self.do_action(result);
 //                           })
 
 

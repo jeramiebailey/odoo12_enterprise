@@ -10,24 +10,28 @@ class SalePurchaseOrderLine(models.Model):
     sale_order_line_id = fields.Many2one('sale.order.line')
     purchase_order_line_id = fields.Many2one('purchase.order.line')
     product_id = fields.Many2one(comodel_name="product.product", string="Product")
-    product_uom_qty = fields.Float(string="Ordered Qty")
-    qty_delivered = fields.Float(string="Delivered Qty")
-    missing_qty = fields.Float(string="Missing Qty")
-    qty_invoiced = fields.Float(string="Invoiced Qty")
-    price_unit = fields.Float(string="Unit Price")
+    product_uom_qty = fields.Float(string="Ordered Qty", store=True, default=0.0)
+    qty_delivered = fields.Float(string="Delivered Qty", store=True, default=0.0)
+    missing_qty = fields.Float(string="Missing Qty", store=True, default=0.0)
+    qty_invoiced = fields.Float(string="Invoiced Qty", store=True, default=0.0)
+    price_unit = fields.Float(string="Unit Price", store=False)
+    product_qty = fields.Float(string="Qty", store=True, default=0.0)
 
+    @api.multi
     @api.depends('price_unit', 'product_uom_qty', 'product_qty')
     def get_price_subtotal(self):
+        print('hi')
         for rec in self:
-            if rec.product_uom_qty:
+            if rec.product_uom_qty != 0:
                 rec.price_subtotal = rec.price_unit * rec.product_uom_qty
-            elif rec.product_qty:
+            elif rec.product_qty != 0:
                 rec.price_subtotal = rec.price_unit * rec.product_qty
 
-    price_subtotal = fields.Float(string="Subtotal", compute='get_price_subtotal')
-    product_qty = fields.Float(string="Qty")
-    received_qty = fields.Float(string="Received Qty")
-    billed_qty = fields.Float(string="Billed Qty")
+    price_subtotal = fields.Float(string="Subtotal", compute='get_price_subtotal', store=True)
+
+    received_qty = fields.Float(string="Received Qty", store=True, default=0.0)
+    billed_qty = fields.Float(string="Billed Qty", store=True, default=0.0)
+    date_order = fields.Datetime(string="Date", required=False, )
 
 
 class SaleOrderLine(models.Model):
@@ -68,7 +72,8 @@ class SaleOrder(models.Model):
                 'price_unit': line.price_unit,
                 'qty_delivered': line.qty_delivered,
                 'missing_qty': line.missing_qty,
-                'qty_invoiced': line.qty_invoiced
+                'qty_invoiced': line.qty_invoiced,
+                'date_order': line.order_id.confirmation_date,
             })
 
 
@@ -117,6 +122,7 @@ class PurchaseOrder(models.Model):
                 'price_unit': line.price_unit,
                 'received_qty': line.qty_received,
                 'billed_qty': line.qty_invoiced,
+                'date_order': line.order_id.date_order
             })
 
 
