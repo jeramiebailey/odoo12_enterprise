@@ -7,10 +7,8 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     missing_qty = fields.Float(string='Missing Qty', compute='_get_missing_qty',store=True)
-    customer_city = fields.Char(related='order_id.partner_id.city')
-    customer_state_id = fields.Many2one(comodel_name='res.country.state', store=True,
-                                        related='order_id.partner_id.state_id')
-    product_brand_id = fields.Many2one(comodel_name='product.brand', store=True, string='Product Branch',
+
+    product_brand_id = fields.Many2one(comodel_name='product.brand', store=True, string='Product Brand',
                                        related='product_id.product_tmpl_id.product_brand_id')
     tag_customer_ids = fields.Many2many(comodel_name='res.partner.category', relation='partner_categ_sale_line',
                                         column1='sale_line', column2='partner_id',
@@ -22,4 +20,16 @@ class SaleOrderLine(models.Model):
             rec.missing_qty = rec.product_uom_qty - rec.qty_delivered
 
 
-SaleOrderLine()
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    customer_city = fields.Char(related='partner_id.city')
+    customer_state_id = fields.Many2one(comodel_name='res.country.state', store=True,
+                                        related='partner_id.state_id')
+    tag_customer_ids = fields.Many2many(comodel_name='res.partner.category', relation='partner_categ_sale_order',
+                                        column1='sale_order', column2='partner_id',
+                                        related='partner_id.category_id', store=True)
+
+
+
+

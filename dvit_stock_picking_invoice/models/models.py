@@ -5,11 +5,9 @@ from odoo.exceptions import UserError, RedirectWarning, ValidationError
 
 
 class Picking(models.Model):
-    _inherit='stock.picking'
+    _inherit = 'stock.picking'
     invoice_state = fields.Selection(string="Invoice Control",
-        selection=[('invoiced', 'Invoiced'),
-        ('2binvoiced', 'To Be Invoiced'),
-        ('none', 'Not Applicable'), ],  default='none')
+        selection=[('2binvoiced', 'To Be Invoiced')],  default='none')
     invoice_id = fields.Many2one('account.invoice', string="Account Invoice",readonly=True )
 
     # Override copy to take into account the invoice_id and status

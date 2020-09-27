@@ -389,11 +389,9 @@ class website(models.Model):
     twitter_sharing = fields.Boolean(string='Twitter')
     linkedin_sharing = fields.Boolean(string='Linkedin')
     mail_sharing = fields.Boolean(string='Mail')
-    number_of_product_line = fields.Selection([
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3')
-    ], string="Number of lines for product name", required=True, default='1', readonly=False,
+    number_of_product_line = fields.Selection([('1', '1'), ('2', '2'), ('3', '3')],
+                                              string="Number of lines for product name",
+                                              required=True, default='1', readonly=False,
         help="Number of lines to show in product name for shop.")
     website_footer_extra_links = fields.Html(string="Footer Content", translate=True, sanitize=False,
                                              default=_get_default_footer_extra_links)

@@ -10,12 +10,12 @@ class SalePurchaseOrderLine(models.Model):
     sale_order_line_id = fields.Many2one('sale.order.line')
     purchase_order_line_id = fields.Many2one('purchase.order.line')
     product_id = fields.Many2one(comodel_name="product.product", string="Product")
-    product_uom_qty = fields.Float(string="Ordered Qty", store=True, default=0.0)
+    product_uom_qty = fields.Float(string="Sales Qty", store=True, default=0.0)
     qty_delivered = fields.Float(string="Delivered Qty", store=True, default=0.0)
     missing_qty = fields.Float(string="Missing Qty", store=True, default=0.0)
     qty_invoiced = fields.Float(string="Invoiced Qty", store=True, default=0.0)
     price_unit = fields.Float(string="Unit Price", store=False)
-    product_qty = fields.Float(string="Qty", store=True, default=0.0)
+    product_qty = fields.Float(string="Purchase Qty", store=True, default=0.0)
 
     @api.multi
     @api.depends('price_unit', 'product_uom_qty', 'product_qty')
