@@ -1,0 +1,29 @@
+<odoo>
+  <data>
+      <!-- Inherit Form View to Modify it -->
+      <record id="view_account_invoice_form_inherit_copy_report" model="ir.ui.view">
+          <field name="name">view.account.invoice.form.inherit.copy.report</field>
+          <field name="model">account.invoice</field>
+          <field name="inherit_id" ref="account.invoice_form"/>
+          <field name="arch" type="xml">
+
+              <xpath expr="//field[@name='partner_id']" position="replace">
+                                              <field string="Customer" name="partner_id"
+                                widget="res_partner_many2one"
+                                context="{'search_default_customer':1, 'show_address': 1, 'default_is_company': True, 'show_vat': True}"
+                                options='{"always_reload": True, "no_quick_create": True}'
+                                 required="1"/>
+              </xpath>
+              <xpath expr="//field[@name='payment_term_id']" position="after">
+                  <field name="is_manual_return_out" attrs="{'invisible': [('type', 'not in', ['out_refund'])]}"/>
+                  <field name="auto_complete_transfer_out" attrs="{'invisible': [('is_manual_return_out', '=', False)]}"
+                  domain="[('partner_id','child_of', [partner_id]),('picking_type_id_code','=','incoming'),('state','=','done'),('is_manual_return','=',True)]"
+                  />
+              </xpath>
+
+          </field>
+      </record>
+
+
+  </data>
+</odoo>

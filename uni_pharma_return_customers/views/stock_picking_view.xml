@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_stock_manual_return_form" model="ir.ui.view">
+            <field name="name">view.inherit.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="replace">
+                                                <field name="partner_id" attrs="{'required': [('is_manual_return','=',True)]}"/>
+
+                </xpath>
+                <xpath expr="//button[4]" position="after">
+                                        <button string="Create Credit Note" name="make_create_credit_note" type="object"
+                        class="oe_highlight"
+
+                attrs="{'invisible': ['|','|',('state','not in',['done']),('picking_type_id_code','not in',['incoming']),('is_manual_return','=',False)]}"
+/>
+
+                    <button string="Create Refund" name="make_create_refund" type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('state','not in',['done']),('picking_type_id_code','not in',['outgoing']),('is_manual_return','=',False)]}"
+                />
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="picking_type_id_code" invisible="1"/>
+                    <field name="is_manual_return" attrs="{'invisible': [('picking_type_id_code','not in',['incoming','outgoing'])]}" />
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

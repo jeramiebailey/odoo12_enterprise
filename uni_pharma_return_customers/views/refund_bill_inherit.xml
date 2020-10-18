@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+         <record id="view_vendor_bill_inherit_form_in" model="ir.ui.view">
+            <field name="name">vendor bill journal_id relocating</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+
+              <xpath expr="//field[@name='partner_id']" position="replace">
+                            <field string="Vendor" name="partner_id"
+                              widget="res_partner_many2one"
+                              context="{'default_customer': 0, 'search_default_supplier': 1, 'default_supplier': 1, 'default_is_company': True, 'show_vat': True}"
+                              />
+              </xpath>
+              <xpath expr="//field[@name='vendor_bill_id']" position="after">
+                  <field name="is_manual_return_in" attrs="{'invisible': [('type', 'not in', ['in_refund'])]}"/>
+                  <field name="auto_complete_transfer_in" attrs="{'invisible': [('is_manual_return_in', '=', False)]}"
+                  domain="[('partner_id','child_of', [partner_id]),('picking_type_id_code','=','outgoing'),('state','=','done'),('is_manual_return','=',True)]"
+                  />
+              </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
