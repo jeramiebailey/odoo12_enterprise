@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="snippet_offers" name="Special Offers">   
+        <section class="special-offer-blocks section-blocks clearfix specialoffers" >
+            <div class="container">
+                <div class="section-deal-box  section-offer-box clearfix">
+                    <div class="preview"><img src="/theme_syncoria_electronics/static/src/images/product_special_offer.png" alt="preview"/></div>
+                    <div class="item-deal-box">
+                        <h3>Special Offer <span class="badge-special">Save <span>$ 1000</span></span></h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                    <div class="deal-price-info clearfix">
+                        <span class="old-price cross-price">$ 1300.00</span>
+                        <span class="new-price"><span>$</span> 1200.99</span>
+                        <span class="btn-blocks"><a href="#" class="btn btn-primary">Buy Now</a></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="specialoffers_place_into_bar" inherit_id="website.snippets" name="Special Offers">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="theme_syncoria_electronics.snippet_offers"
+                   t-thumbnail="/theme_syncoria_electronics/static/src/images/deals_week.png"/>
+        </xpath>
+    </template> 
+</odoo>

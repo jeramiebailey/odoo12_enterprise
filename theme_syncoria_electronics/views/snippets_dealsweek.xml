@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="snippet_dealweek" name="List 1x1 deal">
+        <section class="section-deal-blocks section-blocks dealsweek clearfix">
+            <div>
+                <img src="/theme_syncoria_electronics/static/src/images/loading.svg" alt="loading" style="margin:auto;display:block;text-align:center" />
+            </div>
+        </section>
+    </template>
+
+    <template id="snippet_dealweek_block" name="snippet_dealweek_block">
+        <div class="container o_not_editable">
+            <h2><t t-esc="product_list.name" /></h2>
+            <div class="section-deal-box clearfix">
+                <div class="slider dealweek-slider">
+                    <t t-foreach="product_list.line_ids" t-as="item">
+                    <t t-set="product" t-value="item.product_id" />
+                    <div class="item" t-if="item.sudo().product_id.website_published">
+                        <t t-set="combination" t-value="product._get_combination_info(only_template=True)" />
+                        <div class="preview">
+                            <a t-attf-href="/shop/product/#{ slug(product) }">
+                                <div t-field="product.image" t-options='{"widget": "image", "alt-field": "name"}' t-attf-alt="{product.name}" />
+                            </a>
+                        </div>
+                        <div class="item-deal-box">
+                            <h3>Special Offer
+                                <span class="badge-special">Save
+                                    <span>
+                                        <t t-esc="website.currency_id.symbol" t-if="website.currency_id.position=='before'" />
+                                        <t t-esc="combination['list_price']-combination['price']" t-options="{'widget': 'float', 'precision': 1}"/>
+                                        <t t-esc="website.currency_id.symbol" t-if="website.currency_id.position=='after'" />
+                                    </span>
+                                </span>
+                            </h3>
+                            <p><t t-esc="product.name" /></p>
+                        </div>
+                        <div class="deal-price-info clearfix">
+                            <span class="old-price cross-price">
+                                <span t-if="combination['list_price']" t-esc="combination['list_price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+                            </span>
+                            <span class="new-price">
+                                <span t-if="combination['price']" t-esc="combination['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+                            </span>
+                            <span class="btn-blocks">
+                                <a t-attf-href="/shop/product/#{ slug(product) }" class="btn btn-primary">Buy Now</a>
+                            </span>
+                        </div>
+                    </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="deals_place_into_bar" inherit_id="website.snippets" name="Deals week">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="theme_syncoria_electronics.snippet_dealweek" t-thumbnail="/theme_syncoria_electronics/static/src/images/deals_week.png"/>
+        </xpath>
+    </template>
+    <template id="snippet_dealweek_options" name="Snippet Deal Week Options" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js][last()]" position="after">
+            <div data-selector=".section-deal-blocks" data-js="snippet_dealweek_options">
+                <a class="dropdown-item" data-change-product-list="true" data-no-preview="true" href="#">
+                    <i class="fa fa-plus-square"/>Change list</a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

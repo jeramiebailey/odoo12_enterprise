@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="recentlyviewed" name="Recently Viewed">
+        <section t-if="request.session.get('recently_viewed', False)"
+                 class="section-blocks grey-blocks recent-product-blocks clearfix recentviewed o_not_editable" id="recentviewed">
+            <t t-set="recently_viewed" t-value="request.session.get('recently_viewed', [])"/>
+            <div class="container">
+                <div class="title-bar clearfix">
+                    <h3>Recently Viewed</h3>
+                </div>
+
+                <div class="recent-view-slider" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+                    <t t-foreach="recently_viewed" t-as="product_id">
+                        <t t-set="product" t-value="env['product.template'].browse(product_id)"/>
+                        <div t-if="product.sudo().website_published" >
+                            <div class="product-box clearfix">
+                                <h4>
+                                    <a t-attf-href="/shop/product/#{ slug(product) }">
+                                        <t t-esc="product.name"/>
+                                    </a>
+                                </h4>
+                                <div class="product-cat-name">
+                                    <t t-foreach="product.public_categ_ids" t-as="pcateg">
+                                        <a t-att-href="'/shop/category/' + slug(pcateg)">
+                                            <t t-esc="pcateg.name"/>
+                                        </a>
+                                    </t>
+
+                                </div>
+                                <div class="product-preview-box clearfix">
+                                    <a t-attf-href="/shop/product/#{ slug(product) }">
+                                        <div t-field="product.image"
+                                             t-options='{"widget": "image", "alt-field": "name"}'
+                                             t-attf-alt="{product.name}"/>
+                                    </a>
+                                </div>
+                                <div class="product-bottom-blocks clearfix">
+                                    <div class="price-list">
+                                        <t t-set="combination"
+                                           t-value="product._get_combination_info(only_template=True)"/>
+                                        <div class="old-price cross-price">
+                                            <span t-if="combination['has_discounted_price']"
+                                                  t-esc="combination['list_price']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                        </div>
+                                        <div class="new-price">
+                                            <span t-if="combination['price']" t-esc="combination['price']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                        </div>
+
+                                    </div>
+                                    <div class="add-cart-box">
+                                        <a t-attf-href="/shop/product/#{ slug(product) }">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

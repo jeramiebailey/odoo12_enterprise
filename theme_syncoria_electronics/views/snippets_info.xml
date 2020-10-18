@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="snippet_topsiteinfo" name="Site Info">
+        <section class="top-site-info" id="topsiteinfo">
+           <div class="header-mid-block clearfix hidden-xs">
+                <div class="container">
+                    <ul class="nav custom-nav-justify">
+                        <li>
+                            <em class="fa fa-phone"></em>
+                            <span class="hidden-xs"><t t-esc="res_company.phone" /></span>
+                        </li>
+                        <li>
+                            <a t-attf-href="mailto:#{res_company.email}">
+                                <em class="fa fa-envelope-open-o"></em>
+                                <t t-esc="res_company.email" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <em class="fa fa-map-marker"></em>
+                                <a t-att-href="website.store_location" >Store Location</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <em class="fa fa-truck"></em>
+                                <a t-att-href="website.track_order" >Track Your Order</a>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="topsiteinfo_place_into_bar" inherit_id="website.snippets" name="Site Info">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="theme_syncoria_electronics.snippet_topsiteinfo"
+               t-thumbnail="/theme_syncoria_electronics/static/src/images/topfeatures.png"/>
+        </xpath>
+    </template>
+</odoo>

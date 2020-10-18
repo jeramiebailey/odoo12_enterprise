@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="snippet_topfeatures" name="Top Features">
+        <section class="section-top-features-blocks section-blocks topfeatures clearfix" id="topfeatures">
+            <div>
+                <img src="/theme_syncoria_electronics/static/src/images/loading.svg" alt="loading"
+                     style="margin:auto;display:block;text-align:center"/>
+            </div>
+        </section>
+    </template>
+
+    <template id="snippet_topfeatures_block" name="snippet_topfeatures_block">
+            <div class="container">
+                <div class="top-featured-slider">
+                    <div class="top-box slider-top-features clearfix">
+                        <div class="slider custom-slider">
+                            <t t-foreach="product_list.line_ids" t-as="item">
+                                <t t-set="product" t-value="item.product_id"/>
+                                <div>
+                                    <div class="item" t-if="item.sudo().product_id.website_published">
+                                        <img t-attf-src="data:image/*;base64,{{product.image}}"
+                                             t-att-alt="(product.name)"/>
+                                        <div class="item-info">
+
+                                            <h2>
+                                                <t t-esc="product.name"/>
+                                            </h2>
+                                            <p>
+                                                <t t-esc="product.description_sale"/>
+                                            </p>
+                                            <div class="bottom-price-button">
+                                                <div class="price-value">
+                                                    <t t-set="combination"
+                                                       t-value="product._get_combination_info(only_template=True)"/>
+                                                    <span t-if="combination['price']" t-esc="combination['price']"
+                                                          t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                </div>
+                                                <a t-attf-href="/shop/product/#{ slug(product) }" class="btn btn-primary">Buy
+                                                    Now
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </template>
+    <template id="topfeatures_place_into_bar" inherit_id="website.snippets" name="Top Features">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="theme_syncoria_electronics.snippet_topfeatures"
+               t-thumbnail="/theme_syncoria_electronics/static/src/images/topfeatures.png"/>
+        </xpath>
+    </template>
+    <template id="snippet_top_featured_options" name="Snippet Top Features Options"
+              inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js='background']" position="after">
+            <div data-selector=".section-top-features-blocks" data-js="snippet_top_featured_options">
+                <a class="dropdown-item" data-slick-next="true" data-no-preview="true" href="#"><i
+                        class="fa fa-arrow-right"/>Goto Next
+                </a>
+                <a class="dropdown-item" data-slick-prev="true" data-no-preview="true" href="#"><i
+                        class="fa fa-arrow-left"/>Goto Previous
+                </a>
+                <a class="dropdown-item" data-slick-remove="true" data-no-preview="true" href="#"><i
+                        class="fa fa-trash"/>Remove current slide
+                </a>
+                <a class="dropdown-item" data-slick-add="true" data-no-preview="true" href="#">
+                    <i class="fa fa-plus"/>
+                    Add a slide
+                </a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

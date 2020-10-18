@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"syncoria_product_list_editor","syncoria_product_list_editor","model_syncoria_product_list","website.group_website_designer",1,1,1,1
+"syncoria_product_list_line_editor","syncoria_product_list_line_editor","model_syncoria_product_list_line","website.group_website_designer",1,1,1,1
+"syncoria_product_list_all","syncoria_product_list_editor","model_syncoria_product_list",,1,0,0,0
+"syncoria_product_list_line_all","syncoria_product_list_line_editor","model_syncoria_product_list_line",,1,0,0,0

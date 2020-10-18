@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="snippet_topproduct" name="Top product">
+        <section class="top-features-blocks topfeatures" id="topproduct">
+            <div class="container"><!--container only for homepage-->
+
+
+            <div class="product-top-item clearfix">
+                <div class="shop-top-half-box">
+                    <div class="product-wrap-item clearfix">
+                        <div class="item-title-bar clearfix">
+                            <h1>iPhone <span> XS Max</span></h1>
+                            <p>Lorem Ipsum is simply of the Printing and typesetting industry</p>
+                        </div>
+                        <ul>
+                            <li>Lorem Ipsum is simply of the</li>
+                            <li>Printing and typesetting industry</li>
+                            <li>Lorem Ipsum has been the</li>
+                            <li>EndusTry's standard dummy</li>
+                            <li>Eext ever Since the 1500s</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="shop-top-half-box shop-half-bottom-box">
+                    <div class="preview-bx">
+                        <img src="/theme_syncoria_electronics/static/src/images/product_listing_top_image.jpg" alt="preview" />
+                    </div>
+                    <div class="company-bx">
+                        <img src="/theme_syncoria_electronics/static/src/images/apple.png" alt="preview" />
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </section>
+    </template>
+    <template id="topproduct_place_into_bar" inherit_id="website.snippets" name="Top Product">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="theme_syncoria_electronics.snippet_topproduct"
+               t-thumbnail="/theme_syncoria_electronics/static/src/images/topfeatures.png"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="snippet_bestsellers" name="Category 2x2">
+        <section class="snippet_bestsellers best-seller-blocks section-blocks clearfix bestsellers">
+            <div class="container seller-snippet">
+                <img src="/theme_syncoria_electronics/static/src/images/loading.svg" alt="loading" style="margin:auto;display:block;text-align:center" />
+            </div>
+        </section>
+    </template>
+    <template id="bestsellers_place_into_bar" inherit_id="website.snippets" name="Sellers">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="theme_syncoria_electronics.snippet_bestsellers" t-thumbnail="/theme_syncoria_electronics/static/src/images/sellers.png"/>
+        </xpath>
+    </template>
+    <template id="snippet_seller_template" name="Snippet Seller">
+        <t t-set="category" t-value="env['product.public.category'].browse(category_id)" />
+        <div class="o_not_editable">
+            <div class="title-bar clearfix">
+                <h2>
+                    <t t-esc="category.name" />
+                </h2>
+                <div class="nav-sellers">
+                    <ul>
+                        <t t-foreach="category.child_id[:4]" t-as="child">
+                            <li>
+                                <a t-att-href="keep('/shop/category/' + slug(child), category=0)">
+                                    <t t-esc="child.name" />
+                                </a>
+                            </li>
+                        </t>
+                        <li class="active">
+                            <a t-att-href="keep('/shop/category/' + slug(category), category=0)">View All</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="half-product-blocks clearfix">
+                <div class="slider custom-slider">
+                    <t t-set="products" t-value="env['product.template'].search([('public_categ_ids','child_of',category.id),('website_published','=',True)], limit=20)" />
+                    <t t-set="product_count" t-value="len(products)" />
+                    <t t-set="index" t-value="list(range(0,product_count,4))" />
+                    <t t-set="index" t-value="index+[product_count] if product_count not in index else index" />
+                    <div class="row" t-foreach="zip(index,index[1:])" t-as="loop">
+                        <t t-foreach="range(*loop)" t-as="pos">
+                            <t t-set="product" t-value="products[pos]" />
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="product-box clearfix">
+                                    <div class="product-preview-box">
+                                        <a t-attf-href="/shop/product/#{ slug(product) }">
+                                            <div t-field="product.image" t-options='{"widget": "image", "alt-field": "name"}'/>
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <h4>
+                                            <a t-attf-href="/shop/product/#{ slug(product) }">
+                                                <t t-esc="product.name" />
+                                            </a>
+                                        </h4>
+                                        <div class="product-cat-name">
+                                            <t t-foreach="product.public_categ_ids" t-as="pcateg">
+                                                <a t-att-href="keep('/shop/category/' + slug(pcateg), category=0)">
+                                                    <t t-esc="pcateg.name" />
+                                                </a>
+                                            </t>
+                                        </div>
+                                        <div class="product-bottom-blocks clearfix">
+                                            <div class="price-list">
+                                                <div class="new-price">
+                                                    <t t-set="combination" t-value="product._get_combination_info(only_template=True)" />
+                                                    <span t-if="combination['price']" t-esc="combination['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+                                                </div>
+                                            </div>
+                                            <div class="add-cart-box">
+                                                <a t-attf-href="/shop/product/#{ slug(product) }" >
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="snippet_bestsellers_options" name="Snippet Seller Options" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js='background']" position="after">
+            <div data-selector=".snippet_bestsellers" data-js="snippet_bestsellers_options">
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

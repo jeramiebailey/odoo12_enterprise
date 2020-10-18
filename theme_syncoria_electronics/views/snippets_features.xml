@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="snippet_productlist" name="List 1x4 Tabbed">
+        <section class="section-feature-blocks section-blocks clearfix features">
+            <img src="/theme_syncoria_electronics/static/src/images/loading.svg" alt="loading" style="margin:auto;display:block;text-align:center" />
+        </section>
+    </template>
+
+    <template id="snippet_productlist_block" name="Features Block">
+        <div class="container featured-tabs o_not_editable">
+            <t t-set="lists" t-value="product_lists" />
+            <ul class="nav nav-tabs" role="tablist" t-attf-id="#{id}">
+                <t t-set="count" t-value="0" />
+                <t t-foreach="lists" t-as="plist">
+                    <li role="presentation">
+                        <a t-attf-href="#{'#'+id+str(count)}" t-attf-aria-controls="#{id+str(count)}" role="tab" data-toggle="tab">
+                            <t t-esc="plist.name" />
+                        </a>
+                    </li>
+                    <t t-set="count" t-value="count+1" />
+                </t>
+            </ul>
+            <div class="tab-content">
+                <t t-set="count" t-value="0" />
+                <t t-foreach="lists" t-as="plist">
+                    <div role="tabpanel" class="tab-pane" t-attf-id="#{id+str(count)}">
+                        <div class="slider featured-slider">
+                            <t t-foreach="plist.line_ids" t-as="item">
+                                <div class="item" t-if="item.sudo().product_id.website_published">                                    
+                                    <t t-set="product" t-value="item.product_id" />
+                                    <div class="product-box clearfix">
+                                        <h4>
+                                            <a t-attf-href="/shop/product/#{ slug(product) }">
+                                                <t t-esc="product.name" />
+                                            </a>
+                                        </h4>
+                                        <div class="product-cat-name">
+                                            <t t-foreach="product.public_categ_ids" t-as="pcateg">
+                                                <a t-att-href="keep('/shop/category/' + slug(pcateg), category=0)">
+                                                    <t t-esc="pcateg.name" />
+                                                </a>
+                                            </t>
+                                        </div>
+                                        <div class="product-preview-box clearfix">
+                                            <a t-attf-href="/shop/product/#{ slug(product) }">
+                                                <div t-field="product.image" t-options='{"widget": "image", "alt-field": "name"}' t-attf-alt="{product.name}" />
+                                            </a>
+                                        </div>
+                                        <div class="product-bottom-blocks clearfix">
+                                            <div class="price-list">
+                                                <t t-set="combination" t-value="product._get_combination_info(only_template=True)" />    
+                                                <div class="old-price cross-price">
+                                                    <span t-if="combination['has_discounted_price']" t-esc="combination['list_price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+                                                </div>
+                                                <div class="new-price">
+                                                    <span t-if="combination['price']" t-esc="combination['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+                                                </div>
+                                            </div>
+                                            <div class="add-cart-box">
+                                                <a t-attf-href="/shop/product/#{ slug(product) }">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                    <t t-set="count" t-value="count+1" />
+                </t>
+            </div>
+        </div>
+    </template>
+
+    <template id="features_place_into_bar" inherit_id="website.snippets" name="Features">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="theme_syncoria_electronics.snippet_productlist" t-thumbnail="/theme_syncoria_electronics/static/src/images/features.png"/>
+        </xpath>
+    </template>
+    <template id="snippet_productlist_options" name="Snippet ProductList Options" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js][last()]" position="after">
+            <div data-selector=".section-feature-blocks" data-js="snippet_productlist_options">
+                <a class="dropdown-item" data-add-product-list="true" data-no-preview="true" href="#"><i class="fa fa-plus-square"/>Add lists</a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

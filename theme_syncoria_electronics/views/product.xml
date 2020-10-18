@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="products_view_switch_wrapper" inherit_id="website_sale.products_list_view" name="Products view switch wrapper">
+            <xpath expr="//t[@t-as='product']" position="replace">
+                <div t-attf-class="#{request.session.get('shop_view','custom-switch-view-list')} clearfix">
+                    <t t-foreach="products" t-as="product">
+                        <div class="oe_product oe_list oe_product_cart hello" t-att-data-publish="product.website_published and 'on' or 'off'">
+                            <t t-call="website_sale.products_item">
+                                <t t-set="show_publish" t-value="True" />
+                            </t>
+                        </div>
+                    </t>
+                </div>
+<!--                <div class="page-load-status" t-if="pager['page_count'] > 1 and pager['page']['num'] != pager['page_count']" >-->
+<!--                    <div class="infinite-scroll-request loader-ellips">-->
+<!--                        <span class="loader-ellips__dot"></span>-->
+<!--                        <span class="loader-ellips__dot"></span>-->
+<!--                        <span class="loader-ellips__dot"></span>-->
+<!--                        <span class="loader-ellips__dot"></span>-->
+<!--                    </div>-->
+<!--                    <p class="infinite-scroll-last">End of result</p>-->
+<!--                    <p class="infinite-scroll-error">Unable to load</p>-->
+<!--                </div>-->
+            </xpath>
+            <xpath expr="//t[@t-call='website.pager'][1]" position="replace">
+            </xpath>
+        </template>
+        <template id="product_image_slick" inherit_id="website_sale.product">
+            <xpath expr="//div[@id='o-carousel-product']" position="replace">
+                <div class="product-display-blocks clearfix o_not_editable">
+                    <div class="slider slider-for">
+                        <t t-foreach="product.product_variant_ids" t-as="pv">
+                            <div t-if="pv.image_variant">
+                                <div class="slider-preview-wrap img-variant" t-field="pv.image_variant" t-att-img-variant-id="pv.id" t-options="{'widget': 'image', 'class': 'product_detail_img js_variant_img', 'alt-field': 'name',  'unique': str(product['__last_update']) + (str(product_variant['__last_update']) or '')}"/>
+                            </div>
+                        </t>
+                        <div t-if="product.image">
+                            <div class="slider-preview-wrap" t-field="product.image" t-options="{'widget': 'image', 'class': 'product_detail_img', 'alt-field': 'name',  'unique': product['__last_update']}"/>
+                        </div>
+                        <t t-if="len(image_ids)" t-foreach="image_ids" t-as="pimg">
+                            <div>
+                                <div class="slider-preview-wrap" t-field="pimg.image" t-options='{"widget": "image", "class": "product_detail_img", "alt-field": "name" }' />
+                            </div>
+                        </t>
+                    </div>
+                    <div class="slider slider-nav">
+                        <t t-foreach="product.product_variant_ids" t-as="pv">
+                            <div t-if="pv.image_variant">
+                                <div class="slider-small-preview-wrap img-variant" t-field="pv.image_variant" t-att-img-variant-id="pv.id" t-options="{'widget': 'image', 'class': 'product_detail_img js_variant_img', 'alt-field': 'name',  'unique': str(product['__last_update']) + (str(product_variant['__last_update']) or '')}"/>
+                            </div>
+                        </t>
+                        <div>
+                            <div class="slider-small-preview-wrap" t-field="product.image" t-options="{'widget': 'image', 'class': 'product_detail_img', 'alt-field': 'name','unique': product['__last_update']}"/>
+                        </div>
+                        <t t-if="len(image_ids)" t-foreach="image_ids" t-as="pimg">
+                            <div>
+                                <div class="slider-small-preview-wrap" t-field="pimg.image" t-options='{"widget": "image", "class": "product_detail_img", "alt-field": "name"}' />
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+<!--        <template id="pager_next_link" inherit_id="portal.pager">-->
+<!--            <xpath expr="//a[contains(text(),'Siguiente')]" position="replace">-->
+<!--                <a t-if="pager['page']['num'] != pager['page_count']" t-att-href="pager['page_next']['url'] if pager['page']['num'] != pager['page_count'] else None" class="page-link next-page-link">Siguiente</a>-->
+<!--            </xpath>-->
+<!--        </template>-->
+        <template id="recommended_products_class" inherit_id="website_sale.recommended_products">
+            <xpath expr="//div[hasclass('container')]" position="replace">
+                <div class="recommended_products" t-if="product.alternative_product_ids">$0</div>
+            </xpath>
+        </template>
+        <template id="products_price_list_view" inherit_id="website_sale.products">
+            <xpath expr="//t[@t-call='website_sale.pricelist_list']" position="replace">
+            </xpath>
+        </template>
+    </data>
+</odoo>

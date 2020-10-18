@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="snippet_newsletter" name="Newsletter">    
+	       <section class="section-blocks news-letter-blocks clearfix emailblocks" id="emailblocks">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-7 col-md-8">
+                            <div class="newsletter-info clearfix">
+                                <i class="fa fa-send"></i> Sign up to newsletter and Receive $20 Coupon for free
+                                Shipping
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-4">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="newsletter">Newsletter</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="newsletter" placeholder="Your Email ID"/>
+                                        <div class="input-group-addon">
+                                            <button type="submit" class="btn">Sign Up</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </template>
+    <template id="newsletter_place_into_bar" inherit_id="website.snippets" name="Newsletter">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="theme_syncoria_electronics.snippet_newsletter"
+                   t-thumbnail="/theme_syncoria_electronics/static/src/images/newsletter-icons.png"/>
+        </xpath>
+    </template> 
+</odoo>

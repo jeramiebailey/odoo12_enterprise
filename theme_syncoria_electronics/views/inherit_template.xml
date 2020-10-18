@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="website_search_box" inherit_id="website.website_search_box" name="Website Searchbox" primary="True">
+        <xpath expr="//input[@name='search']" position="after">
+            <div class="input-group-addon search-categories">
+                <div class="search-list-box dropdown">
+                    <a class="search-value dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false" id="selected-search-categ">
+                        <t t-esc="category.name if category else 'All products'"/>
+                    </a>
+                    <ul class="dropdown-menu search-category-select">
+                        <li>
+                            <a data-action="/shop" href="#">
+                                All products
+                            </a>
+                        </li>
+                        <t t-foreach="env['product.public.category'].search([])" t-as="c">
+                            <li>
+                                <a t-att-data-action="'/shop/category/'+slug(c)" href="#">
+                                    <t t-esc="c.name"/>
+                                </a>
+                            </li>
+                        </t>
+                    </ul>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="custom_header" inherit_id="website.layout">
+        <xpath expr="//div[@id='wrapwrap']/header" position="inside">
+            <div class="header-top clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-6 col-md-6">
+                            <div class="header-top-left">
+                                <ul>
+                                    <!-- <li class="hidden-xs">
+                                        <a href="#">
+                                            <i class="fa fa-refresh"></i>
+                                        </a>
+                                    </li> -->
+                                    <t t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                        <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
+                                        <li id="my_wish_top" t-att-style="not wishcount and 'display:none;'">
+                                            <a href="/shop/wishlist">
+                                                <i class="fa fa-heart-o"/>
+                                                <span class="value">
+                                                    <t t-esc='wishcount'/>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </t>
+                                    <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
+                                    <!-- <li class="nav-item divider d-none"/> -->
+                                    <li id="my_cart_top"
+                                        t-attf-class="#{'' if website_sale_order and website_sale_order.cart_quantity else ' d-none'}">
+                                        <a href="/shop/cart">
+                                            <img src="/theme_syncoria_electronics/static/src/images/icon-bag.png" alt="cart"/>
+                                            <span class="value">
+                                                <t t-esc="website_sale_order and website_sale_order.cart_quantity or ''"/>
+                                            </span>
+                                            <span class="amount-view">
+                                                <t t-esc="website.currency_id.symbol"
+                                                   t-if="website.currency_id.position=='before'"/>
+                                                <t t-esc="website_sale_order.amount_total"
+                                                   t-options="{'widget': 'float', 'precision': 2}"/>
+                                                <t t-esc="website.currency_id.symbol"
+                                                   t-if="website.currency_id.position=='after'"/>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-8 col-sm-6 col-md-6">
+                            <div class="pull-right">
+                                <t t-call="theme_syncoria_electronics.pricelist_list"/>
+                                <t t-call="theme_syncoria_electronics.register_signin_user"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="branding-blocks clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <t t-call="theme_syncoria_electronics.category_navigation"/>
+                            <a class="navbar-brand" href="/">
+                                <span t-field="res_company.logo" t-options="{'widget': 'image'}"
+                                      t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name"/>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-8">
+                            <nav class="navbar navbar-default custom-xs-nav" role="navigation">
+                                <div class="container">
+                                    <ul class="nav" id="top_menu">
+                                        <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                                            <t t-call="website.submenu"/>
+                                        </t>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <form id="searchbar_form"
+                                  t-att-action="keep('/shop'+ ('/category/'+slug(category)) if category else None, search=0) if keep else '/shop'"
+                                  method="get" class="navbar-search">
+                                <label class="sr-only screen-reader-text" for="search">Search for:</label>
+                                <div class="input-search-field" id="">
+                                    <t t-call="theme_syncoria_electronics.website_search_box"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-default custom-nav-sm-xs" role="navigation">
+                <div class="container">
+                    <t t-call="theme_syncoria_electronics.category_navigation"/>
+                    <ul class="nav" id="top_menu">
+                        <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                            <t t-call="website.submenu"/>
+                        </t>
+                    </ul>
+                </div>
+            </nav>
+        </xpath>
+        <xpath expr="//div[@id='wrapwrap']/header/nav" position="attributes">
+            <attribute name="style">display:none</attribute>
+        </xpath>
+    </template>
+    <template id="layout_FC" inherit_id="website.layout_footer_copyright">
+        <xpath expr="//div[@t-ignore='true']" position="replace">custom-svg
+        </xpath>
+    </template>
+    <template inherit_id="website.layout" name="My Custom Footer" id="theme_custom_automatic_footer">
+        <xpath expr="//div[@id='footer']/section" position="replace">
+            <t t-call="theme_syncoria_electronics.recentlyviewed"/>
+            <section class="footer-top clearfix">
+                <div class="container">
+                    <div class="brand-footer clearfix">
+                        <a class="navbar-brand" href="/">
+                            <span t-field="res_company.logo" t-options="{'widget': 'image'}"
+                                t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name"/>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="brand-info clearfix">
+                                <div class="contact-box clearfix">
+                                    <em class="fa fa-phone"></em>
+                                </div>
+                                <p class="cell-phone"><t t-esc="res_company.phone" /></p>
+                                <p>
+                                    <t t-esc="res_company.street" />
+                                    <br/>
+                                    <t t-esc="res_company.street2" />
+                                    <br/>
+                                    <t t-esc="res_company.city" />, <t t-esc="res_company.state_id.name" />, <t t-esc="res_company.zip" />
+                                    <br/>
+                                    <t t-esc="res_company.country_id.name" />
+                                </p>
+                            </div>
+                            <div class="social-blocks clearfix">
+                                <h4>Connect with Us</h4>
+                                <span t-if="website.social_facebook">
+                                    <a t-att-href="website.social_facebook">
+                                        <em class="fa fa-facebook"></em>
+                                    </a>
+                                </span>
+                                <span t-if="website.social_twitter">
+                                    <a t-att-href="website.social_twitter">
+                                        <em class="fa fa-twitter"></em>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a href="#">
+                                        <em class="fa fa-pinterest"></em>
+                                    </a>
+                                </span>
+                                <span t-if="website.social_instagram">
+                                    <a t-att-href="website.social_instagram">
+                                        <em class="fa fa-instagram"></em>
+                                    </a>
+                                </span>
+                                <span t-if="website.social_youtube">
+                                    <a t-att-href="website.social_youtube">
+                                        <em class="fa fa-youtube"></em>
+                                    </a>
+                                </span>
+                                <span t-if="website.social_linkedin">
+                                    <a t-att-href="website.social_linkedin">
+                                        <em class="fa fa-linkedin"></em>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                            <div class="col-xs-12 col-sm-8 col-md-8" id="footer_menus">
+                                <div class="row">
+                                    <t t-foreach="website.footer_menu_id.child_id[:3]" t-as="menu">
+                                        <div class="col-xs-12 col-sm-4 col-md-4" t-att-data-content_menu_id="menu.id"
+                                            t-att-name="menu.name">
+                                            <h4>
+                                                <t t-esc="menu.name"/>
+                                            </h4>
+                                            <ul>
+                                                <t t-foreach="menu.child_id" t-as="submenu">
+                                                    <t t-call="website.submenu"/>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </section>
+            <section class="footer-bottom clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="copyright">
+                                <t t-esc="website.copyright_text" />
+                            </div>
+                        </div>
+<!--                        <div class="col-xs-12 col-sm-6 col-md-6">-->
+<!--                            <div class="card-support">-->
+<!--                                <img src="/theme_syncoria_electronics/static/src/images/master-card.png" alt="master card"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+    <template id="pricelist_list" name="Syncoria Pricelists">
+        <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)"/>
+        <div t-attf-class="dropdown#{'' if website_sale_pricelists and len(website_sale_pricelists)&gt;1 else ' d-none'} currency-info-blocks">
+            <t t-set="curr_pl" t-value="website.get_current_pricelist()"/>
+            <a role="button" href="#" data-toggle="dropdown">
+                <t t-esc="curr_pl and curr_pl.name or ' - '"/>
+            </a>
+            <div class="dropdown-menu" role="menu">
+                <t t-foreach="website_sale_pricelists" t-as="pl">
+                    <a role="menuitem" t-att-href="'/shop/change_pricelist/%s' % pl.id" class="dropdown-item">
+                        <span t-att-data-pl_id="pl.id" t-esc="pl.name"/>
+                    </a>
+                </t>
+            </div>
+        </div>
+    </template>
+    <template id="register_signin_user" name="Register Or Sign in User Menu">
+        <ul class="user-account-blocks">
+            <span groups="base.group_public">
+                <t t-if="signup_enabled">
+                    <a href="/web/signup">Register</a> <span class="top-panel-or">or</span>
+                </t>
+                <a t-attf-href="/web/login">Sign in</a>
+            </span>
+            <li class="divider" groups="base.group_user,base.group_portal" t-ignore="true"/>
+            <li class="dropdown" t-ignore="true" groups="base.group_user,base.group_portal">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <b>
+                        <span t-esc="user_id.name"/>
+                        <span class="caret"></span>
+                    </b>
+                </a>
+                <ul class="dropdown-menu js_usermenu" role="menu">
+                    <li>
+                        <a href="/my/home" role="menuitem">My Account</a>
+                    </li>
+
+                    <li>
+                        <a t-attf-href="/web/session/logout?redirect=/" role="menuitem">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </template>
+    <template id="list_grid_switch" inherit_id="website_sale.products" active="True" customize_show="True"
+              name="Show List Grid Switch">
+        <xpath expr="//div[hasclass('products_pager')]" position="inside">
+            <div class="switch-products-view ml-2">
+                <a class="switch-grid-list" href="#" data-view="list">
+                    <span class="fa fa-list"></span>
+                </a>
+                <a class="switch-grid-list" href="#" data-view="grid">
+                    <span class="fa fa-th-large"></span>
+                </a>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('oe_website_sale')]" position="before">
+            <div class="custom-breadcrumb">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a t-att-href="keep(category=0)">Products</a>
+                        </li>
+                        <li t-if="category" class="active">
+                            <a t-att-href="keep('/shop/category/%s' % slug(category), category=0)"
+                               t-field="category.name"/>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <template id="custom_breadcrumb_product" inherit_id="website_sale.product">
+        <xpath expr="//section[@id='product_detail']" position="before">
+            <div class="custom-breadcrumb">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a t-att-href="keep(category=0)">Products</a>
+                        </li>
+                        <li t-if="category">
+                            <a t-att-href="keep('/shop/category/%s' % slug(category), category=0)"
+                               t-field="category.name"/>
+                        </li>
+                        <li class="active">
+                            <span t-field="product.name"/>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//section[@id='product_detail']/div[1]" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+    </template>
+    <template id="product_attributes_body" inherit_id="website_sale_comparison.product_attributes_body">
+        <xpath expr="//t[@t-set='or_separator']" position="replace">
+            <t t-set='or_separator'>,</t>
+        </xpath>
+    </template>
+    <template id="product_page_tab" inherit_id="website_sale_comparison.product_attributes_body">
+        <xpath expr="//section[@id='product_full_spec']" position="replace">
+            <div class="container product-detail-container">
+                <ul class="nav nav-tabs" id="product_page_tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="product_specs_tab-tab" data-toggle="tab"
+                           href="#product_specs_tab" role="tab" aria-controls="product_specs_tab" aria-selected="true">
+                            Product Details
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="discussion_tab-tab" data-toggle="tab" href="#discussion_tab" role="tab"
+                           aria-controls="discussion_tab" aria-selected="true">Feedback
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="shipping_tab-tab" data-toggle="tab" href="#shipping_tab" role="tab"
+                           aria-controls="shipping_tab" aria-selected="true">Shipping &amp; Payment
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="gurantee_tab-tab" data-toggle="tab" href="#gurantee_tab" role="tab"
+                           aria-controls="gurantee_tab" aria-selected="true">Guarantee
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="tab-content">
+                    <t t-set="atts" t-value="product.get_variant_groups()"/>
+                    <div id="product_specs_tab" class="tab-pane fade show active">
+                        <t t-foreach="atts.keys()" t-as="spec">
+                            <div t-foreach="atts[spec]" t-as="att" class="row">
+                                <div class="col-xs-12 col-sm-5 col-md-4">
+                                    <span class="product_attribute_title">
+                                        <t t-esc="att.attribute_id.name"/>
+                                    </span>
+                                </div>
+                                <div class="col-xs-12 col-sm-7 col-md-8">
+                                    <t t-esc="(', ').join(att.value_ids.mapped('name'))"/>
+                                </div>
+                            </div>
+                        </t>
+                        <div class="row" t-if='not len(atts)'>
+                            <div class="col-xs-12 col-sm-5 col-md-4">
+                                No product details specified.
+                            </div>
+                        </div>
+                    </div>
+                    <div id="discussion_tab" class="tab-pane fade">
+                        <t t-call="portal.message_thread">
+                            <t t-set="object" t-value="product"/>
+                            <t t-set="display_rating" t-value="True"/>
+                        </t>
+                    </div>
+                    <div id="shipping_tab" class="tab-pane fade">
+                        Free Shipping in U.S.
+                        Buy now, get in 2 days
+                    </div>
+                    <div id="gurantee_tab" class="tab-pane fade">
+                        30-day money-back guarantee
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//h1[@t-field='product.name']" position="after">
+            <t t-call="theme_syncoria_electronics.rating_only_static"/>
+        </xpath>
+        <xpath expr="//div[@id='product_details']/p[last()]" position="replace">
+        </xpath>
+        <!-- <xpath expr="//hr[@id='hr_product_attributes_simple']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//p[@id='product_attributes_simple']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath> -->
+    </template>
+    <template id="rating_only_static">
+        <t t-set="result" t-value="product.rating_get_repartition(add_stats=True)"/>
+        <t t-set="val" t-value="result.get('avg', 0)"/>
+        <t t-set="val_integer" t-value="int(val)"/>
+        <t t-set="val_decimal" t-value="val - val_integer"/>
+        <t t-set="empty_star" t-value="5 - (val_integer+(1 if val_decimal>0 else 0))"/>
+        <div class="o_website_rating_static">
+            <t t-foreach="range(0, val_integer)" t-as="num">
+                <i class="fa fa-star" role="img" aria-label="One star" title="One star"></i>
+            </t>
+            <t t-if="val_decimal">
+                <i class="fa fa-star-half-o" role="img" aria-label="Half a star" title="Half a star"></i>
+            </t>
+            <t t-foreach="range(0, empty_star)" t-as="num" role="img" t-attf-aria-label="#{empty_star} on 5"
+               t-attf-title="#{empty_star} on 5">
+                <i class="fa fa-star-o"></i>
+            </t>
+            <span class="text-dark">
+                <t t-esc="sum(result.get('repartition', 0).values())"/>
+                Reviews
+            </span>
+        </div>
+    </template>
+    <template id="product_quantity" inherit_id="website_sale.product_quantity">
+        <xpath expr="//div[hasclass('css_quantity')]/*[1]" position="before">
+            <span class="quantity-label">Quantity</span>
+        </xpath>
+    </template>
+    <template id="products_attributes" inherit_id="website_sale.products_attributes">
+<!--        <xpath expr="//t[@t-foreach='attributes']" position="attributes">-->
+<!--            <attribute name="t-foreach">attributes.filtered(lambda attr: attr.website_filter)</attribute>-->
+<!--        </xpath>-->
+        <xpath expr="//t[@t-if=&quot;a.type == 'select'&quot;]/select/option" position="attributes">
+            <attribute name="t-esc">'Select %s'%a.name</attribute>
+        </xpath>
+        <xpath expr="//li[@t-if='a.value_ids and len(a.value_ids) &gt; 1']" position="attributes">
+            <attribute name="t-attf-class">nav-item product-#{a.type}-filter</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if=&quot;a.type == 'radio'&quot;]" position="replace">
+            <t t-if="a.type == 'radio'">
+                <ul class="nav nav-pills flex-column">
+                    <t t-set="active_set" t-value="a.value_ids &amp; env['product.attribute.value'].browse(attrib_set)" />
+                    <t t-set="inactive_set" t-value="a.value_ids-active_set" />
+                    <t t-foreach="active_set" t-as="v">
+                        <li class="nav-item">
+                            <label style="margin: 0 20px;" t-attf-class="nav-link active">
+                                <input type="checkbox" name="attrib" t-att-value="'%s-%s' % (a.id,v.id)" t-att-checked="'checked' if v.id in attrib_set else None" />
+                                <span style="font-weight: normal" t-field="v.name" />
+                            </label>
+                        </li>
+                    </t>
+                    <t t-foreach="inactive_set" t-as="v">
+                        <li class="nav-item">
+                            <label style="margin: 0 20px;" t-attf-class="nav-link">
+                                <input type="checkbox" name="attrib" t-att-value="'%s-%s' % (a.id,v.id)" t-att-checked="'checked' if v.id in attrib_set else None" />
+                                <span style="font-weight: normal" t-field="v.name" />
+                            </label>
+                        </li>
+                    </t>
+                </ul>
+                <a href="#" class="view-more">View more</a>
+            </t>
+        </xpath>
+    </template>
+    <template id="hide_nocreate_variant_filter" inherit_id="sale.variants">
+        <xpath expr="//t[@t-as='variant_id']/li[1]" position="attributes">
+            <attribute name="t-attf-class">variant_attribute
+                #{'d-none' if len(variant_id.product_template_value_ids) == 1 and not variant_id.product_template_value_ids[0].is_custom or variant_id.attribute_id.create_variant=='no_variant' else ''}
+            </attribute>
+        </xpath>
+    </template>
+    <template id="hide_cart_description" inherit_id="website_sale.cart_lines">
+        <xpath expr="//span[@t-field='line.product_id.image_small']" position="replace">
+            <span t-field="line.product_id.image" t-options="{'widget': 'image', 'class': 'rounded'}"/>
+        </xpath>
+        <xpath expr="//t[@t-call='website_sale.cart_line_description_following_lines']" position="replace">
+        </xpath>
+    </template>
+    <template id="snippet_footer_menu" name="Snippet Footer Menu" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js='menu_data']" position="after">
+            <div data-js="menu_data" data-selector="#footer_menus li > a" data-exclude=".dropdown-toggle"
+                 data-no-check="true"/>
+        </xpath>
+    </template>
+
+     <template id="inherit_404_not_found" name="404 Page Custom" inherit_id="website.404">
+        <xpath expr="//div[hasclass('container')]" position="replace">
+
+            <div class="container">
+                <div class="error-page-blocks">
+                    <h1 class="mt32">404: Page not found!</h1>
+                    <p>
+                        The page you were looking for could not be found; it is possible you have
+                        typed the address incorrectly, but it has most probably been removed due
+                        to the recent website reorganisation.
+                    </p>
+                    <p>Maybe you were looking for one of these popular pages ?</p>
+                    <ul>
+                        <li>
+                            <a href="/">Homepage</a>
+                        </li>
+                        <li>
+                            <a href="/contactus">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </xpath>
+    </template>
+
+
+</odoo>

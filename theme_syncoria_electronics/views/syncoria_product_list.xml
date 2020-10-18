@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="view_syncoria_product_list_tree" model="ir.ui.view">
+            <field name="name">view_syncoria_product_list_tree</field>
+            <field name="model">syncoria.product.list</field>
+            <field name="type">tree</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <tree string="Product lists">
+                    <field name="sequence" widget="handle" />
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view for "model" -->
+        <record id="view_syncoria_product_list_form" model="ir.ui.view">
+            <field name="name">view_syncoria_product_list_form</field>
+            <field name="model">syncoria.product.list</field>
+            <field name="type">form</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <form string="syncoria_product_list_form" create="true" delete="true" edit="true">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" />
+                            <h1>
+                                <field name="name" class="oe_inline" placeholder="name" />
+                            </h1>
+                        </div>
+                        <group string="Items">
+                            <field name="line_ids" nolabel="1">
+                                <tree string="Items" editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="product_id" domain="[('website_published','=',True)]" />
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="sequence"/>
+                                        <field name="product_id" />
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search view for "model" -->
+        <record id="view_syncoria_product_list_search" model="ir.ui.view">
+            <field name="name">view_syncoria_product_list_search</field>
+            <field name="model">syncoria.product.list</field>
+            <field name="type">search</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <search string="syncoria_product_list_search">
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+
+        <!-- Main window action for "model" -->
+        <record id="action_syncoria_product_list_act_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Product List</field>
+            <field name="res_model">syncoria.product.list</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="target">current</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="search_view_id" ref="view_syncoria_product_list_search" />
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add new website product list
+                </p>
+                <p>
+                    Display product lists like featured, recommended etc.
+                </p>
+            </field>
+        </record>
+
+        <!-- Main menu for "model" -->
+        <record id="syncoria_product_list_menu" model="ir.ui.menu">
+            <field name="name">Product Lists</field>
+            <field name="sequence" eval="10" />
+            <field name="action" ref="action_syncoria_product_list_act_window" />
+            <field name="parent_id" ref="website_sale.menu_catalog" />
+        </record>
+    </data>
+</odoo>

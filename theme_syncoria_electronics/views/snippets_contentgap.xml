@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="snippet_contentgap" name="Content Space">
+        <section class="content-gap-blocks clearfix">
+            <div class="container">
+                <div class="gap-box clearfix">
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="contentgap_place_into_bar" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="theme_syncoria_electronics.snippet_contentgap"
+               t-thumbnail="/theme_syncoria_electronics/static/src/images/contentgap.png"/>
+        </xpath>
+    </template>
+</odoo>

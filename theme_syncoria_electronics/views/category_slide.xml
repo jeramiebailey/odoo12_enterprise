@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="category_navigation">
+            <div class="off-canvas-navigation-wrapper">
+                <div class="off-canvas-navbar-toggle-buttons clearfix">
+                    <button class="navbar-toggler navbar-toggle-hamburger" type="button">
+                        <span class="navbar-toggler-icon">
+                            <i class="fa fa-bars"></i>
+                        </span>
+                    </button>
+                    <div class="off-canvas-backdrop">
+                        <div class="backdrop-open"></div>
+                    </div>
+
+                    <div class="off-canvas-navigation">
+                        <button class="navbar-toggler navbar-toggle-close" type="button"></button>
+                        <div class="off-canvas-navigation-wrap">
+                            <h3>
+                                <img class="custom-svg" src="/theme_syncoria_electronics/static/src/images/cart_icon_side.svg" alt="cart"/>
+                                Shop by Category
+                            </h3>
+                            <div class="off-canvas-nav-list">
+                                <ul>
+                                    <li>
+                                        <a href="/shop">All Products</a>
+                                    </li>
+                                    <t t-foreach="env['product.public.category'].search([('parent_id','=',False)])"
+                                       t-as="c">
+                                        <t t-call="theme_syncoria_electronics.categories_recursive"/>
+                                    </t>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </template>
+        <template id="categories_recursive" name="Category list">
+            <li t-attf-class="#{'dropdown' if c.child_id else ''}">
+                <a t-if="not c.child_id" t-att-href="'/shop/category/' + slug(c)">
+                    <t t-esc="c.name"/>
+                </a>
+                <a t-else="" t-att-href="'/shop/category/' + slug(c)" class="dropdown-toggle" data-toggle="dropdown"
+                   role="button" aria-haspopup="true" aria-expanded="false">
+                    <t t-esc="c.name"/>
+                    <span class="caret"/>
+                </a>
+                <ul t-if="c.child_id" class="dropdown-menu">
+                    <t t-foreach="c.child_id" t-as="c">
+                        <t t-call="theme_syncoria_electronics.categories_recursive"/>
+                    </t>
+                </ul>
+            </li>
+        </template>
+    </data>
+</odoo>
