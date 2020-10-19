@@ -39,7 +39,7 @@ class Account_invoice_Inherit_test(models.Model):
                     'product_id': line.product_id.id,
                     'name': line.product_id.name,
                     # 'price_unit': line.product_id.lst_price,
-                    'discount': line.product_id.basic_discount,
+                    # 'discount': line.product_id.basic_discount,
                     'account_id':line.product_id.categ_id.property_account_income_categ_id.id,
                     'quantity':line.quantity_done,
                 }))
@@ -63,7 +63,7 @@ class Account_invoice_Inherit_test(models.Model):
                     'product_id': line.product_id.id,
                     'name': line.product_id.name,
                     'price_unit': line.product_id.lst_price,
-                    'discount': line.product_id.basic_discount,
+                    # 'discount': line.product_id.basic_discount,
                     'account_id':line.product_id.categ_id.property_account_income_categ_id.id,
                     'quantity':line.quantity_done,
                 }))
