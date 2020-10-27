@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_panorama_sale_margin_group_panorama_sale_margin_group,panorama_sale_margin_group.panorama_sale_margin_group,model_panorama_sale_margin_group_panorama_sale_margin_group,,1,0,0,0

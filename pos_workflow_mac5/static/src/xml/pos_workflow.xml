@@ -109,30 +109,30 @@
             </t>
         </t>
 	    <t t-jquery=".cancel" t-operation="before">
-            <t t-if="widget.pos.config.pos_workflow === 'sale.order'
-                     || widget.pos.config.pos_workflow === 'sale.quotation'
-                     || widget.pos.config.pos_workflow === 'sale.order.picking.wait'
-                     || widget.pos.config.pos_workflow === 'sale.order.done'">
-                <div class="button create-sale-order-button">
-                    Create Only
-                </div>
-            </t>
-            <t t-if="widget.pos.config.pos_workflow === 'purchase.order'
-                     || widget.pos.config.pos_workflow === 'purchase.quotation'
-                     || widget.pos.config.pos_workflow === 'purchase.order.picking.wait'
-                     || widget.pos.config.pos_workflow === 'purchase.order.done'">
-                <div class="button create-purchase-order-button">
-                    Create Only
-                </div>
-            </t>
-            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer'
-                     || widget.pos.config.pos_workflow === 'account.invoice.supplier'
-                     || widget.pos.config.pos_workflow === 'account.invoice.customer.open'
-                     || widget.pos.config.pos_workflow === 'account.invoice.supplier.open'">
-                <div class="button create-invoice-button">
-                    Create Only
-                </div>
-            </t>
+<!--            <t t-if="widget.pos.config.pos_workflow === 'sale.order'-->
+<!--                     || widget.pos.config.pos_workflow === 'sale.quotation'-->
+<!--                     || widget.pos.config.pos_workflow === 'sale.order.picking.wait'-->
+<!--                     || widget.pos.config.pos_workflow === 'sale.order.done'">-->
+<!--                <div class="button create-sale-order-button">-->
+<!--                    Create Only-->
+<!--                </div>-->
+<!--            </t>-->
+<!--            <t t-if="widget.pos.config.pos_workflow === 'purchase.order'-->
+<!--                     || widget.pos.config.pos_workflow === 'purchase.quotation'-->
+<!--                     || widget.pos.config.pos_workflow === 'purchase.order.picking.wait'-->
+<!--                     || widget.pos.config.pos_workflow === 'purchase.order.done'">-->
+<!--                <div class="button create-purchase-order-button">-->
+<!--                    Create Only-->
+<!--                </div>-->
+<!--            </t>-->
+<!--            <t t-if="widget.pos.config.pos_workflow === 'account.invoice.customer'-->
+<!--                     || widget.pos.config.pos_workflow === 'account.invoice.supplier'-->
+<!--                     || widget.pos.config.pos_workflow === 'account.invoice.customer.open'-->
+<!--                     || widget.pos.config.pos_workflow === 'account.invoice.supplier.open'">-->
+<!--                <div class="button create-invoice-button">-->
+<!--                    Create Only-->
+<!--                </div>-->
+<!--            </t>-->
             <t t-if="widget.pos.config.pos_workflow === 'sale.order'
                      || widget.pos.config.pos_workflow === 'sale.quotation'
                      || widget.pos.config.pos_workflow === 'sale.order.picking.wait'
