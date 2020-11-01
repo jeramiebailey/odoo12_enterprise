@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+    <record model="ir.actions.server" id="action_unreserved_qty">
+            <field name="name">Unreserved Qty</field>
+            <field name="model_id" ref="stock.model_stock_quant"/>
+             <field name="binding_model_id" ref="stock.model_stock_quant"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">
+            for item in records:
+                item.unreseve_qty()
+            </field>
+    </record>
+  </data>
+</odoo>
