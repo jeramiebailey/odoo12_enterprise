@@ -17,8 +17,9 @@ class PurchaseOrder(models.Model):
             for line in order.order_line:
                 ordered += line.product_uom_qty
                 invoiced += line.qty_invoiced
-            for picking in order.picking_ids:
-                received += picking.total_qty_done
+                received += line.qty_received
+            # for picking in order.picking_ids:
+            #     received += picking.total_qty_done
             order.update({
                 'total_qty_ordered': ordered,
                 'total_qty_received': received,
