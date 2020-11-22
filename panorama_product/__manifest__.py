@@ -9,7 +9,7 @@
     'website': 'http://www.eskayazilim.com.tr',
     'license': 'AGPL-3',
     'depends': [
-        'product',
+        'product','stock'
     ],
     'data': [
         'views/product_template_view.xml',
