@@ -9,7 +9,7 @@
     'website': 'www.cebtione.com',
     'license': 'AGPL-3',
     'depends': [
-        'product','website_sale'
+        'product','website_sale','account'
     ],
     'data': [
         'views/product_template_view.xml',
