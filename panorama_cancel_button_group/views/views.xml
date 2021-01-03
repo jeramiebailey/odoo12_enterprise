@@ -1,0 +1,22 @@
+<odoo>
+  <data>
+    <record id="group_cancel_picking" model="res.groups">
+        <field name="name">Cancel Picking</field>
+    </record>
+    <record id="view_inherit_stock_picking_form" model="ir.ui.view">
+        <field name="name">view.inherit.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+              <attribute name="groups">panorama_cancel_button_group.group_cancel_picking</attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_line_ids_without_package']//tree" position="attributes">
+              <attribute name="create">0</attribute>
+            </xpath>
+
+        </field>
+    </record>
+  </data>
+</odoo>
