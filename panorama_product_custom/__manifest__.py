@@ -10,6 +10,7 @@
     'license': 'AGPL-3',
     'depends': [
         'product','website_sale','account'
+        'product','website_sale'
     ],
     'data': [
         'views/product_template_view.xml',
