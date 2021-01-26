@@ -15,6 +15,17 @@ $(function() {
 		$('.search-panel span#search_concept').text(concept);
 		$('.input-group #search_param').val(param);
 	});
+
+	$(document).on('input','.oe_search_box',function(e){
+//	    var inp = $('.search-panel .dropdown-menu').find('a');
+//	    console.log("inp-------------"+inp.text());
+        ajax.jsonRpc("/shop/search_advance", 'call', {
+                'search': $(this).val(),
+          }).then(function (data) {
+                console.log("search----------------"+ data.return_url);
+                $('#product_list').html(data.return_url);
+            });
+	});
     $(".oe_search_box").autocomplete({
         source: function(request, response) {
             $.ajax({
