@@ -17,12 +17,9 @@ $(function() {
 	});
 
 	$(document).on('input','.oe_search_box',function(e){
-//	    var inp = $('.search-panel .dropdown-menu').find('a');
-//	    console.log("inp-------------"+inp.text());
         ajax.jsonRpc("/shop/search_advance", 'call', {
                 'search': $(this).val(),
           }).then(function (data) {
-                console.log("search----------------"+ data.return_url);
                 $('#product_list').html(data.return_url);
             });
 	});
@@ -42,9 +39,9 @@ $(function() {
                     }
                 }));
             },
-            error: function (error) {
-               alert('error: ' + error);
-            }
+//            error: function (error) {
+//               alert('error: ' + error);
+//            }
             });
         },
         select:function(suggestion,term,item){

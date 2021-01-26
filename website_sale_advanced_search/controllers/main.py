@@ -140,7 +140,6 @@ class WebsiteSearch(http.Controller):
     @http.route('/shop/search_advance', csrf=False, type="json",
                 auth="public", website=True)
     def search_advance(self, page=0, category=None, search='', ppg=False, **post):
-        print("ca;=======================", search, category)
         add_qty = int(post.get('add_qty', 1))
         if category:
             category = request.env['product.public.category'].search([('id', '=', int(category))], limit=1)
@@ -239,7 +238,6 @@ class WebsiteSearch(http.Controller):
             "website_sale_advanced_search.new_products_list_template",
             values
         )
-        print("values------------", values)
         return {'return_url': return_url}
 
     @http.route('/shop/search', csrf=False, type="http",
