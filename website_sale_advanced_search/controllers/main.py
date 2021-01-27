@@ -81,32 +81,27 @@ class TableCompute(object):
 
 class WebsiteSearch(http.Controller):
 
-    def _get_search_domain(self, search, category, attrib_values):
+    def _get_search_domain(self, search, category, search_attrib_ids, attrib_values):
         domain = request.website.sale_product_domain()
         if search:
             for srch in search.split(" "):
                 domain += [
-                    '|', '|', '|', ('name', 'ilike', srch), ('description', 'ilike', srch),
+                    '|', '|', '|', '|', ('name', 'ilike', search), ('name', 'ilike', srch), ('description', 'ilike', srch),
                     ('description_sale', 'ilike', srch), ('product_variant_ids.default_code', 'ilike', srch)]
         if category:
             domain += [('public_categ_ids', 'child_of', int(category))]
-
+        attrib_values_list = []
+        attrib_ids_list = []
         if attrib_values:
-            attrib = None
-            ids = []
+            attrib_values_list = []
             for value in attrib_values:
-                if not attrib:
-                    attrib = value[0]
-                    ids.append(value[1])
-                elif value[0] == attrib:
-                    ids.append(value[1])
-                else:
-                    domain += [('attribute_line_ids.value_ids', 'in', ids)]
-                    attrib = value[0]
-                    ids = [value[1]]
-            if attrib:
-                domain += [('attribute_line_ids.value_ids', 'in', ids)]
-
+                attrib_values_list.append(value.id)
+            domain += [('attribute_line_ids.value_ids', 'in', attrib_values_list)]
+        if search_attrib_ids:
+            attrib_ids_list = []
+            for attrib_id in search_attrib_ids:
+                attrib_ids_list.append(attrib_id.id)
+            domain += [('attribute_line_ids.attribute_id', 'in', attrib_ids_list)]
         return domain
 
     def _get_compute_currency_and_context(self, product=None):
@@ -159,14 +154,24 @@ class WebsiteSearch(http.Controller):
         attrib_values = [[int(x) for x in v.split("-")] for v in attrib_list if v]
         attributes_ids = {v[0] for v in attrib_values}
         attrib_set = {v[1] for v in attrib_values}
+        search_attrib_values = []
+        search_attrib_ids = []
+        for srch in search.split(" "):
+            att_values = request.env['product.attribute.value'].search([('name', 'ilike', srch)])
+            att_ids = request.env['product.attribute'].search([('name', 'ilike', srch)])
+            for att_value in att_values:
+                search_attrib_values.append(att_value)
+            for att_id in att_ids:
+                search_attrib_ids.append(att_id)
 
-        domain = self._get_search_domain(search, category, attrib_values)
+        print("search_attrib_values========", search_attrib_values)
 
+        domain = self._get_search_domain(search, category, search_attrib_ids, search_attrib_values)
+        print("domain=---------------------", domain)
         keep = QueryURL('/shop', category=category and int(category), search=search, attrib=attrib_list,
                         order=post.get('order'))
 
         pricelist_context, pricelist = self._get_pricelist_context()
-
         request.context = dict(request.context, pricelist=pricelist.id, partner=request.env.user.partner_id)
 
         url = "/shop"
@@ -179,7 +184,7 @@ class WebsiteSearch(http.Controller):
 
         Category = request.env['product.public.category']
         search_categories = False
-        search_product = Product.search(domain, order=self._get_search_order(post))
+        search_product = Product.search(domain)
         if search:
             categories = search_product.mapped('public_categ_ids')
             search_categories = Category.search(
