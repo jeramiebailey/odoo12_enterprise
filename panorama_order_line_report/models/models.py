@@ -54,7 +54,7 @@ class SaleOrderLine(models.Model):
     def write(self, vals):
         res = super(SaleOrderLine, self).write(vals)
         report_line = self.env['sale.purchase.order.line'].search([('sale_order_line_id', '=', self.id)])
-        report_line.write(vals)
+        #report_line.write(vals)
         return res
     
     
