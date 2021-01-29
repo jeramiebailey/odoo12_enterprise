@@ -35,7 +35,8 @@
                 ],
     'data': [
         'views/assets.xml',
-        'views/template.xml'
+        'views/template.xml',
+        'views/product_template.xml'
     ],
     'demo': [],
     'images': ['static/description/banner.jpg'],
