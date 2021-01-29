@@ -22,10 +22,10 @@
 			</field>
 		</record>
 
-		<act_window id="action_open_generate_label_wizard_tem" key2="client_print_multi"
-		            name="Dynamic Product Label"
-		            res_model="bi.template.label.wizard"
-		            src_model="product.template" view_mode="form" target="new" view_type="form"/>
+<!--		<act_window id="action_open_generate_label_wizard_tem" key2="client_print_multi"-->
+<!--		            name="Dynamic Product Label"-->
+<!--		            res_model="bi.template.label.wizard"-->
+<!--		            src_model="product.template" view_mode="form" target="new" view_type="form"/>-->
 	</data>
 
 </odoo>
