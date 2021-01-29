@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="sale_extends_sale_order_view" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='action_done']" position="after">
+                     <button name='update_order_line' string="Update Order Line" type="object"
+                             context="{'default_order_id': id}" class="btn-primary"/>
+                </xpath>
+<!--                <header>-->
+<!--                    <button name='action_create_purchase_order' string="Create Purchase Order" type="object"-->
+<!--                            class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>-->
+<!--                </header>-->
+
+            </field>
+        </record>
+    </data>
+</odoo>
+

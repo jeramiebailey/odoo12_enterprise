@@ -7,9 +7,10 @@
     'author': '',
     'version': '1.0',
     'description': "",
-    'depends': ['crm', 'sale'],
+    'depends': ['sale'],
     'data': [
-        'views/product_reports.xml'
+        'views/product_reports.xml',
+        'views/inherit_sale_order_view.xml'
     ],
     'installable': True,
     'application': True,
