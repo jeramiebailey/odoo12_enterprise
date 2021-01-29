@@ -9,6 +9,7 @@
     'description': "",
     'depends': ['crm', 'sale'],
     'data': [
+        'views/product_reports.xml'
     ],
     'installable': True,
     'application': True,
