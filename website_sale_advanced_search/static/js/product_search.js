@@ -17,6 +17,15 @@ $(function() {
 	});
 
 	$(document).on('input','.oe_search_box',function(e){
+//	    $.ajax({
+//                type: "get",
+//                url: "/shop/search_advance",
+//                data: $(this).val(),
+//                success: function (response) {
+//                    console.log("resp==================="+response);
+//                    $('#product_list').html(response);
+//                }
+//        });
         ajax.jsonRpc("/shop/search_advance", 'call', {
                 'search': $(this).val(),
           }).then(function (data) {

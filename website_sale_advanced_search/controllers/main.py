@@ -83,12 +83,16 @@ class TableCompute(object):
 class WebsiteSale(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
+
         domain = request.website.sale_product_domain()
+
         if search:
             for srch in search.split(" "):
                 domain += [
-                    '|', '|', '|', '|', ('name', 'ilike', srch), ('description', 'ilike', srch),
-                    ('description_sale', 'ilike', srch), ('product_variant_ids.default_code', 'ilike', srch),('keyword_search', 'ilike', srch)]
+                    '|', '|', '|', '|' ,('name', 'ilike', srch),
+                    ('description', 'ilike', srch),
+                    ('description_sale', 'ilike', srch), ('product_variant_ids.default_code', 'ilike', srch),
+                    ('keyword_search', 'ilike', srch)]
 
         if category:
             domain += [('public_categ_ids', 'child_of', int(category))]
@@ -108,7 +112,6 @@ class WebsiteSale(WebsiteSale):
                     ids = [value[1]]
             if attrib:
                 domain += [('attribute_line_ids.value_ids', 'in', ids)]
-
         return domain
 
 
@@ -120,7 +123,7 @@ class WebsiteSearch(http.Controller):
         if search:
             for srch in search.split(" "):
                 domain += [
-                    '|', '|', '|', '|', '|', ('name', 'ilike', search), ('name', 'ilike', srch), ('description', 'ilike', srch),
+                    '|', '|', '|', '|', ('name', 'ilike', srch), ('description', 'ilike', srch),
                     ('description_sale', 'ilike', srch), ('product_variant_ids.default_code', 'ilike', srch), ('keyword_search', 'ilike', srch)]
         return domain
 
@@ -192,7 +195,8 @@ class WebsiteSearch(http.Controller):
 
         Category = request.env['product.public.category']
         search_categories = False
-        search_product = Product.search(domain)
+        search_value = {'search': search}
+        search_product = Product.search(domain, order=self._get_search_order(search_value))
         if search:
             categories = search_product.mapped('public_categ_ids')
             search_categories = Category.search(
