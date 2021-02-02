@@ -66,13 +66,13 @@ class StockQuantInherit(models.Model):
             move_lines_to_unreserve = []
 
             for move_line in move_lines:
-                print(quant)
+                print(move_line)
                 if not move_line.location_id.should_bypass_reservation():
                     move_lines_to_unreserve.append(move_line.id)
 
                 if len(move_lines_to_unreserve) > 1:
                     self.env.cr.execute(
-                        """ 
+                        """
                             UPDATE stock_move_line SET product_uom_qty = 0, product_qty = 0 WHERE id in %s ;
                         """
                         % (tuple(move_lines_to_unreserve),)
@@ -80,7 +80,7 @@ class StockQuantInherit(models.Model):
 
                 elif len(move_lines_to_unreserve) == 1:
                     self.env.cr.execute(
-                        """ 
+                        """
                             UPDATE stock_move_line SET product_uom_qty = 0, product_qty = 0 WHERE id = %s ;
                         """
                         % (move_lines_to_unreserve[0])

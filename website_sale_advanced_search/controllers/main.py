@@ -118,7 +118,6 @@ class WebsiteSale(WebsiteSale):
 class WebsiteSearch(http.Controller):
 
     def _get_search_domain(self, search):
-
         domain = request.website.sale_product_domain()
         if search:
             for srch in search.split(" "):
@@ -260,13 +259,13 @@ class WebsiteSearch(http.Controller):
     @http.route('/shop/search', csrf=False, type="http",
                 methods=['POST', 'GET'], auth="public", website=True)
     def search_contents(self, **kw):
-
         """
         Searches products according to the category selected on front,
         :param kw: dict contains the category and search key
         :return: Dict with params as name, res_id, value
         """
         strings = '%' + kw.get('name') + '%'
+        
         category = int(kw.get('category')) if not kw.get(
             'category') == 'all' else ''
         try:

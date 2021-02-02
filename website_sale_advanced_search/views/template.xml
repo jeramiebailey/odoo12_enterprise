@@ -56,6 +56,10 @@
                 </div>
             </t>
         </div>
+        <form t-att-href="'/shop/category/%s' %slug(category)">
+
+        </form>
+
     </template>
 
 </odoo>
