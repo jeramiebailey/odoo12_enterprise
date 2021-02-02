@@ -17,14 +17,14 @@ $(function() {
 	});
 
 	$(document).on('input','.oe_search_box',function(e){
-	    window.location = window.location.href
-        var oldurl = (window.location.href.indexOf("?")===-1) ? "" : "";
-        window.location = oldurl + '?search=' + $(this).val();
-//        ajax.jsonRpc("/shop/search_advance", 'call', {
-//                'search': $(this).val(),
-//          }).then(function (data) {
-//                $('#product_list').html(data.return_url);
-//            });
+//	    window.location = window.location.href
+//        var oldurl = (window.location.href.indexOf("?")===-1) ? "" : "";
+//        window.location = oldurl + '?search=' + $(this).val();
+        ajax.jsonRpc("/shop/search_advance", 'call', {
+                'search': $(this).val(),
+          }).then(function (data) {
+                $('#product_list').html(data.return_url);
+            });
 	});
     $(".oe_search_box").autocomplete({
         source: function(request, response) {

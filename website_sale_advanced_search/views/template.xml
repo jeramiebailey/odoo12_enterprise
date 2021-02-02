@@ -56,10 +56,9 @@
                 </div>
             </t>
         </div>
-        <form t-att-href="'/shop/category/%s' %slug(category)">
+<!--        <form t-att-href="'/shop/category/%s' %slug(category)">-->
 
-        </form>
-
+<!--        </form>-->
     </template>
 
 </odoo>
