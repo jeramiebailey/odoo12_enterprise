@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_stock_qty_wizard" model="ir.ui.view">
+            <field name="name">Stock Qty Wizard</field>
+            <field name="model">stock.qty.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Produce">
+                    <group>
+                        <group>
+                            <field name="picking_status"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="proceed" type="object" string="Proceed" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_stock_qty_wizard" model="ir.actions.act_window">
+            <field name="name">Unreserved Process</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.qty.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_stock_qty_wizard" name="Unreserved Process" parent="stock.menu_warehouse_report" sequence="110" action="act_stock_qty_wizard"/>
+
+</odoo>

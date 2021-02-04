@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="product.report_product_product_barcode"
+            string="Product Barcode (PDF)"
+            model="product.product"
+            report_type="qweb-pdf"
+            name="product.report_productbarcode"
+            file="product.report_productbarcode"
+            print_report_name="'Products barcode - %s' % (object.name)"
+            menu="False"
+        />
+
+        <report
+            id="product.report_product_template_barcode"
+            string="Product Barcode (PDF)"
+            model="product.template"
+            report_type="qweb-pdf"
+            name="product.report_producttemplatebarcode"
+            file="product.report_producttemplatebarcode"
+            print_report_name="'Products barcode - %s' % (object.name)"
+            menu="False"
+        />
+
+    </data>
+</odoo>

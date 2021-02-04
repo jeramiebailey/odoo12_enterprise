@@ -24,6 +24,7 @@ $(function() {
                 'search': $(this).val(),
           }).then(function (data) {
                 $('#product_list').html(data.return_url);
+//                window.history.pushState({}, "", $(this).val());
             });
 	});
     $(".oe_search_box").autocomplete({

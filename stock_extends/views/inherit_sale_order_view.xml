@@ -8,12 +8,13 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//header/button[@name='action_done']" position="after">
-                    <button name='update_order_line' string="Update Order Line" type="object"
-                            context="{'default_order_id': id}" class="btn-primary"/>
-                    <button name="recalculate_prices" class="ml-2 btn btn-default"
-                            string="Recalculate prices" Help="Apply the current pricelist"
-                            type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
+                     <button name='update_order_line' string="Update Order Line" type="object"
+                             context="{'default_order_id': id}" class="btn-primary"/>
                 </xpath>
+<!--                <header>-->
+<!--                    <button name='action_create_purchase_order' string="Create Purchase Order" type="object"-->
+<!--                            class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>-->
+<!--                </header>-->
 
             </field>
         </record>
