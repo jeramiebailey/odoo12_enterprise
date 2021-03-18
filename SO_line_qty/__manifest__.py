@@ -5,7 +5,7 @@
     'category': 'Stock',
     'license': 'AGPL-3',
     'depends': [
-        'sale','product_margin', 'sales_team', 'panorama_sale_margin_group',
+        'sale','sale_margin', 'sales_team', 'panorama_sale_margin_group',
     ],
     'data': [
         'views/stock_picking_view.xml',
