@@ -7,7 +7,7 @@
     'author': '',
     'version': '1.0',
     'description': "",
-    'depends': ['sale'],
+    'depends': ['sale','delivery'],
     'data': [
         'views/product_reports.xml',
         'views/inherit_sale_order_view.xml'
