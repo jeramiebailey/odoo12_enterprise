@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="PosTicket">
+        <t t-jquery=".pos-sale-ticket" t-operation="append">
+                <br />
+                <br />
+                <div style='text-align:center'>
+                    Your Prompt Payment Is Greatly Appreciated.
+                </div>
+                <div style='text-align:center'>
+                    Payment Methods / Direct Deposit / Transfer
+                </div>
+                <div style='text-align:center'>
+                    BANK OF AMERICA
+                </div>
+                <div style='text-align:center'>
+                    PANORAMA DISTRIBUTION, INC.  ACCT #325129411433
+                </div>
+                <br />
+                <div style='text-align:center'>
+                    ALL PURCHASES ARE FOR RESALE ONLY. CUSTOMERS MUST HAVE A VALID &amp; CURRENT TOBACCO RESALE AND RETAIL LICENSE AND PERMITS TO PURCHASE.
+                </div>
+                <br />
+                <div style='text-align:center'>
+                    FOR CALIFORNIA CUSTOMERS, CALIFORNIA STATE TOBACCO EXCISE TAX IS INCLUDED IN THE UNIT PRICE.
+                </div>
+                <br />
+                <div style='text-align:center'>
+                    OUT OF STATE EXCISE TAX THAT IS WILL BE A LINE ITEM REFLECTING THE STATE AND EXCISE TAX PAID.
+                </div>
+                <br />
+                <div style='text-align:center'>
+                    Connecticut License # ECD.02287
+                </div>
+                <div style='text-align:center'>
+                    W. Virginia License # 2389-1422
+                </div>
+                <br />
+                <div style='text-align:center'>
+                    IF YOUR PURCHASE INCLUDES PIPE TOBACCO, THE FEDERAL EXCISE TAX IS ALSO INCLUDED IN THE PRICE.
+                </div>
+                <br />
+                <div style='text-align:center'>
+                    IF YOU HAVE ANY QUESTIONS CONCERNING THIS INVOICE, CONTACT (661) 205-2870.
+                </div>
+        </t>
+    </t>
+
+</templates>
