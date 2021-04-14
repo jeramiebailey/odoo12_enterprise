@@ -13,6 +13,7 @@
     ],
     'data': [
         'views/product_template_view.xml',
+        'report/barcode_print_templates.xml',
     ],
     'installable': True,
     'auto_install': False,
