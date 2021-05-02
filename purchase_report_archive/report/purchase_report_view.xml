@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_purchase_order_search_archive" model="ir.ui.view">
+        <field name="name">purchase.report.search.archive</field>
+        <field name="model">purchase.report</field>
+        <field name="inherit_id" ref='purchase.view_purchase_order_search'/>
+        <field name="arch" type="xml">
+            <xpath expr="///filter[@name='last_year_purchase']"
+                   position="after">
+                <separator/>
+                <filter name="Active"
+                        string="Active"
+                        domain="[('active','=',True)]"/>
+                <filter name="Archived"
+                        string="Archived"
+                        domain="[('active','=',False)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

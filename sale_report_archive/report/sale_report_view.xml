@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_order_product_search_archive" model="ir.ui.view">
+        <field name="name">sale.report.search.archive</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref='sale.view_order_product_search'/>
+        <field name="arch" type="xml">
+            <xpath expr="///filter[@name='Sales']" position="after">
+                <separator/>
+                <filter name="Active"
+                        string="Active"
+                        domain="[('active','=',True)]"/>
+                <filter name="Archived"
+                        string="Archived"
+                        domain="[('active','=',False)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
