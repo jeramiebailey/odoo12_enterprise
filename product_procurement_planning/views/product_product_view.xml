@@ -26,7 +26,7 @@
         <field name="priority" eval="40"/>
         <field name="arch" type="xml">
             <tree string="Procurement Planning" create="false" edit="false">
-                <field name="name"/>
+                <field name="display_name"/>
                 <field name="missing_sale_qty" sum="Missing"/>
                 <button name="action_missing_sales"
                         string="Show Missing"
