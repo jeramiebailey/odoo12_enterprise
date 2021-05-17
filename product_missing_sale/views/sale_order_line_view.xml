@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="product_missing_view" model="ir.ui.view">
+        <field name="name">product.product.missing.sales</field>
+        <field name="model">sale.order.line</field>
+        <field name="priority" eval="40"/>
+        <field name="arch" type="xml">
+            <tree string="Missing Sales" create="false" edit="false">
+                <field name="order_id"/>
+                <field name="order_partner_id" string="Customer"/>
+                <field name="product_id"/>
+                <field name="product_uom_qty" sum="Ordered Quantity"/>
+                <field name="qty_delivered" sum="Received Quantity"/>
+                <field name="qty_missing" sum="Remaining Quantity"/>
+                <field name="price_unit"/>
+                <field name="price_subtotal" sum="Total Amount"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_missing_sales" model="ir.actions.act_window">
+        <field name="name">Missing Sales</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_missing_view"/>
+    </record>
+</odoo>

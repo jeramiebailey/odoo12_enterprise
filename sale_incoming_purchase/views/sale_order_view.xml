@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_order_form_product_purchases" model="ir.ui.view">
+        <field name="name">view.sale.product.purchases.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']"
+                   position="inside">
+                <button name="action_incoming_purchases"
+                        string="Incoming Purchases"
+                        icon="fa-sign-in"
+                        help="Show Incoming Purchases"
+                        attrs="{'invisible': [('state',
+                        'not in', ['sale', 'done'])]}"
+                        type="object"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

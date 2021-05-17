@@ -8,14 +8,22 @@ from odoo.tools.float_utils import float_round
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
+    purchase_line_ids = fields.One2many(
+        comodel_name='purchase.order.line',
+        inverse_name='product_id',
+        string='Purchase Order Lines',
+    )
+
     incoming_purchase_qty = fields.Float(
         compute='_compute_incoming_purchase_qty',
         string='Incoming',
+        store=True,
     )
 
-    @api.multi
+    @api.depends('purchase_line_ids.qty_remaining', 'purchase_line_ids.active')
     def _compute_incoming_purchase_qty(self):
         domain = [
+            ('active', '=', True),
             ('state', 'in', ['purchase', 'done']),
             ('product_id', 'in', self.mapped('id')),
             ('qty_remaining', '>', 0.0)
@@ -32,6 +40,7 @@ class ProductProduct(models.Model):
     def action_incoming_purchases_popup(self):
         id = self.env.ref('product_incoming_purchase.product_incoming_view')
         lines = self.env['purchase.order.line'].search([
+                ('active', '=', True),
                 ('state', 'in', ['purchase', 'done']),
                 ('product_id', 'in', self.mapped('id')),
                 ('qty_remaining', '>', 0.0)
@@ -55,11 +64,11 @@ class ProductProduct(models.Model):
     def action_incoming_purchases(self):
         action = self.env.ref('product_incoming_purchase.action_incoming_purchases').read()[0]
         lines = self.env['purchase.order.line'].search([
+                ('active', '=', True),
                 ('state', 'in', ['purchase', 'done']),
                 ('product_id', 'in', self.mapped('id')),
                 ('qty_remaining', '>', 0.0)
             ],
-            order='date_planned',
         )
         action['domain'] = [('id', 'in', lines.ids)]
         return action

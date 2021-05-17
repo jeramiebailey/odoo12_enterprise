@@ -2,26 +2,26 @@
 <!-- Copyright 2021 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
 <odoo>
-    <record id="product_normal_form_view_incoming_purchase" model="ir.ui.view">
-        <field name="name">product.product.incoming.purchase</field>
+    <record id="product_normal_form_view_missing_sale" model="ir.ui.view">
+        <field name="name">product.product.missing.sales</field>
         <field name="model">product.product</field>
         <field name="inherit_id"
                ref="product.product_normal_form_view"/>
         <field name="groups_id"
-               eval="[(4, ref('purchase.group_purchase_user'))]"/>
+               eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
         <field name="arch" type="xml">
             <button name="toggle_active" position="before">
-                <button class="oe_stat_button" name="action_incoming_purchases"
+                <button class="oe_stat_button" name="action_missing_sales"
                         type="object" icon="fa-truck"
-                        attrs="{'invisible': [('purchase_ok', '=', False)]}"
-                        help="Incoming purchase lines">
+                        attrs="{'invisible': [('sale_ok', '=', False)]}"
+                        help="Missing sale lines">
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_value">
-                            <field name="incoming_purchase_qty"
+                            <field name="missing_sale_qty"
                                    widget="statinfo" nolabel="1" class="mr4"/>
                             <field name="uom_name"/>
                         </span>
-                        <span class="o_stat_text">Incoming</span>
+                        <span class="o_stat_text">Missing</span>
                     </div>
                 </button>
             </button>

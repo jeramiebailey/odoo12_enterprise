@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="product_incoming_view" model="ir.ui.view">
+        <field name="name">product.product.incoming.purchases</field>
+        <field name="model">purchase.order.line</field>
+        <field name="priority" eval="40"/>
+        <field name="arch" type="xml">
+            <tree string="Incoming Purchases" default_order="date_planned"
+                  create="false" edit="false">
+                <field name="date_planned"/>
+                <field name="order_id"/>
+                <field name="partner_id" string="Vendor"/>
+                <field name="product_id"/>
+                <field name="product_qty" sum="Total Quantity"/>
+                <field name="qty_received" sum="Received Quantity"/>
+                <field name="qty_remaining" sum="Remaining Quantity"/>
+                <field name="price_unit"/>
+                <field name="price_subtotal" sum="Total Amount"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_incoming_purchases" model="ir.actions.act_window">
+        <field name="name">Incoming Purchases</field>
+        <field name="res_model">purchase.order.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_incoming_view"/>
+    </record>
+</odoo>
