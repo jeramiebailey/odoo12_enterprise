@@ -20,7 +20,9 @@ class ProductProduct(models.Model):
         store=True,
     )
 
-    @api.depends('purchase_line_ids.qty_remaining', 'purchase_line_ids.active')
+    @api.depends('purchase_line_ids.qty_remaining',
+                 'purchase_line_ids.state',
+                 'purchase_line_ids.active')
     def _compute_incoming_purchase_qty(self):
         domain = [
             ('active', '=', True),

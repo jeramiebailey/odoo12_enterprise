@@ -20,7 +20,9 @@ class ProductProduct(models.Model):
         store=True,
     )
 
-    @api.depends('sale_line_ids.qty_missing', 'sale_line_ids.active')
+    @api.depends('sale_line_ids.qty_missing',
+                 'sale_line_ids.state',
+                 'sale_line_ids.active')
     def _compute_missing_sale_qty(self):
         domain = [
             ('active', '=', True),
