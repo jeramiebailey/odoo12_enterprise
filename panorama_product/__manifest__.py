@@ -3,18 +3,16 @@
 {
     'name': 'Panorama Product',
     'summary': 'Panorama Product Customizations',
-    'version': '12.0.3.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Product',
     'author': 'Eska',
     'website': 'http://www.eskayazilim.com.tr',
     'license': 'AGPL-3',
     'depends': [
-        'stock',
-        'product_variant_sale_price',
+        'product','stock'
     ],
     'data': [
         'views/product_template_view.xml',
-        'views/product_product_view.xml',
         'report/barcode_print_templates.xml',
     ],
     'installable': True,

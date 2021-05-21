@@ -29,41 +29,5 @@
                 <span t-field="o.partner_id.sales_permit_number"/>
             </div>
         </xpath>
-
-        <xpath expr="//div[@name='due_date']" position="after">
-            <div class="col-auto mw-100 mb-2" t-if="o.fiscal_position_id" name="fiscal_position">
-                <strong>Fiscal Pos:</strong>
-                <p class="m-0" t-field="o.fiscal_position_id"/>
-            </div>
-        </xpath>
-
-        <xpath expr="//th[@name='th_taxes']" position="replace">
-            <th name="th_tax_amount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                <span>Tax Amount</span>
-            </th>
-        </xpath>
-
-        <xpath expr="//t[@t-foreach='o.invoice_line_ids']/tr/t/td[6]" position="replace">
-            <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                <span t-field="o.amount_tax"/>
-            </td>
-        </xpath>
-
-        <xpath expr="//th[@name='th_subtotal']/span[1]" position="attributes">
-            <attribute name="groups"/>
-        </xpath>
-
-        <xpath expr="//th[@name='th_subtotal']/span[2]" position="attributes">
-            <attribute name="groups"/>
-        </xpath>
-
-        <xpath expr="//span[@t-field='line.price_subtotal']" position="attributes">
-            <attribute name="groups"/>
-        </xpath>
-
-        <xpath expr="//span[@t-field='line.price_total']" position="attributes">
-            <attribute name="groups"/>
-        </xpath>
-
     </template>
 </odoo>

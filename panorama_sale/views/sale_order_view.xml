@@ -20,22 +20,6 @@
             <xpath expr="//field[@name='order_line']/tree/field[@name='analytic_tag_ids']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
-                <field name="price_tax"/>
-            </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="attributes">
-                <attribute name="groups"/>
-            </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='price_total']" position="attributes">
-                <attribute name="groups"/>
-            </xpath>
-            <xpath expr="//field[@name='fiscal_position_id']" position="replace"/>
-            <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="fiscal_position_id" options="{'no_create': True}" />
-            </xpath>
         </field>
     </record>
 

@@ -9,5 +9,5 @@
                 <field name="ejuice_ml"/>
             </xpath>
         </field>
-    </record>
+        </record>
 </odoo>
