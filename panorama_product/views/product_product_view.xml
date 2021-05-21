@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="view_product_form_fix_price" model="ir.ui.view">
+        <field name="name">product.product.inherit.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fix_price']" position="replace"/>
+            <xpath expr="//field[@name='lst_price']" position="after">
+                <field name="fix_price" attrs="{'invisible': [('product_variant_count', '=', 1)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
