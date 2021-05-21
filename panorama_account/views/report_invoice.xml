@@ -37,33 +37,25 @@
             </div>
         </xpath>
 
-        <xpath expr="//th[@name='th_taxes']" position="replace">
-            <th name="th_tax_amount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                <span>Tax Amount</span>
-            </th>
+        <xpath expr="//th[@name='th_subtotal']" position="replace">
+            <th name="th_subtotal" class="text-right"><span>Amount</span></th>
+            <th name="th_tax" class="text-right"><span>Tax</span></th>
+            <th name="th_total" class="text-right"><span>Total Price</span></th>
         </xpath>
 
-        <xpath expr="//t[@t-foreach='o.invoice_line_ids']/tr/t/td[6]" position="replace">
-            <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                <span t-field="o.amount_tax"/>
+        <xpath expr="//tbody//td[hasclass('o_price_total')]" position="replace">
+            <td class="text-right o_price_total">
+                <span t-field="line.price_subtotal"/>
+            </td>
+            <td class="text-right o_price_total">
+                <span t-field="line.price_tax"/>
+            </td>
+            <td class="text-right o_price_total">
+                <span t-field="line.price_total"/>
             </td>
         </xpath>
 
-        <xpath expr="//th[@name='th_subtotal']/span[1]" position="attributes">
-            <attribute name="groups"/>
-        </xpath>
-
-        <xpath expr="//th[@name='th_subtotal']/span[2]" position="attributes">
-            <attribute name="groups"/>
-        </xpath>
-
-        <xpath expr="//span[@t-field='line.price_subtotal']" position="attributes">
-            <attribute name="groups"/>
-        </xpath>
-
-        <xpath expr="//span[@t-field='line.price_total']" position="attributes">
-            <attribute name="groups"/>
-        </xpath>
-
+        <xpath expr="//th[@name='th_taxes']" position="replace"/>
+        <xpath expr="//t[@t-foreach='o.invoice_line_ids']/tr/t/td[6]" position="replace"/>
     </template>
 </odoo>
