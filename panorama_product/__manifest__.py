@@ -3,7 +3,7 @@
 {
     'name': 'Panorama Product',
     'summary': 'Panorama Product Customizations',
-    'version': '12.0.3.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Product',
     'author': 'Eska',
     'website': 'http://www.eskayazilim.com.tr',
