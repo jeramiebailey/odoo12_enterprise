@@ -22,6 +22,22 @@
             <xpath expr="//field[@name='invoice_line_ids']/tree" position="attributes">
                 <attribute name="limit">300</attribute>
             </xpath>
+            <xpath expr="//notebook/page//tree/field[@name='invoice_line_tax_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//notebook/page//tree/field[@name='price_subtotal']" position="after">
+                <field name="price_tax"/>
+            </xpath>
+            <xpath expr="//notebook/page//tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="groups"/>
+            </xpath>
+            <xpath expr="//notebook/page//tree/field[@name='price_total']" position="attributes">
+                <attribute name="groups"/>
+            </xpath>
+            <xpath expr="//field[@name='fiscal_position_id']" position="replace"/>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="fiscal_position_id" options="{'no_create': True}" />
+            </xpath>
         </field>
     </record>
 
