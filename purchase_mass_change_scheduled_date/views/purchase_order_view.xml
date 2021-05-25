@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='print_quotation']"
+                   position="after">
+                <button string="Change Scheduled Date"
+                        type="action"
+                        name="%(purchase_scheduled_date_mass_change_wizard_action)d"
+                        />
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="scheduled_date_mass_change_wizard_view" model="ir.ui.view">
+        <field name="name">purchase.scheduled.date.mass.change.wizard.view</field>
+        <field name="model">purchase.scheduled.date.mass.change.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Scheduled Date Mass Change">
+                <label for="scheduled_date" class="oe_edit_only"
+                       string="New Scheduled Date"/>
+                <field name="scheduled_date"/>
+                <footer>
+                    <button string='Change' name="change_scheduled_date"
+                            type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+           </form>
+        </field>
+    </record>
+
+    <record id="purchase_scheduled_date_mass_change_wizard_action"
+            model="ir.actions.act_window">
+        <field name="name">Scheduled Date Mass Change</field>
+        <field name="res_model">purchase.scheduled.date.mass.change.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="scheduled_date_mass_change_wizard_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

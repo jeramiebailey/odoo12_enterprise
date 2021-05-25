@@ -12,7 +12,6 @@
         <xpath expr="//li[@t-if='company.vat']" position="replace"/>
     </template>
 
-
     <template id="report_invoice_document_panorama"
               inherit_id="account.report_invoice_document">
         <xpath expr="//div[@t-if='o.partner_id.vat']" position="after">
@@ -32,7 +31,7 @@
 
         <xpath expr="//div[@name='due_date']" position="after">
             <div class="col-auto mw-100 mb-2" t-if="o.fiscal_position_id" name="fiscal_position">
-                <strong>Fiscal Pos:</strong>
+                <strong>Applied Tax:</strong>
                 <p class="m-0" t-field="o.fiscal_position_id"/>
             </div>
         </xpath>
@@ -57,5 +56,6 @@
 
         <xpath expr="//th[@name='th_taxes']" position="replace"/>
         <xpath expr="//t[@t-foreach='o.invoice_line_ids']/tr/t/td[6]" position="replace"/>
+
     </template>
 </odoo>
