@@ -10,6 +10,7 @@
     'license': 'AGPL-3',
     'depends': [
         'crm',
+        'base_county',
     ],
     'data': [
         'views/crm_lead_view.xml',
