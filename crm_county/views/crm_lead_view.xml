@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_case_form_view_leads" model="ir.ui.view">
+        <field name="name">CRM - Leads Form County</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state_id']" position="replace">
+                <field name="county_id"
+                       placeholder="County"
+                       options='{"no_open": True, "no_create": True}'
+                       class="o_address_state"
+                       domain="[('state_id', '=?', state_id)]"/>
+            </xpath>
+            <xpath expr="//field[@name='country_id']" position="before">
+                <field name="state_id"
+                       placeholder="State"
+                       options='{"no_open": True}'/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="context">
+                    {'default_name': contact_name, 'default_street': street,
+                    'default_city': city, 'default_state_id': state_id,
+                    'default_zip': zip, 'default_country_id': country_id,
+                    'default_function': function, 'default_phone': phone,
+                    'default_mobile': mobile, 'default_email': email_from,
+                    'default_user_id': user_id, 'default_team_id': team_id,
+                    'default_website': website, 'show_vat': True,
+                    'default_county_id': county_id}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_case_form_view_oppor" model="ir.ui.view">
+        <field name="name">Opportunities County</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state_id']" position="replace">
+                <field name="county_id"
+                       placeholder="County"
+                       options='{"no_open": True, "no_create": True}'
+                       class="o_address_state"
+                       domain="[('state_id', '=?', state_id)]"/>
+            </xpath>
+            <xpath expr="//field[@name='country_id']" position="before">
+                <field name="state_id"
+                       placeholder="State"
+                       options='{"no_open": True}'/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="context">{
+                    'search_default_customer': 1,
+                    'default_name': partner_name, 'default_street': street,
+                    'default_street2': street2, 'default_city': city,
+                    'default_state_id': state_id, 'default_zip': zip,
+                    'default_country_id': country_id, 'default_function': function,
+                    'default_phone': phone, 'default_mobile': mobile,
+                    'default_email': email_from,
+                    'default_user_id': user_id, 'default_team_id': team_id, 'default_website': website,
+                    'show_vat': True,
+                    'default_county_id': county_id
+                    }
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

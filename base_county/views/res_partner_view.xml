@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_county" model="ir.ui.view">
+        <field name="name">res.partner.form.county</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group/div/field[@name='state_id']" position="replace">
+                <field name="county_id"
+                       placeholder="County"
+                       options='{"no_open": True, "no_create": True}'
+                       class="o_address_state"
+                       attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"
+                       domain="[('state_id', '=?', state_id)]"/>
+            </xpath>
+            <xpath expr="//group/group/div/field[@name='country_id']" position="before">
+                <field name="state_id"
+                       placeholder="State"
+                       options='{"no_open": True}'
+                       attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"
+                       context="{'country_id': country_id, 'zip': zip}"/>
+            </xpath>
+
+            <xpath expr="//sheet/group/group/div/div/field[@name='state_id']" position="replace">
+                <field name="county_id"
+                       placeholder="County"
+                       options='{"no_open": True, "no_create": True}'
+                       class="o_address_state"
+                       attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"
+                       domain="[('state_id', '=?', state_id)]"/>
+            </xpath>
+            <xpath expr="//sheet/group/group/div/div/field[@name='country_id']" position="before">
+                <field name="state_id"
+                       placeholder="State"
+                       options='{"no_open": True}'
+                       attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"
+                       context="{'country_id': country_id, 'zip': zip}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_tree_state_county" model="ir.ui.view">
+        <field name="name">res.partner.tree.state.county</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_id']" position="before">
+                <field name="county_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_search_county" model="ir.ui.view">
+        <field name="name">res.partner.search.state.county</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='group_country']" position="before">
+                <filter name="group_county" string="County" context="{'group_by': 'county_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
