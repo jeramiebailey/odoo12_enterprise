@@ -27,7 +27,7 @@ class AccountInvoice(models.Model):
             invoice_type = 'out_invoice'
 
         invoice_values = {
-            'comment': pos_order_values['comment'],
+            'comment': pos_order_values['note'],
             'date_invoice': pos_order_values['date_invoice'] or fields.Date.context_today(self),
             'invoice_line_ids': [],
             'name': pos_order_values['partner_ref'],
