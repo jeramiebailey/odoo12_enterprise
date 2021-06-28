@@ -73,6 +73,17 @@ class ProductProduct(models.Model):
                     skip_update_fix_price=True).list_price = min(fix_prices)
             product.write(vals)
 
+    @api.multi
+    def write(self, vals):
+        res = super(ProductProduct, self).write(vals)
+        if 'fix_price' in vals:
+            for product in self:
+                fix_prices = product.product_tmpl_id.mapped(
+                    'product_variant_ids.fix_price')
+                product.product_tmpl_id.with_context(
+                    skip_update_fix_price=True).list_price = min(fix_prices)
+        return res
+
     lst_price = fields.Float(
         compute='_compute_lst_price',
         inverse='_inverse_product_lst_price',
