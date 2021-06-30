@@ -40,7 +40,7 @@ class SaleOrder(models.Model):
     def create_pos_sale_order(self, pos_order_values, pos_order_workflow):
         order_values = {
             'client_order_ref': pos_order_values.get('client_order_ref',''),
-            'note': pos_order_values.get('note',''),
+            #'note': pos_order_values.get('note',''),
             'order_line': [],
             'order_uid_save':pos_order_values['uid_save'],
             'origin': pos_order_values['name'],
