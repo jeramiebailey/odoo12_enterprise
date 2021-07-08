@@ -13,6 +13,7 @@
     ],
     'data': [
         'views/stock_picking_view.xml',
+        'views/stock_move_view.xml',
         'report/report_deliveryslip.xml',
         'report/report_stockpicking_operations.xml',
     ],
