@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="collection_order_tree" model="ir.ui.view">
+        <field name="name">collection.order.tree</field>
+        <field name="model">collection.order</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Collection Orders"
+                  decoration-info="state == 'new'"
+                  decoration-warning="state == 'ongoing'"
+                  decoration-success="state == 'close'">
+                <field name="name"/>
+                <field name="company_id" invisible="1"/>
+                <field name="user_id"/>
+                <field name="date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="collection_order_form" model="ir.ui.view">
+        <field name="name">collection.order.form</field>
+        <field name="model">collection.order</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <form string="Collection Order">
+                <header>
+                        <button name="add_customers"
+                                type="object"
+                                string="Add Customer"
+                                attrs="{'invisible':[('state','=','close')]}"
+                                class="oe_highlight"/>
+                        <button name="action_deposit"
+                                type="object"
+                                string="Deposit"
+                                class="oe_highlight"
+                                groups="collection.group_collection_manager"/>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="new,ongoing,close"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="button_collected_payments"
+                                type="object" class="oe_stat_button"
+                                icon="fa-money">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="total_collected"/>
+                                </span>
+                                <span class="o_stat_text"> Collected</span>
+                            </div>
+                        </button>
+                        <button name="button_deposited_payments"
+                                type="object" class="oe_stat_button"
+                                icon="fa-money">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="total_deposited"/>
+                                </span>
+                                <span class="o_stat_text"> Deposited</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"
+                                   widget="res_partner_many2one"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Collections">
+                            <field name="collection_line_ids">
+                                <tree string="Order lines" editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="partner_id"/>
+                                    <field name="partner_address"/>
+                                    <field name="name"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="receivable_amount"/>
+                                    <field name="collected_amount"/>
+                                    <field name="state" invisible="1"/>
+                                    <button name="%(collection.collection_register_payment_wizard_action)d"
+                                            type="action"
+                                            class="oe_stat_button"
+                                            icon="fa-usd"
+                                            attrs="{'invisible': [('state', '=', 'close')]}"
+                                            help="Register the collected payment"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="partner_id"/>
+                                        <field name="partner_address"/>
+                                        <field name="name"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="receivable_amount"/>
+                                        <field name="collected_amount"/>
+                                    </group>
+                                </form>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_receivable" widget="monetary"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_collection_order_filter" model="ir.ui.view">
+        <field name="name">collection.order.select</field>
+        <field name="model">collection.order</field>
+        <field name="arch" type="xml">
+            <search string="Search Collection Orders">
+                <filter string="Date" name="filter_date" date="date"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_user_id"
+                            string="Collector"
+                            context="{'group_by':'user_id'}"/>
+                    <filter name="group_by_state"
+                            string="State"
+                            context="{'group_by':'state'}"/>
+                </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="collection_order_action" model="ir.actions.act_window">
+        <field name="name">Collection Orders</field>
+        <field name="res_model">collection.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="search_view_id" ref="view_collection_order_filter"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Add a new collection order
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="collection_order_menu_root"
+              name="Collection"
+              action="collection_order_action"
+              sequence="10"
+              web_icon="collection,static/description/icon.png"/>
+</odoo>

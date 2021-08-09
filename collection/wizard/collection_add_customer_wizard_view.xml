@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="collection_add_customer_wizard_view_form" model="ir.ui.view">
+        <field name="name">collection.add.customer.wizard.view.form</field>
+        <field name="model">collection.add.customer.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Customer">
+                <group>
+                    <field name="partner_ids"
+                           context="{'tree_view_ref': 'collection.res_partner_collection_app_view'}"/>
+                </group>
+                <field name="order_id" invisible="1"/>
+                <footer>
+                    <button string='Save'
+                            name="collection_add_customer"
+                            type="object"
+                            class="oe_highlight"/>
+                    <button string="Cancel"
+                            class="oe_link"
+                            special="cancel"/>
+                </footer>
+           </form>
+        </field>
+    </record>
+
+    <record id="collection_add_customer_wizard_action" model="ir.actions.act_window">
+        <field name="name">Add Customer</field>
+        <field name="res_model">collection.add.customer.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="collection_add_customer_wizard_view_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

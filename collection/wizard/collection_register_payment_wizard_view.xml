@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="collection_register_payment_wizard_form" model="ir.ui.view">
+        <field name="name">collection.register.payment.wizard.form.view</field>
+        <field name="model">collection.register.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Register Payment Wizard">
+                <group>
+                    <field name="received_amount" widget="monetary"/>
+                    <field name="journal_id"/>
+                    <field name="file" filename="filename"/>
+                    <field name="filename" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
+                </group>
+                <footer>
+                    <button string='Register Payment'
+                            name="collection_register_payment"
+                            type="object"
+                            class="oe_highlight"/>
+                    <button string="Cancel"
+                            class="oe_link"
+                            special="cancel"/>
+                </footer>
+           </form>
+        </field>
+    </record>
+
+    <record id="collection_register_payment_wizard_action"
+            model="ir.actions.act_window">
+        <field name="name">Register Payment</field>
+        <field name="res_model">collection.register.payment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="collection_register_payment_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_collection_app_view" model="ir.ui.view">
+        <field name="name">res.partner.collection.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Partners">
+                <field name="name"/>
+                <field name="city"/>
+                <field name="zip"/>
+                <field name="credit"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

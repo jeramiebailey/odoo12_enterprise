@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+collection_order_user,collection.order.user,model_collection_order,collection.group_collection_user,1,1,1,0
+collection_order_line_user,collection.order.line.user,model_collection_order_line,collection.group_collection_user,1,1,1,0
+collection_order_manager,collection.order.manager,model_collection_order,collection.group_collection_manager,1,1,1,1
+collection_order_line_manager,collection.order.line.manager,model_collection_order_line,collection.group_collection_manager,1,1,1,1
+collection_add_customer_wizard,collection.add.customer.wizard,model_collection_add_customer_wizard,collection.group_collection_user,1,1,1,1
+collection_register_payment_wizard,collection.register.payment.wizard,model_collection_register_payment_wizard,collection.group_collection_user,1,1,1,1
+deposit_payment_wizard,collection.deposit.payment.wizard,model_collection_deposit_payment_wizard,collection.group_collection_manager,1,1,1,1
+account_payment_user,account.payment.user,account.model_account_payment,collection.group_collection_user,1,0,0,0
+account_move_line_user,account.move.line.user,account.model_account_move_line,collection.group_collection_user,1,0,0,0
+account_journal_user,account.journal.user,account.model_account_journal,collection.group_collection_user,1,0,0,0
+account_partial_reconcile_user,account.partial.reconcile.user,account.model_account_partial_reconcile,collection.group_collection_user,1,0,0,0
+account_payment_method_user,account.payment.method.user,account.model_account_payment_method,collection.group_collection_user,1,0,0,0
