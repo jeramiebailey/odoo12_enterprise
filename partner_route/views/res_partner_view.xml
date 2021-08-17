@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_partner_form_route">
+        <field name="name">Partner form with route</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="route_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_res_partner_filter_route">
+        <field name="name">Partner search with route</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="route_id"
+                       string="Route"
+                       filter_domain="[('route_id','ilike',self)]"/>
+            </field>
+            <filter name="salesperson" position="after">
+                <filter name="route"
+                        string="Route"
+                        context="{'group_by': 'route_id'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sales_order_filter_route" model="ir.ui.view">
+        <field name="name">sale.order.search.route</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='customer']" position="after">
+                <filter name="route" string="Partner Route" domain="[]" context="{'group_by':'partner_route'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

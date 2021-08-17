@@ -39,4 +39,25 @@
         </field>
     </record>
 
+    <record id="view_sales_order_filter_panorama" model="ir.ui.view">
+        <field name="name">sale.order.search.panorama</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='customer']" position="after">
+                <filter name="city" string="City" domain="[]" context="{'group_by':'city'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_tree_panorama" model="ir.ui.view">
+        <field name="name">sale.order.tree.panorama</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="city" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_route_action"
+            model="ir.actions.act_window">
+        <field name="name">Partner Routes</field>
+        <field name="res_model">res.partner.route</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="res_partner_route_tree_view" model="ir.ui.view">
+        <field name="name">Partner Routes</field>
+        <field name="model">res.partner.route</field>
+        <field name="arch" type="xml">
+            <tree string="Route" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem action="res_partner_route_action"
+              id="menu_res_partner_route"
+              name="Partner Routes"
+              parent="contacts.res_partner_menu_config"/>
+</odoo>
