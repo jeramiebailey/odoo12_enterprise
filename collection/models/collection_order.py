@@ -37,6 +37,7 @@ class CollectionOrder(models.Model):
     state = fields.Selection([
         ('new', 'New'),
         ('ongoing', 'Ongoing'),
+        ('depositing', 'Depositing'),
         ('close', 'Closed'),
     ],
         string='Status',
@@ -85,16 +86,19 @@ class CollectionOrder(models.Model):
         for collection in self:
             collection.total_collected = sum(line.collected_amount for line in collection.collection_line_ids)
 
-    @api.depends('payment_ids.amount', 'currency_id')
+    @api.depends('payment_ids.amount', 'payment_ids.state', 'currency_id')
     def _compute_deposited(self):
         for collection in self:
-            collection.total_deposited = sum(collection.payment_ids.mapped('amount'))
+            collection.total_deposited = sum(collection.payment_ids.filtered(lambda x: x.state == 'posted').mapped('amount'))
 
-    @api.depends('total_collected', 'total_deposited')
+    @api.depends('total_collected', 'total_deposited', 'payment_ids.state')
     def _compute_states(self):
         for rec in self:
             if rec.total_deposited > 0:
-                rec.state = 'close'
+                if any([pay.state == 'draft' for pay in rec.payment_ids]):
+                    rec.depositing = 'depositing'
+                else:
+                    rec.state = 'close'
             elif rec.total_collected > 0:
                 rec.state = 'ongoing'
             else:

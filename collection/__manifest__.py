@@ -3,7 +3,7 @@
 {
     'name': 'Collection',
     'summary': 'Collection App',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'category': 'Accounting',
     'author': 'Eska',
     'website': 'http://www.eskayazilim.com.tr',
