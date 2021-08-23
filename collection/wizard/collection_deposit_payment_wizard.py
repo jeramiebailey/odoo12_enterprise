@@ -23,7 +23,13 @@ class CollectionDepositPaymentWizard(models.TransientModel):
         comodel_name='account.journal',
         string='Journal',
         required=True,
+        domain="[('use_in_collections', '=', True)]",
     )
+    file = fields.Binary(
+        string='Document',
+        attachment=True,
+    )
+    filename = fields.Char()
 
     def _create_payment_vals(self):
         collection = self.env["collection.order"].browse(self._context.get("active_id"))
@@ -38,6 +44,8 @@ class CollectionDepositPaymentWizard(models.TransientModel):
             'ref': collection.name,
             'journal_id': self.journal_id.id,
             'currency_id': self.currency_id.id,
+            'document': self.file,
+            'filename': self.filename,
             'partner_id': partner.id,
             'destination_account_id': collection.user_id.partner_id.property_account_payable_id.id,
             'collection_id': collection.id,

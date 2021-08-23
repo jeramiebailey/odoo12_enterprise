@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale.view_sales_order_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='customer']" position="after">
-                <filter name="route" string="Partner Route" domain="[]" context="{'group_by':'partner_route'}"/>
+                <filter name="route" string="Route" domain="[]" context="{'group_by':'partner_route'}"/>
             </xpath>
         </field>
     </record>

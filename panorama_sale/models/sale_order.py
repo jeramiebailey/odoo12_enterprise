@@ -9,3 +9,9 @@ class SaleOrder(models.Model):
         related='partner_id.city',
         store=True
     )
+    county = fields.Many2one(
+        comodel_name='res.country.state.county',
+        string='County',
+        related='partner_id.county_id',
+        store=True
+    )

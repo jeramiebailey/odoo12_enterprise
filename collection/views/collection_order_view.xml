@@ -36,7 +36,8 @@
                                 class="oe_highlight"
                                 groups="collection.group_collection_manager"/>
                     <field name="state"
-                           widget="statusbar"/>
+                           widget="statusbar"
+                           statusbar_visible="new,ongoing,depositing,close"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">

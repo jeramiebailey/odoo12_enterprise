@@ -89,7 +89,8 @@ class CollectionOrder(models.Model):
     @api.depends('payment_ids.amount', 'payment_ids.state', 'currency_id')
     def _compute_deposited(self):
         for collection in self:
-            collection.total_deposited = sum(collection.payment_ids.filtered(lambda x: x.state == 'posted').mapped('amount'))
+            collection.total_deposited = sum(collection.payment_ids\
+                                             .filtered(lambda x: x.state in ['draft', 'posted']).mapped('amount'))
 
     @api.depends('total_collected', 'total_deposited', 'payment_ids.state')
     def _compute_states(self):
