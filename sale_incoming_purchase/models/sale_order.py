@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
         action = self.env.ref('product_incoming_purchase.action_incoming_purchases').read()[0]
         product_ids = self.mapped('order_line.product_id')
         lines = self.env['purchase.order.line'].search([
-                ('active', '=', True),
+                ('order_active', '=', True),
                 ('state', 'in', ['purchase', 'done']),
                 ('product_id', 'in', product_ids.ids),
                 ('qty_remaining', '>', 0.0)
