@@ -9,8 +9,8 @@ class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
 
-    active = fields.Boolean(
-        string='Active',
+    order_active = fields.Boolean(
+        string='Order Active',
         related='order_id.active',
         store=True,
     )
@@ -21,10 +21,10 @@ class PurchaseOrderLine(models.Model):
         store=True,
     )
 
-    @api.depends('active', 'product_qty', 'qty_received')
+    @api.depends('order_active', 'product_qty', 'qty_received')
     def _compute_remaining_qty(self):
         for rec in self:
-            if rec.active and rec.product_qty > rec.qty_received:
+            if rec.order_active and rec.product_qty > rec.qty_received:
                 rec.qty_remaining = rec.product_qty - rec.qty_received
             else:
                 rec.qty_remaining = 0

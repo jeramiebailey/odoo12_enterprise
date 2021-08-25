@@ -22,10 +22,10 @@ class ProductProduct(models.Model):
 
     @api.depends('sale_line_ids.qty_missing',
                  'sale_line_ids.state',
-                 'sale_line_ids.active')
+                 'sale_line_ids.order_active')
     def _compute_missing_sale_qty(self):
         domain = [
-            ('active', '=', True),
+            ('order_active', '=', True),
             ('state', 'in', ['sale', 'done']),
             ('product_id', 'in', self.mapped('id')),
             ('qty_missing', '>', 0.0)
@@ -42,7 +42,7 @@ class ProductProduct(models.Model):
     def action_missing_sales_popup(self):
         id = self.env.ref('product_missing_sale.product_missing_view')
         lines = self.env['sale.order.line'].search([
-                ('active', '=', True),
+                ('order_active', '=', True),
                 ('state', 'in', ['sale', 'done']),
                 ('product_id', 'in', self.mapped('id')),
                 ('qty_missing', '>', 0.0)
@@ -66,7 +66,7 @@ class ProductProduct(models.Model):
     def action_missing_sales(self):
         action = self.env.ref('product_missing_sale.action_missing_sales').read()[0]
         lines = self.env['sale.order.line'].search([
-                ('active', '=', True),
+                ('order_active', '=', True),
                 ('state', 'in', ['sale', 'done']),
                 ('product_id', 'in', self.mapped('id')),
                 ('qty_missing', '>', 0.0)

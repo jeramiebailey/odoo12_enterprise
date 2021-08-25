@@ -8,8 +8,8 @@ from odoo.tools.float_utils import float_round
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    active = fields.Boolean(
-        string='Active',
+    order_active = fields.Boolean(
+        string='Order Active',
         related='order_id.active',
         store=True,
     )
@@ -20,10 +20,10 @@ class SaleOrderLine(models.Model):
         store=True,
     )
 
-    @api.depends('active', 'product_uom_qty', 'qty_delivered')
+    @api.depends('order_active', 'product_uom_qty', 'qty_delivered')
     def _compute_missing_qty(self):
         for rec in self:
-            if rec.active and rec.product_uom_qty > rec.qty_delivered:
+            if rec.order_active and rec.product_uom_qty > rec.qty_delivered:
                 rec.qty_missing = rec.product_uom_qty - rec.qty_delivered
             else:
                 rec.qty_missing = 0

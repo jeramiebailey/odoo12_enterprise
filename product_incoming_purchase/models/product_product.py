@@ -22,10 +22,10 @@ class ProductProduct(models.Model):
 
     @api.depends('purchase_line_ids.qty_remaining',
                  'purchase_line_ids.state',
-                 'purchase_line_ids.active')
+                 'purchase_line_ids.order_active')
     def _compute_incoming_purchase_qty(self):
         domain = [
-            ('active', '=', True),
+            ('order_active', '=', True),
             ('state', 'in', ['purchase', 'done']),
             ('product_id', 'in', self.mapped('id')),
             ('qty_remaining', '>', 0.0)
@@ -42,7 +42,7 @@ class ProductProduct(models.Model):
     def action_incoming_purchases_popup(self):
         id = self.env.ref('product_incoming_purchase.product_incoming_view')
         lines = self.env['purchase.order.line'].search([
-                ('active', '=', True),
+                ('order_active', '=', True),
                 ('state', 'in', ['purchase', 'done']),
                 ('product_id', 'in', self.mapped('id')),
                 ('qty_remaining', '>', 0.0)
@@ -66,7 +66,7 @@ class ProductProduct(models.Model):
     def action_incoming_purchases(self):
         action = self.env.ref('product_incoming_purchase.action_incoming_purchases').read()[0]
         lines = self.env['purchase.order.line'].search([
-                ('active', '=', True),
+                ('order_active', '=', True),
                 ('state', 'in', ['purchase', 'done']),
                 ('product_id', 'in', self.mapped('id')),
                 ('qty_remaining', '>', 0.0)
