@@ -33,8 +33,7 @@
                         <button name="action_deposit"
                                 type="object"
                                 string="Deposit"
-                                class="oe_highlight"
-                                groups="collection.group_collection_manager"/>
+                                class="oe_highlight"/>
                     <field name="state"
                            widget="statusbar"
                            statusbar_visible="new,ongoing,depositing,close"/>
