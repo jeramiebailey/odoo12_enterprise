@@ -11,7 +11,7 @@ class CollectionOrderLine(models.Model):
 
     def _compute_collected_amount(self):
         for line in self:
-            line.collected_amount = sum(line.mapped('payment_ids.amount'))
+            line.collected_amount = sum(line.payment_ids.filtered(lambda x: x.state != 'cancelled').mapped('amount'))
 
     name = fields.Text(
         string='Description',

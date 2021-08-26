@@ -11,6 +11,8 @@
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
                 <attribute name="limit">300</attribute>
             </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='account_analytic_id']" position="replace"/>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='analytic_tag_ids']" position="replace"/>
         </field>
     </record>
 

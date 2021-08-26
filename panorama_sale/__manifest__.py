@@ -10,6 +10,7 @@
     'license': 'AGPL-3',
     'depends': [
         'sale_enterprise',
+        'base_county',
     ],
     'data': [
         'views/sale_order_view.xml',

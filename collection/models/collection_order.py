@@ -75,6 +75,10 @@ class CollectionOrder(models.Model):
         inverse_name='collection_id',
         string='Payments',
     )
+    active = fields.Boolean(
+        default=True,
+        string="Active",
+    )
 
     @api.depends('collection_line_ids.receivable_amount', 'currency_id')
     def _compute_receivable(self):
