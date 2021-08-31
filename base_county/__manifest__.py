@@ -8,7 +8,7 @@
     'author': 'Eska',
     'website': 'http://www.eskayazilim.com.tr',
     'license': 'AGPL-3',
-    'depends': [],
+    'depends': ['contacts'],
     'data': [
         'security/ir.model.access.csv',
         'views/res_company_view.xml',
