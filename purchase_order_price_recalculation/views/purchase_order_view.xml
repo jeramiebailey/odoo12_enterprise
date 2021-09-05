@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_price_recalculation" model="ir.ui.view">
+        <field name="name">purchase.order.form.price.recalculation</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <button name="action_rfq_send" position="before">
+                <button name="recalculate_prices"
+                        string="Recalculate prices"
+                        type="object"
+                        attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
+            </button>
+        </field>
+    </record>
+</odoo>
