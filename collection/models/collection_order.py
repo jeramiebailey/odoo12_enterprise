@@ -93,7 +93,7 @@ class CollectionOrder(models.Model):
     @api.depends('payment_ids.amount', 'payment_ids.state', 'currency_id')
     def _compute_deposited(self):
         for collection in self:
-            collection.total_deposited = sum(collection.payment_ids\
+            collection.total_deposited = sum(collection.payment_ids \
                                              .filtered(lambda x: x.state in ['draft', 'posted']).mapped('amount'))
 
     @api.depends('total_collected', 'total_deposited', 'payment_ids.state')
@@ -101,7 +101,7 @@ class CollectionOrder(models.Model):
         for rec in self:
             if rec.total_deposited > 0:
                 if any([pay.state == 'draft' for pay in rec.payment_ids]):
-                    rec.depositing = 'depositing'
+                    rec.state = 'depositing'
                 else:
                     rec.state = 'close'
             elif rec.total_collected > 0:
