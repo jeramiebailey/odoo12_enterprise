@@ -24,6 +24,8 @@ class CollectionOrderLine(models.Model):
         comodel_name='res.partner',
         string='Customer',
         required=True,
+        readonly=True,
+        states={'new': [('readonly', False)]},
     )
     partner_address = fields.Char(
         related='partner_id.contact_address',
