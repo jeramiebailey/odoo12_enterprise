@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_inventory_form" model="ir.ui.view">
+        <field name="model">stock.inventory</field>
+        <field name="inherit_id" ref="stock.view_inventory_form"/>
+        <field name="groups_id" eval="[(4, ref('product.group_product_variant'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']" position="before">
+                <button name="%(action_inventory_manage_variant)d"
+                        type="action"
+                        string="Add or Modify Variants"
+                        class="oe_edit_only oe_right"
+                        states="draft,confirm"
+                />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//tree" position="inside">
+                <field name="product_tmpl_id_stock_variant_mgmt" invisible="1"/>
+                <field name="product_attribute_value_ids" invisible="1"/>
+                <button name="%(action_inventory_manage_variant)d"
+                        type="action"
+                        string="Modify Variants"
+                        icon="fa-th"
+                        class="oe_edit_only"
+                        context="{'default_product_tmpl_id': product_tmpl_id_stock_variant_mgmt}"
+                        attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'confirm')), ('product_attribute_value_ids', '=', [])]}"
+                />
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']" position="attributes">
+                <attribute name="options">{'reload_on_button': true}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
