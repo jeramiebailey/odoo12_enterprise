@@ -16,10 +16,10 @@ class ProductProduct(models.Model):
 
     @api.depends('sale_line_ids.qty_missing_quot',
                  'sale_line_ids.state',
-                 'sale_line_ids.active')
+                 'sale_line_ids.order_active')
     def _compute_missing_quot_qty(self):
         domain = [
-            ('active', '=', True),
+            ('order_active', '=', True),
             ('state', '=', 'draft'),
             ('product_id', 'in', self.mapped('id')),
             ('qty_missing_quot', '>', 0.0)
@@ -36,7 +36,7 @@ class ProductProduct(models.Model):
     def action_missing_quots_popup(self):
         id = self.env.ref('product_missing_quotation.product_missing_quot_view')
         lines = self.env['sale.order.line'].search([
-                ('active', '=', True),
+                ('order_active', '=', True),
                 ('state', '=', 'draft'),
                 ('product_id', 'in', self.mapped('id')),
                 ('qty_missing_quot', '>', 0.0)
@@ -60,7 +60,7 @@ class ProductProduct(models.Model):
     def action_missing_quotations(self):
         action = self.env.ref('product_missing_quotation.action_missing_quotations').read()[0]
         lines = self.env['sale.order.line'].search([
-                ('active', '=', True),
+                ('order_active', '=', True),
                 ('state', '=', 'draft'),
                 ('product_id', 'in', self.mapped('id')),
                 ('qty_missing_quot', '>', 0.0)

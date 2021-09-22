@@ -14,10 +14,10 @@ class SaleOrderLine(models.Model):
         store=True,
     )
 
-    @api.depends('active', 'product_uom_qty', 'qty_delivered')
+    @api.depends('order_active', 'product_uom_qty', 'qty_delivered')
     def _compute_missing_quot_qty(self):
         for rec in self:
-            if rec.active and rec.product_uom_qty > rec.qty_delivered:
+            if rec.order_active and rec.product_uom_qty > rec.qty_delivered:
                 rec.qty_missing_quot = rec.product_uom_qty - rec.qty_delivered
             else:
                 rec.qty_missing_quot = 0
