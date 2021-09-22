@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="procurement_planning_quotation_view" model="ir.ui.view">
+        <field name="name">product.product.procurement.planning.quotation</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product_procurement_planning.procurement_planning_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='display_name']" position="after">
+                <field name="missing_quot_qty" sum="Missing Quotation"/>
+                <button name="action_missing_quotations"
+                        string="Show Missing Quotes"
+                        type="object"
+                        class="oe_highlight"
+                        help="Missing quotation lines"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

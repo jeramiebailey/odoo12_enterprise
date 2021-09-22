@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_missing_quot_view" model="ir.ui.view">
+        <field name="name">product.product.missing.quotations</field>
+        <field name="model">sale.order.line</field>
+        <field name="priority" eval="40"/>
+        <field name="arch" type="xml">
+            <tree string="Missing Quotations" create="false" edit="false">
+                <field name="order_id"/>
+                <field name="order_partner_id" string="Customer"/>
+                <field name="product_id"/>
+                <field name="product_uom_qty" sum="Ordered Quantity"/>
+                <field name="qty_delivered" sum="Received Quantity"/>
+                <field name="qty_missing_quot" sum="Remaining Quotation Quantity"/>
+                <field name="price_unit"/>
+                <field name="price_subtotal" sum="Total Amount"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_missing_quotations" model="ir.actions.act_window">
+        <field name="name">Missing Quotations</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_missing_quot_view"/>
+    </record>
+</odoo>
