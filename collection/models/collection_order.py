@@ -169,3 +169,17 @@ class CollectionOrder(models.Model):
             'type': 'ir.actions.act_window',
             'domain': [('id', 'in', self.mapped('payment_ids').ids)],
         }
+
+    def button_reconcile(self):
+        accounts = self.user_id.partner_id.property_account_receivable_id
+        action_context = {
+            'show_mode_selector': True,
+            'partner_ids': [self.user_id.partner_id.id],
+            'mode': 'customers',
+            'account_ids': accounts.ids
+        }
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'manual_reconciliation_view',
+            'context': action_context,
+        }

@@ -65,6 +65,11 @@
                             <field name="active" widget="boolean_button"
                                 options='{"terminology": "archive"}'/>
                         </button>
+                        <button name="button_reconcile"
+                                type="object" class="oe_stat_button"
+                                icon="fa-handshake-o" string="Reconcile"
+                                groups="collection.group_collection_manager"
+                        />
                     </div>
                     <div class="oe_title">
                         <h1><field name="name"/></h1>
