@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="lead_generator_wizard_view_form" model="ir.ui.view">
+        <field name="name">lead.generator.wizard.form</field>
+        <field name="model">lead.generator.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="final_date"/>
+                </group>
+                <group>
+                    <field name="partner_ids"
+                           options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button string="Generate" type="object" class="oe_highlight" name="action_generate_lead"/>
+                    <button special="cancel" class="btn-secondary" string="Close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="lead_generator_action" model="ir.actions.act_window">
+        <field name="name">Lead Generator</field>
+        <field name="res_model">lead.generator.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
