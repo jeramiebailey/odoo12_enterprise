@@ -24,7 +24,7 @@ class LeadGeneratorWizard(models.TransientModel):
                 ('type', '=', 'opportunity'),
             ], order='date_deadline desc', limit=1)
 
-            if partner_lead and partner_lead.date_deadline > fields.Date.today():
+            if partner_lead and partner_lead.date_deadline and partner_lead.date_deadline > fields.Date.today():
                 date = partner_lead.date_deadline
             else:
                 date = fields.Date.today()
