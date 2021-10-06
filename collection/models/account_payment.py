@@ -16,6 +16,10 @@ class account_payment(models.Model):
         comodel_name='collection.order',
         string='Collection Order',
     )
+    transfer_collection_id = fields.Many2one(
+        comodel_name='collection.order',
+        string='Transfer Collection Order',
+    )
     collection_line_id = fields.Many2one(
         comodel_name='collection.order.line',
         string='Collection Order Line',

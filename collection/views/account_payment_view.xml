@@ -8,6 +8,7 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="collector_id" invisible="1"/>
                 <field name="collection_id" invisible="1"/>
+                <field name="transfer_collection_id" invisible="1"/>
                 <field name="collection_line_id" invisible="1"/>
             </xpath>
         </field>

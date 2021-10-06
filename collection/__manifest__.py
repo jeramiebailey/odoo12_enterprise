@@ -18,6 +18,7 @@
         'wizard/collection_add_customer_wizard_view.xml',
         'wizard/collection_deposit_payment_wizard_view.xml',
         'wizard/collection_register_payment_wizard_view.xml',
+        'wizard/collection_transfer_payment_wizard_view.xml',
         'views/collection_order_view.xml',
         'views/account_payment_view.xml',
         'views/account_journal_view.xml',

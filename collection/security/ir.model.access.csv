@@ -6,6 +6,7 @@ collection_order_line_manager,collection.order.line.manager,model_collection_ord
 collection_add_customer_wizard,collection.add.customer.wizard,model_collection_add_customer_wizard,collection.group_collection_user,1,1,1,1
 collection_register_payment_wizard,collection.register.payment.wizard,model_collection_register_payment_wizard,collection.group_collection_user,1,1,1,1
 deposit_payment_wizard,collection.deposit.payment.wizard,model_collection_deposit_payment_wizard,collection.group_collection_manager,1,1,1,1
+collection_transfer_payment_wizard,collection.transfer.payment.wizard,model_collection_transfer_payment_wizard,collection.group_collection_user,1,1,1,1
 account_payment_user,account.payment.user,account.model_account_payment,collection.group_collection_user,1,0,0,0
 account_move_line_user,account.move.line.user,account.model_account_move_line,collection.group_collection_user,1,0,0,0
 account_journal_user,account.journal.user,account.model_account_journal,collection.group_collection_user,1,0,0,0

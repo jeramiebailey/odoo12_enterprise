@@ -13,6 +13,8 @@
                 <field name="company_id" invisible="1"/>
                 <field name="user_id"/>
                 <field name="date"/>
+                <field name="total_collected"/>
+                <field name="total_deposited"/>
                 <field name="state"/>
             </tree>
         </field>
@@ -34,6 +36,10 @@
                                 type="object"
                                 string="Deposit"
                                 class="oe_highlight"/>
+                        <button name="action_transfer"
+                                type="object"
+                                string="Transfer"
+                                class="oe_highlight"/>
                     <field name="state"
                            widget="statusbar"
                            statusbar_visible="new,ongoing,depositing,close"/>
@@ -48,6 +54,16 @@
                                     <field name="total_collected"/>
                                 </span>
                                 <span class="o_stat_text"> Collected</span>
+                            </div>
+                        </button>
+                        <button name="button_transferred_payments"
+                                type="object" class="oe_stat_button"
+                                icon="fa-money">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="total_transferred"/>
+                                </span>
+                                <span class="o_stat_text"> Transferred</span>
                             </div>
                         </button>
                         <button name="button_deposited_payments"
@@ -162,4 +178,5 @@
               action="collection_order_action"
               sequence="10"
               web_icon="collection,static/description/icon.png"/>
+
 </odoo>
