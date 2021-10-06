@@ -14,6 +14,9 @@
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
                 <attribute name="limit">300</attribute>
             </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="decoration-danger">price_unit&lt;purchase_price</attribute>
+            </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
@@ -33,8 +36,10 @@
                 <attribute name="groups"/>
             </xpath>
             <xpath expr="//field[@name='fiscal_position_id']" position="replace"/>
+            <xpath expr="//field[@name='opportunity_id']" position="replace"/>
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="fiscal_position_id" string="Applied Tax" options="{'no_create': True}" />
+                <field name="opportunity_id" string="Opportunity" />
             </xpath>
         </field>
     </record>
