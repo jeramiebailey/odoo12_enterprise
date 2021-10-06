@@ -12,6 +12,7 @@
         'sale_enterprise',
         'base_county',
         'sale_margin',
+        'sale_crm',
     ],
     'data': [
         'views/sale_order_view.xml',
