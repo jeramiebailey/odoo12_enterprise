@@ -14,6 +14,7 @@
                 <field name="user_id"/>
                 <field name="date"/>
                 <field name="total_collected"/>
+                <field name="total_transferred"/>
                 <field name="total_deposited"/>
                 <field name="state"/>
             </tree>
@@ -152,10 +153,7 @@
                     <filter name="group_by_user_id"
                             string="Collector"
                             context="{'group_by':'user_id'}"/>
-                    <filter name="group_by_state"
-                            string="State"
-                            context="{'group_by':'state'}"/>
-                </group>
+                    </group>
            </search>
         </field>
     </record>

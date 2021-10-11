@@ -126,6 +126,14 @@ class CollectionOrder(models.Model):
             else:
                 rec.state = 'new'
 
+    @api.multi
+    def name_get(self):
+        result = []
+        for rec in self:
+            name = rec.name + ' (' + rec.user_id.name + ')'
+            result.append((rec.id, name))
+        return result
+
     @api.model
     def create(self, vals):
         if not vals.get('name') or vals['name'] == _('New'):
