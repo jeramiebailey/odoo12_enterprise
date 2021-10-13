@@ -16,8 +16,7 @@ class ProductProduct(models.Model):
     @api.multi
     @api.depends('barcode_ids.name')
     def _compute_barcodes(self):
-        vals = ''
         for product in self:
-            for barcode in product.barcode_ids:
-                vals += barcode.name + ','
-            product.barcode_ids_str = vals
+            barcode_ids_str = ','.join(product.mapped('barcode_ids.name'))
+            if barcode_ids_str:
+                product.barcode_ids_str = barcode_ids_str
