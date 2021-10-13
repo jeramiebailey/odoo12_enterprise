@@ -15,8 +15,8 @@ DB.include({
             var barcode_ids = [];
             if(barcodes){
                 barcode_ids = barcodes.split(',')
-                for( var i=0; i < barcode_ids.length; i++ ){
-                    var barcode = barcode_ids[i];
+                for( var j=0; j < barcode_ids.length; j++ ){
+                    var barcode = barcode_ids[j];
                     this.product_by_id[product.id] = product;
                     if (barcode){
                         this.product_by_barcode[barcode] = product;
