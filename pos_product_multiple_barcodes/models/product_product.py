@@ -1,7 +1,7 @@
 # Copyright 2021 Eska Yazılım ve Danışmanlık A.Ş (www.eskayazilim.com.tr)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields
+from odoo import api, models, fields
 
 
 class ProductProduct(models.Model):
@@ -10,8 +10,11 @@ class ProductProduct(models.Model):
     barcode_ids_str = fields.Text(
         string='Barcodes as string',
         compute='_compute_barcodes',
+        store=True,
     )
 
+    @api.multi
+    @api.depends('barcode_ids.name')
     def _compute_barcodes(self):
         vals = ''
         for product in self:
