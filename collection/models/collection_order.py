@@ -109,7 +109,8 @@ class CollectionOrder(models.Model):
     @api.depends('transfer_payment_ids.amount', 'currency_id')
     def _compute_transferred(self):
         for collection in self:
-            collection.total_transferred = sum(collection.transfer_payment_ids.mapped('amount'))
+            collection.total_transferred = sum(collection.transfer_payment_ids
+                                               .filtered(lambda x: x.state in ['draft', 'posted']).mapped('amount'))
 
     @api.depends('total_collected', 'total_deposited', 'collection_line_ids.payment_ids.move_line_ids.reconciled')
     def _compute_states(self):
