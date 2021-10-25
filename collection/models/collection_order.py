@@ -114,7 +114,7 @@ class CollectionOrder(models.Model):
     @api.depends('total_collected', 'total_deposited', 'collection_line_ids.payment_ids.move_line_ids.reconciled')
     def _compute_states(self):
         for rec in self:
-            if rec.total_deposited > 0:
+            if rec.total_deposited > 0 or rec.total_transferred:
                 reconcile = rec.mapped('collection_line_ids.payment_ids.move_line_ids').filtered \
                     (lambda r: not r.reconciled and r.partner_id == rec.user_id.partner_id)
                 if reconcile:
