@@ -44,7 +44,7 @@ class CollectionTransferPaymentWizard(models.TransientModel):
             'ref': self.collection_id.name,
             'journal_id': self.journal_id.id,
             'currency_id': self.currency_id.id,
-            'partner_id': self.collection_id.user_id.partner_id.id,
+            'partner_id': collection.user_id.partner_id.id,
             'destination_account_id': partner.property_account_payable_id.id,
             'collector_id': partner.id,
             'transfer_collection_id': collection.id,
