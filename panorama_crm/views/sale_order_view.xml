@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="sale_crm.sale_action_orders">
+        <field name="domain">
+            [('opportunity_id', '=', active_id), ('state', 'not in', ('draft', 'sent', 'cancel')),
+            '|', ('active', '=', True), ('active', '=', False)]
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sale_crm.sale_action_quotations">
+        <field name="domain">
+            [('opportunity_id', '=', active_id), '|', ('active', '=', True), ('active', '=', False)]
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mis_cash_flow_forecast_line_view_tree_inherit_lead" model="ir.ui.view">
+        <field name="name">mis.cash_flow.forecast_line.tree.inherit</field>
+        <field name="model">mis.cash_flow.forecast_line</field>
+        <field name="inherit_id" ref="mis_builder_cash_flow.mis_cash_flow_forecast_line_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+               <field name="lead_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
