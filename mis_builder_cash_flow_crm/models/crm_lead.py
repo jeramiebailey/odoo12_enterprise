@@ -12,7 +12,7 @@ class Lead(models.Model):
         leads = self.env['mis.cash_flow.forecast_line'].search([
                 ('lead_id', 'in', self.ids)
         ])
-	leads.unlink()
+        leads.unlink()
         for lead in self:
             if lead.date_deadline and lead.partner_id and lead.planned_revenue:
                 self.env['mis.cash_flow.forecast_line'].create({
