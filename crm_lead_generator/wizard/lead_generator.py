@@ -13,8 +13,23 @@ class LeadGeneratorWizard(models.TransientModel):
         string='Customers',
         domain=[('customer', '=', True)]
     )
+
+    start_date = fields.Date(
+        string='Start Date',
+    )
+
     final_date = fields.Date(
         string='Final Date',
+    )
+
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Salesperson',
+    )
+
+    recreate = fields.Boolean(
+        string='Recreate',
+        help='If checked, the newer opportunities will be deleted and created again',
     )
 
     def action_generate_lead(self):
@@ -23,10 +38,20 @@ class LeadGeneratorWizard(models.TransientModel):
                 ('partner_id', '=', partner.id),
                 ('type', '=', 'opportunity'),
             ], order='date_deadline desc', limit=1)
-            if partner_lead and partner_lead.date_deadline and partner_lead.date_deadline > fields.Date.today():
+            if self.start_date:
+                date = self.start_date
+            elif not self.start_date and partner_lead and partner_lead.date_deadline \
+                    and partner_lead.date_deadline > fields.Date.today():
                 date = partner_lead.date_deadline
             else:
                 date = fields.Date.today()
+            if self.recreate:
+                newer_leads = self.env['crm.lead'].search([
+                    ('partner_id', '=', partner.id),
+                    ('type', '=', 'opportunity'),
+                    ('date_deadline', '>=', date),
+                ])
+                newer_leads.unlink()
             duration = timedelta(days=partner.schedule_duration)
 
             invoices = self.env['account.invoice'].search([
@@ -40,7 +65,7 @@ class LeadGeneratorWizard(models.TransientModel):
             while self.final_date >= date:
                 vals = {
                     'type': 'opportunity',
-                    'user_id': partner.user_id.id if partner.user_id else self.env.user.id,
+                    'user_id': self.user_id.id if self.user_id else partner.user_id.id,
                     'name': 'Sales for ' + partner.name,
                     'partner_id': partner.id,
                     'planned_revenue': revenue,

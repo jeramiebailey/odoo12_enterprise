@@ -6,7 +6,18 @@
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='planned_revenue']" position="after">
-                <field name="sale_amount_total" string="Sale Revenue"/>
+                <field name="sale_total_amount" string="Sale Revenue"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_lead_view_pivot_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.view.pivot.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='planned_revenue']" position="after">
+                <field name="sale_total_amount" type="measure"/>
             </xpath>
         </field>
     </record>

@@ -6,7 +6,14 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="final_date"/>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="final_date"/>
+                    </group>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="recreate"/>
+                    </group>
                 </group>
                 <group>
                     <field name="partner_ids"
