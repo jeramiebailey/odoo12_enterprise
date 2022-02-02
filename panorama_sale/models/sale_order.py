@@ -15,3 +15,4 @@ class SaleOrder(models.Model):
         related='partner_id.county_id',
         store=True
     )
+
