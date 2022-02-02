@@ -9,13 +9,14 @@
     'website': 'http://www.eskayazilim.com.tr',
     'license': 'AGPL-3',
     'depends': [
-        'sale',
+        'sale_crm',
     ],
     'data': [
         "security/ir.model.access.csv",
         "views/res_partner_route_view.xml",
         "views/res_partner_view.xml",
         "views/sale_order_view.xml",
+        "views/crm_lead_view.xml",
     ],
     'installable': True,
     'auto_install': False,
