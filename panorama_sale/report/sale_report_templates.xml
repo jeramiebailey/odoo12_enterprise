@@ -44,15 +44,6 @@
                                             <span t-field="line.qty_delivered"/>
                                             <span t-field="line.product_uom" groups="uom.group_uom"/>
                                         </td>
-                                        <td name="td_priceunit" class="text-right">
-                                            <span t-field="line.price_unit"/>
-                                        </td>
-                                        <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
-                                            <span t-field="line.discount"/>
-                                        </td>
-                                        <td name="td_taxes" class="text-right">
-                                            <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
-                                        </td>
                                     </t>
                                     <t t-if="line.display_type == 'line_section'">
                                         <td name="td_section_line" colspan="99">
