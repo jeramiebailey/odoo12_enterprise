@@ -25,6 +25,7 @@
                     </t>
                 </tr>
             </thead>
+        </xpath>
         <xpath expr="//tbody[hasclass('sale_tbody')]" position="replace">
             <t t-if="env.context.get('proforma', False) or is_pro_forma">
                 <tbody class="sale_tbody">
