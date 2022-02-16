@@ -2,7 +2,6 @@
 <odoo>
     <template id="report_saleorder_document_inherit_panorama"
               inherit_id="sale.report_saleorder_document">
-        <xpath expr="//th[@name='th_subtotal']" position="replace">
         <xpath expr="//thead" position="replace">
             <thead>
                 <tr>
