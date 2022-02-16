@@ -36,9 +36,6 @@
                 <attribute name="groups"/>
             </xpath>
             <xpath expr="//field[@name='fiscal_position_id']" position="replace"/>
-<!--
-            <xpath expr="//field[@name='opportunity_id']" position="replace"/>
--->
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="fiscal_position_id" string="Applied Tax" options="{'no_create': True}" />
                 <field name="opportunity_id" string="Opportunity" />
