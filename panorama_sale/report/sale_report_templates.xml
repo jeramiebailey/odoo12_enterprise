@@ -3,14 +3,28 @@
     <template id="report_saleorder_document_inherit_panorama"
               inherit_id="sale.report_saleorder_document">
         <xpath expr="//th[@name='th_subtotal']" position="replace">
-            <t t-if="env.context.get('proforma', False) or is_pro_forma"/>
-            <t t-else="">
-                <th name="th_subtotal" class="text-right">
-                    <t groups="account.group_show_line_subtotals_tax_excluded">Amount</t>
-                    <t groups="account.group_show_line_subtotals_tax_included">Total Price</t>
-                </th>
-            </t>
-        </xpath>
+        <xpath expr="//thead" position="replace">
+            <thead>
+                <tr>
+                    <t t-set="colspan" t-value="5"/>
+                    <th name="th_description" class="text-left">Description</th>
+                    <th name="th_quantity" class="text-right">Quantity</th>
+                    <t t-if="env.context.get('proforma', False) or is_pro_forma"/>
+                    <t t-else="">
+                        <th name="th_priceunit" class="text-right">Unit Price</th>
+                        <th name="th_discount" t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                            <span>Disc.(%)</span>
+                            <!-- TODO: remove in master -->
+                            <t t-set="colspan" t-value="colspan+1"/>
+                        </th>
+                        <th name="th_taxes" class="text-right">Taxes</th>
+                        <th name="th_subtotal" class="text-right">
+                            <t groups="account.group_show_line_subtotals_tax_excluded">Amount</t>
+                            <t groups="account.group_show_line_subtotals_tax_included">Total Price</t>
+                        </th>
+                    </t>
+                </tr>
+            </thead>
         <xpath expr="//tbody[hasclass('sale_tbody')]" position="replace">
             <t t-if="env.context.get('proforma', False) or is_pro_forma">
                 <tbody class="sale_tbody">
