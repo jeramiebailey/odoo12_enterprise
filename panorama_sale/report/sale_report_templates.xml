@@ -2,6 +2,15 @@
 <odoo>
     <template id="report_saleorder_document_inherit_panorama"
               inherit_id="sale.report_saleorder_document">
+        <xpath expr="//th[@name='th_subtotal']" position="replace">
+            <t t-if="env.context.get('proforma', False) or is_pro_forma"/>
+            <t t-else="">
+                <th name="th_subtotal" class="text-right">
+                    <t groups="account.group_show_line_subtotals_tax_excluded">Amount</t>
+                    <t groups="account.group_show_line_subtotals_tax_included">Total Price</t>
+                </th>
+            </t>
+        </xpath>
         <xpath expr="//tbody[hasclass('sale_tbody')]" position="replace">
             <t t-if="env.context.get('proforma', False) or is_pro_forma">
                 <tbody class="sale_tbody">
@@ -10,7 +19,7 @@
                     <t t-set="product_category" t-value="doc.order_line.mapped('product_id.categ_id')"/>
 
                     <t t-foreach="set(product_category)" t-as="category">
-                        <t t-set="qty_subtotal" t-value="sum(doc.order_line.filtered(lambda line: line.product_id.categ_id == category).mapped('product_uom_qty'))"/>
+                        <t t-set="qty_subtotal" t-value="sum(doc.order_line.filtered(lambda line: line.product_id.categ_id == category).mapped('qty_delivered'))"/>
                         <tr>
                             <td>
                                 <strong t-esc="category.name"/>
@@ -32,7 +41,7 @@
                                     <t t-if="not line.display_type">
                                         <td name="td_name"><span t-field="line.name"/></td>
                                         <td name="td_quantity" class="text-right">
-                                            <span t-field="line.product_uom_qty"/>
+                                            <span t-field="line.qty_delivered"/>
                                             <span t-field="line.product_uom" groups="uom.group_uom"/>
                                         </td>
                                         <td name="td_priceunit" class="text-right">
@@ -43,10 +52,6 @@
                                         </td>
                                         <td name="td_taxes" class="text-right">
                                             <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
-                                        </td>
-                                        <td name="td_subtotal" class="text-right o_price_total">
-                                            <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
-                                            <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
                                         </td>
                                     </t>
                                     <t t-if="line.display_type == 'line_section'">
@@ -62,18 +67,6 @@
                                         </td>
                                     </t>
                                 </tr>
-
-                                <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
-                                    <tr class="is-subtotal text-right">
-                                        <td name="td_section_subtotal" colspan="99">
-                                            <strong class="mr16">Subtotal</strong>
-                                            <span
-                                                t-esc="current_subtotal"
-                                                t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
-                                            />
-                                        </td>
-                                    </tr>
-                                </t>
                             </t>
                         </t>
                     </t>
@@ -137,6 +130,55 @@
                         </t>
                     </t>
                 </tbody>
+            </t>
+        </xpath>
+
+        <xpath expr="//div[hasclass('clearfix')]" position="replace">
+            <t t-if="env.context.get('proforma', False) or is_pro_forma"/>
+            <t t-else="">
+                <div class="clearfix">
+                    <div id="total" class="row" name="total">
+                        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                            <table class="table table-sm">
+                                <tr class="border-black o_subtotal" style="">
+                                    <td name="td_amount_untaxed_label"><strong>Subtotal</strong></td>
+                                    <td name="td_amount_untaxed" class="text-right">
+                                        <span t-field="doc.amount_untaxed"/>
+                                    </td>
+                                </tr>
+                                <t t-foreach="doc.amount_by_group" t-as="amount_by_group">
+                                    <tr style="">
+                                        <t t-if="amount_by_group[5] == 1 and doc.amount_untaxed == amount_by_group[2]">
+                                            <td name="td_amount_by_group_label_3">
+                                                <span t-esc="amount_by_group[0]"/>
+                                                <span>&amp;nbsp;<span>on</span>&amp;nbsp;<t t-esc="amount_by_group[2]" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/></span>
+                                            </td>
+                                            <td name="td_amount_by_group_3" class="text-right o_price_total">
+                                                <span t-esc="amount_by_group[1]"
+                                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                            </td>
+                                        </t>
+                                        <t t-else ="">
+                                            <td name="td_amount_by_group_label">
+                                                <span t-esc="amount_by_group[0]"/>
+                                            </td>
+                                            <td name="td_amount_by_group" class="text-right o_price_total">
+                                                <span t-esc="amount_by_group[1]"
+                                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                                <tr class="border-black o_total">
+                                    <td name="td_amount_total_label"><strong>Total</strong></td>
+                                    <td name="td_amount_total" class="text-right">
+                                        <span t-field="doc.amount_total"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </t>
         </xpath>
     </template>
