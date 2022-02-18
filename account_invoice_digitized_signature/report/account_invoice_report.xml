@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_signature" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[hasclass('clearfix')]" position="after">
+            <span t-if="o.customer_signature">
+                <strong>Customer acceptance:</strong>
+                <img class="image" t-attf-src="data:image/png;base64,#{o.customer_signature}" style="border:auto;"/>
+            </span>
+        </xpath>
+    </template>
+</odoo>
