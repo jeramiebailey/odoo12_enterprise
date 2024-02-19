@@ -2,7 +2,6 @@
 # Copyright 2016 Sodexis
 # Copyright 2019 Sergio Díaz <sergiodm.1989@gmail.com>
 # Copyright 2020 Tecnativa - Pedro M. Baeza
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
 

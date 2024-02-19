@@ -5,7 +5,6 @@
 #        http://www.antiun.com
 #        Antonio Espinosa <antonioea@antiun.com>
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Partner Identification Numbers',
     'category': 'Customer Relationship Management',

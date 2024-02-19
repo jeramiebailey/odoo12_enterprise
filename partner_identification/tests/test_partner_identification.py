@@ -1,5 +1,4 @@
 # Copyright  2016 ACSONE SA/NV (<http://acsone.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from psycopg2._psycopg import IntegrityError
 from odoo.tests import common
 from odoo.exceptions import ValidationError

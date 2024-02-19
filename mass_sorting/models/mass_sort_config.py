@@ -2,7 +2,6 @@
 # * 2012-Today Serpent Consulting Services (<http://www.serpentcs.com>)
 # * 2016-Today GRAP (http://www.grap.coop)
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
